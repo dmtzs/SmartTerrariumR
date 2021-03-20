@@ -28,7 +28,7 @@ All this data will be sended via bluetooth to the rasp berry´s program so it ca
 * First you need to use an Arduino uno board in order to use the same pins as the program, if not consider that you will need to change the default pins.
 * You need the IDE of Arduino for upload the Arduino program to your board.
 * You need to install from the IDE the dht.h library from adafruit in order to read the dht sensor.
-* You need to install from the IDE the "bluetooth library" in order to read the bluetooth sensor.
+* You need to include from in the arduino program the library: SoftwareSerial.h in order to read and send data from the bluetooth module.
 * If you´re using s linux distribution to upload the file to the Arduino remember to enable the permissions of writing over the USB port.
 
 ### Sensor´s and materials list

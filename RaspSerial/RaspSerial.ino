@@ -1,22 +1,18 @@
+#include <SoftwareSerial.h>
+
+SoftwareSerial BT(3, 2);//Rx | Tx del módulo bluetooth hacia los pines del arduino.
+
 void setup()
 {
   Serial.begin(9600);
+  BT.begin(57600);//Se inicia el puerto para mandar los datos bluetooth.
 }
 
 void loop()
 {
-  int a= 2, b= 2, resul;
-  int arre[4];
-
-  resul= a+b;
-  //Serial.print("El resultado es: ");
-  //Serial.println(resul);
-  //Serial.println("Otra cosa");
-  //Serial.println("Otra cosa 2");
-  arre[0]= 1;
-  arre[1]= 2;
-  arre[2]= 3;
-  arre[3]= 4;
-  Serial.println(arre[0], arre[1], arre[2], arre[3]);
-  delay(1000);
+  if(BT.available())
+  {
+    //variable= GetlineBT();//Para obtener lo que se le manda por bluetooth en caso de ser necesario
+    BT.println();
+  }
 }

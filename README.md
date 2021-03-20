@@ -1,2 +1,33 @@
-## Instructions for dependencies and specifications
-**Coming soon**
+# Instructions
+
+## Purpose of this project
+The purpose of this project is to manage the parameters of my pet that is a snake.
+<br>
+The data that will be processed is going to be the temperature and humidity with a dht22 sensor, the water level in his container and an automatic system for spreading water in order to humidify the terrarium every time the humidity is over 50%.
+<br>
+Also the water will be warm with another sensor for keep warm the recipient of the water.
+<br><br>
+## Rasp Berry python program
+The user interface will be developed with python qt and pyside in order to get a user interface to show all the data we need.
+<br>
+The program will process the data that comes from the arduino via bluetooth and the python program will be processing this data.
+More extra functionality will be developed with the pass of the time
+
+### Installation, libraries and considerations
+* For its correct installation and use you need first python3 the version 3 or upper
+* 
+<br><br>
+## Arduino program
+The arduino will be used as a data acquisition board and will process all the data and results of the sensors
+<br>
+All this data will be sended via bluetooth to the rasp berrys program so it can be shown through the screen of the reaspberry.
+
+### Installation, libraries and considerations
+* First you need the IDE of Arduino for upload the Arduino program to your Arduino.
+* You need to install from the IDE the dht.h library from adafruit in order to read the dht sensor.
+* You need to install from the IDE the "bluetooth library" in order to read the bluetooth sensor.
+* If you´re using s linux distribution to upload the file to the Arduino remember to change the permissions of writing over the USB port.
+
+<br><br>
+
+# More instructions are going to be uploaded with the time

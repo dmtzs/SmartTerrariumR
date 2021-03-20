@@ -7,6 +7,7 @@ The data that will be processed is going to be the temperature and humidity with
 <br>
 Also the water will be warm with another sensor for keep warm the recipient of the water.
 <br><br>
+
 ## Rasp Berry python program
 The user interface will be developed with python qt and pyside in order to get a user interface to show all the data we need.
 <br>
@@ -17,16 +18,22 @@ More extra functionality will be developed with the pass of the time
 * For its correct installation and use you need first python3 the version 3 or upper
 * 
 <br><br>
+
 ## Arduino program
-The arduino will be used as a data acquisition board and will process all the data and results of the sensors
+The arduino will be used as a data acquisition board and will process all the data and results of the sensors.
 <br>
-All this data will be sended via bluetooth to the rasp berrys program so it can be shown through the screen of the reaspberry.
+All this data will be sended via bluetooth to the rasp berry´s program so it can be shown through the screen of the reaspberry.
 
 ### Installation, libraries and considerations
-* First you need the IDE of Arduino for upload the Arduino program to your Arduino.
+* First you need to use an Arduino uno board in order to use the same pins as the program, if not consider that you will need to change the default pins.
+* You need the IDE of Arduino for upload the Arduino program to your board.
 * You need to install from the IDE the dht.h library from adafruit in order to read the dht sensor.
 * You need to install from the IDE the "bluetooth library" in order to read the bluetooth sensor.
-* If you´re using s linux distribution to upload the file to the Arduino remember to change the permissions of writing over the USB port.
+* If you´re using s linux distribution to upload the file to the Arduino remember to enable the permissions of writing over the USB port.
+
+### Sensor´s and materials list
+* dht22 humidity and temperature sensor.
+* hc-06 bluetooth module.
 
 <br><br>
 

@@ -32,8 +32,15 @@ All this data will be sended via bluetooth to the rasp berry´s program so it ca
 * If you´re using s linux distribution to upload the file to the Arduino remember to enable the permissions of writing over the USB port.
 
 ### Sensor´s and materials list
-* dht22 humidity and temperature sensor.
-* hc-06 bluetooth module.
+* dht22 humidity and temperature sensor
+* hc-06 bluetooth module
+* Active buzzer
+* Water level sensor HR0043 or similar
+* 1 push button
+* Arduino uno
+
+## Conecction diagram
+Coming soon
 
 <br><br>
 

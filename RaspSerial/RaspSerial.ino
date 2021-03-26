@@ -1,7 +1,7 @@
 #include <DHT.h>
 
 #define DHT_PIN 7
-#define DHTTYPE DHT22
+#define DHTTYPE DHT22//DHT11
 const int pinBuzzer= 9;//Constant of the buzzer.
 int BandBoton= 0;//Global variables, it can be used for soing a reference to a pin or just a global variable.
 int adc_id= 0;
@@ -24,11 +24,14 @@ void loop()
   int EstadoBoton= digitalRead(8);
   String cade= "";
 
+  //El orden de los datos es: temp, hum, nivel agua y edo boton
   cade+= t;
   cade+= ",";
   cade+= h;
   cade+= ",";
   cade+= valor;
+  cade+= ",";
+  cade+= BandBoton;
 
   Serial.println(cade);
 

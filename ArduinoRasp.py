@@ -5,9 +5,12 @@ os.system("cls")#Para windows.
 print("Iniciando comunicacion con arduino")
 
 # Abrimos la conexión con Arduino
-#arduino = serial.Serial('/dev/ttyACM0', 9600)#Escucha en puerto serial linux mio.
-arduino = serial.Serial('COM4', 9600)#Para windows mio
-time.sleep(2)
+try:
+    #arduino = serial.Serial('/dev/ttyACM0', 9600)#Escucha en puerto serial linux mio.
+    arduino = serial.Serial('COM6', 9600)#Para windows mio
+    time.sleep(2)
+except Exception as e:
+    print(f"Ocurrió el ERROR: {e}")
 
 with arduino:
     while True:

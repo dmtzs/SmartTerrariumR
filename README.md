@@ -46,10 +46,10 @@ All this data will be sended via bluetooth to the rasp berry´s program so it ca
 * USB cable type A to type B of arduino
 * 256 gb SD
 * 330 ohms resistor
-* Cable with jack entrance of 12 volts and 1 or 1.5 amperes
 
 ## Conecction diagram
-Coming soon
+Version 1 of the diagram connection
+![](Imgs/Diagrama-V1.png)
 
 <br><br>
 

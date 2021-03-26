@@ -1,7 +1,4 @@
 #include <DHT.h>
-#include <SoftwareSerial.h>
-
-SoftwareSerial bt(3, 2);//Rx | Tx del modulo de bluetooth.
 
 #define DHT_PIN 7
 #define DHTTYPE DHT22
@@ -11,12 +8,10 @@ int adc_id= 0;
 
 DHT dht(DHT_PIN, DHTTYPE);
 
-
 void setup()
 {
   dht.begin();
   Serial.begin(9600);
-  bt.begin(9600);
   pinMode(pinBuzzer, OUTPUT);
   pinMode(8, INPUT);
 }
@@ -35,13 +30,7 @@ void loop()
   cade+= ",";
   cade+= valor;
 
-  Serial.print(cade);
-
-  //Bluetooth read from serial monitor to bt.
-  /*if (Serial.available())
-  {
-    bt.write(Serial.read());
-  }*/
+  Serial.println(cade);
 
   //For buzzer
   if(EstadoBoton==HIGH)
@@ -49,15 +38,15 @@ void loop()
     BandBoton= 1;
   }
 
-  if(valor<200 && BandBoton==0)
+  if(valor<120 && BandBoton==0)
   {
     digitalWrite(pinBuzzer, HIGH);//Se enciende buzzer
   }
-  else if(valor<200 && BandBoton==1)
+  else if(valor<120 && BandBoton==1)
   {
     digitalWrite(pinBuzzer, LOW);//Se apaga el buzzer
   }
-  else if(valor>200)
+  else if(valor>120)
   {
     BandBoton=0;
     digitalWrite(pinBuzzer, LOW);//Se apaga el buzzer

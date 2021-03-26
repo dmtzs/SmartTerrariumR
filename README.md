@@ -5,20 +5,21 @@ The purpose of this project is to manage the parameters of my pet that is a snak
 <br>
 The data that will be processed is going to be the temperature and humidity with a dht22 sensor, the water level in his container and an automatic system for spreading water in order to humidify the terrarium every time the humidity is over 50%.
 <br>
-Also the water will be warm with another sensor for keep warm the recipient of the water.
+Also the water will be warm with another sensor for keep warm the reserve of water.
 <br><br>
 
 ## Rasp Berry python program
-The user interface will be developed with python qt and pyside in order to get a user interface to show all the data we need.
+The user interface will be developed with python using pygtk library for the graphic interface in order to show all the data we need.
 <br>
-The program will process the data that comes from the arduino via bluetooth and the python program will be processing this data.
-More extra functionality will be developed with the pass of the time
+The program will process the data that comes from the arduino via USB and the python program will be processing this data.
+All this in order to be showed through a display connected to the raspberry.
+<br>
 
 ### Installation, libraries and considerations
-* For its correct installation and use you need first python3 the version 3 or upper
-* It´s necessary to use a bluetooth receptor connected to a USB port in order to receive and convert the bluetooth signal into a serial signal so it can be read by the python program in the raspberry.
+* For its correct installation and use you need first python3 the version 3 or higher.
 * The project uses Ubuntu mate OS for the raspberry.
-* The model of the raspberry is pi4 B+
+* The model of the raspberry is pi4 B+.
+* USB cable for connect both boards between them.
 <br><br>
 
 ## Arduino program
@@ -35,16 +36,17 @@ All this data will be sended via bluetooth to the rasp berry´s program so it ca
 
 ## Sensor´s and materials list used
 * dht22 humidity and temperature sensor
-* hc-06 bluetooth module
 * Active buzzer
 * Water level sensor HR0043 or similar
 * 1 push button
 * Arduino uno
 * Raspberry pi 4 B+
-* Bluetooth receptor to USB
 * LCD touch display of 7 inches
 * HDMI cable
+* USB cable type A to type B of arduino
 * 256 gb SD
+* 330 ohms resistor
+* Cable with jack entrance of 12 volts and 1 or 1.5 amperes
 
 ## Conecction diagram
 Coming soon

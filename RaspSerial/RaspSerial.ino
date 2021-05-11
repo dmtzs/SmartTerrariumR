@@ -7,6 +7,8 @@ int BandBoton= 0;//Global variables, it can be used for soing a reference to a p
 int adc_id= 0;
 
 DHT dht(DHT_PIN, DHTTYPE);
+String cadeRecibida= "";//Para recibir la cadena desde el puerto serial.
+char inChar;
 
 void setup()
 {
@@ -14,6 +16,7 @@ void setup()
   Serial.begin(9600);
   pinMode(pinBuzzer, OUTPUT);
   pinMode(8, INPUT);
+  cadeRecibida.reserve(30);//Tamaño reservado para la cadena, ver si así funciona o si se puede reducir.
 }
 
 void loop()
@@ -34,6 +37,15 @@ void loop()
   cade+= BandBoton;
 
   Serial.println(cade);
+
+  if (Serial.available())
+  {
+    inChar= Serial.read();//Lectura de caracteres.
+    cadeRecibida+= inChar;//Creación de la cadena recibida.
+
+    Serial.println("Cadena que se formo: ");
+    Serial.println(cadeRecibida);
+  }
 
   //For buzzer
   if(EstadoBoton==HIGH)

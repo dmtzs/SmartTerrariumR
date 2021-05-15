@@ -1,7 +1,6 @@
 try:
     import os, time, serial
 except ImportError as error:
-    os.system("cls")
     print(f"\n\n\t\t\t\tOcurrió el ERROR: {error}")
 
 def Core():

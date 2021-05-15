@@ -37,7 +37,7 @@ All this data will be sended via bluetooth to the rasp berry´s program so it ca
 ## Sensor´s and materials list used
 * dht22 humidity and temperature sensor
 * Active buzzer
-* Water level sensor HR0043 or similar
+* Water float sensor
 * 1 push button
 * Arduino uno
 * Raspberry pi 4 B+
@@ -48,7 +48,7 @@ All this data will be sended via bluetooth to the rasp berry´s program so it ca
 * 330 ohms resistor
 
 ## Conecction diagram
-Version 1 of the diagram connection
+Version 2 of the diagram connection. Water sensor will be updated.
 ![](Imgs/Diagrama.png)
 
 <br><br>

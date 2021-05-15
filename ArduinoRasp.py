@@ -1,9 +1,10 @@
 try:
-    import os, time, serial
+    import os, time, serial, Metodos
 except ImportError as error:
     print(f"\n\n\t\t\t\tOcurrió el ERROR: {error}")
 
 def Core():
+    metos= Metodos.ColeccionMetodos()
     #os.system("clear")#Para linux.
     os.system("cls")#Para windows.
     print("\n\n\t\t\t\tIniciando comunicacion con arduino")
@@ -22,20 +23,8 @@ def Core():
             with arduino:
                 while True:
                     try:
-                        rawstring= arduino.readline()
-                        if not rawstring:
-                            pass
-                        else:
-                            rawstring= rawstring.rstrip(b'\r\n')
-                            rawstring= str(rawstring)
-                            aux= len(rawstring)
-                            aux-= 1
-                            rawstring= rawstring[2:aux]
-                            #arre= rawstring.strip("\n")#Este toma lo último después del último caracter en el rstrip
-                            arre= rawstring.split("\n")
-                            print(rawstring)#Ya comprobe que en efecto ahora es una cadena lo que obtengo del serial con arduino
-                            print(f"Arreglo: {arre}")
-                            #print(type(rawstring))
+                        metos.Arduino(arduino)
+                        #ApagarBuzzer()#Para mandar por el puerto serial que se presiono el botón y apagar el buzzer.
                     except KeyboardInterrupt:
                         print("\n\n\t\t\t\tTermino del programa por Ctrl+c presionado")
                         arduino.close()

@@ -49,7 +49,7 @@ All this data will be sended via bluetooth to the rasp berry´s program so it ca
 
 ## Conecction diagram
 Version 1 of the diagram connection
-![](Imgs/Diagrama-V1.png)
+![](Imgs/Diagrama.png)
 
 <br><br>
 

@@ -5,8 +5,8 @@ except ImportError as error:
 
 def Core():
     metos= Metodos.ColeccionMetodos()
-    #os.system("clear")#Para linux.
-    os.system("cls")#Para windows.
+
+    os.system(metos.validarLimpiarTerminal())
     print("\n\n\t\t\t\tIniciando comunicacion con arduino")
 
     # Abrimos la conexión con Arduino
@@ -38,4 +38,7 @@ def Core():
             print("\n\n\t\t\t\tFinalizando programa.")
 
 if __name__== "__main__":
-    Core()
+    try:
+        Core()
+    except Exception as e:
+        print(f"Ocurrió el error: {e}")

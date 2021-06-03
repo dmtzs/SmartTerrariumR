@@ -47,7 +47,7 @@ All this data will be sended via bluetooth to the rasp berry´s program so it ca
 * 256 gb SD
 * 330 ohms resistor
 
-## Conecction diagram
+## Connection diagram
 Version 2 of the diagram connection. Water sensor will be updated.
 ![](Imgs/Diagrama.png)
 

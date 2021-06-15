@@ -20,6 +20,7 @@ All this in order to be showed through a display connected to the raspberry.
 * The project uses Ubuntu mate OS for the raspberry.
 * The model of the raspberry is pi4 B+.
 * USB cable for connect both boards between them.
+* Use pip3 install -r requirements.txt in order to install all python libraries needed.
 <br><br>
 
 ## Arduino program

@@ -9,7 +9,7 @@ Also the water will be warm with another sensor for keep warm the reserve of wat
 <br><br>
 
 ## Rasp Berry python program
-The user interface will be developed with python using pygtk library for the graphic interface in order to show all the data we need.
+The user interface will be developed with python using electron with flask microframework for the graphic interface in order to show all the data we need with an interface which is builded with css.
 <br>
 The program will process the data that comes from the arduino via USB and the python program will be processing this data.
 All this in order to be showed through a display connected to the raspberry.

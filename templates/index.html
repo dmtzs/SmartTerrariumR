@@ -1,0 +1,27 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+    Index
+{% endblock %}
+
+{% block content %}
+
+<h1>Página de inicio</h1>
+
+{% with messages= get_flashed_messages() %} {# Crea una variable dentro del html #}
+    {% if messages %}
+        {% for message in messages %}
+            <div>
+                {{message}}
+            </div>
+        {% endfor %}
+    {% endif %}
+{% endwith %}
+
+<h4>{{dato1}}</h4>
+<h4>{{dato2}}</h4>
+
+
+{% include 'includes/lista.html' %} {# Para incluir la parte que tengo en mi carpeta includes #}
+
+{% endblock %}

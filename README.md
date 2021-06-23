@@ -23,6 +23,19 @@ All this in order to be showed through a display connected to the raspberry.
 * Use pip3 install -r requirements.txt in order to install all python libraries needed.
 <br><br>
 
+## Arduino program
+The Arduino is used in order to acquire the parameters we want to show through the LCD that is humidity and temperature.
+<br>
+The part of the water sensor level is not showed in the LCD, this is measured internally in order to let the arduino know when the arduino needs to turn on the buzzer.
+
+### Installation, libraries and considerations
+* First you need to use an Arduino uno board in order to use the same pins as the program, if not consider that you will need to change the default pins.
+* You need the IDE of Arduino for upload the Arduino program to your board.
+* You need to install from the IDE the dht.h library from adafruit in order to read the dht sensor and include it in the program.
+* Include LiquidCrystal.h library for write in screen the temperature and humidity.
+* If you´re using s linux distribution to upload the file to the Arduino remember to enable the permissions of writing over the USB port.
+* The water level sensor has an analog output, verify the behaviour of your sensor and change the minimum value that corresponds to the variable named: valor in the part of the if´s.
+
 ## Sensor´s and materials list used
 * dht22 humidity and temperature sensor
 * Horn of 2 inches of 1.5 watts
@@ -34,7 +47,7 @@ All this in order to be showed through a display connected to the raspberry.
 * 1 L293D chip
 
 ## Connection diagram
-Version 2 of the diagram connection. Water sensor will be updated.
+Here is going to appear the way you need to connect the arduino with the raspberry
 ![](Imgs/Diagrama.png)
 
 <br><br>

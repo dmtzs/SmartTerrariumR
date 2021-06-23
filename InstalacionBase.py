@@ -13,8 +13,6 @@ def limparShell():
 
 def main():
     os.system("pip3 install -r requirements.txt")
-    os.system("sudo apt-get install python3-dev python3-pip")
-    os.system("sudo python3 -m pip install --upgrade pip setuptools wheel")
     #Va el git clone
 
     """

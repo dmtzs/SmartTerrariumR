@@ -1,1 +1,2 @@
 testresources
+Adafruit_DHT

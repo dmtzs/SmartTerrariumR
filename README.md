@@ -23,30 +23,15 @@ All this in order to be showed through a display connected to the raspberry.
 * Use pip3 install -r requirements.txt in order to install all python libraries needed.
 <br><br>
 
-## Arduino program
-The arduino will be used as a data acquisition board and will process all the data and results of the sensors.
-<br>
-All this data will be sended via bluetooth to the rasp berry´s program so it can be shown through the screen of the reaspberry.
-
-### Installation, libraries and considerations
-* First you need to use an Arduino uno board in order to use the same pins as the program, if not consider that you will need to change the default pins.
-* You need the IDE of Arduino for upload the Arduino program to your board.
-* Install from the IDE the dht.h library from adafruit in order to read the dht sensor and include it.
-* Include in the arduino program the library: SoftwareSerial.h in order to read and send data from the bluetooth module.
-* If you´re using s linux distribution to upload the file to the Arduino remember to enable the permissions of writing over the USB port.
-
 ## Sensor´s and materials list used
 * dht22 humidity and temperature sensor
-* Active buzzer
+* Horn of 2 inches of 1.5 watts
 * Water float sensor
-* 1 push button
-* Arduino uno
 * Raspberry pi 4 B+
 * LCD touch display of 7 inches
-* HDMI cable
-* USB cable type A to type B of arduino
 * 256 gb SD
-* 330 ohms resistor
+* 3 relays
+* 1 L293D chip
 
 ## Connection diagram
 Version 2 of the diagram connection. Water sensor will be updated.

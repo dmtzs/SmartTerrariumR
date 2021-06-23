@@ -1,4 +1,5 @@
 try:
+    import time
     from flask import Flask, render_template, redirect, url_for
     from datetime import datetime
 except Exception as eImp:
@@ -32,7 +33,7 @@ def informacion(nombre= None, ape= None):#El parámetro se debe llamar forzosame
 @app.route('/contacto')
 @app.route('/contacto/<redireccion>')
 def contacto():
-    return render_template('contacto.html')
+    return render_template('contacto.html', Nom= Nombre)
 
 if __name__== "__main__":
     app.run(debug= True)#Con esto hacemos que el servidor de flasjk al arrancar y haya cambios en el código se registren los cambios, algo como django.

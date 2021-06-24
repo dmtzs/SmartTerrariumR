@@ -1,3 +1,8 @@
+try:
+    import platform
+except ImportError as eImp:
+    print(f"The following error import ocurred: {eImp}")
+
 class ColeccionMetodos():
 
     def Arduino(self, arduino):
@@ -15,3 +20,11 @@ class ColeccionMetodos():
             print(rawstring)#Ya comprobe que en efecto ahora es una cadena lo que obtengo del serial con arduino
             print(f"Arreglo: {arre}")
             #print(type(rawstring))
+
+    def limparShell(self):
+        sistema= platform.system()
+
+        if sistema== "Windows":
+            return "cls"
+        else:
+            return "clear"

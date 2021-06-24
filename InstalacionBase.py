@@ -1,15 +1,7 @@
 try:
-    import os, platform
+    import os, platform, Metodos
 except ImportError as eImp:
     print(f"The following import error ocurred: {eImp}")
-
-def limparShell():
-    sistema= platform.system()
-
-    if sistema== "Windows":
-        return "cls"
-    else:
-        return "clear"
 
 def main():
     os.system("sudo apt install python3-pip")
@@ -18,7 +10,8 @@ def main():
 
 if __name__== "__main__":
     try:
-        comandoShell= limparShell()
+        limpShell= Metodos.ColeccionMetodos()
+        comandoShell= limpShell.limparShell()
         os.system(comandoShell)
         main()
     except Exception as ex:

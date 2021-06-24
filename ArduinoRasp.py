@@ -6,13 +6,13 @@ except ImportError as error:
 def Core():
     metos= Metodos.ColeccionMetodos()
 
-    os.system(metos.validarLimpiarTerminal())
+    os.system(metos.limparShell())
     print("\n\n\t\t\t\tIniciando comunicacion con arduino")
 
     # Abrimos la conexión con Arduino
     try:
-        #arduino = serial.Serial('/dev/ttyACM0', 9600)#Escucha en puerto serial linux mio.
-        arduino = serial.Serial('COM6', 9600)#Para windows mio
+        arduino = serial.Serial('/dev/ttyACM0', 9600)#Escucha en puerto serial linux mio.
+        #arduino = serial.Serial('COM6', 9600)#Para windows mio
         bande= 0
         time.sleep(2)
     except Exception as e:

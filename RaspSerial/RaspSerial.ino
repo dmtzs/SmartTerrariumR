@@ -22,16 +22,7 @@ void loop()
   float t= dht.readTemperature();
   String cade= "", estadoFlotador= "";
 
-  //For floating water sensor
-  if(digitalRead(sensorFlotador)== HIGH)
-  {
-    estadoFlotador= "off";
-  }
-  else
-  {
-    estadoFlotador= "on";
-    //Aquí poner lo de rellenar el bebedero
-  }
+  estadoFlotador= floatingSensor();//Function for floating sensor and all what this sensor will manage.
 
   //The order of the data is: temp, hum
   cade+= t;
@@ -39,9 +30,35 @@ void loop()
   cade+= h;
   cade+= ",";
   cade+= estadoFlotador;
-
   Serial.println(cade);
 
+  //Validar que si la temperatura baja a cierto punto que encienda un foco y dependiendo del día o de noche.
+
+  //Validar que si la humedad baja a cierto punto rocie con la bomba que tengo para rociar.
+
+  //Validar que si el sensor de temperatura sumergible baja a cierta temperatura encienda la resistencia por un tiempo para calentar el agua.
+
+  PruebaRecibidoRasp();//Función temporal para imprimir lo que recibo de la raspberry
+
+  delay(4000);//For the temperature and humidity sensor cause the sensor needs time to measure the data.
+}
+
+String floatingSensor()
+{
+  //For floating water sensor
+  if(digitalRead(sensorFlotador)== HIGH)
+  {
+    //Here the functionality to refill the drinker
+    return "on";
+  }
+  else
+  {
+    return "off";
+  }
+}
+
+void PruebaRecibidoRasp()
+{
   if (Serial.available())
   {
     inChar= Serial.read();//Character reading.
@@ -50,6 +67,4 @@ void loop()
     Serial.println("Cadena que se formo: ");
     Serial.println(cadeRecibida);
   }
-
-  delay(4000);//For the temperature and humidity sensor cause the sensor needs time to measure the data.
 }

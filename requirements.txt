@@ -1,2 +1,2 @@
 testresources
-Adafruit_DHT
+flask

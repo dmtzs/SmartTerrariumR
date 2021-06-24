@@ -12,14 +12,9 @@ def limparShell():
         return "clear"
 
 def main():
+    os.system("sudo apt install python3-pip")
     os.system("pip3 install -r requirements.txt")
-    #Va el git clone
-
-    """
-    Para la parte de dht22 con el raspberry
-    temporal: https://www.instructables.com/Raspberry-Pi-Tutorial-How-to-Use-the-DHT-22/
-    temporal2: https://pimylifeup.com/raspberry-pi-humidity-sensor-dht22/ --> se ve mejor este
-    """
+    #Pensar si ejecutar desde aquí el programa de electron y el servidor de flask
 
 if __name__== "__main__":
     try:

@@ -50,7 +50,7 @@ All the necesary data will be displayed in the display of the raspberry for its 
 * 1 L298D chip (H bridge)
 
 ## Connection diagram
-Here is going to appear the way you need to connect the arduino with the raspberry
+Here is the diagram connection about how you need to connect all components, to which pin´s, etc.
 ![](Imgs/Diagrama.png)
 
 <br><br>

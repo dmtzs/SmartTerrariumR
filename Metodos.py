@@ -25,6 +25,6 @@ class ColeccionMetodos():
         sistema= platform.system()
 
         if sistema== "Windows":
-            return "cls"
+            return "cls", sistema
         else:
-            return "clear"
+            return "clear", sistema

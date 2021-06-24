@@ -11,7 +11,7 @@ def main():
 if __name__== "__main__":
     try:
         limpShell= Metodos.ColeccionMetodos()
-        comandoShell= limpShell.limparShell()
+        comandoShell, plataforma= limpShell.limparShell()
         os.system(comandoShell)
         main()
     except Exception as ex:

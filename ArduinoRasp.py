@@ -5,14 +5,16 @@ except ImportError as error:
 
 def Core():
     metos= Metodos.ColeccionMetodos()
-
-    os.system(metos.limparShell())
+    comandoShell, plataforma= metos.limparShell()
+    os.system(comandoShell)
     print("\n\n\t\t\t\tIniciando comunicacion con arduino")
 
     # Abrimos la conexión con Arduino
     try:
-        arduino = serial.Serial('/dev/ttyACM0', 9600)#Escucha en puerto serial linux mio.
-        #arduino = serial.Serial('COM6', 9600)#Para windows mio
+        if plataforma== "Windows":
+            arduino = serial.Serial('COM6', 9600)#Para windows mio
+        else:#Checar que regresa al ejecutarse en la raspberry, si dice otra cosa que no es linux entonces elif
+            arduino = serial.Serial('/dev/ttyACM0', 9600)#Escucha en puerto serial linux mio.
         bande= 0
         time.sleep(2)
     except Exception as e:

@@ -2,7 +2,9 @@
 
 #define DHT_PIN 7
 #define DHTTYPE DHT22//DHT11
+#define PinPrueba 4//Prueba relay
 int sensorFlotador= 2;//Global variables, it can be used to assign a reference to a pin or just a global variable.
+int bande= 0;
 
 DHT dht(DHT_PIN, DHTTYPE);
 String cadeRecibida= "";//To receive the string from the serial port that is connected to the Raspberry.
@@ -13,6 +15,7 @@ void setup()
   dht.begin();
   Serial.begin(9600);
   pinMode(sensorFlotador, INPUT_PULLUP);//Pin in pull up mode
+  pinMode(PinPrueba, OUTPUT);//Prueba relay
   cadeRecibida.reserve(30);//Size reserved for the chain, see if this works or if it can be reduced.
 }
 
@@ -31,6 +34,8 @@ void loop()
   cade+= ",";
   cade+= estadoFlotador;
   Serial.println(cade);
+
+  PruebaRelay();//Prueba del relay
 
   //Validar que si la temperatura baja a cierto punto que encienda un foco y dependiendo del día o de noche.
 
@@ -66,5 +71,21 @@ void PruebaRecibidoRasp()
 
     Serial.println("Cadena que se formo: ");
     Serial.println(cadeRecibida);
+  }
+}
+
+void PruebaRelay()
+{
+  if (bande== 1)
+  {
+    bande= 0;
+    digitalWrite(PinPrueba, LOW);
+    //delay(3000);
+  }
+  else
+  {
+    bande= 1;
+    digitalWrite(PinPrueba, HIGH);
+    //delay(3000);
   }
 }

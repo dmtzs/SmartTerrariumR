@@ -1,5 +1,5 @@
 //--------------------------------------------Importaciones de bibliotecas, constantes y variables--------------------------------------------
-const { app, BrowserWindow,  Menu }= require("electron");
+const { app, BrowserWindow,  Menu }= require("electron");//12308
 const { exec }= require("child_process");
 
 const template= [
@@ -10,7 +10,11 @@ const template= [
                 label: "exit",
                 accelerator: "Alt+F4",
                 click(){
-                    app.quit()
+                    exec('taskkill /IM "python.exe" /F');
+                    //exec('pkill -xf "python3 ./Flask/main.py"');
+                    //exec('reboot');
+                    //Queda pendiente función para validar sistema operativo, si es mac no se ejecuta la app si no ejecutar el kill correspondiente.
+                    app.quit();
                 }
             }
         ]
@@ -37,16 +41,15 @@ function createWindow() {
         height: 780,*/
         title: "Terrario",//Esto se cambia por el mismo flask ya que se pone el tiítulo de la página en la que estás
         icon: __dirname + "../Imgs/BoaEsmeraldaA.ico",
-        resizable: false,
         minimizable: false,
         webPreferences:{
             nodeIntegration: true
         }
     })
     
-    //mainWindow.setMenuBarVisibility(false)
-    mainWindow.maximize();
-
+    mainWindow.setMenuBarVisibility(true)
+    mainWindow.setResizable(false)
+    //mainWindow.maximize();
     mainWindow.loadURL("http://127.0.0.1:5000/")
     //mainWindow.loadFile(__dirname + "./templates/index.html")
 }
@@ -64,6 +67,8 @@ app.on("ready", () => {
 
 app.on("window-all-closed", () => {
     if (process.platform!== "darwin") {
+        exec('taskkill /IM "python.exe" /F');
+        //exec('pkill -xf "python3 ./Flask/main.py"')
         app.quit()
     }
 });

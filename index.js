@@ -4,10 +4,10 @@ const { exec }= require("child_process");
 
 const template= [
     {
-        label: "Salir",
+        label: "Reiniciar",
         submenu: [
             {
-                label: "exit",
+                label: "reiniciar sistema",
                 accelerator: "Alt+F4",
                 click(){
                     exec('taskkill /IM "python.exe" /F');

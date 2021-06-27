@@ -1,6 +1,6 @@
-# Instructions
+# Terrarium manager
 
-## Purpose of this project
+## The project
 The purpose of this project is to manage the parameters of my pet that is a snake.
 <br>
 The data that will be processed is going to be the temperature and humidity with a dht22 sensor, a submersible temperature sensor and an automatic system for spreading water in order to humidify the terrarium every time the humidity is over 50%.

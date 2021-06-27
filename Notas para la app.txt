@@ -1,0 +1,36 @@
+------------------------------------Para la interfaz gráfica de la rasp------------------------------------
+- Conectar a una API del clima para mostrar el clima actual
+- Mostrar tal vez temperatura ambiente de la casa y no solo la del terrario con otro sensor de temperatura
+- Mostrar nivel de agua del traste de la serpiente
+- Mostrar temperatura del terrario
+- Mostrar humedad del terrario
+- Boton para controlar la bomba de agua que vaciara el traste de agua de la serpienteI(tal vez se necesite modificar el programa de arduino si se quiere implementar)
+- Mostrar estado del sensor para la reserva de agua saber si se necesita llenar o no
+- Mostrar temperatura de la reserva de agua pues debe estar entre tibia casi caliente
+
+------------------------------------Opcional------------------------------------
+- Considerar la posibilidad de crear una página web en la que se puedan hacer configuraciones sin la necesidad de salir de la app en el rasp,
+  dicho esto se tendrá que tomar en cuenta la posibilidad de poder crear una base de datos de la que el programa obtendrá la configuración y que se-
+  pueda cambiar en tiempo real. Ver modo de optimizar eso.
+- Si se hace la base de datos para los puntos anterores usar mongodb y se usará docker. Checar video de youtube guardado en la lista de python en la que usan y-
+  conectan docker para mongodb
+- Si se crea la base de datos hacer que desde tu cel cuando pones un evento en tu calendario se registre en la base de datos y se pueda mostrar en la app
+
+
+------------------------------------Cosas electron------------------------------------
+npm init -> Crea paquete json para modificarlo posteriormente aunque es para crear proyecto de nodejs
+
+npm install --save-dev electron -> Para instalar electron
+
+En linux:
+Instalar node -> sudo apt install nodejs
+Instalar npm -> sudo apt install npm
+
+"start": "electron index.js" -> en linux, archivo: package.json
+//"start": "electron ." -> en windows, archivo: package.json
+
+Si en linux se tiene problemas para ejecutar lo de flask: https://medium.com/@sanzidkawsar/the-python-flask-problem-oserror-errno-98-address-already-in-use-flask-49daaccaef4f
+
+
+------------------------------------Licencia------------------------------------
+Checar forma de crear licencia para nuestro software

@@ -33,7 +33,8 @@ def informacion(nombre= None, ape= None):#El parámetro se debe llamar forzosame
 @app.route('/contacto')
 @app.route('/contacto/<redireccion>')
 def contacto():
+    Nombre= "Diego"
     return render_template('contacto.html', Nom= Nombre)
 
 if __name__== "__main__":
-    app.run(debug= True)#Con esto hacemos que el servidor de flasjk al arrancar y haya cambios en el código se registren los cambios, algo como django.
+    app.run(host= "127.0.0.1", port= 5000)#Con esto hacemos que el servidor de flasjk al arrancar y haya cambios en el código se registren los cambios, algo como django.

@@ -1,0 +1,21 @@
+{
+  "name": "terrario-app",
+  "version": "1.0.0",
+  "description": "The app that will be used for manage the automated terrarium",
+  "main": "./Electron/index.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dmtzs/ProyectoRaspArduino.git"
+  },
+  "author": "Diego and Guillermo",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dmtzs/ProyectoRaspArduino/issues"
+  },
+  "devDependencies": {
+    "electron": "^13.1.4"
+  }
+}

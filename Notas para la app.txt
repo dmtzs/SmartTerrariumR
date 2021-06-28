@@ -20,8 +20,8 @@
 - Descripción de la empresa de GDCode y liga para nuestra página
 
 ------------------------------------Licencia------------------------------------
-- Usar una licencia que no permita al usuario usar el código que se genera en el proyecto o dejar una licencia libre pero el soporte del producto y actualizaciones se cobre
-- Página de licencia tal vez ponerla como index en vez de la app como tal
+- Usar licencia libre pero dejar nuestro correo de GDCode para que nos contacten y el soporte, modificaciones, aditamentos, etc será cobrado por precios variables
+- Considerar poner el cuerpo de la licencia en la página de sobre nosotros
 
 ------------------------------------Opcional------------------------------------
 - Considerar la posibilidad de crear una página web en la que se puedan hacer configuraciones sin la necesidad de salir de la app en el rasp,

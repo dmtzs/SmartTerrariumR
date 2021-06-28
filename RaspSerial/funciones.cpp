@@ -1,19 +1,23 @@
 #include <Arduino.h>
 #include <DHT.h>
+#include <OneWire.h>
+#include <DallasTemperature.h>
 
-// Pin´s definitions
+// ------------------------Pin´s definitions------------------------
 #define DHT_PIN 7
 #define DHTTYPE DHT22//DHT11
 #define PinPrueba 4//Relay test.
 #define sensorFlotador 2//Global variables, it can be used to assign a reference to a pin or just a global variable.
 DHT dht(DHT_PIN, DHTTYPE);
+OneWire ourWire(4);//pin for submersible temperature sensor.
 
 // Global variables
 int bande= 0;//Variable to test to turn the light on with the relay.
 String cadeRecibida= "";//To receive the string from the serial port that is connected to the Raspberry.
 char inChar;
+DallasTemperature submersibleSensor(&ourWire);
 
-// Setup function
+// ------------------------Setup function------------------------
 void setupProyecto()
 {
   dht.begin();
@@ -21,9 +25,14 @@ void setupProyecto()
   pinMode(sensorFlotador, INPUT_PULLUP);//Pin in pull up mode
   pinMode(PinPrueba, OUTPUT);//Relay test.
   cadeRecibida.reserve(30);//Size reserved for the chain, see if this works or if it can be reduced.
+  submersibleSensor.begin();
 }
 
-// Functions for the functionality of the project.
+// ------------------------Functions for the functionality of the project------------------------
+/*
+ * @Author: Diego Martínez Sánchez
+ * @Description: some description
+ */
 String floatingSensor()
 {
   //For floating water sensor
@@ -38,6 +47,10 @@ String floatingSensor()
   }
 }
 
+/*
+ * @Author: Diego Martínez Sánchez
+ * @Description: some description
+ */
 float* TempHum()
 {
   //float arreglo[2];
@@ -48,6 +61,10 @@ float* TempHum()
   return arreglo;
 }
 
+/*
+ * @Author: Diego Martínez Sánchez
+ * @Description: some description
+ */
 void PruebaRecibidoRasp()
 {
   if (Serial.available())
@@ -60,6 +77,10 @@ void PruebaRecibidoRasp()
   }
 }
 
+/*
+ * @Author: Diego Martínez Sánchez
+ * @Description: some description
+ */
 void PruebaRelay()
 {
   if (bande== 1)
@@ -74,4 +95,19 @@ void PruebaRelay()
     digitalWrite(PinPrueba, HIGH);
     //delay(3000);
   }
+}
+
+/*
+ * @Author: Diego Martínez Sánchez
+ * @Description: This function measures the temperature of the water that will be used for refill the drinker and humidify the terrarium.
+ *               Also this function will activate a resistor that will keep warm the reserve water of this recipient.
+ */
+float sensorSumergible()
+{
+  float tempSub;
+  
+  submersibleSensor.requestTemperatures();
+  tempSub= submersibleSensor.getTempCByIndex(0);
+
+  return tempSub;
 }

@@ -5,3 +5,4 @@ void PruebaRecibidoRasp();
 void PruebaRelay();
 String floatingSensor();
 float* TempHum();
+float sensorSumergible();

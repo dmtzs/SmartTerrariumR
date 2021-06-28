@@ -8,10 +8,11 @@ void setup()
 void loop()
 {
   String cade= "", estadoFlotador= "";
-  float *TH;
+  float *TH, tempSumergible;
 
   estadoFlotador= floatingSensor();//Function for floating sensor and all what this sensor will manage.
   TH= TempHum();
+  tempSumergible= sensorSumergible();//Falta probarla
 
   //The order of the data is: temp, hum
   cade+= TH[0];
@@ -19,9 +20,11 @@ void loop()
   cade+= TH[1];
   cade+= ",";
   cade+= estadoFlotador;
+  cade+= ",";
+  cade+= tempSumergible;
   Serial.println(cade);
 
-  PruebaRelay();//Prueba del relay
+  PruebaRelay();//Prueba del relay, probar que se cambio de archivo
 
   //Validar que si la temperatura baja a cierto punto que encienda un foco y dependiendo del día o de noche.
 

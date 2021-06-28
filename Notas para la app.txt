@@ -1,4 +1,6 @@
 ------------------------------------Para la interfaz gráfica de la rasp------------------------------------
+
+------------------------------------Interfaz principal------------------------------------
 - Conectar a una API del clima para mostrar el clima actual
 - Mostrar tal vez temperatura ambiente de la casa y no solo la del terrario con otro sensor de temperatura
 - Mostrar nivel de agua del traste de la serpiente
@@ -7,6 +9,19 @@
 - Boton para controlar la bomba de agua que vaciara el traste de agua de la serpienteI(tal vez se necesite modificar el programa de arduino si se quiere implementar)
 - Mostrar estado del sensor para la reserva de agua saber si se necesita llenar o no
 - Mostrar temperatura de la reserva de agua pues debe estar entre tibia casi caliente
+
+------------------------------------Panel de administración------------------------------------
+- Poder modificar el archivo JSON que se usará para poder adaptar el software acorde a los parámetros que necesita el animal que se piensa cuidar
+- Cambiar idioma
+- Personalización de mensaje de bienvenida
+
+------------------------------------Sobre nosotros------------------------------------
+- Página donde dejemos nuestro contacto de GDCode
+- Descripción de la empresa de GDCode y liga para nuestra página
+
+------------------------------------Licencia------------------------------------
+- Usar una licencia que no permita al usuario usar el código que se genera en el proyecto o dejar una licencia libre pero el soporte del producto y actualizaciones se cobre
+- Página de licencia tal vez ponerla como index en vez de la app como tal
 
 ------------------------------------Opcional------------------------------------
 - Considerar la posibilidad de crear una página web en la que se puedan hacer configuraciones sin la necesidad de salir de la app en el rasp,
@@ -18,6 +33,9 @@
 
 
 ------------------------------------Cosas electron------------------------------------
+- Generar ejecutable para proteger el código, checar si se puede hacer via comandos y ver si es más fácil distribuir el ejecutable o primero el código y sobre la rasp ejecutar los comandos de creación del -
+ ejecutable y después borrar el repositorio correspondiente.
+
 npm init -> Crea paquete json para modificarlo posteriormente aunque es para crear proyecto de nodejs
 
 npm install --save-dev electron -> Para instalar electron

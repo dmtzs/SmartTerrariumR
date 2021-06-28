@@ -12,7 +12,7 @@ def limpShell():
         return "clear"
 
 def main():
-    comandos= ["sudo apt install python3-pip", "pip3 install -r requirements.txt", "sudo apt install nodejs", "sudo apt install npm", "npm --save-dev electron"]
+    comandos= ["sudo apt install python3-pip", "pip3 install -r requirements.txt", "sudo apt install nodejs", "sudo apt install npm", "npm install --save-dev electron"]
 
     for comm in comandos:
         os.system(comm)

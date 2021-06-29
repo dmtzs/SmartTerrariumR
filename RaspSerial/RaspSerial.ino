@@ -7,12 +7,15 @@ void setup()
 
 void loop()
 {
-  String cade= "", estadoFlotador= "";
+  String cade= "", estadoFlotador= "", temporal= "";
   float *TH, tempSumergible;
 
-  estadoFlotador= floatingSensor();//Function for floating sensor and all what this sensor will manage.
+  temporal= inicio();//Regresar a void la función después de probar.
+  estadoFlotador= floatingSensor();
   TH= TempHum();
-  tempSumergible= sensorSumergible();//Falta probarla
+  tempSumergible= sensorSumergible();
+  //humedecerTerrario(TH[0]); //Hace falta recibir el rango desde la rasp.
+  //reserveWater(tempSumergible);//For keep warm the reserve water. Hace falta recibir el rango desde la rasp
 
   //The order of the data is: temp, hum
   cade+= TH[0];
@@ -23,12 +26,9 @@ void loop()
   cade+= ",";
   cade+= tempSumergible;
   Serial.println(cade);
-
-  PruebaRelay();//Prueba del relay, probar que se cambio de archivo
+  Serial.println(temporal);//Quitar después de prueba
 
   //Validar que si la temperatura baja a cierto punto que encienda un foco y dependiendo del día o de noche.
-
-  //Validar que si la humedad baja a cierto punto rocie con la bomba que tengo para rociar.
 
   //Validar que si el sensor de temperatura sumergible baja a cierta temperatura encienda la resistencia por un tiempo para calentar el agua.
 

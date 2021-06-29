@@ -1,11 +1,11 @@
-# Terrarium manager
+# GDCode - Terrarium manager
 
 ## The project
 The purpose of this project is to manage the parameters of my pet that is a snake.
 <br>
 The data that will be processed is going to be the temperature and humidity with a dht22 sensor, a submersible temperature sensor and an automatic system for spreading water in order to humidify the terrarium every time the humidity is over 50%.
 <br>
-The spotlights will be turned on or off according to the temperature and it will light the night or dauy according to the time of day that will be received through an external API connected with the application.
+The spotlights will be turned on or off according to the temperature and it will light the night or day according to the time of day that will be received through an external API connected with the application.
 <br>
 Also the water will be warm with another sensor for keep warm the reserve of water and the trough will be filled automatically when the water float sensor is activated.
 <br>
@@ -20,16 +20,16 @@ All this in order to be showed through a display connected to the raspberry.
 <br>
 
 ### Installation, libraries and considerations
-* For its correct installation and use you need first python3 and pip3 installed in your raspberry.
-* The project uses Ubuntu mate OS for the raspberry.
+* For its correct installation and use you need first python3 installed in your raspberry.
+* The project uses Ubuntu mate OS(arm64 bits version) for the raspberry pi4 B+.
 * The model of the raspberry is pi4 B+.
-* You can use raspberry models like pi3 and pi3b but are not still tested in this ones.
+* You can use raspberry models like pi3 and pi3 B but are not still tested in this ones.
 * USB cable for connect both boards between them.
-* Execute python3 InstalacionBase.py in order to install all python libraries and configuration needed for this project.
+* Execute "python3 InstalacionBase.py" in order to install all python libraries and configuration needed for this project.
 <br><br>
 
 ## Arduino program
-The Arduino is used in order to acquire the parameters we want to show through the LCD of the raspberry.
+The Arduino is used in order to acquire the parameters we want to show through the LCD of the raspberry and also receive data from the raspberry to do some actions with the arduino.
 <br>
 All the necesary data will be displayed in the display of the raspberry for its correct manage from the user.
 

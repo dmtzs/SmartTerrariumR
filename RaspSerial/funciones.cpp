@@ -9,7 +9,7 @@
 #define PinPrueba 4//Relay test.
 #define sensorFlotador 2//Global variables, it can be used to assign a reference to a pin or just a global variable.
 DHT dht(DHT_PIN, DHTTYPE);
-OneWire ourWire(4);//pin for submersible temperature sensor.
+OneWire ourWire(8);//pin for submersible temperature sensor.
 
 // Global variables
 int bande= 0;//Variable to test to turn the light on with the relay.

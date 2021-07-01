@@ -1,6 +1,5 @@
 try:
-    import time
-    import sys
+    import time, sys
     from ArduinoConnection import ArduinoConnection
     from flask import Flask, request, render_template, redirect, url_for
     from datetime import datetime

@@ -1,0 +1,16 @@
+{% extends 'layout.html' %} {% block title %} raspberry {% endblock %} {% block
+content %}
+
+<h1>Comunicacion serial con raspberry</h1>
+<h2>Escribe algo</h2>
+
+<form method="POST">
+  <input name="data" />
+  <input type="submit" />
+</form>
+
+<h2>Cadena mandada:</h2>
+<h2>{{send_data}}</h2>
+<h2>Cadena recibida:</h2>
+<h2>{{received_data}}</h2>
+{% endblock %}

@@ -111,15 +111,29 @@ void humedecerTerrario(float hum)
  * @Author: Diego Martínez Sánchez
  * @Description: Fucntion for receive the data from de raspberry and put it in a global variable to manage the rest of the Arduino program.
  */
-void PruebaRecibidoRasp()
+void PruebaRecibidoRasp(char inString[], char outString[], int bufferSize)
 {
-  if (Serial.available())
+  if (inString[0]) 
   {
-    inChar= Serial.read();//Character reading.
-    cadeRecibida+= inChar;//Creation of the received string.
+    //inChar= Serial.read();//Character reading.
+    //cadeRecibida+= inChar;//Creation of the received string.
 
-    Serial.println("Cadena que se formo: ");
-    Serial.println(cadeRecibida);
+    cadeRecibida = String(inString);
+    cadeRecibida.toUpperCase();
+
+    sprintf(outString, "%s", cadeRecibida);
+
+    Serial.write(outString);
+    Serial.write(10);
+
+    //Limpiar
+    for (int i = 0; i < bufferSize; i++) {
+      inString[i] = 0;
+      outString[i] = 0;
+    }
+
+    //Serial.println("Cadena que se formo: ");
+    //Serial.println(cadeRecibida);
   }
 }
 

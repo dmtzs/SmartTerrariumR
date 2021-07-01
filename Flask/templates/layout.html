@@ -1,36 +1,36 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{% block title %} Flask {% endblock %}</title>
-    <link rel="stylesheet" href="{{url_for('static', filename= 'css/styles.css')}}">
-</head>
-<body>
+    <link
+      rel="stylesheet"
+      href="{{url_for('static', filename= 'css/styles.css')}}"
+    />
+  </head>
+  <body>
     <h1>Aprendiendo Flask Diego Mtz S</h1>
-    <hr>
-        <ul>
-            <li><a href="/">Index</a></li>
-            <li><a href="{{url_for('contacto')}}">Contacto</a></li>
-            <li><a href="{{url_for('informacion')}}">Información</a></li>
-        </ul>
-    <hr>
-    
-    {#
-    {% if edad>= 18 %}
-        <h4>Eres mayor de edad</h4>
+    <hr />
+    <ul>
+      <li><a href="/">Index</a></li>
+      <li><a href="{{url_for('contacto')}}">Contacto</a></li>
+      <li><a href="{{url_for('informacion')}}">Información</a></li>
+      <li><a href="{{url_for('raspberry')}}">Test Raspberry</a></li>
+    </ul>
+    <hr />
+
+    {# {% if edad>= 18 %}
+    <h4>Eres mayor de edad</h4>
     {% else %}
-        <h4>Eres menor de edad</h4>
+    <h4>Eres menor de edad</h4>
     {% endif %}
-    <h4>Tu edad es {{edad}}</h4> #}
+    <h4>Tu edad es {{edad}}</h4>
+    #}
 
-    <section id="content">
-        {% block content %}
-
-        {% endblock %}
-    </section>
+    <section id="content">{% block content %} {% endblock %}</section>
 
     <footer>Master en python con Flask - {{ now.month }}/{{ now.year }}</footer>
-</body>
+  </body>
 </html>

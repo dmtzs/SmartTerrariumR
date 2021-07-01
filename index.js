@@ -36,7 +36,7 @@ let mainWindow;
 //--------------------------------------------Función cerebro--------------------------------------------
 function createWindow() {
     mainWindow = new BrowserWindow({
-        fullscreen: true,
+        fullscreen: false,
         /*width: 1024,
         height: 780,*/
         title: "Terrario",//Esto se cambia por el mismo flask ya que se pone el tiítulo de la página en la que estás

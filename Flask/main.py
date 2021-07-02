@@ -1,5 +1,6 @@
 try:
-    import time, sys
+    import time
+    import sys
     from ArduinoConnection import ArduinoConnection
     from flask import Flask, request, render_template, redirect, url_for
     from datetime import datetime
@@ -53,7 +54,7 @@ def contacto():
 
 @app.route('/raspberry')
 def raspberry():
-    Nombre = ""
+    Nombre = "Pene"
     return render_template('rasp.html', Nom=Nombre)
 
 
@@ -61,14 +62,15 @@ def raspberry():
 def my_form_post():
     text = request.form['data']
     conn.initConnection()
-    conn.writeArduino(text)
-    conn.readArduino()
-    processed_text = conn.receivedData
+    conn.recieving = True
+    while conn.recieving is True:
+        conn.writeArduino(text)
+        time.sleep(.5)
+        conn.readArduino()
     conn.closeConnection()
-    print(processed_text, file=sys.stdout.flush())
-    return render_template('rasp.html', send_data=text, received_data=processed_text)
+    return render_template('rasp.html', send_data=conn.sendData, received_data=conn.receivedData)
 
 
 if __name__ == "__main__":
     # Con esto hacemos que el servidor de flasjk al arrancar y haya cambios en el código se registren los cambios, algo como django.
-    app.run(host="127.0.0.1", port=5000)
+    app.run(host="127.0.0.1", port=5000, debug=False)

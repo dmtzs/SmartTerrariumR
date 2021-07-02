@@ -2,7 +2,8 @@
 
 String inicio();
 void setupProyecto();
-void PruebaRecibidoRasp(char inString[], char outString[], int bufferSize);
+void PruebaRecibidoRasp();
+void eventoSerial();
 void PruebaRelay();
 String floatingSensor();
 float* TempHum();

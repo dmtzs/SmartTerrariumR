@@ -22,11 +22,15 @@ String cadeRecibida= "";//To receive the string from the serial port that is con
 char inChar;
 DallasTemperature submersibleSensor(&ourWire);
 
+
+String inString = "";         // a String to hold incoming data
+bool stringComplete = false;  // whether the string is complete
+
 // ------------------------Setup function------------------------
 void setupProyecto()
 {
   dht.begin();
-  Serial.begin(9600);
+  Serial.begin(115200);
   submersibleSensor.begin();
   pinMode(sensorFlotador, INPUT_PULLUP); //Pin in pull up mode
   pinMode(focoDia, OUTPUT);
@@ -35,6 +39,9 @@ void setupProyecto()
   pinMode(bombaBebedero, OUTPUT);
   pinMode(bombaHumedad, OUTPUT); //Checar si debe ser diferente la config del pin para usar lo de PWM.
   cadeRecibida.reserve(30); //Size reserved for the chain, see if this works or if it can be reduced.
+
+  // reserve 200 bytes for the inputString:
+  inString.reserve(200);
 }
 
 // ------------------------Functions for the functionality of the project------------------------
@@ -55,6 +62,20 @@ String inicio()//Poner en void cuando compruebe en efecto la variable global se 
   else//Quitar todo el bloque else después de prueba.
   {
     return "Entre else iniciar";
+  }
+}
+
+void eventoSerial(){
+  while (Serial.available()) {
+    // get the new byte:
+    char inChar = (char)Serial.read();
+    // add it to the inputString:
+    inString += inChar;
+    // if the incoming character is a newline, set a flag so the main loop can
+    // do something about it:
+    if (inChar == '\n') {
+      stringComplete = true;
+    }
   }
 }
 
@@ -111,29 +132,14 @@ void humedecerTerrario(float hum)
  * @Author: Diego Martínez Sánchez
  * @Description: Fucntion for receive the data from de raspberry and put it in a global variable to manage the rest of the Arduino program.
  */
-void PruebaRecibidoRasp(char inString[], char outString[], int bufferSize)
+void PruebaRecibidoRasp()
 {
-  if (inString[0]) 
-  {
-    //inChar= Serial.read();//Character reading.
-    //cadeRecibida+= inChar;//Creation of the received string.
-
-    cadeRecibida = String(inString);
-    cadeRecibida.toUpperCase();
-
-    sprintf(outString, "%s", cadeRecibida);
-
-    Serial.write(outString);
-    Serial.write(10);
-
-    //Limpiar
-    for (int i = 0; i < bufferSize; i++) {
-      inString[i] = 0;
-      outString[i] = 0;
-    }
-
-    //Serial.println("Cadena que se formo: ");
-    //Serial.println(cadeRecibida);
+  if (stringComplete) {
+    Serial.println(inString);
+    // clear the string:
+    inString = "";
+    stringComplete = false;
+    //delay(1000);
   }
 }
 

@@ -11,11 +11,14 @@ except ImportError as eImp:
 
 class ArduinoConnection():
     thisSystem = platform.system()
+    baudrate = 115200
+    timeout = 3.1
 
     def __init__(self):
         self.connection = None
         self.sendData = ""
         self.receivedData = ""
+        self.recieving = True
 
         if self.thisSystem == "Windows":
             comandoShell = "cls"
@@ -36,39 +39,33 @@ class ArduinoConnection():
                 if len(arduino_ports) > 1:
                     warnings.warn('Multiple Arduinos found - using the first')
 
-                self.connection = serial.Serial(arduino_ports[0], 9600)
+                self.connection = serial.Serial(
+                    arduino_ports[0], self.baudrate, timeout=self.timeout)
             else:
                 serial_port = "/dev/" + \
                     os.popen(
                         "dmesg | egrep ttyACM | cut -f3 -d: | tail -n1").read().strip()
                 self.connection = serial.Serial(
-                    serial_port, baudrate=9600, timeout=3)
+                    serial_port, baudrate=self.baudrate, timeout=self.timeout)
         except Exception as e:
             print(f"\n\n\t\t\t\tOcurrió el ERROR: {e}")
 
     def readArduino(self):
-        rawstring = self.connection.readline()
+        rawstring = self.connection.readline().decode('utf-8').rstrip()
         if not rawstring:
             pass
         else:
-            rawstring = rawstring.rstrip(b'\r\n')
-            rawstring = str(rawstring)
-            aux = len(rawstring)
-            aux -= 1
-            rawstring = rawstring[2:aux]
-            # arre= rawstring.strip("\n")#Este toma lo último después del último caracter en el rstrip
-            arre = rawstring.split("\n")
-            # Ya comprobe que en efecto ahora es una cadena lo que obtengo del serial con arduino
+            self.recieving = False
+            print(rawstring)
             self.receivedData = rawstring
-            # print(rawstring)
-            #print(f"Arreglo: {arre}")
-            # print(type(rawstring))
 
     def writeArduino(self, Data):
-        self.sendData = Data
-        self.connection.writeline(b'{}'.format(self.sendData))
+        self.sendData = Data + "\n"
+        self.sendData = self.sendData.encode('utf-8')
+        self.connection.write(self.sendData)
+        self.sendData = self.sendData.decode('utf-8').rstrip()
 
-    def limparShell(self):
+    def limpiarShell(self):
         if self.thisSystem == "Windows":
             return "cls", self.thisSystem
         else:

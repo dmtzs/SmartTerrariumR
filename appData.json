@@ -9,7 +9,7 @@
             "terrario-dht22": 30.00
         },
         "humedad-rango": {
-            "humedad-rango": 50.00
+            "humedad": 50.00
         },
         "focos-estados": {
             "dia": "1",

@@ -1,6 +1,5 @@
 try:
-    import time
-    import sys
+    import time, sys
     from ArduinoConnection import ArduinoConnection
     from flask import Flask, request, render_template, redirect, url_for
     from datetime import datetime
@@ -28,33 +27,24 @@ def date_now():
 
 @app.route('/')  # Ruta inicial del proyecto
 def index():
-    return render_template('index.html', dato1="valor", dato2="valor2", lista=["uno", "dos", "tres"])
+    return render_template('bienvenida.html', dato1="valor", dato2="valor2", lista=["uno", "dos", "tres"])
 
 # Manda error porque lo estoy convirtiendo en entero.
 
 
-@app.route('/informacion')
-@app.route('/informacion/<string:nombre>')
-# Otra ruta para recibir parámetros con lo que dice nombre en este caso y con validaciones
-@app.route('/informacion/<string:nombre>/<ape>')
-# El parámetro se debe llamar forzosamente igual a como lo nombre arriba entre las <>
-def informacion(nombre=None, ape=None):
-    texto = ""
-    if nombre != None and ape != None:
-        texto = f"Bienvenido, {nombre} {ape}"
-    return render_template('informacion.html', textohtml=texto)
+@app.route('/configuracion')
+def configuracion():
+    return render_template('configuracion.html')
 
 
 @app.route('/contacto')
-@app.route('/contacto/<redireccion>')
 def contacto():
-    Nombre = "Diego"
-    return render_template('contacto.html', Nom=Nombre)
+    return render_template('contacto.html')
 
 
 @app.route('/raspberry')
 def raspberry():
-    Nombre = "Pene"
+    Nombre = "GDCode"
     return render_template('rasp.html', Nom=Nombre)
 
 

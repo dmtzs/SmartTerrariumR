@@ -4,6 +4,10 @@
     "descripcion-app": "Aplicación para administrar el terrario de reptiles y mantener su hábitat en las condiciones deseadas por el cuidador",
     "correo": "gd-code@outlook.com",
     "configuracion": {
+        "modo-app": {
+            "automatico": 1,
+            "manual": 0
+        },
         "temperaturas-rangos": {
             "sumergible-reserva": 25.00,
             "terrario-dht22": 30.00

@@ -1,0 +1,23 @@
+{
+    "nombre-app": "GDCode - Terrarium app",
+    "version": "1.0.0",
+    "descripcion-app": "Aplicación para administrar el terrario de reptiles y mantener su hábitat en las condiciones deseadas por el cuidador",
+    "correo": "gd-code@outlook.com",
+    "configuracion": {
+        "temperaturas-rangos": {
+            "sumergible-reserva": 25.00,
+            "terrario-dht22": 30.00
+        },
+        "humedad-rango": {
+            "humedad-rango": 50.00
+        },
+        "focos-estados": {
+            "dia": "1",
+            "noche": "0"
+        },
+        "nombres-usuario": {
+            "usuario-nombre-largo": "Diego Martínez Sánchez",
+            "usuario-nombre-corto": "Diego"
+        }
+    }
+}

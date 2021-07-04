@@ -17,14 +17,12 @@ DHT dht(DHT_PIN, DHTTYPE);
 OneWire ourWire(3); //pin 3 for submersible water sensor.
 
 // ------------------------Global variables------------------------
-int iniciar= 0; //Para que se ejecute la función iniciar solo una vez.
-String cadeRecibida= "";//To receive the string from the serial port that is connected to the Raspberry.
+int iniciar= 0, dia= 1, noche= 0; //Para que se ejecute la función iniciar solo una vez.
 char inChar;
-DallasTemperature submersibleSensor(&ourWire);
-
-
-String inString = "";         // a String to hold incoming data
+float rangoHumedad= 0, rangoTempReservaAgua= 0, rangoTempDHT= 0;
+String inString = "";         // a String to hold incoming data from raspberry
 bool stringComplete = false;  // whether the string is complete
+DallasTemperature submersibleSensor(&ourWire);
 
 // ------------------------Setup function------------------------
 void setupProyecto()
@@ -38,10 +36,7 @@ void setupProyecto()
   pinMode(calentarAguaReserva, OUTPUT);
   pinMode(bombaBebedero, OUTPUT);
   pinMode(bombaHumedad, OUTPUT); //Checar si debe ser diferente la config del pin para usar lo de PWM.
-  cadeRecibida.reserve(30); //Size reserved for the chain, see if this works or if it can be reduced.
-
-  // reserve 200 bytes for the inputString:
-  inString.reserve(200);
+  inString.reserve(200);// reserve 200 bytes for the inputString:
 }
 
 // ------------------------Functions for the functionality of the project------------------------
@@ -116,30 +111,16 @@ float* TempHum()
 void humedecerTerrario(float hum)
 {
   //Descomentar cuando se reciba el rango de humedad desde la raspberry.
-  /*if (hum < rangoRasp)
+  if (hum < rangoHumedad)
   {
     digitalWrite(bombaHumedad, HIGH);
     //Checar si poner delay o solo esperar que el sensor DHT marque que se elevo la humedad.
+    delay(6000);
     digitalWrite(bombaHumedad, LOW);
   }
   else
   {
     digitalWrite(bombaHumedad, LOW);
-  }*/
-}
-
-/*
- * @Author: Diego Martínez Sánchez
- * @Description: Fucntion for receive the data from de raspberry and put it in a global variable to manage the rest of the Arduino program.
- */
-void PruebaRecibidoRasp()
-{
-  if (stringComplete) {
-    Serial.println(inString);
-    // clear the string:
-    inString = "";
-    stringComplete = false;
-    //delay(1000);
   }
 }
 
@@ -160,17 +141,85 @@ float sensorSumergible()
 
 /*
  * @Author: Diego Martínez Sánchez
- * @Description: some description
+ * @Description: Function for keeping warm the water of the reserve water.
  */
 void reserveWater(float tempSub)
 {
   //Descomentar cuando se reciba el rango de la temperatura a la que se desea mantener la reserva de agua desde la raspberry.
-  /*if (tempSub < rangoTempReservaAgua)
+  if (tempSub < rangoTempReservaAgua)
   {
     digitalWrite(calentarAguaReserva, HIGH);
   }
   else
   {
     digitalWrite(calentarAguaReserva, LOW);
-  }*/
+  }
+}
+
+/*
+ * @Author: Diego Martínez Sánchez
+ * @Description: Function for turning on the correct bulbs according to the day, if its at night then it will turns on the night bulb and if not the day bulb.
+ */
+ void focosEncendidos(float tempDHT)
+ {
+  if (tempDHT < rangoTempDHT)
+  {
+    if (dia== 1 && noche== 0)
+    {
+      //Encender el foco de día, falta definir pin
+      digitalWrite(focoDia, HIGH);
+      digitalWrite(focoNoche, LOW);
+    }
+    else if (noche== 1 && dia== 0)
+    {
+      //Encender el foco de noche, falta definir pin
+      digitalWrite(focoNoche, HIGH);
+      digitalWrite(focoDia, LOW);
+    }
+    else
+    {
+      //Mantener apagado ambos focos por si acaso
+      digitalWrite(focoDia, LOW);
+      digitalWrite(focoNoche, LOW);
+    }
+  }
+  else
+  {
+    //Mantener apagado ambos focos por si acaso
+    digitalWrite(focoDia, LOW);
+    digitalWrite(focoNoche, LOW);
+  }
+ }
+
+ /*
+ * @Author: Diego Martínez Sánchez
+ * @Description: Function for refill the drinker of the terrarium only if the floating sensor is in "on" state
+ */
+ void rellenarBebedero(String estadoFlotador)
+ {
+  if (estadoFlotador== "on")
+  {
+    digitalWrite(bombaBebedero, HIGH);
+    delay(5000);
+    digitalWrite(bombaBebedero, LOW);
+  }
+  else if(bombaBebedero== "off")
+  {
+    digitalWrite(bombaBebedero, LOW);
+  }
+ }
+
+/*
+ * @Author: Guillermo Ortega Romo
+ * @Description: Fucntion for receive the data from de raspberry and put it in a global variable to manage the rest of the Arduino program.
+ */
+void PruebaRecibidoRasp()
+{
+  if (stringComplete) {
+    Serial.println(inString);
+    // clear the string:
+    inString = "";
+    stringComplete = false;
+    //delay(1000);
+  }
 }

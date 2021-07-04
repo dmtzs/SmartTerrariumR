@@ -12,10 +12,12 @@ void loop()
 
   //temporal= inicio();//Regresar a void la función después de probar.
   estadoFlotador= floatingSensor();
+  //rellenarBebedero(estadoFlotador);//Función para rellenar el bebedero
   TH= TempHum();
   tempSumergible= sensorSumergible();
-  //humedecerTerrario(TH[0]); //Hace falta recibir el rango desde la rasp.
+  //humedecerTerrario(TH[1]); //Hace falta recibir el rango desde la rasp.
   //reserveWater(tempSumergible);//For keep warm the reserve water. Hace falta recibir el rango desde la rasp
+  //void focosEncendidos(TH[0]);//Hace falta recibir el rango y estado del día desde la rasp, para saber qué foco encender
 
   //The order of the data is: temp, hum
   cade+= TH[0];
@@ -26,9 +28,6 @@ void loop()
   cade+= ",";
   cade+= tempSumergible;
   //Serial.println(cade);
-  //Serial.println(temporal);//Quitar después de prueba
-  //Serial.println("hola pinche putita");
-  //Validar que si la temperatura baja a cierto punto que encienda un foco y dependiendo del día o de noche.
 
   PruebaRecibidoRasp();
   

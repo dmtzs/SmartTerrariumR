@@ -27,10 +27,16 @@ def date_now():
 
 @app.route('/')  # Ruta inicial del proyecto
 def index():
-    return render_template('bienvenida.html', dato1="valor", dato2="valor2", lista=["uno", "dos", "tres"])
+    return render_template('bienvenida.html', dato1="se puede poner algo aquí")
 
-# Manda error porque lo estoy convirtiendo en entero.
+# Agregar el contenido correspondiente a los html´s de automatico y manual.
+@app.route('/automatico')
+def automatico():
+    return render_template('automatico.html')
 
+@app.route('/manual')
+def manual():
+    return render_template('manual.html')
 
 @app.route('/configuracion')
 def configuracion():

@@ -4,33 +4,18 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>{% block title %} Flask {% endblock %}</title>
-    <link
-      rel="stylesheet"
-      href="{{url_for('static', filename= 'css/styles.css')}}"
-    />
-  </head>
-  <body>
-    <h1>Aprendiendo Flask Diego Mtz S</h1>
-    <hr />
-    <ul>
-      <li><a href="/">Index</a></li>
-      <li><a href="{{url_for('contacto')}}">Contacto</a></li>
-      <li><a href="{{url_for('configuracion')}}">Configuración</a></li>
-      <li><a href="{{url_for('raspberry')}}">Test Raspberry</a></li>
-    </ul>
-    <hr />
+    <title>{% block title %} Administrador de terrario {% endblock %}</title>
 
-    {# {% if edad>= 18 %}
-    <h4>Eres mayor de edad</h4>
-    {% else %}
-    <h4>Eres menor de edad</h4>
-    {% endif %}
-    <h4>Tu edad es {{edad}}</h4>
-    #}
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{url_for('static', filename= 'css/styles.css')}}">
+
+  </head>
+  <body class="color-deseado">
+
+    {% include 'includes/navbar.html' %} {# Para incluir la parte que tengo en mi carpeta includes #}
 
     <section id="content">{% block content %} {% endblock %}</section>
 
-    <footer>Master en python con Flask - {{ now.month }}/{{ now.year }}</footer>
+    {% include 'includes/footer-scripts.html' %}
   </body>
 </html>

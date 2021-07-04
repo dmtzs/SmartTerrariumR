@@ -60,6 +60,10 @@ String inicio()//Poner en void cuando compruebe en efecto la variable global se 
   }
 }
 
+/*
+ * @Author: Guillermo Ortega Romo
+ * @Description: Fucntion to detect if something comes from the serial port.
+ */
 void eventoSerial(){
   while (Serial.available()) {
     // get the new byte:

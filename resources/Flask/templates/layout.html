@@ -5,17 +5,57 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{% block title %} Administrador de terrario {% endblock %}</title>
-
-    <link rel="stylesheet" href="{{url_for('static', filename= 'bootstrap/css/bootstrap.css')}}">
-    <link rel="stylesheet" href="{{url_for('static', filename= 'css/styles.css')}}">
-
+    <link
+      rel="stylesheet"
+      href="{{url_for('static', filename= 'css/styles.css')}}"
+      type="text/css"
+    />
+    <link
+      rel="stylesheet"
+      href="{{url_for('static', filename= 'bootstrap/css/bootstrap.css')}}"
+      type="text/css"
+    />
   </head>
   <body class="color-deseado">
+    <div class="wrapper">
+      {% include 'includes/navbar.html' %} {# Para incluir la parte que tengo en
+      mi carpeta includes #}
 
-    {% include 'includes/navbar.html' %} {# Para incluir la parte que tengo en mi carpeta includes #}
+      <section id="content">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+          <div class="container-fluid">
+            <button type="button" id="sidebarCollapse" class="btn btn-info">
+              <i class="fas fa-align-left"></i>
+              <span>Toggle Sidebar</span>
+            </button>
+          </div>
+        </nav>
+        {% block content %} {% endblock %}
+      </section>
+    </div>
 
-    <section id="content">{% block content %} {% endblock %}</section>
+    <!-- jQuery CDN - Slim version (=without AJAX) -->
+    <script
+      language="JavaScript"
+      type="text/javascript"
+      src="{{url_for('static', filename= 'jquery/jquery-3.6.0.min.js')}}"
+    ></script>
+    <!-- Popper.JS -->
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+      crossorigin="anonymous"
+    ></script>
 
-    {% include 'includes/footer-scripts.html' %}
+    <!-- Bootstrap JS -->
+    <script src="{{url_for('static', filename= 'bootstrap/js/bootstrap.js')}}"></script>
+
+    <script type="text/javascript">
+      $(document).ready(function () {
+        $("#sidebarCollapse").on("click", function () {
+          $("#sidebar").toggleClass("active");
+        });
+      });
+    </script>
   </body>
 </html>

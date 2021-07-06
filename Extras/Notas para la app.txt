@@ -59,5 +59,6 @@ Si en linux se tiene problemas para ejecutar lo de flask: https://medium.com/@sa
 - Lo que está antes de la configuración es para mostrar un poco de info general de la app.
 - Lo de modo app es para que se inicie en modo automático de manera predeterminada
 
-------------------------------------Actualizaciones futuras----------------------------------
--Posible implementacion de api de tiempo para saber que hora es y activar o desactivar el modo dia y noche
+------------------------------------Actualizaciones futuras------------------------------------
+- Checar la viabilidad de la implementacion de api de tiempo para saber que hora es y activar o desactivar el modo dia y noche
+- Checar la viabilidad de la implementacion de cambiar entre español e inglés, en este caso sería para inglés porque la de español ya está hecha

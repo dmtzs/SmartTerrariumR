@@ -21,11 +21,11 @@
             }
         },
         "temperaturas-rangos": {
-            "sumergible-reserva": 25.00,
-            "terrario-dht22": 30.00
+            "rangoResAgua": 25.00,
+            "rangoTempDHT": 30.00
         },
         "humedad-rango": {
-            "humedad": 50.00
+            "rangoHumedad": 50.00
         },
         "nombres-usuario": {
             "usuario-nombre-largo": "Diego Martínez Sánchez",

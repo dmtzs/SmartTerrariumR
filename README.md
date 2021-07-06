@@ -55,7 +55,7 @@ This libraries should be installed only if you want to develop by yourself the a
 
 ## Connection diagram
 Here is the diagram connection about how you need to connect all components, to which pin´s, etc.
-![](Imgs/Diagrama.png)
+![](resources/Imgs/Diagrama.png)
 
 <br><br>
 

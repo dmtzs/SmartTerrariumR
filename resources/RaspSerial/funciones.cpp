@@ -1,4 +1,5 @@
 #include <Arduino.h>
+#include <ArduinoJson.h>
 #include <DHT.h>
 #include <OneWire.h>
 #include <DallasTemperature.h>
@@ -18,11 +19,16 @@ OneWire ourWire(3); //pin 3 for submersible water sensor.
 
 // ------------------------Global variables------------------------
 int iniciar= 0, dia= 1, noche= 0; //Para que se ejecute la función iniciar solo una vez.
-char inChar;
 float rangoHumedad= 0, rangoTempReservaAgua= 0, rangoTempDHT= 0;
-String inString = "";         // a String to hold incoming data from raspberry
-bool stringComplete = false;  // whether the string is complete
 DallasTemperature submersibleSensor(&ourWire);
+//----------------Variables para comunicacion serial---------------
+char inChar;
+const int buffersize = 64;
+char inString[buffersize];         // a String to hold incoming data from raspberry
+bool stringComplete = false;  // whether the string is complete
+int count = 0;
+StaticJsonDocument<64> doc; //arduino json doc 
+
 
 // ------------------------Setup function------------------------
 void setupProyecto()
@@ -36,7 +42,9 @@ void setupProyecto()
   pinMode(calentarAguaReserva, OUTPUT);
   pinMode(bombaBebedero, OUTPUT);
   pinMode(bombaHumedad, OUTPUT); //Checar si debe ser diferente la config del pin para usar lo de PWM.
-  inString.reserve(200);// reserve 200 bytes for the inputString:
+  for(int i = 0; i < buffersize; i++){
+    inString[i] = 0;
+  }
 }
 
 // ------------------------Functions for the functionality of the project------------------------
@@ -65,16 +73,18 @@ String inicio()//Poner en void cuando compruebe en efecto la variable global se 
  * @Description: Fucntion to detect if something comes from the serial port.
  */
 void eventoSerial(){
+  count = 0;
   while (Serial.available()) {
     // get the new byte:
     char inChar = (char)Serial.read();
     // add it to the inputString:
-    inString += inChar;
+    inString[count] = inChar;
     // if the incoming character is a newline, set a flag so the main loop can
     // do something about it:
-    if (inChar == '\n') {
+    if(inChar = '\n'){
       stringComplete = true;
     }
+    count++;
   }
 }
 
@@ -219,11 +229,20 @@ void reserveWater(float tempSub)
  */
 void PruebaRecibidoRasp()
 {
-  if (stringComplete) {
-    Serial.println(inString);
-    // clear the string:
-    inString = "";
+  if (stringComplete) {  
+    DeserializationError error = deserializeJson(doc, inString);
+    // Test if parsing succeeds.
+    if (error) {
+      Serial.print(F("deserializeJson() failed: "));
+      Serial.println(error.f_str());
+    }
+    serializeJson(doc,Serial);
+    Serial.println();
     stringComplete = false;
-    //delay(1000);
   }
+  // clear the string:
+  for(int i = 0; i < buffersize; i++){
+    inString[i] = 0;
+  }
+  delay(100);
 }

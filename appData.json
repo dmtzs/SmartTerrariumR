@@ -5,19 +5,27 @@
     "correo": "gd-code@outlook.com",
     "configuracion": {
         "modo-app": {
-            "automatico": "1",
-            "manual": "0"
+            "automatico": {
+                "estado": 1,
+                "focos-estados": {
+                    "dia": 1,
+                    "noche": 0
+                }
+            },
+            "manual": {
+                "estado": 0,
+                "focos-estados": {
+                    "dia": 1,
+                    "noche": 0
+                }
+            }
         },
         "temperaturas-rangos": {
-            "sumergible-reserva": "25.00",
-            "terrario-dht22": "30.00"
+            "sumergible-reserva": 25.00,
+            "terrario-dht22": 30.00
         },
         "humedad-rango": {
-            "humedad": "50.00"
-        },
-        "focos-estados": {
-            "dia": "1",
-            "noche": "0"
+            "humedad": 50.00
         },
         "nombres-usuario": {
             "usuario-nombre-largo": "Diego Martínez Sánchez",

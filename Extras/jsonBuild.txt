@@ -1,0 +1,61 @@
+{
+  "name": "terrario-app",
+  "version": "1.0.0",
+  "description": "The app that will be used for manage the automated terrarium",
+  "main": "index.js",
+  "scripts": {
+    "postinstall": "install-app-deps",
+    "start": "npm install && electron .",
+    "pack": "electron-builder --dir",
+    "dist": "electron-builder"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dmtzs/ProyectoRaspArduino.git"
+  },
+  "author": "Diego and Guillermo",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dmtzs/ProyectoRaspArduino/issues"
+  },
+  "build": {
+    "appId": "com.rasp.terrarium",
+    "productName": "Terrautomaton",
+    "directories": {
+      "output": "dist",
+      "buildResources": "Flask"
+    },
+    "files": [
+      "**/*"
+    ],
+    "extraResources": [
+      {
+        "from": "resources/Flask",
+        "to": "Flask",
+        "filter": [
+          "**/*"
+        ]
+      }
+    ],
+    "nsis": {
+      "allowToChangeInstallationDirectory": "true",
+      "oneClick": "false"
+    },
+    "linux": {
+      "target": [
+        "AppImage",
+        "deb"
+      ]
+    },
+    "win": {
+      "target": "NSIS",
+      "icon": "build/icon.ico"
+    }
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "electron": "latest",
+    "electron-builder": "latest",
+    "process": "^0.11.10"
+  }
+}

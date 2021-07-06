@@ -12,7 +12,8 @@ except ImportError as eImp:
 class ArduinoConnection():
     thisSystem = platform.system()
     baudrate = 115200
-    timeout = 3.1
+    timeout = 1.5
+    buffersize = 64
 
     def __init__(self):
         self.connection = None
@@ -51,13 +52,18 @@ class ArduinoConnection():
             print(f"\n\n\t\t\t\tOcurrió el ERROR: {e}")
 
     def readArduino(self):
-        rawstring = self.connection.readline().decode('utf-8').rstrip()
+        rawstring = self.connection.read(
+            self.buffersize).decode('utf-8').rstrip()
         if not rawstring:
             pass
         else:
             self.recieving = False
-            print(rawstring)
             self.receivedData = rawstring
+            # try:
+            #     dict_json = json.loads(rawstring)
+            #     print(dict_json)
+            # except json.JSONDecodeError as e:
+            #     print("JSON:", e)
 
     def writeArduino(self, Data):
         self.sendData = Data + "\n"

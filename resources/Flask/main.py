@@ -1,5 +1,7 @@
 try:
-    import time, sys
+    import time
+    import sys
+    import json
     from ArduinoConnection import ArduinoConnection
     from flask import Flask, request, render_template, redirect, url_for
     from datetime import datetime
@@ -30,13 +32,17 @@ def index():
     return render_template('bienvenida.html', dato1="se puede poner algo aquí")
 
 # Agregar el contenido correspondiente a los html´s de automatico y manual.
+
+
 @app.route('/automatico')
 def automatico():
     return render_template('automatico.html')
 
+
 @app.route('/manual')
 def manual():
     return render_template('manual.html')
+
 
 @app.route('/configuracion')
 def configuracion():
@@ -51,12 +57,24 @@ def contacto():
 @app.route('/raspberry')
 def raspberry():
     Nombre = "GDCode"
-    return render_template('rasp.html', Nom=Nombre)
+    data = {
+        "user": {
+            "name": "satyam kumar",
+        }
+    }
+    text = json.dumps(data)
+    return render_template('rasp.html', Nom=Nombre, JsonString=text)
 
 
 @app.route('/raspberry', methods=['POST'])
 def my_form_post():
-    text = request.form['data']
+    Nombre = "GDCode"
+    data = {
+        "user": {
+            "name": "satyam kumar",
+        }
+    }
+    text = json.dumps(data)
     conn.initConnection()
     conn.recieving = True
     while conn.recieving is True:
@@ -64,7 +82,8 @@ def my_form_post():
         time.sleep(.5)
         conn.readArduino()
     conn.closeConnection()
-    return render_template('rasp.html', send_data=conn.sendData, received_data=conn.receivedData)
+    return render_template('rasp.html', JsonString=text, send_data=conn.sendData,
+                           received_data=conn.receivedData, Nom=Nombre)
 
 
 if __name__ == "__main__":

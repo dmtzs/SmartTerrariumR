@@ -21,7 +21,7 @@ const template= [
     }
 ];
 //Cambiar a python3 cuando sea en la rasp
-const hijo = exec('python ./Flask/main.py', function (error, stdout, stderr) {
+const hijo = exec('python ./resources/Flask/main.py', function (error, stdout, stderr) {
     if (error) {
       console.log(error.stack);
       console.log('Error code: '+error.code);
@@ -40,7 +40,7 @@ function createWindow() {
         /*width: 1024,
         height: 780,*/
         title: "Terrario",//Esto se cambia por el mismo flask ya que se pone el tiítulo de la página en la que estás
-        icon: __dirname + "../Imgs/BoaEsmeraldaA.ico",
+        icon: __dirname + "../resources/Imgs/BoaEsmeraldaA.ico",
         minimizable: false,
         webPreferences:{
             nodeIntegration: true

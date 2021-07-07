@@ -5,16 +5,26 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{% block title %} Administrador de terrario {% endblock %}</title>
-    <link
-      rel="stylesheet"
-      href="{{url_for('static', filename= 'css/styles.css')}}"
-      type="text/css"
-    />
+
     <link
       rel="stylesheet"
       href="{{url_for('static', filename= 'bootstrap/css/bootstrap.css')}}"
       type="text/css"
     />
+    <link
+      rel="stylesheet"
+      href="{{url_for('static', filename= 'css/styles.css')}}"
+      type="text/css"
+    />
+    <!-- Font Awesome JS -->
+    <script
+      defer
+      src="{{url_for('static', filename= 'fontawesome/solid.js')}}"
+    ></script>
+    <script
+      defer
+      src="{{url_for('static', filename= 'fontawesome/fontawesome.js')}}"
+    ></script>
   </head>
   <body class="color-deseado">
     <div class="wrapper">
@@ -26,7 +36,7 @@
           <div class="container-fluid">
             <button type="button" id="sidebarCollapse" class="btn btn-info">
               <i class="fas fa-align-left"></i>
-              <span>Toggle Sidebar</span>
+              <span>Menú</span>
             </button>
           </div>
         </nav>

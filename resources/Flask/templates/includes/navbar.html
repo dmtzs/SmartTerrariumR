@@ -6,7 +6,7 @@
   <ul class="list-unstyled components">
     <p>Menú</p>
     <li>
-      <a href="/">Inicio</a>
+    <li class="active"><a href="/">Inicio</a></li>
     </li>
     <li>
       <a href="{{url_for('configuracion')}}">Configuración</a>
@@ -16,17 +16,17 @@
     </li>
     <li>
       <a
-        href="#pageSubmenu"
-        data-toggle="collapse"
+        href="#homeSubmenu"
+        data-bs-toggle="collapse"
         aria-expanded="false"
-        class="dropdown-toggle">
-        Modo de operación</a>
-      <ul class="collapse list-unstyled" id="pageSubmenu">
+        class="dropdown-toggle"
+        >Modo de operación</a>
+      <ul class="collapse list-unstyled" id="homeSubmenu">
         <li>
-          <a href="{{url_for('automatico')}}">Automático</a>
+          <a href="#">Automático</a>
         </li>
         <li>
-          <a href="{{url_for('manual')}}">Manual</a>
+          <a href="#">Manual</a>
         </li>
       </ul>
     </li>

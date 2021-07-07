@@ -56,8 +56,9 @@ a:focus {
 
 .wrapper {
   display: flex;
-  width: 100%;
   align-items: stretch;
+  perspective: 1500px;
+  width: 100%;
 }
 
 #sidebar {
@@ -65,11 +66,13 @@ a:focus {
   max-width: 250px;
   background: #7386d5;
   color: #fff;
-  transition: all 0.3s;
+  transition: all 0.6s cubic-bezier(0.945, 0.02, 0.27, 0.665);
+  transform-origin: center left; /* Set the transformed position of sidebar to center left side. */
 }
 
 #sidebar.active {
   margin-left: -250px;
+  transform: rotateY(100deg); /* Rotate sidebar vertically by 100 degrees. */
 }
 
 #sidebar .sidebar-header {
@@ -104,7 +107,7 @@ a[aria-expanded="true"] {
   background: #6d7fcc;
 }
 
-a[data-toggle="collapse"] {
+a[data-bs-toggle="collapse"] {
   position: relative;
 }
 
@@ -161,13 +164,16 @@ a.article:hover {
 ----------------------------------------------------- */
 
 @media (max-width: 768px) {
+  /* Reversing the behavior of the sidebar: 
+     it'll be rotated vertically and off canvas by default, 
+     collapsing in on toggle button click with removal of 
+     the vertical rotation.   */
   #sidebar {
     margin-left: -250px;
+    transform: rotateY(100deg);
   }
   #sidebar.active {
     margin-left: 0;
-  }
-  #sidebarCollapse span {
-    display: none;
+    transform: none;
   }
 }

@@ -2,11 +2,16 @@
   Administrador de terrario, todos los derechos reservados - {{ now.day }}-{{
   now.month }}-{{ now.year }}
 </footer>
+
+<script src="{{url_for('static', filename= 'jquery/jquery-3.6.0.min.js')}}"></script>
 <script src="{{url_for('static', filename= 'popper/popper.min.js')}}"></script>
 <script src="{{url_for('static', filename= 'bootstrap/js/bootstrap.js')}}"></script>
-<!-- jQuery CDN - Slim version (=without AJAX) -->
-<script
-  language="JavaScript"
-  type="text/javascript"
-  src="{{url_for('static', filename= 'jquery/jquery-3.6.0.min.js')}}"
-></script>
+
+<script type="text/javascript">
+  $(document).ready(function () {
+    $("#sidebarCollapse").on("click", function () {
+      $("#sidebar").toggleClass("active");
+      $(this).toggleClass("active");
+    });
+  });
+</script>

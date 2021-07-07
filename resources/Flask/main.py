@@ -1,7 +1,9 @@
 try:
     import time
     import sys
+    import os
     import json
+    import pyautogui
     from ArduinoConnection import ArduinoConnection
     from flask import Flask, request, render_template, redirect, url_for
     from datetime import datetime
@@ -83,6 +85,11 @@ def my_form_post():
     return render_template('rasp.html', JsonString=text, send_data=conn.sendData,
                            received_data=conn.receivedData, Nom=Nombre)
 
+
+# @app.route('/closeApp')
+# def closeApp():
+#     pyautogui.hotkey("alt", "f4")
+#     return os.system('taskkill /IM "python.exe" /F')
 #----------------------------Error Handlers------------------------------------#
 
 
@@ -90,8 +97,8 @@ def my_form_post():
 def not_found(e):
     return render_template('errorHandlers/error500.html'), 500
 
-#-------------------------------Execute----------------------------------------#
 
+#-------------------------------Execute----------------------------------------#
 
 if __name__ == "__main__":
     # Con esto hacemos que el servidor de flasjk al arrancar y haya cambios en el código se registren los cambios, algo como django.

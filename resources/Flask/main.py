@@ -15,16 +15,14 @@ conn = ArduinoConnection()
 app = Flask(__name__)
 app.secret_key = "clave_secreta_flask"
 
-# Context processor
 
-
-@app.context_processor
+@app.context_processor  # Context processor
 def date_now():
     return {
         'now': datetime.utcnow()
     }
 
-# Endpoints
+#---------------------------------Endpoints------------------------------------#
 
 
 @app.route('/')  # Ruta inicial del proyecto
@@ -84,6 +82,15 @@ def my_form_post():
     conn.closeConnection()
     return render_template('rasp.html', JsonString=text, send_data=conn.sendData,
                            received_data=conn.receivedData, Nom=Nombre)
+
+#----------------------------Error Handlers------------------------------------#
+
+
+@app.errorhandler(500)
+def not_found(e):
+    return render_template('errorHandlers/error500.html'), 500
+
+#-------------------------------Execute----------------------------------------#
 
 
 if __name__ == "__main__":

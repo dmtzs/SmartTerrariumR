@@ -52,7 +52,11 @@ function createWindow() {
     //mainWindow.maximize();
     mainWindow.loadURL("http://127.0.0.1:5000/")
     //mainWindow.loadFile(__dirname + "./templates/index.html")
+    const ses = mainWindow.webContents.session.clearCache(function() {
+    });
 }
+
+
 
 //--------------------------------------------Eventos sobre la app--------------------------------------------
 hijo.on('exit', (code) => {

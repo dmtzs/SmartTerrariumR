@@ -2,6 +2,12 @@
   Administrador de terrario, todos los derechos reservados - {{ now.day }}-{{
   now.month }}-{{ now.year }}
 </footer>
+<script>
+  if (typeof module === "object") {
+    window.module = module;
+    module = undefined;
+  }
+</script>
 
 <script src="{{url_for('static', filename= 'jquery/jquery-3.6.0.min.js')}}"></script>
 <script src="{{url_for('static', filename= 'popper/popper.min.js')}}"></script>
@@ -14,4 +20,8 @@
       $(this).toggleClass("active");
     });
   });
+</script>
+
+<script>
+  if (window.module) module = window.module;
 </script>

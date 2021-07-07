@@ -1,9 +1,6 @@
 try:
     import time
-    import sys
-    import os
     import json
-    import pyautogui
     from ArduinoConnection import ArduinoConnection
     from flask import Flask, request, render_template, redirect, url_for
     from datetime import datetime
@@ -86,10 +83,6 @@ def my_form_post():
                            received_data=conn.receivedData, Nom=Nombre)
 
 
-# @app.route('/closeApp')
-# def closeApp():
-#     pyautogui.hotkey("alt", "f4")
-#     return os.system('taskkill /IM "python.exe" /F')
 #----------------------------Error Handlers------------------------------------#
 
 

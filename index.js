@@ -44,6 +44,7 @@ function createWindow() {
         title: "Terrario",//Esto se cambia por el mismo flask ya que se pone el tiítulo de la página en la que estás
         icon: __dirname + "../resources/Imgs/BoaEsmeraldaA.ico",
         minimizable: false,
+        show: false,
         webPreferences: {
             preload: path.join(__dirname, 'resources/preload.js'),
             nodeIntegration: true
@@ -56,8 +57,11 @@ function createWindow() {
     mainWindow.loadURL("http://127.0.0.1:5000/")
     //mainWindow.loadFile(__dirname + "./templates/index.html")
     mainWindow.webContents.session.clearCache();
+    //espera a que cargue flask para mostrar la ventana (elimina la pantalla blanca al ejecutar la aplicacion)
+    mainWindow.once('ready-to-show', () => {
+        mainWindow.show()
+    })
 }
-
 
 
 //--------------------------------------------Eventos sobre la app--------------------------------------------

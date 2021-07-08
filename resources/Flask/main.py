@@ -41,7 +41,10 @@ def automatico():
 
 @app.route('/manual')
 def manual():
-    return render_template('manual.html')
+    temp1 = 5.0
+    temp2 = 44
+    hum1 = 30
+    return render_template('manual.html', temp1=temp1, temp2=temp2, hum1=hum1)
 
 
 @app.route('/configuracion')

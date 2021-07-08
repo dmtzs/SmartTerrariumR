@@ -2,6 +2,12 @@
   background-color: rgb(62, 140, 143);
 }
 
+.botonesManual {
+  margin-left: 5%;
+  padding: 0;
+  margin: 0;
+}
+
 .bloqueTempHum {
   background-color: rgba(204, 209, 223, .70);
   padding: 0;

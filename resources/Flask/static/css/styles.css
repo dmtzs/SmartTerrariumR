@@ -2,6 +2,25 @@
   background-color: rgb(62, 140, 143);
 }
 
+.personalTemperaturas {
+  background-color: rgba(204, 209, 223, .70);
+  margin: 0;
+  padding: 0;
+  margin-top: 30px;
+  width: 800px;
+  height: 500px;
+}
+
+.personalTitulos {
+  text-align: center;
+  color: rgb(44, 118, 197);
+}
+
+.temporal {
+  margin: 0;
+  padding: 0;
+}
+
 /*
     DEMO STYLE
 */

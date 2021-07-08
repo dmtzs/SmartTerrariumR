@@ -6,34 +6,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{% block title %} Administrador de terrario {% endblock %}</title>
 
-    <link
-      rel="stylesheet"
-      href="{{url_for('static', filename= 'bootstrap/css/bootstrap.css')}}"
-      type="text/css"
-    />
-    <link
-      rel="stylesheet"
-      href="{{url_for('static', filename= 'css/styles.css')}}"
-      type="text/css"
-    />
-    <script
-      src="{{url_for('static', filename= 'js/scripts.js')}}"
-    ></script>
-    <!-- Font Awesome JS -->
-    <script
-      defer
-      src="{{url_for('static', filename= 'fontawesome/solid.js')}}"
-    ></script>
-    <script
-      defer
-      src="{{url_for('static', filename= 'fontawesome/fontawesome.js')}}"
-    ></script>
+    <link rel="stylesheet" href="{{url_for('static', filename= 'bootstrap/css/bootstrap.css')}}" type="text/css"/>
+    <link rel="stylesheet" href="{{url_for('static', filename= 'css/styles.css')}}" type="text/css"/>
+    <script src="{{url_for('static', filename= 'js/scripts.js')}}"></script>
+
+    {# Font Awesome JS #}
+    <script defer src="{{url_for('static', filename= 'fontawesome/solid.js')}}"></script>
+    <script defer src="{{url_for('static', filename= 'fontawesome/fontawesome.js')}}"></script>
+
   </head>
   <body class="color-deseado">
     <div class="wrapper">
       {% include 'includes/navbar.html' %} 
       {# Para incluir la parte que tengo en mi carpeta includes #}
-
+      
       <section id="content">
         <button type="button" id="sidebarCollapse" class="btn btn-info">
           <i class="fas fa-align-left"></i>

@@ -23,7 +23,7 @@ const path = require('path');
 // ];
 
 //Cambiar a python3 cuando sea en la rasp
-const hijo = exec('python ./resources/Flask/main.py', function (error, stdout, stderr) {
+const hijo = exec('python3 resources/Flask/main.py', function (error, stdout, stderr) {
     if (error) {
       console.log(error.stack);
       console.log('Error code: '+error.code);
@@ -38,9 +38,9 @@ let mainWindow;
 //--------------------------------------------Función cerebro--------------------------------------------
 function createWindow() {
     mainWindow = new BrowserWindow({
-        //fullscreen: true,
-        width: 800,
-        height: 480,
+        fullscreen: true,
+        /*width: 800,
+        height: 480,*/
         title: "Terrario",//Esto se cambia por el mismo flask ya que se pone el tiítulo de la página en la que estás
         icon: __dirname + "../resources/Imgs/BoaEsmeraldaA.ico",
         minimizable: false,
@@ -77,8 +77,8 @@ app.whenReady().then(() => {
 
 app.on("window-all-closed", () => {
     if (process.platform!== "darwin") {
-        exec('taskkill /IM "python.exe" /F');
-        //exec('pkill -xf "python3 ./Flask/main.py"')
+        //exec('taskkill /IM "python.exe" /F');
+        exec('pkill -xf "python3 ./resources/Flask/main.py"')
         app.quit()
     }
 });
@@ -90,8 +90,8 @@ app.on("activate", () => {
 });
 
 ipcMain.on('window-close', function () {
-    exec('taskkill /IM "python.exe" /F');
-    //exec('pkill -xf "python3 ./Flask/main.py"');
+    //exec('taskkill /IM "python.exe" /F');
+    exec('pkill -xf "python3 ./resources/Flask/main.py"');
     //exec('reboot');
     //Queda pendiente función para validar sistema operativo, si es mac no se ejecuta la app si no ejecutar el kill correspondiente.
     app.quit();

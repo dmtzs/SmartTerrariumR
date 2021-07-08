@@ -6,8 +6,28 @@
 
 {% block content %}
 
-<div class="container personalTemperaturas">
-    <h2 class="personalTitulos">Temperaturas</h2>
-</div>
+<div class="container">
+
+    <div class="bloqueTempHum">
+    
+      <div class="Temp">
+        <h3 class="personalTitulos">Temperaturas</h3>
+        <br>
+        <div class="izq">
+          <h4 class="personalTitulos">Agua reserva</h4>
+          <h4 class="personalTitulos">{{temp1}}</h4>
+        </div>
+        <div class="dere">
+          <h4 class="personalTitulos">Terrario</h4>
+          <h4 class="personalTitulos">{{temp2}}</h4>
+        </div>
+      </div>
+    
+      <div class="Hum">
+        <h3 class="personalTitulos">Humedad</h3>
+        <h3 class="personalTitulos">{{hum1}}</h3>
+      </div>
+    </div>
+    </div>
 
 {% endblock %}

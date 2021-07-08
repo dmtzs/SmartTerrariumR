@@ -55,7 +55,7 @@ function createWindow() {
     mainWindow.setResizable(false)
     //mainWindow.maximize();
     mainWindow.loadURL("http://127.0.0.1:5000/")
-    //mainWindow.loadFile(__dirname + "./templates/index.html")
+    
     mainWindow.webContents.session.clearCache();
     //espera a que cargue flask para mostrar la ventana (elimina la pantalla blanca al ejecutar la aplicacion)
     mainWindow.once('ready-to-show', () => {
@@ -78,7 +78,7 @@ app.whenReady().then(() => {
 app.on("window-all-closed", () => {
     if (process.platform!== "darwin") {
         //exec('taskkill /IM "python.exe" /F');
-        exec('pkill -xf "python3 ./resources/Flask/main.py"')
+        exec('pkill -xf "python3 resources/Flask/main.py"')
         app.quit()
     }
 });
@@ -91,8 +91,10 @@ app.on("activate", () => {
 
 ipcMain.on('window-close', function () {
     //exec('taskkill /IM "python.exe" /F');
-    exec('pkill -xf "python3 ./resources/Flask/main.py"');
+    exec('pkill -xf "python3 resources/Flask/main.py"');
     //exec('reboot');
     //Queda pendiente función para validar sistema operativo, si es mac no se ejecuta la app si no ejecutar el kill correspondiente.
     app.quit();
 });
+
+//Buscar proceso en linux: ps -ef | grep python3

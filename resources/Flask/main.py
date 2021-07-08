@@ -35,9 +35,8 @@ def index():
 def automatico():
     temp1 = 5.0
     temp2 = 44
-    temp3 = 30
     hum1 = 30
-    return render_template('automatico.html', temp1=temp1, temp2=temp2, temp3=temp3, hum1=hum1)
+    return render_template('automatico.html', temp1=temp1, temp2=temp2, hum1=hum1)
 
 
 @app.route('/manual')

@@ -2,6 +2,29 @@
   background-color: rgb(62, 140, 143);
 }
 
+.bloqueTempHum {
+  background-color: rgba(204, 209, 223, .70);
+  padding: 0;
+  margin: 0;
+  margin-top: 3%;
+  width: 690px;
+  height: 200px;
+}
+
+.Temp {
+  background-color: black;
+  float: left;
+  width: 56%;
+  margin-top: 5%;
+}
+
+.Hum {
+  background-color: black;
+  float: right;
+  width: 30%;
+  margin-top: 5%;
+}
+
 .dataBlock {
   background-color: rgba(204, 209, 223, .70);
   padding: 0;
@@ -19,6 +42,14 @@
 .personalTitulos {
   text-align: center;
   color: rgb(44, 118, 197);
+}
+
+.dere {
+  float: right;
+}
+
+.izq {
+  float: left;
 }
 
 .temporal {

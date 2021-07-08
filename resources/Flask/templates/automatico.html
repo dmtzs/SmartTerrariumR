@@ -6,15 +6,30 @@
 
 {% block content %}
 
-<div class="container-fluid temperatureBlock">
-<div class="row h-100 row-cols-2">
-    <div class="col_temperature">Temperatura 1:</div>
-    <div class="col_temperature">{{temp1}}</div>
-    <div class="col_temperature">Temperatura 2:</div>
-    <div class="col_temperature">{{temp2}}</div>
-    <div class="col_temperature">Temperatura 3:</div>
-    <div class="col_temperature">{{temp3}}</div>
+<div class="container-fluid dataBlock">
+  <div class="row-fluid">
+    <div class="span12">
+      <div class="row-fluid row-cols-2">
+        <div class="span6">
+          <div class="row-fluid row-cols-2">
+            <div class="span3 col_temperature">Temperatura 1:</div>
+            <div class="span3 col_temperature">{{temp1}}</div>
+            <div class="span3 col_temperature">Temperatura 2:</div>
+            <div class="span3 col_temperature">{{temp2}}</div>
+            <div class="span3 col_temperature">Temperatura 3:</div>
+            <div class="span3 col_temperature">{{temp3}}</div>
+          </div>
+        </div>
+        <div class="span6">
+          <div class="row-fluid row-cols-2">
+            <div class="span3 col_temperature">Humedad:</div>
+            <div class="span3 col_temperature">{{hum1}}</div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
+
 
 {% endblock %}

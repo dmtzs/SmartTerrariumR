@@ -17,9 +17,13 @@
 
 <script type="text/javascript">
   $(document).ready(function () {
+    $('#dismiss').on('click', function () {
+        $('#sidebar').removeClass('active');
+    });
+
     $("#sidebarCollapse").on("click", function () {
-      $("#sidebar").toggleClass("active");
-      $(this).toggleClass("active");
+        $("#sidebar").toggleClass("active");
+        $(this).toggleClass("active");
     });
   });
 </script>

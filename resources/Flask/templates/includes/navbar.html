@@ -1,4 +1,7 @@
 <nav id="sidebar">
+  <a href="#" id="dismiss">
+    <i class="fas fa-angle-double-left"></i>
+  </a>
   <div class="sidebar-header">
     <h3>Mi terrario</h3>
   </div>
@@ -6,7 +9,7 @@
   <ul class="list-unstyled components">
     <p>Menú</p>
     <li>
-    <li class="active"><a href="/">Inicio</a></li>
+      <li><a href="/">Inicio</a></li>
     </li>
     <li>
       <a href="{{url_for('configuracion')}}">Configuración</a>
@@ -37,7 +40,9 @@
 
   <ul class="list-unstyled CTAs">
     <li>
-      <a href="#" class="close-btn" id="close-btn">Reiniciar</a>
+      <a href="#" class="close-btn" id="close-btn">
+          <i class="fas fa-power-off"></i>
+      </a>
     </li>
   </ul>
   <p>{% include 'includes/footer-scripts.html' %}</p>

@@ -25,6 +25,10 @@
     DEMO STYLE
 */
 
+::-webkit-scrollbar {
+  display: none;
+}
+
 a,
 a:hover,
 a:focus {
@@ -51,6 +55,10 @@ a:focus {
   color: #fff;
   transition: all 0.6s cubic-bezier(0.945, 0.02, 0.27, 0.665);
   transform-origin: center left; /* Set the transformed position of sidebar to center left side. */
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  overflow: scroll;
 }
 
 #sidebar.active {
@@ -125,10 +133,13 @@ a.close-btn {
   color: #7386d5;
 }
 
-a.article,
-a.article:hover {
-  background: #6d7fcc !important;
-  color: #fff !important;
+#dismiss {
+  width: 35px;
+  height: 35px;
+  position: absolute;
+  /* top right corner of the sidebar */
+  top: 10px;
+  right: 10px;
 }
 
 /* ---------------------------------------------------
@@ -146,7 +157,7 @@ a.article:hover {
     MEDIAQUERIES
 ----------------------------------------------------- */
 
-@media (max-width: 768px) {
+@media (max-width: 1000px) {
   /* Reversing the behavior of the sidebar: 
      it'll be rotated vertically and off canvas by default, 
      collapsing in on toggle button click with removal of 

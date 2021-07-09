@@ -68,3 +68,4 @@ Si en linux se tiene problemas para ejecutar lo de flask: https://medium.com/@sa
 - https://askubuntu.com/questions/58119/changing-permissions-on-serial-port
 - De igual forma se podría usar un script para automatizar estos pasos necesarios de manera obligatoria
 - Comando: sudo usermod -a -G dialout $USER
+- Teclado matricial: https://descubrearduino.com/conectar-teclado-a-raspberry-pi/

@@ -23,7 +23,7 @@ const path = require('path');
 // ];
 
 //Cambiar a python3 cuando sea en la rasp
-const hijo = exec('python3 resources/Flask/main.py', function (error, stdout, stderr) {
+const hijo = exec('python3 resources/Flask/main.py', (error, stdout, stderr) => {
     if (error) {
       console.log(error.stack);
       console.log('Error code: '+error.code);
@@ -89,7 +89,7 @@ app.on("activate", () => {
     }
 });
 
-ipcMain.on('window-close', function () {
+ipcMain.on('window-close', () => {
     //exec('taskkill /IM "python.exe" /F');
     exec('pkill -xf "python3 resources/Flask/main.py"');
     //exec('reboot');

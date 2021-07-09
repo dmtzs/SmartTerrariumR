@@ -63,3 +63,8 @@ Si en linux se tiene problemas para ejecutar lo de flask: https://medium.com/@sa
 - Checar la viabilidad de la implementacion de api de tiempo para saber que hora es y activar o desactivar el modo dia y noche
 - Checar la viabilidad de la implementacion de cambiar entre español e inglés, en este caso sería para inglés porque la de español ya está hecha
 - Checar viabilidad para implementar widgets en temperaturas y humedad de la app, que sea una opción que el usuario pueda cambiar
+
+------------------------------------Preparar rasp para el arduino------------------------------------
+- https://askubuntu.com/questions/58119/changing-permissions-on-serial-port
+- De igual forma se podría usar un script para automatizar estos pasos necesarios de manera obligatoria
+- Comando: sudo usermod -a -G dialout $USER

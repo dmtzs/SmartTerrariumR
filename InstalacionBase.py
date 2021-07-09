@@ -16,7 +16,8 @@ def limpShell():
 
 def main():
     comandos = ["sudo apt install python3-pip", "pip3 install -r requirements.txt", "sudo apt install nodejs",
-                "sudo apt install npm", "npm install electron", "sudo apt install florence -y", "sudo apt install at-spi2-core -y"]
+                "sudo apt install npm", "npm install electron", "sudo apt install florence -y", "sudo apt install at-spi2-core -y",
+                "sudo usermod -a -G dialout $USER"]
 
     for comm in comandos:
         os.system(comm)

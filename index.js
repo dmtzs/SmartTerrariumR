@@ -81,6 +81,7 @@ hijo.on('exit', (code) => {
 })
 
 app.whenReady().then(() => {
+    //elimina el error de connection refused al iniciar la aplicacion
     waitPort(params)
         .then((open) => {
             createWindow();

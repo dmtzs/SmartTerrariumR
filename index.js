@@ -9,6 +9,20 @@ const params = {
     port: 5000,
 };
 
+//detectar sistema operativo
+var OSName="Unknown OS";
+if (process.platform === "win32") OSName = "Windows";
+if (process.platform === "darwin") OSName = "MacOS";
+if (process.platform === "linux") OSName = "Linux";
+
+var childString = "nothing"
+if (OSName === "Windows") {
+    childString = "python resources/Flask/main.py";
+}
+if (OSName === "Linux") {
+    childString = "python3 resources/Flask/main.py";
+}
+
 // const template= [
 //     {
 //         label: "Reiniciar",
@@ -28,8 +42,7 @@ const params = {
 //     }
 // ];
 
-//Cambiar a python3 cuando sea en la rasp
-const hijo = exec('python3 resources/Flask/main.py', (error, stdout, stderr) => {
+const hijo = exec(childString, (error, stdout, stderr) => {
     if (error) {
       console.log(error.stack);
       console.log(`Error code: ${error.code}`);
@@ -38,7 +51,6 @@ const hijo = exec('python3 resources/Flask/main.py', (error, stdout, stderr) => 
     console.log(`Child Process STDOUT: ${stdout}`);
     console.log(`Child Process STDERR: ${stderr}`);
 });
-
 
 
 let mainWindow;
@@ -91,25 +103,32 @@ app.whenReady().then(() => {
     // Menu.setApplicationMenu(mainMenu);
 });
 
-app.on("window-all-closed", () => {
-    if (process.platform!== "darwin") {
-        //exec('taskkill /IM "python.exe" /F');
-        exec('pkill -xf "python3 resources/Flask/main.py"')
-        app.quit()
-    }
-});
-
 app.on("activate", () => {
     if (BrowserWindow.getAllWindows().length== 0) {
         createWindow()
     }
 });
 
+app.on("window-all-closed", () => {
+    if (process.platform !== "darwin") {
+        if (OSName === "Windows") {
+            exec('taskkill /IM "python.exe" /F');
+        }
+        if (OSName === "Linux") {
+            exec('pkill -xf "python3 resources/Flask/main.py"')
+        }
+        app.quit()
+    }
+});
+
 ipcMain.on('window-close', () => {
-    //exec('taskkill /IM "python.exe" /F');
-    exec('pkill -xf "python3 resources/Flask/main.py"');
-    //exec('reboot');
-    //Queda pendiente función para validar sistema operativo, si es mac no se ejecuta la app si no ejecutar el kill correspondiente.
+    if (OSName === "Windows") {
+        exec('taskkill /IM "python.exe" /F');
+    }
+    if (OSName === "Linux") {
+        exec('pkill -xf "python3 resources/Flask/main.py"')
+        //exec('reboot');
+    }
     app.quit();
 });
 

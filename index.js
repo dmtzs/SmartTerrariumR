@@ -2,6 +2,14 @@
 const { app, BrowserWindow,  Menu, ipcMain}= require("electron");//12308
 const { exec } = require("child_process");
 const path = require('path');
+const waitPort = require('wait-port');
+
+let connReady = false;
+
+const params = {
+    host: 'localhost',
+    port: 5000,
+};
 
 // const template= [
 //     {
@@ -29,11 +37,14 @@ const hijo = exec('python3 resources/Flask/main.py', (error, stdout, stderr) => 
       console.log('Error code: '+error.code);
       console.log('Signal received: '+error.signal);
     }
-    console.log('Child Process STDOUT: '+stdout);
+    console.log(    'Child Process STDOUT: '+stdout);
     console.log('Child Process STDERR: '+stderr);
-  });
+});
+
+
 
 let mainWindow;
+
 
 //--------------------------------------------Función cerebro--------------------------------------------
 function createWindow() {
@@ -67,10 +78,19 @@ function createWindow() {
 //--------------------------------------------Eventos sobre la app--------------------------------------------
 hijo.on('exit', (code) => {
     console.log('Child process exited with exit code '+code);
-  })
+})
 
 app.whenReady().then(() => {
-    createWindow()
+    waitPort(params)
+        .then((open) => {
+            createWindow();
+    if (open) console.log('The port is now open!');
+    else console.log('The port did not open before the timeout...');
+  })
+  .catch((err) => {
+    console.err(`An unknown error occured while waiting for the port: ${err}`);
+  });
+    
     // const mainMenu= Menu.buildFromTemplate(template);
     // Menu.setApplicationMenu(mainMenu);
 });

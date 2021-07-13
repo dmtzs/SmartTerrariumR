@@ -101,11 +101,13 @@ a:focus {
   top: 0;
   bottom: 0;
   overflow: scroll;
+  margin-left: -250px;
+  transform: rotateY(100deg);
 }
 
 #sidebar.active {
-  margin-left: -250px;
-  transform: rotateY(100deg); /* Rotate sidebar vertically by 100 degrees. */
+  margin-left: 0;
+  transform: none;
 }
 
 #sidebar .sidebar-header {

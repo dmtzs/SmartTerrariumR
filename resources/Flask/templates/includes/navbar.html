@@ -38,12 +38,15 @@
     </li>
   </ul>
 
-  <ul class="list-unstyled CTAs">
-    <li>
-      <a href="#" class="close-btn" id="close-btn">
-          <i class="fas fa-power-off"></i>
-      </a>
-    </li>
-  </ul>
-  <p>{% include 'includes/footer-scripts.html' %}</p>
+  <div class="footer">
+    <ul class="list-unstyled CTAs">
+      <li>
+        <a href="#" class="close-btn" id="close-btn">
+            <i class="fas fa-power-off"></i>
+        </a>
+      </li>
+    </ul>
+    Administrador de terrario, todos los derechos reservados - {{ now.day }}-{{
+    now.month }}-{{ now.year }}
+  </div>
 </nav>

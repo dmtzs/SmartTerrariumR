@@ -82,16 +82,13 @@ hijo.on('exit', (code) => {
 
 app.whenReady().then(() => {
     //elimina el error de connection refused al iniciar la aplicacion
-    waitPort(params)
-        .then((open) => {
-            createWindow();
-    if (open) console.log('The port is now open!');
-    else console.log('The port did not open before the timeout...');
-  })
-  .catch((err) => {
-    console.err(`An unknown error occured while waiting for the port: ${err}`);
-  });
-    
+    waitPort(params).then((open) => {
+        createWindow();
+        if (open) console.log('The port is now open!');
+        else console.log('The port did not open before the timeout...');
+    }).catch((err) => {
+        console.err(`An unknown error occured while waiting for the port: ${err}`);
+    });
     // const mainMenu= Menu.buildFromTemplate(template);
     // Menu.setApplicationMenu(mainMenu);
 });

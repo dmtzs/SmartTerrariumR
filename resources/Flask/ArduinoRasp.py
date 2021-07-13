@@ -1,10 +1,5 @@
 try:
-    import os
-    import time
-    import serial
-    import Metodos
-    import warnings
-    import serial.tools.list_ports
+    import os, time, serial, Metodos, warnings, serial.tools.list_ports
 except ImportError as error:
     print(f"\n\n\t\t\t\tOcurrió el ERROR: {error}")
 

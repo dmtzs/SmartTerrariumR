@@ -34,11 +34,11 @@ const params = {
 const hijo = exec('python3 resources/Flask/main.py', (error, stdout, stderr) => {
     if (error) {
       console.log(error.stack);
-      console.log('Error code: '+error.code);
-      console.log('Signal received: '+error.signal);
+      console.log(`Error code: ${error.code}`);
+      console.log(`Signal received: ${error.signal}`);
     }
-    console.log(    'Child Process STDOUT: '+stdout);
-    console.log('Child Process STDERR: '+stderr);
+    console.log(`Child Process STDOUT: ${stdout}`);
+    console.log(`Child Process STDERR: ${stderr}`);
 });
 
 
@@ -77,7 +77,7 @@ function createWindow() {
 
 //--------------------------------------------Eventos sobre la app--------------------------------------------
 hijo.on('exit', (code) => {
-    console.log('Child process exited with exit code '+code);
+    console.log(`Child process exited with exit code ${code}`);
 })
 
 app.whenReady().then(() => {

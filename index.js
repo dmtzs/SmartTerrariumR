@@ -4,8 +4,6 @@ const { exec } = require("child_process");
 const path = require('path');
 const waitPort = require('wait-port');
 
-let connReady = false;
-
 const params = {
     host: 'localhost',
     port: 5000,

@@ -9,17 +9,14 @@ const params = {
     port: 5000,
 };
 
-//detectar sistema operativo
-var OSName="Unknown OS";
-if (process.platform === "win32") OSName = "Windows";
-if (process.platform === "darwin") OSName = "MacOS";
-if (process.platform === "linux") OSName = "Linux";
+//Detectar sistema operativo
+var OSName= process.platform;
 
 var childString = "nothing"
-if (OSName === "Windows") {
+if (OSName === "win32") {
     childString = "python resources/Flask/main.py";
 }
-if (OSName === "Linux") {
+if (OSName === "linux") {
     childString = "python3 resources/Flask/main.py";
 }
 
@@ -111,10 +108,10 @@ app.on("activate", () => {
 
 app.on("window-all-closed", () => {
     if (process.platform !== "darwin") {
-        if (OSName === "Windows") {
+        if (OSName === "win32") {
             exec('taskkill /IM "python.exe" /F');
         }
-        if (OSName === "Linux") {
+        if (OSName === "linux") {
             exec('pkill -xf "python3 resources/Flask/main.py"')
         }
         app.quit()
@@ -122,10 +119,10 @@ app.on("window-all-closed", () => {
 });
 
 ipcMain.on('window-close', () => {
-    if (OSName === "Windows") {
+    if (OSName === "win32") {
         exec('taskkill /IM "python.exe" /F');
     }
-    if (OSName === "Linux") {
+    if (OSName === "linux") {
         exec('pkill -xf "python3 resources/Flask/main.py"')
         //exec('reboot');
     }

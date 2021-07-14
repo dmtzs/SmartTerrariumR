@@ -63,10 +63,10 @@
   padding: 0;
 }
 
-.footer{ 
-  position: absolute;     
-  text-align: center;    
-  bottom: 0px; 
+.footer{
+  position: relative;
+  text-align: center;
+  bottom: 0px;
   width: 100%;
 }
 

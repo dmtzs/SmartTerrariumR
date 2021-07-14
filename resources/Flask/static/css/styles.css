@@ -86,10 +86,15 @@
 }
 
 .footer{
-  position: relative;
+  position: absolute;
   text-align: center;
   bottom: 0px;
   width: 100%;
+}
+
+.rights{
+  font-size: small;
+  font-family: 'Times New Roman', Times, serif;
 }
 
 /*
@@ -126,7 +131,7 @@ a:focus {
   color: #fff;
   transition: all 0.6s cubic-bezier(0.945, 0.02, 0.27, 0.665);
   transform-origin: center left; /* Set the transformed position of sidebar to center left side. */
-  position: fixed;
+  position: absolute;
   top: 0;
   bottom: 0;
   overflow: scroll;
@@ -146,7 +151,7 @@ a:focus {
 
 #sidebar ul.components {
   padding: 20px 0;
-  border-bottom: 1px solid #47748b;
+  border-bottom: 0px;
 }
 
 #sidebar ul p {
@@ -242,5 +247,11 @@ a.close-btn {
   #sidebar.active {
     margin-left: 0;
     transform: none;
+  }
+  .footer{
+    position: relative;
+    text-align: center;
+    bottom: 0px;
+    width: 100%;
   }
 }

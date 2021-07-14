@@ -1,17 +1,22 @@
-{% extends 'layout.html' %} {% block title %} raspberry {% endblock %} {% block
-content %}
+{% extends 'layout.html' %}
+{% block title %}
+  raspberry
+{% endblock %}
 
-<h1>Comunicacion serial con raspberry</h1>
-<h2>Prueba de json con serial y arduino</h2>
 
-<form method="POST">
-  <p>{{JsonString}}</p>
-  <input type="submit" />
-</form>
+{% block content %}
 
-<h2>Cadena mandada:</h2>
-<h2>{{send_data}}</h2>
-<h2>Cadena recibida:</h2>
-<h2>{{received_data}}</h2>
-<h2>{{Nom}}</h2>
+  <h1>Comunicacion serial con raspberry</h1>
+  <h2>Prueba de json con serial y arduino</h2>
+
+  <form method="POST">
+    <p>{{JsonString}}</p>
+    <input type="submit" />
+  </form>
+
+  <h2>Cadena mandada:</h2>
+  <h2>{{send_data}}</h2>
+  <h2>Cadena recibida:</h2>
+  <h2>{{received_data}}</h2>
+  <h2>{{Nom}}</h2>
 {% endblock %}

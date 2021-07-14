@@ -10,7 +10,7 @@ const params = {
 };
 
 //Detectar sistema operativo
-var OSName= process.platform;
+let OSName= process.platform;
 
 var childString = "nothing"
 if (OSName === "win32") {

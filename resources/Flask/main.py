@@ -1,8 +1,8 @@
 try:
     import time
-    import json
-    import os
     import threading
+    import json
+    from jsonObject import jsonObject
     from ArduinoConnection import ArduinoConnection
     from flask import Flask, request, render_template, redirect, url_for
     from datetime import datetime
@@ -11,14 +11,14 @@ except Exception as eImp:
 
 # Inicia coneccion con arduino
 conn = ArduinoConnection()
+
 # variables para leer modo de operacion
 sem = threading.Semaphore()
-modo = ""
 firstTime = True
+modo = ""
 
 # JSON read
-filename = 'resources/appData.json'
-jsonObject = None
+jsonMain = jsonObject()
 
 # Se crea la app, se instancia el framework para poder usarse.
 app = Flask(__name__)
@@ -36,23 +36,23 @@ def date_now():
 
 @app.route('/', methods=["POST", "GET"])  # Ruta inicial del proyecto
 def index():
-    global firstTime, jsonObject
-
-    global modo
-    sem.acquire()
-    if request.method == "POST":
-        modo = request.form.get("modoOperacion")
-    sem.release()
+    global firstTime, jsonMain, modo
 
     if firstTime:
-        with open(os.path.abspath(filename)) as jsonFile:
-            jsonObject = json.load(jsonFile)
-            jsonFile.close()
-        modo = jsonObject['configuracion']['modo']
+        jsonMain.readData()
+        modo = jsonMain.jsonData['configuracion']['modo']
         firstTime = False
         if modo == 1:
             return render_template('bienvenida.html', dato1=modo, pushed=modo)
         return render_template('bienvenida.html', dato1=modo, pushed=modo)
+
+    sem.acquire()
+    if request.method == "POST":
+        receivedMode = request.form.get("modoOperacion")
+        if receivedMode != modo:
+            modo = receivedMode
+            jsonMain.writeData_changeMode(modo)
+    sem.release()
 
     temp1 = 50
     temp2 = 44

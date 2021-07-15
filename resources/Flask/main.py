@@ -51,6 +51,7 @@ def index():
         receivedMode = request.form.get("modoOperacion")
         if receivedMode != modo:
             modo = receivedMode
+            jsonMain.readData()
             jsonMain.writeData_changeMode(modo)
     sem.release()
 

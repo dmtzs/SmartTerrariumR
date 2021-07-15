@@ -18,10 +18,6 @@ class jsonObject():
             jsonFile.close()
 
     def writeData_changeMode(self, newMode):
-        with open(os.path.abspath(self.filename), 'r') as jsonFile:
-            self.jsonData = json.load(jsonFile)
-            jsonFile.close()
-
         if newMode == 'true':
             self.jsonData['configuracion']['modo'] = 1
         if newMode == 'false':

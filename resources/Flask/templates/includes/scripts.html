@@ -51,7 +51,16 @@
 <script type="text/javascript">
   //enviar estado de checkbox al cargar la pagina
   $(document).ready(function () {
+    var initialMode = '{{ pushed }}'
+
+    if (initialMode === "0"){
+      localStorage.input = false
+    }
+    if (initialMode === "1"){
+      localStorage.input = true
+    }
     var test = localStorage.input === 'true'? true: false;
+    
     $('#modoOperacion').prop('checked', test || false);
     localStorage.input = $('#modoOperacion').is(':checked');
     var modoSwitch = false;

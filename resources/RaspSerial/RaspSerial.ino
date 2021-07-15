@@ -7,6 +7,9 @@ void setup()
 
 void loop()
 {
+  // Esperamos 5 segundos entre medidas
+  delay(5000);
+  /*
   String cade= "", estadoFlotador= "", temporal= "";
   float *TH, tempSumergible;
 
@@ -27,12 +30,13 @@ void loop()
   cade+= estadoFlotador;
   cade+= ",";
   cade+= tempSumergible;
-  //Serial.println(cade);
-
+  Serial.println(cade);
+*/
   PruebaRecibidoRasp();
   
   //Validar que si el sensor de temperatura sumergible baja a cierta temperatura encienda la resistencia por un tiempo para calentar el agua.
   //For the temperature and humidity sensor cause the sensor needs time to measure the data.
+
 }
 
 void serialEvent() {

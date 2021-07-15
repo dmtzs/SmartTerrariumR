@@ -1,6 +1,7 @@
 try:
     import time
     import json
+    import os
     import threading
     from ArduinoConnection import ArduinoConnection
     from flask import Flask, request, render_template, redirect, url_for
@@ -10,8 +11,14 @@ except Exception as eImp:
 
 # Inicia coneccion con arduino
 conn = ArduinoConnection()
+# variables para leer modo de operacion
 sem = threading.Semaphore()
 modo = ""
+firstTime = True
+
+# JSON read
+filename = 'resources/appData.json'
+jsonObject = None
 
 # Se crea la app, se instancia el framework para poder usarse.
 app = Flask(__name__)
@@ -29,21 +36,32 @@ def date_now():
 
 @app.route('/', methods=["POST", "GET"])  # Ruta inicial del proyecto
 def index():
-    temp1 = 5.0
-    temp2 = 44
-    hum1 = 30
+    global firstTime, jsonObject
+
     global modo
     sem.acquire()
     if request.method == "POST":
         modo = request.form.get("modoOperacion")
     sem.release()
 
-    if modo == 'true':
-        return render_template('automatico.html', temp1=temp1, temp2=temp2, hum1=hum1)
-    if modo == 'false':
-        return render_template('manual.html', temp1=temp1, temp2=temp2, hum1=hum1)
+    if firstTime:
+        with open(os.path.abspath(filename)) as jsonFile:
+            jsonObject = json.load(jsonFile)
+            jsonFile.close()
+        modo = jsonObject['configuracion']['modo']
+        firstTime = False
+        if modo == 1:
+            return render_template('bienvenida.html', dato1=modo, pushed=modo)
+        return render_template('bienvenida.html', dato1=modo, pushed=modo)
 
-    return render_template('bienvenida.html', dato1=modo)
+    temp1 = 50
+    temp2 = 44
+    hum1 = 30
+
+    if modo == 'true' or modo == 1:
+        return render_template('automatico.html', temp1=temp1, temp2=temp2, hum1=hum1)
+    if modo == 'false' or modo == 0:
+        return render_template('manual.html', temp1=temp1, temp2=temp2, hum1=hum1)
 
 
 @app.route('/configuracion')

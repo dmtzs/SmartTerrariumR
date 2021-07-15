@@ -46,25 +46,6 @@ def index():
     return render_template('bienvenida.html', dato1=modo)
 
 
-# Agregar el contenido correspondiente a los html´s de automatico y manual.
-
-
-@app.route('/automatico', methods=["POST", "GET"])
-def automatico():
-    temp1 = 5.0
-    temp2 = 44
-    hum1 = 30
-    return render_template('automatico.html', temp1=temp1, temp2=temp2, hum1=hum1)
-
-
-@app.route('/manual', methods=["POST", "GET"])
-def manual():
-    temp1 = 5.0
-    temp2 = 44
-    hum1 = 30
-    return render_template('manual.html', temp1=temp1, temp2=temp2, hum1=hum1)
-
-
 @app.route('/configuracion')
 def configuracion():
     return render_template('configuracion.html')

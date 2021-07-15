@@ -1,5 +1,7 @@
 try:
-    import time, json
+    import time
+    import json
+    import threading
     from ArduinoConnection import ArduinoConnection
     from flask import Flask, request, render_template, redirect, url_for
     from datetime import datetime
@@ -8,6 +10,8 @@ except Exception as eImp:
 
 # Inicia coneccion con arduino
 conn = ArduinoConnection()
+sem = threading.Semaphore()
+modo = ""
 
 # Se crea la app, se instancia el framework para poder usarse.
 app = Flask(__name__)
@@ -23,14 +27,29 @@ def date_now():
 #---------------------------------Endpoints------------------------------------#
 
 
-@app.route('/')  # Ruta inicial del proyecto
+@app.route('/', methods=["POST", "GET"])  # Ruta inicial del proyecto
 def index():
-    return render_template('bienvenida.html', dato1="se puede poner algo aquí")
+    temp1 = 5.0
+    temp2 = 44
+    hum1 = 30
+    global modo
+    sem.acquire()
+    if request.method == "POST":
+        modo = request.form.get("modoOperacion")
+    sem.release()
+
+    if modo == 'true':
+        return render_template('automatico.html', temp1=temp1, temp2=temp2, hum1=hum1)
+    if modo == 'false':
+        return render_template('manual.html', temp1=temp1, temp2=temp2, hum1=hum1)
+
+    return render_template('bienvenida.html', dato1=modo)
+
 
 # Agregar el contenido correspondiente a los html´s de automatico y manual.
 
 
-@app.route('/automatico')
+@app.route('/automatico', methods=["POST", "GET"])
 def automatico():
     temp1 = 5.0
     temp2 = 44
@@ -38,7 +57,7 @@ def automatico():
     return render_template('automatico.html', temp1=temp1, temp2=temp2, hum1=hum1)
 
 
-@app.route('/manual')
+@app.route('/manual', methods=["POST", "GET"])
 def manual():
     temp1 = 5.0
     temp2 = 44

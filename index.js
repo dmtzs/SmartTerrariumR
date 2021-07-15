@@ -56,9 +56,9 @@ let mainWindow;
 //--------------------------------------------Función cerebro--------------------------------------------
 function createWindow() {
     mainWindow = new BrowserWindow({
-        fullscreen: true,
-        /*width: 800,
-        height: 480,*/
+        // fullscreen: true,
+        width: 800,
+        height: 480,
         title: "Terrario",//Esto se cambia por el mismo flask ya que se pone el tiítulo de la página en la que estás
         icon: __dirname + "../resources/Imgs/BoaEsmeraldaA.ico",
         minimizable: false,

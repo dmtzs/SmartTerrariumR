@@ -10,7 +10,7 @@ void chooseAction(String key);
 // ------------------------Pin´s definitions------------------------
 #define sensorFlotador 2
 #define DHT_PIN 4
-#define DHTTYPE DHT11
+#define DHTTYPE DHT22
 #define focoDia 5
 #define focoNoche 6
 #define calentarAguaReserva 7
@@ -57,7 +57,7 @@ void setupProyecto()
  * @Author: Diego Martínez Sánchez
  * @Description: For turning on all components everytime the app its initialized all components for check if all works fine.
  */
-String inicio()//Poner en void cuando compruebe en efecto la variable global se mantiene en 1 después.
+void inicio()//Poner en void cuando compruebe en efecto la variable global se mantiene en 1 después.
 {
   if (iniciar== 0)
   {
@@ -116,10 +116,8 @@ String floatingSensor()
  */
 void TempHum()
 {
-  TH[0] = dht.readTemperature();
-  TH[1] = dht.readHumidity();
-
-  TH[2] = 0;
+  TH[1]= dht.readTemperature();
+  TH[2]= dht.readHumidity();
 }
 
 /*
@@ -147,14 +145,11 @@ void humedecerTerrario(float hum)
  * @Description: This function measures the temperature of the water that will be used for refill the drinker and humidify the terrarium.
  *               Also this function will activate a resistor that will keep warm the reserve water of this recipient.
  */
-float sensorSumergible()
+void sensorSumergible()
 {
-  float tempSub;
-  
   submersibleSensor.requestTemperatures();
-  tempSub= submersibleSensor.getTempCByIndex(0);
-
-  return tempSub;
+  TH[0]= submersibleSensor.getTempCByIndex(0);
+  TH[0]= 0;
 }
 
 /*

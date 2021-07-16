@@ -1,5 +1,10 @@
 try:
-    import os, time, serial, warnings, platform, serial.tools.list_ports
+    import os
+    import time
+    import serial
+    import warnings
+    import platform
+    import serial.tools.list_ports
 except ImportError as eImp:
     print(f"The following error import ocurred: {eImp}")
 
@@ -43,8 +48,10 @@ class ArduinoConnection():
                         "dmesg | egrep ttyACM | cut -f3 -d: | tail -n1").read().strip()
                 self.connection = serial.Serial(
                     serial_port, baudrate=self.baudrate, timeout=self.timeout)
+            return True
         except Exception as e:
             print(f"\n\n\t\t\t\tOcurrió el ERROR: {e}")
+            return False
 
     def readArduino(self):
         rawstring = self.connection.read(

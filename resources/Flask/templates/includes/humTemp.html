@@ -24,7 +24,6 @@
   }, false)
 
   eventSource.addEventListener("online", function(e) {
-    console.log(e.data.strm)
     data = JSON.parse(e.data)
     document.querySelector("#t_1").innerText = data.strm.t_1
     document.querySelector("#t_2").innerText = data.strm.t_2

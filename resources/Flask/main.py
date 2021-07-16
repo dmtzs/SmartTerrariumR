@@ -1,15 +1,12 @@
 try:
-    import time
-    import threading
-    import json
-    import random
-    from gevent import monkey
-    monkey.patch_all()
+    import time, threading, json, random
     from gevent.pywsgi import WSGIServer
     from jsonObject import jsonObject
     from ArduinoConnection import ArduinoConnection
     from flask import Flask, Response, stream_with_context, request, render_template, redirect, url_for
     from datetime import datetime
+    from gevent import monkey
+    monkey.patch_all()
 except Exception as eImp:
     print(f"Ocurrió el error de importación: {eImp}")
 
@@ -85,7 +82,7 @@ def listen():
             conn.closeConnection()
             print(conn.receivedData)
             yield f"id: 1\ndata: {conn.receivedData}\nevent: online\n\n"
-            time.sleep(5)
+            time.sleep(1)
     return Response(respond_to_client(), mimetype='text/event-stream')
 
 

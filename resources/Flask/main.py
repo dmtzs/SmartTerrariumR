@@ -126,11 +126,12 @@ def my_form_post():
     if not conn.recieving:
         conn.closeConnection()
     conn.recieving = conn.initConnection()
-    while conn.recieving is True:
-        conn.writeArduino(text)
-        time.sleep(.5)
-        conn.readArduino()
-    conn.closeConnection()
+    if conn.recieving:
+        while conn.recieving is True:
+            conn.writeArduino(text)
+            time.sleep(.5)
+            conn.readArduino()
+        conn.closeConnection()
     print(conn.receivedData)
     sem.release()
     return render_template('rasp.html', JsonString=text, send_data=conn.sendData,

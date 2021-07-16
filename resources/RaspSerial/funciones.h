@@ -2,10 +2,10 @@
 
 String inicio();
 void setupProyecto();
-void PruebaRecibidoRasp();
+void sendSerialRasp();
 void eventoSerial();
 String floatingSensor();
-float* TempHum();
+void TempHum();
 float sensorSumergible();
 void humedecerTerrario(float hum);
 void reserveWater(float tempSub);

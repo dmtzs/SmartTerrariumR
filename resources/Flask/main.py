@@ -2,9 +2,13 @@ try:
     import time
     import threading
     import json
+    import random
+    from gevent import monkey
+    monkey.patch_all()
+    from gevent.pywsgi import WSGIServer
     from jsonObject import jsonObject
     from ArduinoConnection import ArduinoConnection
-    from flask import Flask, request, render_template, redirect, url_for
+    from flask import Flask, Response, stream_with_context, request, render_template, redirect, url_for
     from datetime import datetime
 except Exception as eImp:
     print(f"Ocurrió el error de importación: {eImp}")
@@ -63,6 +67,26 @@ def index():
         return render_template('automatico.html', temp1=temp1, temp2=temp2, hum1=hum1)
     if modo == 'false' or modo == 0:
         return render_template('manual.html', temp1=temp1, temp2=temp2, hum1=hum1)
+
+
+@app.route("/listen")
+def listen():
+
+    def respond_to_client():
+        while True:
+            strmData = {"strm": {"t_1": 0, "t_2": 0, "h_1": 0}}
+            text = json.dumps(strmData)
+            conn.initConnection()
+            conn.recieving = True
+            while conn.recieving is True:
+                conn.writeArduino(text)
+                time.sleep(.5)
+                conn.readArduino()
+            conn.closeConnection()
+            print(conn.receivedData)
+            yield f"id: 1\ndata: {conn.receivedData}\nevent: online\n\n"
+            time.sleep(5)
+    return Response(respond_to_client(), mimetype='text/event-stream')
 
 
 @app.route('/configuracion')

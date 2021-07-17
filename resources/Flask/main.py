@@ -1,5 +1,7 @@
 try:
-    import time, threading, json
+    import time
+    import threading
+    import json
     from gevent.pywsgi import WSGIServer
     from jsonObject import jsonObject
     from ArduinoConnection import ArduinoConnection
@@ -74,15 +76,10 @@ def listen():
             strmData = {"strm": {"t_1": 0, "t_2": 0, "h_1": 0}}
             text = json.dumps(strmData)
             sem.acquire()
-            conn.recieving = conn.initConnection()
-            if conn.recieving:
-                while conn.recieving is True:
-                    conn.writeArduino(text)
-                    time.sleep(.5)
-                    conn.readArduino()
-                conn.closeConnection()
-                print(conn.receivedData)
+            conn.communication(text)
             sem.release()
+            print(conn.receivedData)
+
             yield f"id: 1\ndata: {conn.receivedData}\nevent: online\n\n"
             time.sleep(1)
     return Response(respond_to_client(), mimetype='text/event-stream')
@@ -120,17 +117,7 @@ def my_form_post():
     }
     text = json.dumps(data)
     sem.acquire()
-    conn.recieving = conn.initConnection()
-    if not conn.recieving:
-        conn.closeConnection()
-    conn.recieving = conn.initConnection()
-    if conn.recieving:
-        while conn.recieving is True:
-            conn.writeArduino(text)
-            time.sleep(.5)
-            conn.readArduino()
-        conn.closeConnection()
-    print(conn.receivedData)
+    conn.communication(text)
     sem.release()
     return render_template('rasp.html', JsonString=text, send_data=conn.sendData,
                            received_data=conn.receivedData, Nom=Nombre)

@@ -1,5 +1,10 @@
 try:
-    import os, time, serial, warnings, platform, serial.tools.list_ports
+    import os
+    import time
+    import serial
+    import warnings
+    import platform
+    import serial.tools.list_ports
 except ImportError as eImp:
     print(f"The following error import ocurred: {eImp}")
 
@@ -43,10 +48,10 @@ class ArduinoConnection():
                         "dmesg | egrep ttyACM | cut -f3 -d: | tail -n1").read().strip()
                 self.connection = serial.Serial(
                     serial_port, baudrate=self.baudrate, timeout=self.timeout)
-            return True
+            self.recieving = True
         except Exception as e:
             print(f"\n\n\t\t\t\tOcurrió el ERROR: {e}")
-            return False
+            self.recieving = False
 
     def readArduino(self):
         rawstring = self.connection.read(
@@ -56,11 +61,6 @@ class ArduinoConnection():
         else:
             self.recieving = False
             self.receivedData = rawstring
-            # try:
-            #     dict_json = json.loads(rawstring)
-            #     print(dict_json)
-            # except json.JSONDecodeError as e:
-            #     print("JSON:", e)
 
     def writeArduino(self, Data):
         self.sendData = Data + "\n"
@@ -76,3 +76,16 @@ class ArduinoConnection():
 
     def closeConnection(self):
         self.connection.close()
+
+    def communication(self, text):
+        self.initConnection()
+        while self.recieving is False:
+            self.closeConnection()
+            self.initConnection()
+
+        if self.connection:
+            while self.recieving is True:
+                self.writeArduino(text)
+                time.sleep(.5)
+                self.readArduino()
+            self.closeConnection()

@@ -67,13 +67,31 @@
     if ($('#modoOperacion').is(":checked")){
       modoSwitch = true;
     }
+    $("#modoOperacion").on('click', function(){
+      $("#modoOperacion").prop('disabled', true);
+    })
     //envia el estado de la checkbox de modo al backend
     $.ajax({
       type:'POST',
       url:'/',
-      data:{ modoOperacion:modoSwitch }
+      data:{ modoOperacion:modoSwitch },
+      complete: function(){
+        $("#modoOperacion").prop('disabled', false);
+      }
     })
   });
+</script>
+
+<script>
+  $(window).on('load', function(){
+    setTimeout(removeLoader, 10); //wait for page load PLUS two seconds.
+  });
+  function removeLoader(){
+      $( "#loader" ).fadeOut(500, function() {
+        // fadeOut complete. Remove the loading div
+        $( "#loader" ).remove(); //makes page more lightweight 
+    });  
+  }
 </script>
 
 <script>

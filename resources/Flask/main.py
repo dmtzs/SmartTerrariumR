@@ -78,7 +78,7 @@ def listen():
 
             yield f"id: 1\ndata: {conn.receivedData}\nevent: online\n\n"
             # NO QUITAR: Este time sleep es importante para que cargue electron
-            time.sleep(1)
+            time.sleep(3)
     return Response(respond_to_client(), mimetype='text/event-stream')
 
 
@@ -106,18 +106,12 @@ def raspberry():
 
 @app.route('/raspberry', methods=['POST'])
 def my_form_post():
-    Nombre = "GDCode"
-    data = {
-        "user": {
-            "name": "satyam kumar",
-        }
-    }
-    text = json.dumps(data)
+    data = request.form.get("jsonString")
+    text = data
     sem.acquire()
     conn.communication(text)
     sem.release()
-    return render_template('rasp.html', JsonString=text, send_data=conn.sendData,
-                           received_data=conn.receivedData, Nom=Nombre)
+    return conn.receivedData
 
 
 #----------------------------Error Handlers------------------------------------#

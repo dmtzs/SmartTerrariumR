@@ -72,10 +72,11 @@ def listen():
             strmData = {"strm": {"t_1": 0, "t_2": 0, "h_1": 0}}
             text = json.dumps(strmData)
             sem.acquire()
-            conn.communication(text)
+            succes = conn.communication(text)
             sem.release()
             # print(conn.receivedData)
-
+            if not succes:
+                pass
             yield f"id: 1\ndata: {conn.receivedData}\nevent: online\n\n"
             # NO QUITAR: Este time sleep es importante para que cargue electron
             time.sleep(3)
@@ -109,17 +110,20 @@ def my_form_post():
     data = request.form.get("jsonString")
     text = data
     sem.acquire()
-    conn.communication(text)
+    succces = conn.communication(text)
     sem.release()
-    return conn.receivedData
+    if succces:
+        return conn.receivedData
+    else:
+        return "error"
 
 
 #----------------------------Error Handlers------------------------------------#
 
 
-@app.errorhandler(500)
-def not_found(e):
-    return render_template('errorHandlers/error500.html'), 500
+@app.route("/error500")
+def error():
+    return render_template('errorHandlers/error500.html')
 
 
 #-------------------------------Execute----------------------------------------#

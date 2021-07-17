@@ -79,9 +79,14 @@ class ArduinoConnection():
 
     def communication(self, text):
         self.initConnection()
-        while self.recieving is False:
+        tries = 0
+        while self.recieving is False and tries <= 5:
             self.closeConnection()
             self.initConnection()
+            tries = tries + 1
+
+        if tries >= 5:
+            return False
 
         if self.connection:
             while self.recieving is True:
@@ -89,3 +94,4 @@ class ArduinoConnection():
                 time.sleep(.5)
                 self.readArduino()
             self.closeConnection()
+            return True

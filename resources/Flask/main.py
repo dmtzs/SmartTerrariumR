@@ -58,14 +58,10 @@ def index():
             jsonMain.writeData_changeMode(modo)
     sem.release()
 
-    temp1 = 50
-    temp2 = 44
-    hum1 = 30
-
     if modo == 'true' or modo == 1:
-        return render_template('automatico.html', temp1=temp1, temp2=temp2, hum1=hum1)
+        return render_template('automatico.html')
     if modo == 'false' or modo == 0:
-        return render_template('manual.html', temp1=temp1, temp2=temp2, hum1=hum1)
+        return render_template('manual.html')
 
 
 @app.route("/listen")
@@ -78,10 +74,9 @@ def listen():
             sem.acquire()
             conn.communication(text)
             sem.release()
-            print(conn.receivedData)
+            # print(conn.receivedData)
 
             yield f"id: 1\ndata: {conn.receivedData}\nevent: online\n\n"
-            time.sleep(1)
     return Response(respond_to_client(), mimetype='text/event-stream')
 
 

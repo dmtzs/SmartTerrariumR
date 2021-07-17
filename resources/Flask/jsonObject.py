@@ -1,7 +1,5 @@
 try:
-    import time
-    import json
-    import os
+    import time, json, os
 except Exception as eImp:
     print(f"Ocurrió el error de importación: {eImp}")
 

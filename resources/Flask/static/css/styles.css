@@ -254,14 +254,25 @@ a.close-btn {
 }
 
 /* ---------------------------------------------------
+    LOADER STYLE
+----------------------------------------------------- */
+
+#loader {
+  position:fixed;
+  width: 100%;
+  height: 5%;
+  bottom: 0%;
+  z-index: 1;
+  overflow: visible;
+  background: url('../Uploads/loader.gif') no-repeat center center;
+}
+
+
+/* ---------------------------------------------------
     MEDIAQUERIES
 ----------------------------------------------------- */
 
 @media (max-width: 1000px) {
-  /* Reversing the behavior of the sidebar: 
-     it'll be rotated vertically and off canvas by default, 
-     collapsing in on toggle button click with removal of 
-     the vertical rotation.   */
   #sidebar {
     margin-left: -250px;
     transform: rotateY(100deg);
@@ -270,6 +281,9 @@ a.close-btn {
     margin-left: 0;
     transform: none;
   }
+}
+
+@media (max-height: 525px) {
   .footer{
     position: relative;
     text-align: center;

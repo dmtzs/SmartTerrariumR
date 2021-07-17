@@ -77,6 +77,8 @@ def listen():
             # print(conn.receivedData)
 
             yield f"id: 1\ndata: {conn.receivedData}\nevent: online\n\n"
+            # NO QUITAR: Este time sleep es importante para que cargue electron
+            time.sleep(1)
     return Response(respond_to_client(), mimetype='text/event-stream')
 
 

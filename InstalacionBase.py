@@ -29,3 +29,5 @@ if __name__ == "__main__":
         main()
     except Exception as ex:
         print(f"The following error ocurred: {ex}")
+    finally:
+        print("Finalizando ejecución de programa de instalaciones base")

@@ -1,10 +1,5 @@
 try:
-    import os
-    import time
-    import serial
-    import warnings
-    import platform
-    import serial.tools.list_ports
+    import os, time, serial, warnings, platform, serial.tools.list_ports
 except ImportError as eImp:
     print(f"The following error import ocurred: {eImp}")
 

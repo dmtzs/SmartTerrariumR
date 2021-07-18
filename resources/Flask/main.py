@@ -1,7 +1,5 @@
 try:
-    import time
-    import threading
-    import json
+    import time, json, threading
     from gevent.pywsgi import WSGIServer
     from jsonObject import jsonObject
     from ArduinoConnection import ArduinoConnection

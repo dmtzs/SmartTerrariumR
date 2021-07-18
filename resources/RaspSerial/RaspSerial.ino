@@ -7,12 +7,26 @@ void setup()
 
 void loop()
 {
+  int automatico= 0; //0 manual y 1 automático.
   //inicio();//Descomentar cuando esté todo armado y hecho
-  
-  sensorSumergible();
-  TempHum();
-  sendSerialRasp();
 
+  if (automatico== 0)
+  {
+    sensorSumergible();
+    TempHum();
+    sendSerialRasp();
+  }
+  else if (automatico== 1)
+  {
+    sensorSumergible();
+    TempHum();
+    sendSerialRasp();
+    //Poner aquí las otras funciones que deben mandar los otros datos y recibir
+  }
+  else
+  {
+    continue; //Creo que es como un pass en python
+  }
   // Esperamos 5 segundos entre medidas
   delay(4000);
   

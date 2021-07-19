@@ -6,19 +6,20 @@
 
 {% block content %}
 
-<div class="container">
-
+<div class="container-fluid h-75">
+  <div class="row justify-content-center align-items-start h-50">
     <div class="bloqueTempHum">
-    
       {% include 'includes/humTemp.html' %}
-
+    </div>
+  </div>
+  <div class="row justify-content-center align-items-center">
+    <div class="DiaNoche">
+      {% include 'includes/diaNoche.html' %}
       <div class="botonesManual">
         <button type="button" class="btn btn-info bot-rellenar-bebedero">Rellenar bebedero</button>
         <button type="button" class="btn btn-info bot-humedecer-terrario">Humedecer</button>
       </div>
     </div>
-
-    {% include 'includes/diaNoche.html' %}
-    </div>
-
+  </div>
+</div>
 {% endblock %}

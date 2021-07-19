@@ -1,5 +1,7 @@
 try:
-    import time, json, threading
+    import time
+    import json
+    import threading
     from gevent.pywsgi import WSGIServer
     from jsonObject import jsonObject
     from ArduinoConnection import ArduinoConnection
@@ -17,6 +19,7 @@ conn = ArduinoConnection()
 sem = threading.Semaphore()
 firstTime = True
 modo = ""
+bombLight = ""
 
 # JSON read
 jsonMain = jsonObject()
@@ -42,6 +45,7 @@ def index():
     if firstTime:
         jsonMain.readData()
         modo = jsonMain.jsonData['configuracion']['modo']
+        bombLight = jsonMain.jsonData['configuracion']['dia-noche']
         firstTime = False
         if modo == 1:
             return render_template('bienvenida.html', dato1=modo, pushed=modo)

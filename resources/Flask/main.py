@@ -54,6 +54,14 @@ def index():
     sem.acquire()
     if request.method == "POST":
         receivedMode = request.form.get("modoOperacion")
+        onoffLight = request.form.get("status")
+        if onoffLight:
+            strmData = {"light": onoffLight}
+            text = json.dumps(strmData)
+            succes = conn.communication(text)
+            if not succes:
+                return "error"
+            return "pito"
         if receivedMode != modo:
             modo = receivedMode
             jsonMain.readData()

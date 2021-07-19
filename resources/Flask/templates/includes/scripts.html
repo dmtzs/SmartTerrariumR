@@ -1,8 +1,8 @@
 <script>
-  if (typeof module === "object") {
-    window.module = module;
-    module = undefined;
-  }
+	if (typeof module === "object") {
+		window.module = module;
+		module = undefined;
+	}
 </script>
 
 <script src="{{url_for('static', filename= 'jquery/jquery-3.6.0.min.js')}}"></script>
@@ -10,117 +10,11 @@
 <script src="{{url_for('static', filename= 'bootstrap/js/bootstrap.js')}}"></script>
 
 {# Scripts for check box and initial mod of operation #}
-{# <script src="{{url_for('static', filename= 'scriptsConfigOp/modoOpInicial.js')}}"></script> #}
-{# <script src="{{url_for('static', filename= 'scriptsConfigOp/cargarCheckBox.js')}}"></script> #}
-{# <script src="{{url_for('static', filename= 'scriptsConfigOp/cambioCheckBox.js')}}"></script> #}
-
-<script type="text/javascript">
-//boton para ocultar la sidebar
-  $(document).ready(function () {
-    $('#dismiss').on('click', function () {
-      $('#sidebar').removeClass('active');
-    });
-    //boton para abrir la sidebar
-    $("#sidebarCollapse").on("click", function () {
-      $("#sidebar").toggleClass("active");
-      $(this).toggleClass("active");
-    });
-
-    $("#boton_inicio").on("click", function () {
-      window.location.reload();
-    });
-    
-    //almacena el modo de operacion
-    $(function(){
-      var test = localStorage.input === 'true'? true: false;
-      $('#modoOperacion').prop('checked', test || false);
-    });
-    $('#modoOperacion').on("change", function(e){
-      localStorage.input = $(this).is(':checked');
-      var modoSwitch = false;
-      if ($('#modoOperacion').is(":checked")){
-        modoSwitch = true;
-      }
-      e.preventDefault();
-      //envia el estado de la checkbox de modo al backend
-      $.ajax({
-        type:'POST',
-        url:'/',
-        data:{ modoOperacion:modoSwitch }
-      })
-      window.location.reload();
-    })
-  });
-</script>
-
-<script type="text/javascript">
-  //enviar estado de checkbox al cargar la pagina
-  $(document).ready(function () {
-    var initialMode = '{{ pushed }}'
-
-    if (initialMode === "0"){
-      localStorage.input = false
-    }
-    if (initialMode === "1"){
-      localStorage.input = true
-    }
-    var test = localStorage.input === 'true'? true: false;
-    
-    $('#modoOperacion').prop('checked', test || false);
-    localStorage.input = $('#modoOperacion').is(':checked');
-    var modoSwitch = false;
-    if ($('#modoOperacion').is(":checked")){
-      modoSwitch = true;
-    }
-    $("#modoOperacion").on('click', function(){
-      $("#modoOperacion").prop('disabled', true);
-    })
-    //envia el estado de la checkbox de modo al backend
-    $.ajax({
-      type:'POST',
-      url:'/',
-      data:{ modoOperacion:modoSwitch },
-      complete: function(){
-        $("#modoOperacion").prop('disabled', false);
-        $("#submitButton").prop('disabled', false);
-      }
-    })
-
-    setTimeout(removeLoader, 10);
-    function removeLoader(){
-        $( "#loader" ).fadeOut(500, function() {
-          // fadeOut complete. Remove the loading div
-          $( "#loader" ).hide(); //makes page more lightweight 
-      });  
-    }
-  });
-</script>
-
+<script src="{{url_for('static', filename= 'js/modoOpInicial.js')}}"></script>
+<script src="{{url_for('static', filename= 'js/cargarCheckBox.js')}}"></script>
+<script src="{{url_for('static', filename= 'js/cambioCheckBox.js')}}"></script>
+<script src="{{url_for('static', filename= 'js/botonFocos.js')}}"></script>
 
 <script>
-  $("#submitButton").on('click', function(){
-    sendString = "{\"user\": {\"name\":\"satyam kumar\"}}";
-    $("#submitButton").prop('disabled', true);
-    $( "#loader" ).show();
-    $.ajax({
-      type:'POST',
-      url:'/raspberry',
-      data:{ jsonString:sendString },
-      complete: function(response){
-        console.log(response.responseText)
-        if(response.responseText != "error"){
-          document.getElementById("send_data").innerHTML = sendString
-          document.getElementById("received_data").innerHTML = response.responseText
-          $("#submitButton").prop('disabled', false);
-          $( "#loader" ).hide();
-        }else{
-          window.location.replace('http://127.0.0.1:5000/error500')
-        }
-      }
-    })
-  })
-</script>
-
-<script>
-  if (window.module) module = window.module;
+	if (window.module) module = window.module;
 </script>

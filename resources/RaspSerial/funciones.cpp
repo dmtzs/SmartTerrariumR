@@ -21,9 +21,9 @@ DHT dht(DHT_PIN, DHTTYPE);
 OneWire ourWire(3); //pin 3 for submersible water sensor.
 
 // ------------------------Global variables------------------------
-int iniciar= 0, dia= 1, noche= 0; //Para que se ejecute la función iniciar solo una vez.
-float rangoHumedad= 0, rangoTempReservaAgua= 0, rangoTempDHT= 0;
 DallasTemperature submersibleSensor(&ourWire);
+int iniciar= 0, dia= 1, noche= 0, automatico= 0; //Iniciar para que se ejecute la función iniciar solo una vez. 0 manual y 1 automático.
+float rangoHumedad= 0, rangoTempReservaAgua= 0, rangoTempDHT= 0;
 float* TH = new float[3]; //lecturas de sensor para mandar por serial
 
 //----------------Variables para comunicacion serial---------------
@@ -64,12 +64,6 @@ void inicio()//Poner en void cuando compruebe en efecto la variable global se ma
     //Poner que todo se encienda por unos segundos como prueba de que los componentes instalados sirven
     delay(4000);
     iniciar= 1;
-
-    return "Entre if iniciar";//Quitar return después de prueba.
-  }
-  else//Quitar todo el bloque else después de prueba.
-  {
-    return "Entre else iniciar";
   }
 }
 
@@ -210,13 +204,13 @@ void reserveWater(float tempSub)
  */
  void rellenarBebedero(String estadoFlotador)
  {
-  if (estadoFlotador== "on")
+  if(estadoFlotador.equals("on"))
   {
     digitalWrite(bombaBebedero, HIGH);
     delay(5000);
     digitalWrite(bombaBebedero, LOW);
   }
-  else if(bombaBebedero== "off")
+  else if(estadoFlotador.equals("off"))
   {
     digitalWrite(bombaBebedero, LOW);
   }

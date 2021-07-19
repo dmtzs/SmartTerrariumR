@@ -25,9 +25,9 @@
 
   eventSource.addEventListener("online", function(e) {
     data = JSON.parse(e.data)
-    document.querySelector("#t_1").innerText = data.strm.t_1
-    document.querySelector("#t_2").innerText = data.strm.t_2
-    document.querySelector("#h_1").innerText = data.strm.h_1
+    document.querySelector("#t_1").innerText = data.strm.t_1 + "°C"
+    document.querySelector("#t_2").innerText = data.strm.t_2 + "°C"
+    document.querySelector("#h_1").innerText = data.strm.h_1 + "%"
   }, true)
 
 </script>

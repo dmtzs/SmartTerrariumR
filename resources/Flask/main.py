@@ -45,6 +45,10 @@ def index():
     if firstTime:
         jsonMain.readData()
         modo = jsonMain.jsonData['configuracion']['modo']
+        if modo == 0:
+            modo = "false"
+        if modo == 1:
+            modo = "true"
         bombLight = jsonMain.jsonData['configuracion']['dia-noche']
         firstTime = False
         return render_template('bienvenida.html', dato1=modo, pushed=modo)

@@ -98,6 +98,7 @@ def configuracion():
         TempAgua= request.form["TempAguaReserva"]
         TempTerra= request.form["TempTerrario"]
         Hum= request.form["Humedad"]
+        return render_template('configuracion.html', exito= "Datos actualizados con éxito")
     return render_template('configuracion.html')
 
 

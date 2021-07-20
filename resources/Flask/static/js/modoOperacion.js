@@ -34,16 +34,6 @@ $(function () {
 		});
 		window.location.reload();
 	});
-
-	//envia el estado de la checkbox de modo al backend
-	$.ajax({
-		type: "POST",
-		url: "/",
-		data: { modoOperacion: modoSwitch },
-		complete: function () {
-			$("#modoOperacion").prop("disabled", false);
-		},
-	});
 });
 
 //loader

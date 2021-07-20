@@ -40,7 +40,7 @@ def date_now():
 
 @app.route('/', methods=["POST", "GET"])  # Ruta inicial del proyecto
 def index():
-    global firstTime, jsonMain, modo
+    global firstTime, jsonMain, modo, bombLight
 
     if firstTime:
         jsonMain.readData()
@@ -70,9 +70,9 @@ def index():
             return "pito"
     sem.release()
 
-    if modo == 'true':
+    if modo == 'true' or modo == 1:
         return render_template('automatico.html')
-    if modo == 'false':
+    if modo == 'false' or modo == 0:
         return render_template('manual.html')
 
 

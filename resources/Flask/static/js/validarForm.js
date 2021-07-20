@@ -1,0 +1,3 @@
+function validarFormulario() {
+    //Poner algo
+}

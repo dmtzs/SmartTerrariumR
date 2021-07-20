@@ -2,7 +2,7 @@
 	<input type="checkbox" checked class = "day-night-switch" id = "day-night"></input>
 	<label for="day-night" class = "day-night-switch">
 		<div class = "celestial sun"></div>
-		<div class ="celestial moon"></div>
+		<div class ="celestial moon">
 			<div class = "craters">
 				<div class = "crater"></div>
 				<div class = "crater"></div>
@@ -16,6 +16,7 @@
 				<div class = "decoration"></div>
 				<div class = "decoration"></div>
 			</div>
+		</div>
 		<div class = "mountains">
 			<div></div>
 			<div></div>
@@ -24,9 +25,10 @@
 </div>
 
 <div class = "col justify-content-center">
-	<button class="botonFocos" id="botonFocos">
-		<i class="fas fa-power-off fa-10x"></i>
-	</button>
+	<input type="checkbox" id="lightbulbButton" hidden></input>
+	<label for="lightbulbButton" class="toggleLightbulb">
+		<div class="OnOfftoggle"></div>
+	</label>
 </div>
 
 <script>

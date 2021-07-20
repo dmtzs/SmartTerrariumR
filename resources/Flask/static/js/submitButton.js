@@ -7,7 +7,6 @@ $("#submitButton").on("click", function () {
 		url: "/raspberry",
 		data: { jsonString: sendString },
 		complete: function (response) {
-			console.log(response.responseText);
 			if (response.responseText != "error") {
 				document.getElementById("send_data").innerHTML = sendString;
 				document.getElementById("received_data").innerHTML =

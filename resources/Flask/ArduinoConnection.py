@@ -1,5 +1,10 @@
 try:
-    import os, time, serial, warnings, platform, serial.tools.list_ports
+    import os
+    import time
+    import serial
+    import warnings
+    import platform
+    import serial.tools.list_ports
 except ImportError as eImp:
     print(f"The following error import ocurred: {eImp}")
 
@@ -56,6 +61,7 @@ class ArduinoConnection():
         else:
             self.recieving = False
             self.receivedData = rawstring
+            print(rawstring)
 
     def writeArduino(self, Data):
         self.sendData = Data + "\n"
@@ -72,7 +78,7 @@ class ArduinoConnection():
     def closeConnection(self):
         self.connection.close()
 
-    def communication(self, text):
+    def startCommunication(self):
         self.initConnection()
         tries = 0
         while self.recieving is False and tries <= 5:
@@ -82,11 +88,15 @@ class ArduinoConnection():
 
         if tries >= 5:
             return False
+        return True
 
+    def communication(self, text):
         if self.connection:
-            while self.recieving is True:
+            self.limpiarShell()
+            self.recieving = True
+            while self.recieving == True:
                 self.writeArduino(text)
-                time.sleep(.5)
+                time.sleep(1)
                 self.readArduino()
-            self.closeConnection()
             return True
+        return False

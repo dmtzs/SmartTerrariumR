@@ -1,35 +1,49 @@
 <!DOCTYPE html>
 <html lang="es">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>{% block title %} Administrador de terrario {% endblock %}</title>
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>
+			{% block title %} Administrador de terrario {% endblock %}
+		</title>
 
-    <link rel="stylesheet" href="{{url_for('static', filename= 'bootstrap/css/bootstrap.css')}}" type="text/css"/>
-    <link rel="stylesheet" href="{{url_for('static', filename= 'css/styles.css')}}" type="text/css"/>
-    <script src="{{url_for('static', filename= 'js/scripts.js')}}"></script>
+		<link
+			rel="stylesheet"
+			href="{{url_for('static', filename= 'bootstrap/css/bootstrap.css')}}"
+			type="text/css"
+		/>
+		<link
+			rel="stylesheet"
+			href="{{url_for('static', filename= 'css/styles.css')}}"
+			type="text/css"
+		/>
 
-    {# Font Awesome JS #}
-    <script defer src="{{url_for('static', filename= 'fontawesome/solid.js')}}"></script>
-    <script defer src="{{url_for('static', filename= 'fontawesome/fontawesome.js')}}"></script>
+		{# Font Awesome JS #}
+		<script
+			defer
+			src="{{url_for('static', filename= 'fontawesome/solid.js')}}"
+		></script>
+		<script
+			defer
+			src="{{url_for('static', filename= 'fontawesome/fontawesome.js')}}"
+		></script>
+	</head>
+	<body class="color-deseado">
+		<div id="loader"></div>
+		<div class="wrapper">
+			{% include 'includes/navbar.html' %} {# Para incluir la parte que
+			tengo en mi carpeta includes #}
 
-  </head>
-  <body class="color-deseado">
-    <div id="loader"></div>
-    <div class="wrapper">
-      {% include 'includes/navbar.html' %}
-      {# Para incluir la parte que tengo en mi carpeta includes #}
-      
-      <section id="content">
-        <button type="button" id="sidebarCollapse" class="btn btn-info">
-          <i class="fas fa-align-left"></i>
-          <span>Menú</span>
-        </button>
+			<section id="content">
+				<button type="button" id="sidebarCollapse" class="btn btn-info">
+					<i class="fas fa-align-left"></i>
+					<span>Menú</span>
+				</button>
 
-        {% block content %} {% endblock %}
-      </section>
-    </div>
-  </body>
-  {% include 'includes/scripts.html' %}
+				{% block content %} {% endblock %}
+			</section>
+		</div>
+	</body>
+	{% include 'includes/scripts.html' %}
 </html>

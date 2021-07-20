@@ -9,9 +9,8 @@ $(function () {
 
 	var test = localStorage.input === "true" ? true : false;
 	$("#modoOperacion").prop("checked", test || false);
-	localStorage.input = $(this).is(":checked");
 
-	$("#modoOperacion").on("click", function (e) {
+	$("#modoOperacion").on("change", function (e) {
 		$("#modoOperacion").prop("disabled", true);
 		localStorage.input = $(this).is(":checked");
 		var modoSwitch = false;

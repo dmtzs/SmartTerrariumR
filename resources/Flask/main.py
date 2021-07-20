@@ -14,6 +14,7 @@ except Exception as eImp:
 
 # Inicia coneccion con arduino
 conn = ArduinoConnection()
+comSucces = conn.startCommunication()
 
 # variables para leer modo de operacion
 sem = threading.Semaphore()
@@ -82,12 +83,12 @@ def listen():
             sem.acquire()
             succes = conn.communication("strm")
             sem.release()
-            print(conn.receivedData)
+            # print(conn.receivedData)
             if not succes:
                 pass
             yield f"id: 1\ndata: {conn.receivedData}\nevent: online\n\n"
             # NO QUITAR: Este time sleep es importante para que cargue electron
-            time.sleep(5)
+            time.sleep(2)
     return Response(respond_to_client(), mimetype='text/event-stream')
 
 
@@ -126,6 +127,14 @@ def my_form_post():
         return "error"
 
 
+@app.route('/closeApp', methods=['POST'])
+def closeAll():
+    msg = request.form.get("closeMsg")
+    if msg == "closeAll":
+        conn.closeConnection()
+        print("closed")
+    return "closed"
+
 #----------------------------Error Handlers------------------------------------#
 
 
@@ -138,4 +147,7 @@ def error():
 
 if __name__ == "__main__":
     # Con esto hacemos que el servidor de flasjk al arrancar y haya cambios en el código se registren los cambios, algo como django.
-    app.run(host="127.0.0.1", port=5000, debug=False)
+    if comSucces:
+        app.run(host="127.0.0.1", port=5000, debug=False)
+    else:
+        print("no hay arduino conectado")

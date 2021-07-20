@@ -61,11 +61,11 @@ def index():
     if request.method == "POST" and "lightStatus" in request.form:
         onoffLight = request.form.get("lightStatus")
         if onoffLight:
-            strmData = {"light": onoffLight}
-            text = json.dumps(strmData)
-            succes = conn.communication(text)
-            if not succes:
-                return "error"
+            # strmData = {"light": onoffLight}
+            # text = json.dumps(strmData)
+            # succes = conn.communication(text)
+            # if not succes:
+            #     return "error"
             return "pito"
     sem.release()
 

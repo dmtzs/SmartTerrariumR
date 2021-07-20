@@ -96,7 +96,9 @@ class ArduinoConnection():
             self.recieving = True
             while self.recieving == True:
                 self.writeArduino(text)
-                time.sleep(1)
+                time.sleep(.5)
                 self.readArduino()
+                time.sleep(.5)
             return True
-        return False
+        else:
+            return False

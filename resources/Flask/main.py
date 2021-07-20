@@ -80,9 +80,8 @@ def listen():
 
     def respond_to_client():
         while True:
-            sem.acquire()
+            print("2")
             succes = conn.communication("strm")
-            sem.release()
             # print(conn.receivedData)
             if not succes:
                 pass

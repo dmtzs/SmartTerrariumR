@@ -1,4 +1,4 @@
-$(document).ready(function () {
+$(function () {
     var initialMode = '{{ pushed }}'
 
     if (initialMode === "0"){

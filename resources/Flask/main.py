@@ -47,8 +47,6 @@ def index():
         modo = jsonMain.jsonData['configuracion']['modo']
         bombLight = jsonMain.jsonData['configuracion']['dia-noche']
         firstTime = False
-        if modo == 1:
-            return render_template('bienvenida.html', dato1=modo, pushed=modo)
         return render_template('bienvenida.html', dato1=modo, pushed=modo)
 
     sem.acquire()

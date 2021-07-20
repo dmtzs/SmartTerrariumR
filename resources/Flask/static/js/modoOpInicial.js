@@ -1,4 +1,4 @@
-$(document).ready(function () {
+$(function () {
     $('#dismiss').on('click', function () {
         $('#sidebar').removeClass('active');
     });

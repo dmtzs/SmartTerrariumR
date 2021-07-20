@@ -14,6 +14,7 @@ class ArduinoConnection():
     baudrate = 115200
     timeout = 1.5
     buffersize = 64
+    tries = 0
 
     def __init__(self):
         self.connection = None
@@ -57,11 +58,10 @@ class ArduinoConnection():
         rawstring = self.connection.read(
             self.buffersize).decode('utf-8').rstrip()
         if not rawstring:
-            pass
+            self.tries = self.tries + 1
         else:
             self.recieving = False
             self.receivedData = rawstring
-            print(rawstring)
 
     def writeArduino(self, Data):
         self.sendData = Data + "\n"
@@ -80,25 +80,23 @@ class ArduinoConnection():
 
     def startCommunication(self):
         self.initConnection()
-        tries = 0
-        while self.recieving is False and tries <= 5:
-            self.closeConnection()
+        self.tries = 0
+        while self.recieving is False and self.tries <= 5:
             self.initConnection()
-            tries = tries + 1
-
-        if tries >= 5:
-            return False
-        return True
+            self.tries = self.tries + 1
 
     def communication(self, text):
         if self.connection:
             self.limpiarShell()
             self.recieving = True
-            while self.recieving == True:
+            self.tries = 0
+            while self.recieving == True and self.tries <= 3:
                 self.writeArduino(text)
                 time.sleep(.5)
                 self.readArduino()
                 time.sleep(.5)
+            if self.tries > 3:
+                return False
             return True
         else:
             return False

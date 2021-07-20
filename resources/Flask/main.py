@@ -14,7 +14,7 @@ except Exception as eImp:
 
 # Inicia coneccion con arduino
 conn = ArduinoConnection()
-comSucces = conn.startCommunication()
+conn.startCommunication()
 
 # variables para leer modo de operacion
 sem = threading.Semaphore()
@@ -80,8 +80,9 @@ def listen():
 
     def respond_to_client():
         while True:
-            print("2")
+            sem.acquire()
             succes = conn.communication("strm")
+            sem.release()
             # print(conn.receivedData)
             if not succes:
                 pass
@@ -146,7 +147,4 @@ def error():
 
 if __name__ == "__main__":
     # Con esto hacemos que el servidor de flasjk al arrancar y haya cambios en el código se registren los cambios, algo como django.
-    if comSucces:
-        app.run(host="127.0.0.1", port=5000, debug=False)
-    else:
-        print("no hay arduino conectado")
+    app.run(host="127.0.0.1", port=5000, debug=False)

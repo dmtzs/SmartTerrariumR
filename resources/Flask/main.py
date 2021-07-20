@@ -92,8 +92,12 @@ def listen():
     return Response(respond_to_client(), mimetype='text/event-stream')
 
 
-@app.route('/configuracion')
+@app.route('/configuracion', methods= ["POST", "GET"])
 def configuracion():
+    if request.method== "POST":
+        TempAgua= request.form["TempAguaReserva"]
+        TempTerra= request.form["TempTerrario"]
+        Hum= request.form["Humedad"]
     return render_template('configuracion.html')
 
 

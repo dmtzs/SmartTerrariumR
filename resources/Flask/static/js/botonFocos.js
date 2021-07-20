@@ -12,9 +12,8 @@ $("#botonFocos").on("click", function (e) {
     statusFocos = $.ajax({
         type: "POST",
         url: "/",
-        data: { status: statusFocos },
+        data: { lightStatus: statusFocos },
         complete: function (response) {
-            console.log(response.responseText);
             if (response.responseText != "error") {
                 $("#botonFocos").prop("disabled", false);
                 $("#loader").hide();

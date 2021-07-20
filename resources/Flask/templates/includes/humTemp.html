@@ -1,33 +1,40 @@
 <div class="Temp">
-    <h3 class="personalTitulos">Temperaturas</h3>
-    <br>
-    <div class="izq">
-      <h4 class="personalTitulos">Agua reserva</h4>
-      <h4 class="personalTitulos" id="t_1"></h4>
-    </div>
-    <div class="dere">
-      <h4 class="personalTitulos">Terrario</h4>
-      <h4 class="personalTitulos" id="t_2"></h4>
-    </div>
+	<h3 class="personalTitulos">Temperaturas</h3>
+	<br />
+	<div class="izq">
+		<h4 class="personalTitulos">Agua reserva</h4>
+		<h4 class="personalTitulos" id="t_1"></h4>
+	</div>
+	<div class="dere">
+		<h4 class="personalTitulos">Terrario</h4>
+		<h4 class="personalTitulos" id="t_2"></h4>
+	</div>
 </div>
 
 <div class="Hum">
-    <h3 class="personalTitulos">Humedad</h3>
-    <h3 class="personalTitulos" id="h_1"></h3>
+	<h3 class="personalTitulos">Humedad</h3>
+	<h3 class="personalTitulos" id="h_1"></h3>
 </div>
 
 <script>
-  var eventSource = new EventSource("/listen")
-  
-  eventSource.addEventListener("message", function(e) {
-    console.log(e.data)
-  }, false)
+	var eventSource = new EventSource("/listen");
 
-  eventSource.addEventListener("online", function(e) {
-    data = JSON.parse(e.data)
-    document.querySelector("#t_1").innerText = data.strm.t_1 + "°C"
-    document.querySelector("#t_2").innerText = data.strm.t_2 + "°C"
-    document.querySelector("#h_1").innerText = data.strm.h_1 + "%"
-  }, true)
+	eventSource.addEventListener(
+		"message",
+		function (e) {
+			console.log(e.data);
+		},
+		false
+	);
 
+	eventSource.addEventListener(
+		"online",
+		function (e) {
+			data = JSON.parse(e.data);
+			document.querySelector("#t_1").innerText = data.strm.t_1 + "°C";
+			document.querySelector("#t_2").innerText = data.strm.t_2 + "°C";
+			document.querySelector("#h_1").innerText = data.strm.h_1 + "%";
+		},
+		true
+	);
 </script>

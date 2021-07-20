@@ -45,18 +45,22 @@ def index():
     if firstTime:
         jsonMain.readData()
         modo = jsonMain.jsonData['configuracion']['modo']
-        if modo == 0:
-            modo = "false"
-        if modo == 1:
-            modo = "true"
         bombLight = jsonMain.jsonData['configuracion']['dia-noche']
         firstTime = False
         return render_template('bienvenida.html', dato1=modo, pushed=modo)
 
     sem.acquire()
-    if request.method == "POST":
+    if request.method == "POST" and "modoOperacion" in request.form:
         receivedMode = request.form.get("modoOperacion")
-        onoffLight = request.form.get("status")
+        print(modo)
+        print(receivedMode)
+        if receivedMode != modo:
+            modo = receivedMode
+            jsonMain.readData()
+            jsonMain.writeData_changeMode(modo)
+
+    if request.method == "POST" and "lightStatus" in request.form:
+        onoffLight = request.form.get("lightStatus")
         if onoffLight:
             strmData = {"light": onoffLight}
             text = json.dumps(strmData)
@@ -64,15 +68,11 @@ def index():
             if not succes:
                 return "error"
             return "pito"
-        if receivedMode != modo:
-            modo = receivedMode
-            jsonMain.readData()
-            jsonMain.writeData_changeMode(modo)
     sem.release()
 
-    if modo == 'true' or modo == 1:
+    if modo == 'true':
         return render_template('automatico.html')
-    if modo == 'false' or modo == 0:
+    if modo == 'false':
         return render_template('manual.html')
 
 
@@ -84,12 +84,12 @@ def listen():
             sem.acquire()
             succes = conn.communication("strm")
             sem.release()
-            # print(conn.receivedData)
+            print(conn.receivedData)
             if not succes:
                 pass
             yield f"id: 1\ndata: {conn.receivedData}\nevent: online\n\n"
             # NO QUITAR: Este time sleep es importante para que cargue electron
-            time.sleep(3)
+            time.sleep(5)
     return Response(respond_to_client(), mimetype='text/event-stream')
 
 

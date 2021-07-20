@@ -2,3 +2,4 @@ Diagrama de conexión.fzz
 Terrario.pdf
 __pycache__
 node_modules
+*.scss

@@ -4,7 +4,7 @@
 
 .bloqueTempHum {
 	/* background-color: rgba(204, 209, 223, .70); */
-	margin-top: 1.5%;
+	margin-top: 5%;
 	width: 90%;
 	height: 40%;
 }
@@ -12,20 +12,21 @@
 .DiaNoche {
 	/* background-color: rgba(0, 61, 230, 0.7); */
 	width: 90%;
+	height: 40%;
 	align-content: center;
 	margin-top: 2%;
-	height: 40%;
-	border: 1px rgb(0, 30, 61);
 }
 
 .bot-rellenar-bebedero {
 	margin-top: 1.5%;
 	margin-left: 11%;
+	max-width: 60%;
 }
 
 .bot-humedecer-terrario {
 	margin-top: 2.5%;
-	margin-left: 25%;
+	margin-left: 11%;
+	max-width: 60%;
 }
 
 .botonesManual {
@@ -33,7 +34,7 @@
 	padding: 0;
 	margin: 0;
 	vertical-align: middle;
-	float: right;
+	float: center;
 }
 
 .botonFocos {
@@ -76,6 +77,11 @@
 .temporal {
 	margin: 0;
 	padding: 0;
+}
+
+.container-fluid.h-100 {
+	position: fixed;
+	top: 0px;
 }
 
 .footer {

@@ -1,3 +1,41 @@
-<button class="botonFocos" id="botonFocos">
-	<i class="fas fa-power-off fa-10x"></i>
-</button>
+<div class = "col-2 justify-content-center">
+	<input type="checkbox" checked class = "day-night-switch" id = "day-night"></input>
+	<label for="day-night" class = "day-night-switch"></label>
+	<div class = "celestial.sun"></div>
+	<div class ="celestial.moon"></div>
+		<div class = "craters"></div>
+		<div class = "crater"></div>
+		<div class = "crater"></div>
+		<div class = "crater"></div>
+		<div class = "crater"></div>
+		<div class = "crater"></div>
+		<div class = "decorations"></div>
+		<div class = "decoration"></div>
+		<div class = "decoration"></div>
+		<div class = "decoration"></div>
+		<div class = "decoration"></div>
+	<div class = "mountains"></div>
+		<div></div>
+		<div></div>
+</div>
+
+<div class = "col justify-content-center">
+	<button class="botonFocos" id="botonFocos">
+		<i class="fas fa-power-off fa-10x"></i>
+	</button>
+</div>
+
+<script>
+	const checkbox = document.querySelector("#day-night");
+	const body = document.querySelector("body");
+	const dayClass = "day";
+
+	checkbox.addEventListener("change", (e) => {
+		const { checked } = e.target;
+		if (checked) {
+			body.classList.add(dayClass);
+		} else {
+			body.classList.remove(dayClass);
+		}
+	});
+</script>

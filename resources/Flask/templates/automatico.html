@@ -1,19 +1,14 @@
-{% extends 'layout.html' %}
+{% extends 'layout.html' %} {% block title %} Modo Automático {% endblock %} {%
+block content %}
 
-{% block title %}
-	Modo Automático
-{% endblock %}
-
-{% block content %}
-
-	<div class="container-fluid h-75">
-		<div class="row justify-content-center align-items-start h-50">
-			<div class="bloqueTempHum">{% include 'includes/humTemp.html' %}</div>
-		</div>
-
-		<div class="row justify-content-center align-items-center">
-			<div class="DiaNoche">{% include 'includes/diaNoche.html' %}</div>
-		</div>
+<div class="container-fluid h-100">
+	<div class="row justify-content-center align-items-start h-50">
+		<div class="bloqueTempHum">{% include 'includes/humTemp.html' %}</div>
 	</div>
+
+	<div class="row justify-content-center align-items-center DiaNoche">
+		{% include 'includes/diaNoche.html' %}
+	</div>
+</div>
 
 {% endblock %}

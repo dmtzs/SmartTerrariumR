@@ -1,0 +1,359 @@
+/* ---------------------------------------------------
+    DAY NIGHT MODE STYLE
+----------------------------------------------------- */
+label.day-night-switch {
+	--size: 100px;
+	--height: calc(var(--size) / 2);
+	--padding: calc(var(--size) * 0.04);
+	--border-width: calc(var(--size) * 0.02);
+	--transition-duration: 250ms;
+	--switch-size: calc(
+		var(--height) - 2 * var(--padding) - 2 * var(--border-width)
+	);
+	--pos-left: var(--padding);
+	--pos-right: calc(
+		var(--size) - var(--switch-size) - var(--padding) - 2 *
+			var(--border-width)
+	);
+	--shift: calc(var(--height) * 1.25);
+	width: var(--size);
+	height: var(--height);
+	border-radius: var(--height);
+	border: var(--border-width) solid white;
+	position: relative;
+	-webkit-transition: all var(--transition-duration) ease-in-out;
+	transition: all var(--transition-duration) ease-in-out;
+	cursor: pointer;
+	overflow: hidden;
+}
+
+label.day-night-switch > .celestial {
+	-webkit-transition: all var(--transition-duration) ease-in-out;
+	transition: all var(--transition-duration) ease-in-out;
+	width: var(--switch-size);
+	height: var(--switch-size);
+	border: var(--border-width) solid green;
+	display: inline-block;
+	position: absolute;
+	border-radius: var(--height);
+}
+
+label.day-night-switch > .celestial.sun {
+	background-color: #fdc82e;
+	border-color: #e3ad0d;
+}
+
+label.day-night-switch > .celestial.moon {
+	background-color: #d2cec4;
+	border-color: #a9a18f;
+}
+
+label.day-night-switch > .celestial.moon > .craters > .crater {
+	background-color: #d2cec4;
+	border-color: #a9a18f;
+	border-width: calc(max(var(--border-width) * 0.65, 1px));
+	border-style: solid;
+	position: absolute;
+	border-radius: 50%;
+}
+
+label.day-night-switch > .celestial.moon > .craters > .crater:nth-child(1) {
+	width: calc(var(--switch-size) * 0.15);
+	height: calc(var(--switch-size) * 0.15);
+	top: calc(var(--switch-size) * 0.7);
+	left: calc(var(--switch-size) * 0.4);
+}
+
+label.day-night-switch > .celestial.moon > .craters > .crater:nth-child(2) {
+	width: calc(var(--switch-size) * 0.3);
+	height: calc(var(--switch-size) * 0.3);
+	top: calc(var(--switch-size) * 0.1);
+	left: calc(var(--switch-size) * -0.05);
+}
+
+label.day-night-switch > .celestial.moon > .craters > .crater:nth-child(3) {
+	width: calc(var(--switch-size) * 0.1);
+	height: calc(var(--switch-size) * 0.1);
+	top: calc(var(--switch-size) * 0.2);
+	left: calc(var(--switch-size) * 0.6);
+}
+
+label.day-night-switch > .celestial.moon > .craters > .crater:nth-child(4) {
+	width: calc(var(--switch-size) * 0.1);
+	height: calc(var(--switch-size) * 0.1);
+	top: calc(var(--switch-size) * 0.3);
+	left: calc(var(--switch-size) * 0.25);
+}
+
+label.day-night-switch > .celestial.moon > .craters > .crater:nth-child(5) {
+	width: calc(var(--switch-size) * 0.2);
+	height: calc(var(--switch-size) * 0.2);
+	top: calc(var(--switch-size) * 0.5);
+	left: calc(var(--switch-size) * 0.8);
+}
+
+label.day-night-switch > .decorations > .decoration {
+	position: absolute;
+	-webkit-transition: all var(--transition-duration) ease-in-out;
+	transition: all var(--transition-duration) ease-in-out;
+}
+
+label.day-night-switch > .mountains {
+	position: absolute;
+	display: inline-block;
+	top: calc(var(--switch-size) * 0.85);
+	left: calc(var(--switch-size) * 0.7);
+}
+
+label.day-night-switch > .mountains > * {
+	position: absolute;
+	display: inline-block;
+	border-width: var(--border-width);
+	border-style: solid;
+	-webkit-transform: rotate(45deg);
+	transform: rotate(45deg);
+	-webkit-transition: all var(--transition-duration) ease-in-out;
+	transition: all var(--transition-duration) ease-in-out;
+	border-top-left-radius: calc(var(--switch-size) * 0.1);
+	background-color: white;
+	border-color: black;
+}
+
+label.day-night-switch > .mountains > *:nth-child(1) {
+	width: calc(var(--switch-size) * 0.9);
+	height: calc(var(--switch-size) * 0.9);
+	top: calc(var(--switch-size) * 0.1);
+}
+
+label.day-night-switch > .mountains > *:nth-child(2) {
+	width: calc(var(--switch-size) * 0.45);
+	height: calc(var(--switch-size) * 0.45);
+	top: calc(var(--switch-size) * 0.2);
+	left: calc(var(--switch-size) * 0.6);
+}
+
+input.day-night-switch {
+	display: none;
+}
+
+input.day-night-switch:checked + label.day-night-switch {
+	border-color: #3190bf;
+	background-color: #6cbde5;
+}
+
+input.day-night-switch:checked + label.day-night-switch > .celestial.sun {
+	-webkit-transition-delay: var(--transition-duration);
+	transition-delay: var(--transition-duration);
+	top: var(--padding);
+	left: var(--pos-right);
+	-webkit-transform: scale(1);
+	transform: scale(1);
+}
+
+input.day-night-switch:checked + label.day-night-switch > .celestial.moon {
+	-webkit-transition-delay: 0ms;
+	transition-delay: 0ms;
+	left: var(--pos-left);
+	top: var(--shift);
+	-webkit-transform: scale(0);
+	transform: scale(0);
+}
+
+input.day-night-switch:checked + label.day-night-switch > .decorations {
+	opacity: 0.5;
+}
+
+input.day-night-switch:checked
+	+ label.day-night-switch
+	> .decorations
+	.decoration {
+	background-color: white;
+	border-radius: 50%;
+	-webkit-animation: 4s vibe ease-in-out infinite;
+	animation: 4s vibe ease-in-out infinite;
+	-webkit-animation-direction: alternate;
+	animation-direction: alternate;
+}
+
+input.day-night-switch:checked
+	+ label.day-night-switch
+	> .decorations
+	.decoration:nth-child(1) {
+	border-radius: calc(var(--switch-size) * 0.3);
+	height: calc(var(--switch-size) * 0.3);
+	width: calc(var(--switch-size) * 0.84);
+	top: calc(var(--switch-size) * 0.6);
+	left: calc(var(--switch-size) * 0.45);
+}
+
+input.day-night-switch:checked
+	+ label.day-night-switch
+	> .decorations
+	.decoration:nth-child(2) {
+	-webkit-animation-delay: 300ms;
+	animation-delay: 300ms;
+	-webkit-animation-duration: 2.5s;
+	animation-duration: 2.5s;
+	height: calc(var(--switch-size) * 0.35);
+	width: calc(var(--switch-size) * 0.35);
+	top: calc(var(--switch-size) * 0.5);
+	left: calc(var(--switch-size) * 0.35);
+}
+
+input.day-night-switch:checked
+	+ label.day-night-switch
+	> .decorations
+	.decoration:nth-child(3) {
+	-webkit-animation-delay: 800ms;
+	animation-delay: 800ms;
+	-webkit-animation-duration: 3.5s;
+	animation-duration: 3.5s;
+	height: calc(var(--switch-size) * 0.3);
+	width: calc(var(--switch-size) * 0.3);
+	top: calc(var(--switch-size) * 0.5);
+	left: calc(var(--switch-size) * 0.85);
+}
+
+input.day-night-switch:checked
+	+ label.day-night-switch
+	> .decorations
+	.decoration:nth-child(4) {
+	-webkit-animation-delay: 1400ms;
+	animation-delay: 1400ms;
+	-webkit-animation-duration: 3s;
+	animation-duration: 3s;
+	height: calc(var(--switch-size) * 0.4);
+	width: calc(var(--switch-size) * 0.4);
+	top: calc(var(--switch-size) * 0.4);
+	left: calc(var(--switch-size) * 0.55);
+}
+
+input.day-night-switch:checked + label.day-night-switch > .mountains > * {
+	background-color: #d4d4d4;
+	border-color: #a8a8a8;
+}
+
+input.day-night-switch + label.day-night-switch {
+	border-color: #2a4569;
+	background-color: #223349;
+}
+
+input.day-night-switch + label.day-night-switch > .celestial.sun {
+	-webkit-transition-delay: 0ms;
+	transition-delay: 0ms;
+	top: var(--shift);
+	left: var(--pos-right);
+	-webkit-transform: scale(0);
+	transform: scale(0);
+}
+
+input.day-night-switch + label.day-night-switch > .celestial.moon {
+	-webkit-transition-delay: var(--transition-duration);
+	transition-delay: var(--transition-duration);
+	top: var(--padding);
+	left: var(--pos-left);
+	overflow: hidden;
+	-webkit-transform: scale(1);
+	transform: scale(1);
+}
+
+input.day-night-switch + label.day-night-switch > .decorations > .decoration {
+	background-color: white;
+	border-radius: 50%;
+	width: calc(max(var(--border-width) * 0.75, 2px));
+	height: calc(max(var(--border-width) * 0.75, 2px));
+	-webkit-animation: 2s sparkle ease-in-out infinite;
+	animation: 2s sparkle ease-in-out infinite;
+	-webkit-animation-direction: alternate;
+	animation-direction: alternate;
+}
+
+input.day-night-switch
+	+ label.day-night-switch
+	> .decorations
+	> .decoration:nth-child(1) {
+	top: calc(var(--switch-size) * 0.7);
+	left: calc(var(--switch-size) * 1.7);
+}
+
+input.day-night-switch
+	+ label.day-night-switch
+	> .decorations
+	> .decoration:nth-child(2) {
+	-webkit-animation-delay: 300ms;
+	animation-delay: 300ms;
+	-webkit-animation-duration: 3s;
+	animation-duration: 3s;
+	top: calc(var(--switch-size) * 0.4);
+	left: calc(var(--switch-size) * 1.4);
+}
+
+input.day-night-switch
+	+ label.day-night-switch
+	> .decorations
+	> .decoration:nth-child(3) {
+	-webkit-animation-delay: 800ms;
+	animation-delay: 800ms;
+	-webkit-animation-duration: 3.5s;
+	animation-duration: 3.5s;
+	top: calc(var(--switch-size) * 0.9);
+	left: calc(var(--switch-size) * 2.2);
+}
+
+input.day-night-switch
+	+ label.day-night-switch
+	> .decorations
+	> .decoration:nth-child(4) {
+	-webkit-animation-delay: 1400ms;
+	animation-delay: 1400ms;
+	-webkit-animation-duration: 2.5s;
+	animation-duration: 2.5s;
+	top: calc(var(--switch-size) * 0.3);
+	left: calc(var(--switch-size) * 2);
+}
+
+input.day-night-switch + label.day-night-switch > .mountains > * {
+	background-color: #878787;
+	border-color: #5c5c5c;
+}
+
+@-webkit-keyframes vibe {
+	from {
+		-webkit-transform: scale(1);
+		transform: scale(1);
+	}
+	to {
+		-webkit-transform: scale(1.2);
+		transform: scale(1.2);
+	}
+}
+
+@keyframes vibe {
+	from {
+		-webkit-transform: scale(1);
+		transform: scale(1);
+	}
+	to {
+		-webkit-transform: scale(1.2);
+		transform: scale(1.2);
+	}
+}
+
+@-webkit-keyframes sparkle {
+	from {
+		opacity: 1;
+	}
+	to {
+		opacity: 0.25;
+	}
+}
+
+@keyframes sparkle {
+	from {
+		opacity: 1;
+	}
+	to {
+		opacity: 0.25;
+	}
+}
+/*# sourceMappingURL=dayNight.css.map */

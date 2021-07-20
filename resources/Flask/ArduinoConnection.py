@@ -90,11 +90,11 @@ class ArduinoConnection():
             self.limpiarShell()
             self.recieving = True
             self.tries = 0
-            while self.recieving == True and self.tries <= 3:
-                self.writeArduino(text)
-                time.sleep(.5)
-                self.readArduino()
-                time.sleep(.5)
+
+            self.writeArduino(text)
+            time.sleep(.5)
+            self.readArduino()
+            time.sleep(.5)
             if self.tries > 3:
                 return False
             return True

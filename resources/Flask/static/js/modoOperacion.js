@@ -21,7 +21,7 @@ $(function () {
 		//envia el estado de la checkbox de modo al backend
 		$.ajax({
 			type: "POST",
-			url: "/",
+			url: "/indexevents",
 			data: { modoOperacion: modoSwitch },
 		});
 		window.location.reload();

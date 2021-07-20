@@ -11,7 +11,7 @@ $("#botonFocos").on("click", function (e) {
 
 	statusFocos = $.ajax({
 		type: "POST",
-		url: "/",
+		url: "/indexevents",
 		data: { lightStatus: statusFocos },
 		complete: function (response) {
 			if (response.responseText != "error") {

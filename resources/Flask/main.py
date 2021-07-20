@@ -50,25 +50,6 @@ def index():
         firstTime = False
         return render_template('bienvenida.html', dato1=modo, pushed=modo)
 
-    sem.acquire()
-    if request.method == "POST" and "modoOperacion" in request.form:
-        receivedMode = request.form.get("modoOperacion")
-        if receivedMode != modo:
-            modo = receivedMode
-            jsonMain.readData()
-            jsonMain.writeData_changeMode(modo)
-
-    if request.method == "POST" and "lightStatus" in request.form:
-        onoffLight = request.form.get("lightStatus")
-        if onoffLight:
-            # strmData = {"light": onoffLight}
-            # text = json.dumps(strmData)
-            # succes = conn.communication(text)
-            # if not succes:
-            #     return "error"
-            return "pito"
-    sem.release()
-
     if modo == 'true' or modo == 1:
         return render_template('automatico.html')
     if modo == 'false' or modo == 0:
@@ -92,13 +73,38 @@ def listen():
     return Response(respond_to_client(), mimetype='text/event-stream')
 
 
-@app.route('/configuracion', methods= ["POST", "GET"])
+@app.route('/indexevents', methods=["POST"])
+def indexEvents():
+    global modo
+
+    if request.method == "POST" and "modoOperacion" in request.form:
+        receivedMode = request.form.get("modoOperacion")
+        if receivedMode != modo:
+            modo = receivedMode
+            jsonMain.readData()
+            jsonMain.writeData_changeMode(modo)
+        return "cahnge mode"
+
+    if request.method == "POST" and "lightStatus" in request.form:
+        onoffLight = request.form.get("lightStatus")
+        if onoffLight:
+            # strmData = {"light": onoffLight}
+            # text = json.dumps(strmData)
+            # succes = conn.communication(text)
+            # if not succes:
+            #     return "error"
+            print("pressed")
+
+    return "pressed"
+
+
+@app.route('/configuracion', methods=["POST", "GET"])
 def configuracion():
-    if request.method== "POST":
-        TempAgua= request.form["TempAguaReserva"]
-        TempTerra= request.form["TempTerrario"]
-        Hum= request.form["Humedad"]
-        return render_template('configuracion.html', exito= "Datos actualizados con éxito")
+    if request.method == "POST":
+        TempAgua = request.form["TempAguaReserva"]
+        TempTerra = request.form["TempTerrario"]
+        Hum = request.form["Humedad"]
+        return render_template('configuracion.html', exito="Datos actualizados con éxito")
     return render_template('configuracion.html')
 
 

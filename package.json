@@ -23,6 +23,7 @@
   },
   "dependencies": {
     "bootstrap": "^5.0.2",
+    "electron-alert": "^0.1.16",
     "jquery": "^3.6.0"
   }
 }

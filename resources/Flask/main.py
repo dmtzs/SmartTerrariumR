@@ -79,10 +79,8 @@ def listen():
 
     def respond_to_client():
         while True:
-            strmData = {"strm": {"t_1": 0, "t_2": 0, "h_1": 0}}
-            text = json.dumps(strmData)
             sem.acquire()
-            succes = conn.communication(text)
+            succes = conn.communication("strm")
             sem.release()
             # print(conn.receivedData)
             if not succes:

@@ -1,5 +1,5 @@
 $("#submitButton").on('click', function(){
-    sendString = "{\"user\": {\"name\":\"satyam kumar\"}}";
+    sendString = "strm";
     $("#submitButton").prop('disabled', true);
     $( "#loader" ).show();
     $.ajax({

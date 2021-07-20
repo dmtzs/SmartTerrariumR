@@ -1,5 +1,4 @@
 #include <Arduino.h>
-#include <ArduinoJson.h>
 #include <DHT.h>
 #include <OneWire.h>
 #include <DallasTemperature.h>
@@ -26,13 +25,17 @@ int iniciar= 0, dia= 1, noche= 0, automatico= 0; //Iniciar para que se ejecute l
 float rangoHumedad= 0, rangoTempReservaAgua= 0, rangoTempDHT= 0;
 float* TH = new float[3]; //lecturas de sensor para mandar por serial
 
+
 //----------------Variables para comunicacion serial---------------
 char inChar;
 const int buffersize = 64;
 char inString[buffersize];         // a String to hold incoming data from raspberry
+char outString[buffersize];         // a String to hold incoming data from raspberry
 bool stringComplete = false;  // whether the string is complete
 int count = 0;
-StaticJsonDocument<64> doc; //arduino json doc 
+String out = "";
+String value;
+String Action = "nnnn";
 
 
 // ------------------------Setup function------------------------
@@ -49,6 +52,7 @@ void setupProyecto()
   pinMode(bombaHumedad, OUTPUT); //Checar si debe ser diferente la config del pin para usar lo de PWM.
   for(int i = 0; i < buffersize; i++){
     inString[i] = 0;
+    outString[i] = 0;
   }
 }
 
@@ -110,8 +114,12 @@ String floatingSensor()
  */
 void TempHum()
 {
+  /*
   TH[1]= dht.readTemperature();
   TH[2]= dht.readHumidity();
+  */
+  TH[1]= random(50);
+  TH[2]= random(50);
 }
 
 /*
@@ -141,9 +149,11 @@ void humedecerTerrario(float hum)
  */
 void sensorSumergible()
 {
+  /*
   submersibleSensor.requestTemperatures();
   TH[0]= submersibleSensor.getTempCByIndex(0);
-  TH[0]= 0;
+  TH[0]= 0;*/
+  TH[0] = random(50);
 }
 
 /*
@@ -224,38 +234,30 @@ void sendSerialRasp()
 {
   if (stringComplete) {  
     //lee el json recibido por comunicacion serial
-    DeserializationError error = deserializeJson(doc, inString);
-    // Test if parsing succeeds.
-    if (error) {
-      Serial.print(F("deserializeJson() failed: "));
-      Serial.println(error.f_str());
-    }
-    //crea un objeto json para acceder a las llaves
-    JsonObject documentRoot = doc.as<JsonObject>();
-    //obtiene las llaves recibidas
-    String key;
-    for (JsonPair keyValue : documentRoot) {
-      key = String(keyValue.key().c_str());
-    }
-    //{"strm":{"t_1":38,"t_2":23,"h_1":5}}
-    chooseAction(key);
+    Action = String(inString);
     
-    serializeJson(doc,Serial);
+    value = Action.substring(4, buffersize);
+    Action = Action.substring(0, 4);
+    
+    chooseAction(Action);
+
+    Serial.println(outString);
     Serial.println();
+
     stringComplete = false;
   }
   // clear the string:
   for(int i = 0; i < buffersize; i++){
     inString[i] = 0;
+    outString[i] = 0;
   }
   delay(100);
 }
 
-
-void chooseAction(String key){
-  if(key == "strm"){
-    doc[key]["t_1"] = TH[0];
-    doc[key]["t_2"] = TH[1];
-    doc[key]["h_1"] = TH[2];
+void chooseAction(String Action){
+  //Modificar
+  if(Action.equals("strm")){
+    out = "{\"strm\":{\"t_1\":" + String(TH[0]) + ",\"t_2\":" + String(TH[1]) + ",\"h_1\":" + String(TH[2]) + "}}";
+    out.toCharArray(outString, buffersize);
   }
 }

@@ -52,8 +52,6 @@ def index():
     sem.acquire()
     if request.method == "POST" and "modoOperacion" in request.form:
         receivedMode = request.form.get("modoOperacion")
-        print(modo)
-        print(receivedMode)
         if receivedMode != modo:
             modo = receivedMode
             jsonMain.readData()

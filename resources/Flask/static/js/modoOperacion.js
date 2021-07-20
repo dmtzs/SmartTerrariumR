@@ -1,7 +1,5 @@
 //check operation mode
 $(function () {
-	var initialMode = "{{ pushed }}";
-
 	if (initialMode === "0") {
 		localStorage.input = false;
 	}
@@ -11,12 +9,7 @@ $(function () {
 
 	var test = localStorage.input === "true" ? true : false;
 	$("#modoOperacion").prop("checked", test || false);
-
-	localStorage.input = $("#modoOperacion").is(":checked");
-	var modoSwitch = false;
-	if ($("#modoOperacion").is(":checked")) {
-		modoSwitch = true;
-	}
+	localStorage.input = $(this).is(":checked");
 
 	$("#modoOperacion").on("click", function (e) {
 		$("#modoOperacion").prop("disabled", true);

@@ -48,7 +48,7 @@ def index():
         modo = jsonMain.jsonData['configuracion']['modo']
         lightMode = jsonMain.jsonData['configuracion']['dia-noche']
         firstTime = False
-        return render_template('bienvenida.html', dato1=modo, pushed=modo, lightmode=lightMode)
+        return render_template('bienvenida.html', dato1=modo, pushed=modo, lightmode=lightMode, dis="disabled")
 
     if modo == 'true' or modo == 1:
         return render_template('automatico.html')

@@ -12,6 +12,7 @@ $(function () {
 
 	$("#modoOperacion").on("change", function (e) {
 		$("#modoOperacion").prop("disabled", true);
+		$("#loader").show();
 		localStorage.opMode = $(this).is(":checked");
 		var modoSwitch = false;
 		if ($("#modoOperacion").is(":checked")) {
@@ -23,6 +24,13 @@ $(function () {
 			type: "POST",
 			url: "/indexevents",
 			data: { modoOperacion: modoSwitch },
+			complete: function (response) {
+				if (response.responseText != "error") {
+					$("#loader").hide();
+				} else {
+					window.location.replace("http://127.0.0.1:5000/error500");
+				}
+			},
 		});
 		window.location.reload();
 	});
@@ -42,6 +50,7 @@ $(function () {
 
 	$("#day-night").on("change", function (e) {
 		$("#day-night").prop("disabled", true);
+		$("#loader").show();
 		localStorage.lightMode = $(this).is(":checked");
 		var modolight = false;
 		if ($("#day-night").is(":checked")) {
@@ -65,13 +74,14 @@ $(function () {
 	});
 });
 
-//check on off buutton status
+//check on off button status
 $(function () {
 	var test = localStorage.onoffMode === "true" ? true : false;
 	$("#botonFocos").prop("checked", test || false);
 
 	$("#botonFocos").on("change", function (e) {
 		$("#botonFocos").prop("disabled", true);
+		$("#loader").show();
 		localStorage.onoffMode = $(this).is(":checked");
 		var light = false;
 		if ($("#botonFocos").is(":checked")) {

@@ -38,7 +38,7 @@
 
 npm init -> Crea paquete json para modificarlo posteriormente aunque es para crear proyecto de nodejs
 
-npm install --save-dev electron -> Para instalar electron
+npm install electron -> Para instalar electron
 
 En linux:
 Instalar node -> sudo apt install nodejs

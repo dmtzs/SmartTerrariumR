@@ -1,5 +1,7 @@
 .color-deseado {
 	background-color: rgb(62, 140, 143);
+	min-width: 650px;
+	min-height: 400px;
 }
 
 .bloqueTempHum {
@@ -108,12 +110,13 @@
 	position: relative;
 }
 
-/*
-    SIDEBAR STYLE
-*/
-
 ::-webkit-scrollbar {
 	display: none;
+}
+
+body {
+	width: 100%;
+	height: 100%;
 }
 
 a,
@@ -287,13 +290,11 @@ a.close-btn {
 	height: 150px;
 	border-radius: 50%;
 	background-color: #fe4551;
-	box-shadow: 0 20px 20px 0 rgba(254, 69, 81, 0.3);
 }
 
 .toggleLightbulb:active {
 	width: 140px;
 	height: 140px;
-	box-shadow: 0 15px 15px 0 rgba(254, 69, 81, 0.5);
 }
 
 .toggleLightbulb:active .OnOfftoggle {
@@ -314,11 +315,6 @@ a.close-btn {
 
 .lightbulbButton:checked + .toggleLightbulb {
 	background-color: #48e98a;
-	box-shadow: 0 20px 20px 0 rgba(72, 233, 138, 0.3);
-}
-
-.lightbulbButton:checked + .toggleLightbulb:active {
-	box-shadow: 0 15px 15px 0 rgba(72, 233, 138, 0.5);
 }
 
 .lightbulbButton:checked + .toggleLightbulb .OnOfftoggle {

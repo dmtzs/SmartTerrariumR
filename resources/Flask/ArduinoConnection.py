@@ -84,19 +84,18 @@ class ArduinoConnection():
         while self.recieving is False and self.tries <= 5:
             self.initConnection()
             self.tries = self.tries + 1
+        time.sleep(2)
 
     def communication(self, text):
         if self.connection:
             self.limpiarShell()
             self.recieving = True
-            self.tries = 0
 
+            time.sleep(.1)
             self.writeArduino(text)
             time.sleep(.5)
             self.readArduino()
-            time.sleep(.5)
-            if self.tries > 3:
-                return False
+            time.sleep(.1)
             return True
         else:
             return False

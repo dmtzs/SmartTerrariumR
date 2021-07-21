@@ -1,18 +1,18 @@
 //check operation mode
 $(function () {
 	if (initialMode === "0") {
-		localStorage.input = false;
+		localStorage.opMode = false;
 	}
 	if (initialMode === "1") {
-		localStorage.input = true;
+		localStorage.opMode = true;
 	}
 
-	var test = localStorage.input === "true" ? true : false;
+	var test = localStorage.opMode === "true" ? true : false;
 	$("#modoOperacion").prop("checked", test || false);
 
 	$("#modoOperacion").on("change", function (e) {
 		$("#modoOperacion").prop("disabled", true);
-		localStorage.input = $(this).is(":checked");
+		localStorage.opMode = $(this).is(":checked");
 		var modoSwitch = false;
 		if ($("#modoOperacion").is(":checked")) {
 			modoSwitch = true;
@@ -31,18 +31,18 @@ $(function () {
 //check day light mode
 $(function () {
 	if (lightMode === "0") {
-		localStorage.input = false;
+		localStorage.lightMode = false;
 	}
 	if (lightMode === "1") {
-		localStorage.input = true;
+		localStorage.lightMode = true;
 	}
 
-	var test = localStorage.input === "true" ? true : false;
+	var test = localStorage.lightMode === "true" ? true : false;
 	$("#day-night").prop("checked", test || false);
 
 	$("#day-night").on("change", function (e) {
 		$("#day-night").prop("disabled", true);
-		localStorage.input = $(this).is(":checked");
+		localStorage.lightMode = $(this).is(":checked");
 		var modolight = false;
 		if ($("#day-night").is(":checked")) {
 			modolight = true;
@@ -53,6 +53,36 @@ $(function () {
 			type: "POST",
 			url: "/indexevents",
 			data: { lighMode: modolight },
+			complete: function (response) {
+				if (response.responseText != "error") {
+					$("#day-night").prop("disabled", false);
+					$("#loader").hide();
+				} else {
+					window.location.replace("http://127.0.0.1:5000/error500");
+				}
+			},
+		});
+	});
+});
+
+//check on off buutton status
+$(function () {
+	var test = localStorage.onoffMode === "true" ? true : false;
+	$("#botonFocos").prop("checked", test || false);
+
+	$("#botonFocos").on("change", function (e) {
+		$("#botonFocos").prop("disabled", true);
+		localStorage.onoffMode = $(this).is(":checked");
+		var light = false;
+		if ($("#botonFocos").is(":checked")) {
+			light = true;
+		}
+		e.preventDefault();
+		//envia el estado de la checkbox de modo al backend
+		$.ajax({
+			type: "POST",
+			url: "/indexevents",
+			data: { lightStatus: light },
 			complete: function (response) {
 				if (response.responseText != "error") {
 					$("#day-night").prop("disabled", false);

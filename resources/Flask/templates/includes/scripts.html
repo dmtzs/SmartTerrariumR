@@ -11,13 +11,14 @@
 
 {# Scripts for check box and initial mod of operation #}
 <script src="{{url_for('static', filename= 'js/scripts.js')}}"></script>
-<script src="{{url_for('static', filename= 'js/modoOperacion.js')}}"></script>
+<script src="{{url_for('static', filename= 'js/switchButtons.js')}}"></script>
 <script src="{{url_for('static', filename= 'js/sidebar.js')}}"></script>
 <script src="{{url_for('static', filename= 'js/submitButton.js')}}"></script>
 <script src="{{url_for('static', filename= 'js/botonFocos.js')}}"></script>
 
 <script type="text/javascript">
 	var initialMode = "{{ pushed }}";
+	var lightMode = "{{ lightmode }}";
 </script>
 
 <script>

@@ -20,7 +20,7 @@ conn.startCommunication()
 sem = threading.Semaphore()
 firstTime = True
 modo = ""
-bombLight = ""
+lightMode = ""
 
 # JSON read
 jsonMain = jsonObject()
@@ -41,14 +41,14 @@ def date_now():
 
 @app.route('/', methods=["POST", "GET"])  # Ruta inicial del proyecto
 def index():
-    global firstTime, jsonMain, modo, bombLight
+    global firstTime, jsonMain, modo, lightMode
 
     if firstTime:
         jsonMain.readData()
         modo = jsonMain.jsonData['configuracion']['modo']
-        bombLight = jsonMain.jsonData['configuracion']['dia-noche']
+        lightMode = jsonMain.jsonData['configuracion']['dia-noche']
         firstTime = False
-        return render_template('bienvenida.html', dato1=modo, pushed=modo)
+        return render_template('bienvenida.html', dato1=modo, pushed=modo, lightmode=lightMode)
 
     if modo == 'true' or modo == 1:
         return render_template('automatico.html')
@@ -75,26 +75,32 @@ def listen():
 
 @app.route('/indexevents', methods=["POST"])
 def indexEvents():
-    global modo
-
+    global modo, lightMode
     if request.method == "POST" and "modoOperacion" in request.form:
         receivedMode = request.form.get("modoOperacion")
         if receivedMode != modo:
             modo = receivedMode
             jsonMain.readData()
             jsonMain.writeData_changeMode(modo)
-        return "cahnge mode"
+        return "mode changed"
+
+    if request.method == "POST" and "lighMode" in request.form:
+        receivedMode = request.form.get("lighMode")
+        if receivedMode != lightMode:
+            lightMode = receivedMode
+            jsonMain.readData()
+            jsonMain.writeData_changeLightMode(lightMode)
+        return "light mode changed"
 
     if request.method == "POST" and "lightStatus" in request.form:
         onoffLight = request.form.get("lightStatus")
         if onoffLight:
-            # strmData = {"light": onoffLight}
-            # text = json.dumps(strmData)
-            # succes = conn.communication(text)
-            # if not succes:
-            #     return "error"
-            print("pressed")
-
+            strmData = {"light": onoffLight}
+            text = json.dumps(strmData)
+            succes = conn.communication(text)
+            if not succes:
+                return "error"
+            print("light changed")
     return "pressed"
 
 

@@ -1,5 +1,7 @@
 try:
-    import time, json, os
+    import time
+    import json
+    import os
 except Exception as eImp:
     print(f"Ocurrió el error de importación: {eImp}")
 
@@ -20,6 +22,17 @@ class jsonObject():
             self.jsonData['configuracion']['modo'] = 1
         if newMode == 'false':
             self.jsonData['configuracion']['modo'] = 0
+
+        self.jsonData = json.dumps(self.jsonData, indent=4)
+        with open(os.path.abspath(self.filename), 'w') as jsonFile:
+            jsonFile.write(self.jsonData)
+            jsonFile.close()
+
+    def writeData_changeLightMode(self, newMode):
+        if newMode == 'true':
+            self.jsonData['configuracion']['dia-noche'] = 1
+        if newMode == 'false':
+            self.jsonData['configuracion']['dia-noche'] = 0
 
         self.jsonData = json.dumps(self.jsonData, indent=4)
         with open(os.path.abspath(self.filename), 'w') as jsonFile:

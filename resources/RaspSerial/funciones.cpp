@@ -241,6 +241,10 @@ void sendSerialRasp()
   delay(100);
 }
 
+/*
+ * @Author: Guillermo Ortega Romo
+ * @Description: Fucntion for do an action acording to the chain received.
+ */
 void chooseAction(String Action){
   //Modificar
   if(Action.equals("strm")){

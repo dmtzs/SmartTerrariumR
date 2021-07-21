@@ -11,7 +11,6 @@ void setup()
 void loop()
 {
   unsigned long currentMillis = millis();
-  int automatico= 0; //0 manual y 1 automático.
   
   //inicio();//Descomentar cuando esté todo armado y hecho
   if (currentMillis - previousMillis >= interval){

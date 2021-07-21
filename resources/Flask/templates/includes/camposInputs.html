@@ -1,14 +1,5 @@
-<script>
-  function validarFormulario() {
-    let rangoTempResAgua= document.getElementById("TempAguaReserva").value;
-    let rangoTempTerrario= document.getElementById("TempTerrario").value;
-    let rangoHumedad= document.getElementById("Humedad").value;
 
-    if (rangoTempResAgua== "") {
-      return false;
-    }
-}
-</script>
+<script src="{{url_for('static', filename= 'js/validarForm.js')}}"></script>
 
 <div class="bloqueTempHum">
   <form action="" method="post" onsubmit="return validarFormulario()">

@@ -1,6 +1,5 @@
 // Functions for the project
 
-void inicio();
 void setupProyecto();
 void sendSerialRasp();
 void eventoSerial();

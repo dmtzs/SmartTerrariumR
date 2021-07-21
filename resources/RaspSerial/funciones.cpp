@@ -54,23 +54,10 @@ void setupProyecto()
     inString[i] = 0;
     outString[i] = 0;
   }
+  delay(2000);
 }
 
 // ------------------------Functions for the functionality of the project------------------------
-/*
- * @Author: Diego Martínez Sánchez
- * @Description: For turning on all components everytime the app its initialized all components for check if all works fine.
- */
-void inicio()//Poner en void cuando compruebe en efecto la variable global se mantiene en 1 después.
-{
-  if (iniciar== 0)
-  {
-    //Poner que todo se encienda por unos segundos como prueba de que los componentes instalados sirven
-    delay(4000);
-    iniciar= 1;
-  }
-}
-
 /*
  * @Author: Guillermo Ortega Romo
  * @Description: Fucntion to detect if something comes from the serial port.

@@ -39,7 +39,7 @@ def date_now():
 #---------------------------------Endpoints------------------------------------#
 
 
-@app.route('/', methods=["POST", "GET"])  # Ruta inicial del proyecto
+@app.route('/')  # Ruta inicial del proyecto
 def index():
     global firstTime, jsonMain, modo, lightMode
 
@@ -82,6 +82,9 @@ def indexEvents():
             modo = receivedMode
             jsonMain.readData()
             jsonMain.writeData_changeMode(modo)
+            sem.acquire()
+            succes = conn.communication("strm")
+            sem.release()
         return "mode changed"
 
     if request.method == "POST" and "lighMode" in request.form:
@@ -119,37 +122,11 @@ def contacto():
     return render_template('contacto.html')
 
 
-@app.route('/raspberry')
-def raspberry():
-    Nombre = "GDCode"
-    data = {
-        "user": {
-            "name": "satyam kumar",
-        }
-    }
-    text = json.dumps(data)
-    return render_template('rasp.html', Nom=Nombre, JsonString=text)
-
-
-@app.route('/raspberry', methods=['POST'])
-def my_form_post():
-    data = request.form.get("jsonString")
-    text = data
-    sem.acquire()
-    succces = conn.communication(text)
-    sem.release()
-    if succces:
-        return conn.receivedData
-    else:
-        return "error"
-
-
 @app.route('/closeApp', methods=['POST'])
 def closeAll():
     msg = request.form.get("closeMsg")
     if msg == "closeAll":
         conn.closeConnection()
-        print("closed")
     return "closed"
 
 #----------------------------Error Handlers------------------------------------#

@@ -129,4 +129,19 @@ ipcMain.on('window-close', () => {
     app.quit();
 });
 
+ipcMain.on('alertaForm', () => {
+    const Alert = require("electron-alert");
+
+    let alert = new Alert();
+    
+    let swalOptions = {
+        title: "Are you sure you want to delete?",
+        text: "You won't be able to revert this!",
+        icon: "warning",
+        showCancelButton: true
+    };
+    
+    alert.fireFrameless(swalOptions, null, true, false);
+});
+
 //Buscar proceso en linux: ps -ef | grep python3

@@ -12,11 +12,11 @@ try:
 except Exception as eImp:
     print(f"Ocurrió el error de importación: {eImp}")
 
-# Inicia coneccion con arduino
+# Inits arduino connection
 conn = ArduinoConnection()
 conn.startCommunication()
 
-# variables para leer modo de operacion
+# Variables for reading operation mode
 sem = threading.Semaphore()
 firstTime = True
 modo = ""
@@ -25,7 +25,7 @@ lightMode = ""
 # JSON read
 jsonMain = jsonObject()
 
-# Se crea la app, se instancia el framework para poder usarse.
+# Creation of the flask app.
 app = Flask(__name__)
 app.secret_key = "clave_secreta_flask"
 
@@ -62,7 +62,7 @@ def firstTimeLoad():
     sem.release()
 
 
-@app.route('/')  # Ruta inicial del proyecto
+@app.route('/')  # Initial route of the project.
 def index():
     global firstTime
 
@@ -89,7 +89,7 @@ def listen():
             if not succes:
                 pass
             yield f"id: 1\ndata: {conn.receivedData}\nevent: online\n\n"
-            # NO QUITAR: Este time sleep es importante para que cargue electron
+            # DO NOT QUIT: This time sleep is for initialize the electron.
             time.sleep(2)
     return Response(respond_to_client(), mimetype='text/event-stream')
 
@@ -145,8 +145,6 @@ def indexEvents():
 def configuracion():
     global rangoResAgua, rangoTerrario, rangoHum
 
-    # Aquí antes lo de leer del json
-
     if request.method == "POST":
         TempAgua = request.form['TempAguaReserva']
         TempTerra = request.form['TempTerrario']
@@ -193,5 +191,4 @@ def error():
 #-------------------------------Execute----------------------------------------#
 
 if __name__ == "__main__":
-    # Con esto hacemos que el servidor de flasjk al arrancar y haya cambios en el código se registren los cambios, algo como django.
     app.run(host="127.0.0.1", port=5000, debug=False)

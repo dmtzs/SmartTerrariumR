@@ -17,23 +17,20 @@ class jsonObject():
             self.jsonData = json.load(jsonFile)
             jsonFile.close()
 
-    def writeData_changeMode(self, newMode):
-        text = 1 if newMode == "true" else 0
-
-        self.jsonData['configuracion']['modo'] = text
-
+    def writeData(self):
         self.jsonData = json.dumps(self.jsonData, indent=4)
         with open(os.path.abspath(self.filename), 'w') as jsonFile:
             jsonFile.write(self.jsonData)
             jsonFile.close()
+
+    def writeData_changeMode(self, newMode):
+        text = 1 if newMode == "true" else 0
+        self.jsonData['configuracion']['modo'] = text
+        self.writeData()
 
     def writeData_changeLightMode(self, newMode):
         if newMode == 'true':
             self.jsonData['configuracion']['dia-noche'] = 1
         if newMode == 'false':
             self.jsonData['configuracion']['dia-noche'] = 0
-
-        self.jsonData = json.dumps(self.jsonData, indent=4)
-        with open(os.path.abspath(self.filename), 'w') as jsonFile:
-            jsonFile.write(self.jsonData)
-            jsonFile.close()
+        self.writeData()

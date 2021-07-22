@@ -49,13 +49,13 @@ def firstTimeLoad():
     number = 1 if modo == "true" or modo == 1 else 0
     text = "auto{}".format(str(number))
     sem.acquire()
-    succes = conn.communication(text)
+    _ = conn.communication(text)
     sem.release()
 
     number = 1 if lightMode == "true" or lightMode == 1 else 0
     text = "lght{}".format(str(number))
     sem.acquire()
-    succes = conn.communication(text)
+    _ = conn.communication(text)
     sem.release()
 
 
@@ -142,17 +142,17 @@ def indexEvents():
 def configuracion():
     jsonMain.readData()
 
-    rangoResAgua= jsonMain.jsonData['configuracion']['temperaturas-rangos']['rangoResAgua']
-    rangoTerrario= jsonMain.jsonData['configuracion']['temperaturas-rangos']['rangoTempDHT']
-    rangoHum= jsonMain.jsonData['configuracion']['humedad-rango']['rangoHumedad']
+    rangoResAgua = jsonMain.jsonData['configuracion']['temperaturas-rangos']['rangoResAgua']
+    rangoTerrario = jsonMain.jsonData['configuracion']['temperaturas-rangos']['rangoTempDHT']
+    rangoHum = jsonMain.jsonData['configuracion']['humedad-rango']['rangoHumedad']
 
     if request.method == "POST":
         TempAgua = f"{request.form['TempAguaReserva']}"
         TempTerra = f"{request.form['TempTerrario']}"
         Hum = f"{request.form['Humedad']}"
-        #Mandar también las variables al arduino y de igual manera actualizar el archivo json con los nuevos valores.
-        return render_template('configuracion.html', rango1= f"{TempAgua}", rango2= f"{TempTerra}", rango3= f"{Hum}", exito="Datos actualizados con éxito")
-    return render_template('configuracion.html', rango1= f"{rangoResAgua}", rango2= f"{rangoTerrario}", rango3= f"{rangoHum}")
+        # Mandar también las variables al arduino y de igual manera actualizar el archivo json con los nuevos valores.
+        return render_template('configuracion.html', rango1=f"{TempAgua}", rango2=f"{TempTerra}", rango3=f"{Hum}", exito="Datos actualizados con éxito")
+    return render_template('configuracion.html', rango1=f"{rangoResAgua}", rango2=f"{rangoTerrario}", rango3=f"{rangoHum}")
 
 
 @app.route('/contacto')

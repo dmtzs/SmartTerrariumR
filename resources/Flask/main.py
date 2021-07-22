@@ -140,7 +140,7 @@ def indexEvents():
 
 @app.route('/configuracion', methods=["POST", "GET"])
 def configuracion():
-    global rangoResAgua, rangoTerrario, rangoHum
+    jsonMain.readData()
 
     rangoResAgua= jsonMain.jsonData['configuracion']['temperaturas-rangos']['rangoResAgua']
     rangoTerrario= jsonMain.jsonData['configuracion']['temperaturas-rangos']['rangoTempDHT']

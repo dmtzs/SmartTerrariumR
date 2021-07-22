@@ -26,6 +26,7 @@ class jsonObject():
     def writeData_changeMode(self, newMode):
         text = 1 if newMode == "true" else 0
         self.jsonData['configuracion']['modo'] = text
+
         self.writeData()
 
     def writeData_changeLightMode(self, newMode):
@@ -33,4 +34,12 @@ class jsonObject():
             self.jsonData['configuracion']['dia-noche'] = 1
         if newMode == 'false':
             self.jsonData['configuracion']['dia-noche'] = 0
+
+        self.writeData()
+
+    def writeData_changeRanges(self, rango1, rango2, rango3):
+        self.jsonData['configuracion']['temperaturas-rangos']['rangoResAgua']= rango1
+        self.jsonData['configuracion']['temperaturas-rangos']['rangoTempDHT']= rango2
+        self.jsonData['configuracion']['humedad-rango']['rangoHumedad']= rango3
+
         self.writeData()

@@ -1,5 +1,7 @@
 .color-deseado {
-	background-color: rgb(62, 140, 143);
+	/* background-color: rgb(62, 140, 143); */
+	background-image: url("../Uploads/blackscales.png");
+	background-repeat: repeat;
 	min-width: 650px;
 	min-height: 400px;
 }
@@ -290,6 +292,7 @@ a.close-btn {
 	height: 150px;
 	border-radius: 50%;
 	background-color: #fe4551;
+	border: 2px solid rgb(143, 0, 0);
 }
 
 .toggleLightbulb:active {
@@ -315,6 +318,7 @@ a.close-btn {
 
 .lightbulbButton:checked + .toggleLightbulb {
 	background-color: #48e98a;
+	border: 2px solid rgb(0, 122, 6);
 }
 
 .lightbulbButton:checked + .toggleLightbulb .OnOfftoggle {

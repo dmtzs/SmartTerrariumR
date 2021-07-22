@@ -40,7 +40,7 @@ def date_now():
 
 
 def firstTimeLoad():
-    global firstTime, jsonMain, modo, lightMode, rangoResAgua, rangoTerrario, rangoHum
+    global jsonMain, modo, lightMode, rangoResAgua, rangoTerrario, rangoHum
 
     jsonMain.readData()
     modo = jsonMain.jsonData['configuracion']['modo']

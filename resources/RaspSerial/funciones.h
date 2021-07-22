@@ -8,5 +8,5 @@ void TempHum();
 void sensorSumergible();
 void humedecerTerrario(float hum);
 void reserveWater(float tempSub);
-void focosEncendidos(float tempDHT);
+void focosEncendidosAutomatico(float tempDHT);
 void rellenarBebedero(String estadoFlotador);

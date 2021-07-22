@@ -39,14 +39,32 @@ def date_now():
 #---------------------------------Endpoints------------------------------------#
 
 
-@app.route('/')  # Ruta inicial del proyecto
-def index():
+def firstTimeLoad():
     global firstTime, jsonMain, modo, lightMode
 
+    jsonMain.readData()
+    modo = jsonMain.jsonData['configuracion']['modo']
+    lightMode = jsonMain.jsonData['configuracion']['dia-noche']
+
+    number = 1 if modo == "true" or modo == 1 else 0
+    text = "auto{}".format(str(number))
+    sem.acquire()
+    succes = conn.communication(text)
+    sem.release()
+
+    number = 1 if lightMode == "true" or lightMode == 1 else 0
+    text = "lght{}".format(str(number))
+    sem.acquire()
+    succes = conn.communication(text)
+    sem.release()
+
+
+@app.route('/')  # Ruta inicial del proyecto
+def index():
+    global firstTime
+
     if firstTime:
-        jsonMain.readData()
-        modo = jsonMain.jsonData['configuracion']['modo']
-        lightMode = jsonMain.jsonData['configuracion']['dia-noche']
+        firstTimeLoad()
         firstTime = False
         return render_template('bienvenida.html', dato1=modo, pushed=modo, lightmode=lightMode, dis="hidden")
 
@@ -76,14 +94,19 @@ def listen():
 @app.route('/indexevents', methods=["POST"])
 def indexEvents():
     global modo, lightMode
+
     if request.method == "POST" and "modoOperacion" in request.form:
         receivedMode = request.form.get("modoOperacion")
         if receivedMode != modo:
             modo = receivedMode
             jsonMain.readData()
             jsonMain.writeData_changeMode(modo)
+            number = 1 if modo == "true" or modo == 1 else 0
+            text = "auto{}".format(str(number))
             sem.acquire()
-            succes = conn.communication("strm")
+            succes = conn.communication(text)
+            if not succes:
+                return "error"
             sem.release()
         return "mode changed"
 
@@ -93,18 +116,26 @@ def indexEvents():
             lightMode = receivedMode
             jsonMain.readData()
             jsonMain.writeData_changeLightMode(lightMode)
+            number = 1 if lightMode == "true" or lightMode == 1 else 0
+            text = "lght{}".format(str(number))
+            sem.acquire()
+            succes = conn.communication(text)
+            if not succes:
+                return "error"
+            sem.release()
         return "light mode changed"
 
     if request.method == "POST" and "lightStatus" in request.form:
         onoffLight = request.form.get("lightStatus")
         if onoffLight:
-            strmData = {"light": onoffLight}
-            text = json.dumps(strmData)
+            text = "bulb"
+            sem.acquire()
             succes = conn.communication(text)
             if not succes:
                 return "error"
-            print("light changed")
-    return "pressed"
+            sem.release()
+            return "changeLight"
+    return "error"
 
 
 @app.route('/configuracion', methods=["POST", "GET"])

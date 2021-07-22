@@ -5,6 +5,7 @@
 
 
 void chooseAction(String key);
+void focosEncendidosManual();
 
 // ------------------------Pin´s definitions------------------------
 #define sensorFlotador 2
@@ -21,17 +22,20 @@ OneWire ourWire(3); //pin 3 for submersible water sensor.
 
 // ------------------------Global variables------------------------
 DallasTemperature submersibleSensor(&ourWire);
-int iniciar= 0, dia= 1, noche= 0, automatico= 0; //Iniciar para que se ejecute la función iniciar solo una vez. 0 manual y 1 automático.
-float rangoHumedad= 0, rangoTempReservaAgua= 0, rangoTempDHT= 0;
-float* TH = new float[3]; //lecturas de sensor para mandar por serial
+int iniciar = 0;                   //Iniciar para que se ejecute la función iniciar solo una vez.
+int dia_noche = 0;                 // Para saber que foco se debe prender. Dia = 0, noche = 1
+int onOffDia = 0, onOffNoche = 0;  //Estado de los focos de dia y de noche
+int automatico = 0;                //0 manual y 1 automático.
+float rangoHumedad = 0, rangoTempReservaAgua = 0, rangoTempDHT = 0;
+float* TH = new float[3];          //lecturas de sensor para mandar por serial
 
 
 //----------------Variables para comunicacion serial---------------
 char inChar;
 const int buffersize = 64;
-char inString[buffersize];         // a String to hold incoming data from raspberry
-char outString[buffersize];         // a String to hold incoming data from raspberry
-bool stringComplete = false;  // whether the string is complete
+char inString[buffersize];          // a String to hold incoming data from raspberry
+char outString[buffersize];         // a String to hold data to send to raspberry
+bool stringComplete = false;        // whether the string is complete
 int count = 0;
 String out = "";
 String value;
@@ -63,11 +67,11 @@ void setupProyecto()
  */
 void inicio()//Poner en void cuando compruebe en efecto la variable global se mantiene en 1 después.
 {
-  if (iniciar== 0)
+  if (iniciar == 0)
   {
     //Poner que todo se encienda por unos segundos como prueba de que los componentes instalados sirven
     delay(4000);
-    iniciar= 1;
+    iniciar = 1;
   }
 }
 
@@ -98,7 +102,7 @@ void eventoSerial(){
 String floatingSensor()
 {
   //For floating water sensor
-  if(digitalRead(sensorFlotador)== HIGH)
+  if(digitalRead(sensorFlotador) == HIGH)
   {
     return "on";
   }
@@ -177,17 +181,18 @@ void reserveWater(float tempSub)
  * @Author: Diego Martínez Sánchez
  * @Description: Function for turning on the correct bulbs according to the day, if its at night then it will turns on the night bulb and if not the day bulb.
  */
- void focosEncendidos(float tempDHT)
+ /*
+ void focosEncendidosAutomatico(float tempDHT)
  {
   if (tempDHT < rangoTempDHT)
   {
-    if (dia== 1 && noche== 0)
+    if (dia == 1 && noche == 0)
     {
       //Encender el foco de día, falta definir pin
       digitalWrite(focoDia, HIGH);
       digitalWrite(focoNoche, LOW);
     }
-    else if (noche== 1 && dia== 0)
+    else if (noche == 1 && dia == 0)
     {
       //Encender el foco de noche, falta definir pin
       digitalWrite(focoNoche, HIGH);
@@ -205,6 +210,31 @@ void reserveWater(float tempSub)
     //Mantener apagado ambos focos por si acaso
     digitalWrite(focoDia, LOW);
     digitalWrite(focoNoche, LOW);
+  }
+ }
+ */
+
+
+ void focosEncendidosManual(){
+  if(dia_noche == 0){
+    if(onOffNoche == 1){
+      digitalWrite(focoNoche, LOW);
+    }
+    if(onOffDia == 0){
+      digitalWrite(focoDia, HIGH);
+    }else{
+      digitalWrite(focoDia, LOW);
+    }
+    
+  }else if(dia_noche == 1){
+    if(onOffDia == 1){
+      digitalWrite(focoDia, LOW);
+    }
+    if(onOffNoche == 0){
+      digitalWrite(focoNoche, HIGH);
+    }else{
+      digitalWrite(focoNoche, LOW);
+    }
   }
  }
 
@@ -259,5 +289,18 @@ void chooseAction(String Action){
   if(Action.equals("strm")){
     out = "{\"strm\":{\"t_1\":" + String(TH[0]) + ",\"t_2\":" + String(TH[1]) + ",\"h_1\":" + String(TH[2]) + "}}";
     out.toCharArray(outString, buffersize);
+  }
+
+  if(Action.equals("auto")){
+    automatico = value.toInt();
+  }
+
+  if(Action.equals("bulb")){
+    focosEncendidosManual();
+  }
+  
+  if(Action.equals("lght")){
+    dia_noche = value.toInt();
+    focosEncendidosManual();
   }
 }

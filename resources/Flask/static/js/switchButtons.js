@@ -76,6 +76,9 @@ $(function () {
 
 //check on off button status
 $(function () {
+	if (initialMode == 1 || initialMode == 0) {
+		localStorage.onoffMode = false;
+	}
 	var test = localStorage.onoffMode === "true" ? true : false;
 	$("#botonFocos").prop("checked", test || false);
 
@@ -95,7 +98,7 @@ $(function () {
 			data: { lightStatus: light },
 			complete: function (response) {
 				if (response.responseText != "error") {
-					$("#day-night").prop("disabled", false);
+					$("#botonFocos").prop("disabled", false);
 					$("#loader").hide();
 				} else {
 					window.location.replace("http://127.0.0.1:5000/error500");

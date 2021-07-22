@@ -5,7 +5,7 @@
 
 
 void chooseAction(String key);
-void focosEncendidosManual();
+void focosEncendidosManual(int act);
 
 // ------------------------Pin´s definitions------------------------
 #define sensorFlotador 2
@@ -23,7 +23,7 @@ OneWire ourWire(3); //pin 3 for submersible water sensor.
 // ------------------------Global variables------------------------
 DallasTemperature submersibleSensor(&ourWire);
 int iniciar = 0;                   //Iniciar para que se ejecute la función iniciar solo una vez.
-int dia_noche = 0;                 // Para saber que foco se debe prender. Dia = 0, noche = 1
+int dia_noche = 0;                 // Para saber que foco se debe prender. dia = 1, noche = 0
 int onOffDia = 0, onOffNoche = 0;  //Estado de los focos de dia y de noche
 int automatico = 0;                //0 manual y 1 automático.
 float rangoHumedad = 0, rangoTempReservaAgua = 0, rangoTempDHT = 0;
@@ -215,27 +215,37 @@ void reserveWater(float tempSub)
  */
 
 
- void focosEncendidosManual(){
-  if(dia_noche == 0){
-    if(onOffNoche == 1){
-      digitalWrite(focoNoche, LOW);
+ void focosEncendidosManual(int act){
+  if (act == 0){
+    if(dia_noche == 1)
+        onOffDia = (onOffDia == 1) ? 0:1;  
+    if(dia_noche == 0)
+        onOffNoche = (onOffNoche == 1) ? 0:1;
+  }
+  if (act == 1){
+    if(dia_noche == 1){
+      if(onOffNoche == 1){
+        onOffDia = 1;
+        onOffNoche = 0;
+      }
     }
-    if(onOffDia == 0){
-      digitalWrite(focoDia, HIGH);
-    }else{
-      digitalWrite(focoDia, LOW);
-    }
-    
-  }else if(dia_noche == 1){
-    if(onOffDia == 1){
-      digitalWrite(focoDia, LOW);
-    }
-    if(onOffNoche == 0){
-      digitalWrite(focoNoche, HIGH);
-    }else{
-      digitalWrite(focoNoche, LOW);
+    if(dia_noche == 0){
+      if(onOffDia == 1){
+        onOffNoche = 1;
+        onOffDia = 0;
+      }
     }
   }
+  
+  Serial.print("dia_noche: ");
+  Serial.println(dia_noche);
+  Serial.print("onOffDia: ");
+  Serial.println(onOffDia);
+  Serial.print("onOffNoche: ");
+  Serial.println(onOffNoche);
+  
+  digitalWrite(focoDia, onOffDia);
+  digitalWrite(focoNoche, onOffNoche);
  }
 
  /*
@@ -296,11 +306,11 @@ void chooseAction(String Action){
   }
 
   if(Action.equals("bulb")){
-    focosEncendidosManual();
+    focosEncendidosManual(0);
   }
   
   if(Action.equals("lght")){
     dia_noche = value.toInt();
-    focosEncendidosManual();
+    focosEncendidosManual(1);
   }
 }

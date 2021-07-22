@@ -8,31 +8,16 @@
 			{% block title %} Administrador de terrario {% endblock %}
 		</title>
 
-		<link
-			rel="stylesheet"
-			href="{{url_for('static', filename= 'bootstrap/css/bootstrap.css')}}"
-			type="text/css"
-		/>
-		<link
-			rel="stylesheet"
-			href="{{url_for('static', filename= 'css/styles.css')}}"
-			type="text/css"
-		/>
-		<link
-			rel="stylesheet"
-			href="{{url_for('static', filename= 'css/dayNight.css')}}"
-			type="text/css"
-		/>
+		<link rel="stylesheet" href="{{url_for('static', filename= 'bootstrap/css/bootstrap.css')}}" type="text/css"/>
+		<link rel="stylesheet" href="{{url_for('static', filename= 'css/styles.css')}}" type="text/css"/>
+		<link rel="stylesheet" href="{{url_for('static', filename= 'css/dayNight.css')}}" type="text/css"/>
 
 		{# Font Awesome JS #}
-		<script
-			defer
-			src="{{url_for('static', filename= 'fontawesome/solid.js')}}"
-		></script>
-		<script
-			defer
-			src="{{url_for('static', filename= 'fontawesome/fontawesome.js')}}"
-		></script>
+		<script defer src="{{url_for('static', filename= 'fontawesome/solid.js')}}"></script>
+		<script defer src="{{url_for('static', filename= 'fontawesome/fontawesome.js')}}"></script>
+
+		{# Sound #}
+		<audio src="https://developer.mozilla.org/@api/deki/files/2926/=AudioTest_(1).ogg" autoplay loop></audio>
 	</head>
 	<body class="color-deseado">
 		<div class="card-overlay">

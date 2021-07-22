@@ -1,7 +1,7 @@
 .color-deseado {
-	background-color: rgb(62, 140, 143);
-	/* background-image: url("../Uploads/blackscales.png");
-	background-repeat: repeat; */
+	/* background-color: rgb(62, 140, 143); */
+	background-image: url("../Uploads/blackscales.png");
+	background-repeat: repeat;
 	filter: saturate(0.9);
 	min-width: 650px;
 	min-height: 400px;

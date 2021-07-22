@@ -8,7 +8,7 @@
         "usuario-nc": "Diego"
     },
     "configuracion": {
-        "modo": 0,
+        "modo": 1,
         "dia-noche": 1,
         "temperaturas-rangos": {
             "rangoResAgua": "",

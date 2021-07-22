@@ -11,11 +11,11 @@
         "modo": 0,
         "dia-noche": 0,
         "temperaturas-rangos": {
-            "rangoResAgua": 25.0,
-            "rangoTempDHT": 30.0
+            "rangoResAgua": 25.01,
+            "rangoTempDHT": 30.01
         },
         "humedad-rango": {
-            "rangoHumedad": 50.0
+            "rangoHumedad": 50.01
         }
     }
 }

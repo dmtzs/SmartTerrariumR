@@ -140,12 +140,18 @@ def indexEvents():
 
 @app.route('/configuracion', methods=["POST", "GET"])
 def configuracion():
+    global rangoResAgua, rangoTerrario, rangoHum
+
+    rangoResAgua= jsonMain.jsonData['configuracion']['temperaturas-rangos']['rangoResAgua']
+    rangoTerrario= jsonMain.jsonData['configuracion']['temperaturas-rangos']['rangoTempDHT']
+    rangoHum= jsonMain.jsonData['configuracion']['humedad-rango']['rangoHumedad']
+
     if request.method == "POST":
-        TempAgua = request.form["TempAguaReserva"]
-        TempTerra = request.form["TempTerrario"]
-        Hum = request.form["Humedad"]
+        TempAgua = str(rangoResAgua)
+        TempTerra = str(rangoTerrario)
+        Hum = str(rangoHum)
         return render_template('configuracion.html', exito="Datos actualizados con éxito")
-    return render_template('configuracion.html')
+    return render_template('configuracion.html', rango1= f"{rangoResAgua}", rango2= f"{rangoTerrario}", rango3= f"{rangoHum}")
 
 
 @app.route('/contacto')

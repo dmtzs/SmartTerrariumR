@@ -1,25 +1,15 @@
 function validarFormulario() {
-    let rangoTempResAgua= document.getElementById("TempAguaReserva").value;
-    let rangoTempTerrario= document.getElementById("TempTerrario").value;
-    let rangoHumedad= document.getElementById("Humedad").value;
-    var bande= 0;
+    var rangoTempResAgua= document.getElementById("TempAguaReserva").value;
+	var rangoTempTerrario= document.getElementById("TempTerrario").value;
+	var rangoHumedad= document.getElementById("Humedad").value;
 
-    try {
-        rangoTempResAgua= parseFloat(rangoTempResAgua);
-        rangoTempTerrario= parseFloat(rangoTempTerrario);
-        rangoHumedad= parseFloat(rangoHumedad);
-        bande= 1;
-    } catch (error) {
-        bande= 0;
-    }
-
-    if (rangoTempResAgua== null || rangoTempResAgua== "" || rangoTempResAgua.length < 5 || rangoTempResAgua.length > 5 || bande=== 0) {
+    if (rangoTempResAgua== null || rangoTempResAgua== "" || rangoTempResAgua < 15.55 || rangoTempResAgua > 35) {
         return false;
     }
-    if (rangoTempTerrario== null || rangoTempTerrario== "" || rangoTempTerrario.length < 5 || rangoTempTerrario.length > 5 || bande=== 0) {
+    else if (rangoTempTerrario== null || rangoTempTerrario== "" || rangoTempTerrario < 15.55 || rangoTempTerrario > 35) {
         return false;
     }
-    if (rangoHumedad== null || rangoHumedad== "" || rangoHumedad.length < 5 || rangoHumedad.length > 5 || bande=== 0) {
+    else if (rangoHumedad== null || rangoHumedad== "" || rangoHumedad < 15.55 || rangoHumedad > 35) {
         return false;
     }
 }

@@ -5,17 +5,20 @@
   <form action="" method="post" onsubmit="return validarFormulario()">
     <div class="row">
       <div class="col">
-        <input id="TempAguaReserva" type="text" class="form-control" placeholder="Rango temperatura reserva de agua" aria-label="Rango temperatura reserva ded agua" name="TempAguaReserva">
+        <label for="exampleFormControlInput1" class="form-label">Rango temperatura reserva de agua</label>
+        <input id="TempAguaReserva" step="any" type="number" class="form-control" placeholder="Rango temperatura reserva de agua" aria-label="Rango temperatura reserva ded agua" name="TempAguaReserva" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" maxlength="5" min="15.55" max="35">
       </div>
   
       <div class="col">
-        <input id="TempTerrario" type="text" class="form-control" placeholder="Rango temperatura terrario" aria-label="Rango temperatura terrario" name="TempTerrario">
+        <label for="exampleFormControlInput1" class="form-label">Rango temperatura terrario</label>
+        <input id="TempTerrario" step="any" type="number" class="form-control" placeholder="Rango temperatura terrario" aria-label="Rango temperatura terrario" name="TempTerrario" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" maxlength="5" min="15.55" max="35">
       </div>
     </div>
     <br>
     <div class="row">
       <div class="col">
-        <input id="Humedad" type="text" class="form-control" placeholder="Rango humedad terrario" aria-label="Rango humedad terrario" name="Humedad">
+        <label for="exampleFormControlInput1" class="form-label">Rango humedad terrario</label>
+        <input id="Humedad" step="any" type="number" class="form-control" placeholder="Rango humedad terrario" aria-label="Rango humedad terrario" name="Humedad" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" maxlength="5" min="15.55" max="35">
       </div>
   
       <div class="col">

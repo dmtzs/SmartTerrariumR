@@ -136,7 +136,7 @@ ipcMain.on('alertaForm', () => {
 
     let swalOptions = {
         title: "Por favor valida los campos del formulario",
-        text: "Los campos deben ser decimales con 2 dígitos después y antes del punto y no pueden llevar letras",
+        text: "Los campos no pueden llevar letras y no puede quedar vacío",
         icon: "error",
         showCancelButton: false,
         showConfirmButton: true

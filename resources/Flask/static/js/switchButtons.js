@@ -76,6 +76,9 @@ $(function () {
 
 //check on off button status
 $(function () {
+	if (offButton === "1") {
+		localStorage.light = false;
+	}
 	var test = localStorage.light === "true" ? true : false;
 	$("#botonFocos").prop("checked", test || false);
 

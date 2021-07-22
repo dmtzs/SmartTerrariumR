@@ -93,7 +93,7 @@ class ArduinoConnection():
 
             time.sleep(.1)
             self.writeArduino(text)
-            time.sleep(.5)
+            time.sleep(.1)
             self.readArduino()
             time.sleep(.1)
             return True

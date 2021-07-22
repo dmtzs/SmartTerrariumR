@@ -69,10 +69,10 @@ def index():
     if firstTime:
         firstTimeLoad()
         firstTime = False
-        return render_template('bienvenida.html', dato1=modo, pushed=modo, lightmode=lightMode, dis="hidden")
+        return render_template('bienvenida.html', dato1=modo, pushed=modo, lightmode=lightMode, offButton=1, dis="hidden")
 
     if modo == 'true' or modo == 1:
-        return render_template('automatico.html')
+        return render_template('automatico.html', autoLightMode="disabled", autoLight="disabled")
     if modo == 'false' or modo == 0:
         return render_template('manual.html')
 
@@ -145,24 +145,24 @@ def indexEvents():
 def configuracion():
     global rangoResAgua, rangoTerrario, rangoHum
 
-    #Aquí antes lo de leer del json
+    # Aquí antes lo de leer del json
 
     if request.method == "POST":
         TempAgua = request.form['TempAguaReserva']
         TempTerra = request.form['TempTerrario']
         Hum = request.form['Humedad']
-        if rangoResAgua!= TempAgua:
-            rangoResAgua= TempAgua
+        if rangoResAgua != TempAgua:
+            rangoResAgua = TempAgua
             jsonMain.readData()
             jsonMain.writeData_changeRanges(TempAgua, 0)
 
-        elif rangoTerrario!= TempTerra:
-            rangoTerrario= TempTerra
+        elif rangoTerrario != TempTerra:
+            rangoTerrario = TempTerra
             jsonMain.readData()
             jsonMain.writeData_changeRanges(TempTerra, 1)
-        
-        elif rangoHum!= Hum:
-            rangoHum= Hum
+
+        elif rangoHum != Hum:
+            rangoHum = Hum
             jsonMain.readData()
             jsonMain.writeData_changeRanges(Hum, 2)
         # Mandar también las variables al arduino y de igual manera actualizar el archivo json con los nuevos valores.

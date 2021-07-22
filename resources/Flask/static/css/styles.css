@@ -1,7 +1,8 @@
 .color-deseado {
-	/* background-color: rgb(62, 140, 143); */
-	background-image: url("../Uploads/blackscales.png");
-	background-repeat: repeat;
+	background-color: rgb(62, 140, 143);
+	/* background-image: url("../Uploads/blackscales.png");
+	background-repeat: repeat; */
+	filter: saturate(0.9);
 	min-width: 650px;
 	min-height: 400px;
 }
@@ -67,7 +68,11 @@
 
 .personalTitulos {
 	text-align: center;
-	color: rgb(0, 30, 61);
+	font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+		"Lucida Sans", Arial, sans-serif;
+	font-size: xx-large;
+	font-weight: 700;
+	color: rgb(0, 41, 20);
 }
 
 .dere {

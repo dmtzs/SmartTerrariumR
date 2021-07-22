@@ -35,23 +35,25 @@
 		></script>
 	</head>
 	<body class="color-deseado">
-		<div id="loader"></div>
-		<div class="wrapper">
-			{% include 'includes/navbar.html' %}
+		<div class="card-overlay">
+			<div id="loader"></div>
+			<div class="wrapper">
+				{% include 'includes/navbar.html' %}
 
-			<section id="content">
-				<button
-					type="button"
-					id="sidebarCollapse"
-					class="btn btn-info stack-top"
-					{{dis}}
-				>
-					<i class="fas fa-align-left"></i>
-					<span>Menú</span>
-				</button>
+				<section id="content">
+					<button
+						type="button"
+						id="sidebarCollapse"
+						class="btn btn-info stack-top"
+						{{dis}}
+					>
+						<i class="fas fa-align-left"></i>
+						<span>Menú</span>
+					</button>
 
-				{% block content %} {% endblock %}
-			</section>
+					{% block content %} {% endblock %}
+				</section>
+			</div>
 		</div>
 	</body>
 	{% include 'includes/scripts.html' %}

@@ -12,10 +12,10 @@
         "dia-noche": 1,
         "temperaturas-rangos": {
             "rangoResAgua": "15.55",
-            "rangoTempDHT": ""
+            "rangoTempDHT": "25.05"
         },
         "humedad-rango": {
-            "rangoHumedad": ""
+            "rangoHumedad": "32.06"
         }
     }
 }

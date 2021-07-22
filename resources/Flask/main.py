@@ -40,11 +40,14 @@ def date_now():
 
 
 def firstTimeLoad():
-    global firstTime, jsonMain, modo, lightMode
+    global firstTime, jsonMain, modo, lightMode, rangoResAgua, rangoTerrario, rangoHum
 
     jsonMain.readData()
     modo = jsonMain.jsonData['configuracion']['modo']
     lightMode = jsonMain.jsonData['configuracion']['dia-noche']
+    rangoResAgua = jsonMain.jsonData['configuracion']['temperaturas-rangos']['rangoResAgua']
+    rangoTerrario = jsonMain.jsonData['configuracion']['temperaturas-rangos']['rangoTempDHT']
+    rangoHum = jsonMain.jsonData['configuracion']['humedad-rango']['rangoHumedad']
 
     number = 1 if modo == "true" or modo == 1 else 0
     text = "auto{}".format(str(number))
@@ -140,16 +143,28 @@ def indexEvents():
 
 @app.route('/configuracion', methods=["POST", "GET"])
 def configuracion():
-    rangoResAgua = jsonMain.jsonData['configuracion']['temperaturas-rangos']['rangoResAgua']
-    rangoTerrario = jsonMain.jsonData['configuracion']['temperaturas-rangos']['rangoTempDHT']
-    rangoHum = jsonMain.jsonData['configuracion']['humedad-rango']['rangoHumedad']
+    global rangoResAgua, rangoTerrario, rangoHum
+
+    #Aquí antes lo de leer del json
 
     if request.method == "POST":
         TempAgua = request.form['TempAguaReserva']
         TempTerra = request.form['TempTerrario']
         Hum = request.form['Humedad']
+        if rangoResAgua!= TempAgua:
+            rangoResAgua= TempAgua
+            jsonMain.readData()
+            jsonMain.writeData_changeRanges(TempAgua, 0)
 
-        jsonMain.writeData_changeRanges(TempAgua, TempTerra, Hum)
+        elif rangoTerrario!= TempTerra:
+            rangoTerrario= TempTerra
+            jsonMain.readData()
+            jsonMain.writeData_changeRanges(TempTerra, 1)
+        
+        elif rangoHum!= Hum:
+            rangoHum= Hum
+            jsonMain.readData()
+            jsonMain.writeData_changeRanges(Hum, 2)
         # Mandar también las variables al arduino y de igual manera actualizar el archivo json con los nuevos valores.
         return render_template('configuracion.html', rango1=f"{TempAgua}", rango2=f"{TempTerra}", rango3=f"{Hum}", exito="Datos actualizados con éxito")
     return render_template('configuracion.html', rango1=f"{rangoResAgua}", rango2=f"{rangoTerrario}", rango3=f"{rangoHum}")

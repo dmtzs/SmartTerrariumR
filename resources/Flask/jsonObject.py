@@ -37,9 +37,12 @@ class jsonObject():
 
         self.writeData()
 
-    def writeData_changeRanges(self, rango1, rango2, rango3):
-        self.jsonData['configuracion']['temperaturas-rangos']['rangoResAgua']= rango1
-        self.jsonData['configuracion']['temperaturas-rangos']['rangoTempDHT']= rango2
-        self.jsonData['configuracion']['humedad-rango']['rangoHumedad']= rango3
+    def writeData_changeRanges(self, rangoRecibido, bande):
+        if bande== 0:
+            self.jsonData['configuracion']['temperaturas-rangos']['rangoResAgua']= rangoRecibido
+        elif bande== 1:
+            self.jsonData['configuracion']['temperaturas-rangos']['rangoTempDHT']= rangoRecibido
+        elif bande== 2:
+            self.jsonData['configuracion']['humedad-rango']['rangoHumedad']= rangoRecibido
 
         self.writeData()

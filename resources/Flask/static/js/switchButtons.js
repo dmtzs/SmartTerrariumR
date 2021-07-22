@@ -76,16 +76,13 @@ $(function () {
 
 //check on off button status
 $(function () {
-	if (initialMode == 1 || initialMode == 0) {
-		localStorage.onoffMode = false;
-	}
-	var test = localStorage.onoffMode === "true" ? true : false;
+	var test = localStorage.light === "true" ? true : false;
 	$("#botonFocos").prop("checked", test || false);
 
 	$("#botonFocos").on("change", function (e) {
 		$("#botonFocos").prop("disabled", true);
 		$("#loader").show();
-		localStorage.onoffMode = $(this).is(":checked");
+		localStorage.light = $(this).is(":checked");
 		var light = false;
 		if ($("#botonFocos").is(":checked")) {
 			light = true;

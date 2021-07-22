@@ -147,10 +147,11 @@ def configuracion():
     rangoHum= jsonMain.jsonData['configuracion']['humedad-rango']['rangoHumedad']
 
     if request.method == "POST":
-        TempAgua = str(rangoResAgua)
-        TempTerra = str(rangoTerrario)
-        Hum = str(rangoHum)
-        return render_template('configuracion.html', exito="Datos actualizados con éxito")
+        TempAgua = f"{request.form['TempAguaReserva']}"
+        TempTerra = f"{request.form['TempTerrario']}"
+        Hum = f"{request.form['Humedad']}"
+        #Mandar también las variables al arduino y de igual manera actualizar el archivo json con los nuevos valores.
+        return render_template('configuracion.html', rango1= f"{TempAgua}", rango2= f"{TempTerra}", rango3= f"{Hum}" exito="Datos actualizados con éxito")
     return render_template('configuracion.html', rango1= f"{rangoResAgua}", rango2= f"{rangoTerrario}", rango3= f"{rangoHum}")
 
 

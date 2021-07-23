@@ -149,6 +149,10 @@
 	position: relative;
 }
 
+.disable_inputs {
+	text-align: center;
+}
+
 ::-webkit-scrollbar {
 	display: none;
 }

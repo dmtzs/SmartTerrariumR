@@ -6,7 +6,7 @@ Modo Manual
 
 {%block content %}
 
-<div class="container-fluid h-100">
+<div class="container-fluid h-100" id="indexPage">
 	<div class="row justify-content-center align-items-start h-50">
 		<div class="bloqueTempHum">{% include 'includes/humTemp.html' %}</div>
 	</div>
@@ -15,12 +15,13 @@ Modo Manual
 		{% include 'includes/diaNoche.html' %}
 		<div class="col botonesManual">
 			<div class="row justify-content-center">
-				<button type="button" class="bot-rellenar-bebedero manual-buttons" id="rellenar-bebedero">
+				<button type="button" class="bot-rellenar-bebedero manual-buttons disable_inputs"
+					id="rellenar-bebedero">
 					Rellenar bebedero
 				</button>
 			</div>
 			<div class="row justify-content-center">
-				<button type="button" class="bot-humedecer-terrario manual-buttons" id="humedecer">
+				<button type="button" class="bot-humedecer-terrario manual-buttons disable_inputs" id="humedecer">
 					Humedecer
 				</button>
 			</div>

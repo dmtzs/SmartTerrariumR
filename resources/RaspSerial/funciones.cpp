@@ -26,6 +26,7 @@ int iniciar = 0;                   //Iniciar para que se ejecute la función ini
 int dia_noche = 0;                 // Para saber que foco se debe prender. dia = 1, noche = 0
 int onOffDia = 0, onOffNoche = 0;  //Estado de los focos de dia y de noche
 int automatico = 0;                //0 manual y 1 automático.
+int statusFlotador = 0;
 float rangoHumedad = 0, rangoTempReservaAgua = 0, rangoTempDHT = 0;
 float* TH = new float[3];          //lecturas de sensor para mandar por serial
 
@@ -99,17 +100,20 @@ void eventoSerial(){
  * @Author: Diego Martínez Sánchez
  * @Description: some description
  */
-String floatingSensor()
+void floatingSensor()
 {
+  /*
   //For floating water sensor
   if(digitalRead(sensorFlotador) == HIGH)
   {
-    return "on";
+    statusFlotador = 1;
   }
   else
   {
-    return "off";
-  }
+    statusFlotador = 0;
+  }*/
+  statusFlotador = random(2);
+  Serial.println(statusFlotador);
 }
 
 /*
@@ -237,13 +241,6 @@ void reserveWater(float tempSub)
     }
   }
   
-  Serial.print("dia_noche: ");
-  Serial.println(dia_noche);
-  Serial.print("onOffDia: ");
-  Serial.println(onOffDia);
-  Serial.print("onOffNoche: ");
-  Serial.println(onOffNoche);
-  
   digitalWrite(focoDia, onOffDia);
   digitalWrite(focoNoche, onOffNoche);
  }
@@ -252,17 +249,10 @@ void reserveWater(float tempSub)
  * @Author: Diego Martínez Sánchez
  * @Description: Function for refill the drinker of the terrarium only if the floating sensor is in "on" state
  */
- void rellenarBebedero(String estadoFlotador)
+ void rellenarBebedero()
  {
-  if(estadoFlotador.equals("on"))
-  {
-    digitalWrite(bombaBebedero, HIGH);
-    delay(5000);
-    digitalWrite(bombaBebedero, LOW);
-  }
-  else if(estadoFlotador.equals("off"))
-  {
-    digitalWrite(bombaBebedero, LOW);
+  if(statusFlotador == 0){
+    digitalWrite(bombaBebedero, value.toInt());
   }
  }
 
@@ -296,21 +286,32 @@ void sendSerialRasp()
 
 void chooseAction(String Action){
   //Modificar
+  //regresa el stream de datos para la pagina de inicio
   if(Action.equals("strm")){
     out = "{\"strm\":{\"t_1\":" + String(TH[0]) + ",\"t_2\":" + String(TH[1]) + ",\"h_1\":" + String(TH[2]) + "}}";
     out.toCharArray(outString, buffersize);
   }
 
+  //cambia el modo de operacion
   if(Action.equals("auto")){
     automatico = value.toInt();
   }
 
+  //apaga o prende el foco dependiendo si es de dia o de noche
   if(Action.equals("bulb")){
     focosEncendidosManual(0);
   }
-  
+
+  //cambia el modo de dia y noche
   if(Action.equals("lght")){
     dia_noche = value.toInt();
     focosEncendidosManual(1);
+  }
+
+  //aciva o desactiva el llenado del bebedero
+  if(Action.equals("bwtr")){
+    Serial.print(value.toInt());
+    Serial.println(statusFlotador);
+    rellenarBebedero();
   }
 }

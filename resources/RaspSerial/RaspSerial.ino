@@ -1,7 +1,8 @@
 #include "funciones.h"
 
 unsigned long previousMillis = 0;
-const long interval = 5000;
+const long interval = 1000;
+const long secondInterval = 5000;
 
 void setup()
 {
@@ -14,9 +15,13 @@ void loop()
   
   //inicio();//Descomentar cuando esté todo armado y hecho
   if (currentMillis - previousMillis >= interval){
-    previousMillis = currentMillis;
-    sensorSumergible();
-    TempHum();
+    floatingSensor();
+    if (currentMillis - previousMillis >= secondInterval){
+      previousMillis = currentMillis;
+      sensorSumergible();
+      TempHum();
+      Serial.println("AA");
+    }
   }
   
   sendSerialRasp();

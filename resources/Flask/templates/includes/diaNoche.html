@@ -1,5 +1,5 @@
 <div class="col-2 justify-content-center">
-	<input class="day-night-switch" type="checkbox" id="day-night" {{ autoLightMode }} />
+	<input class="day-night-switch disable_inputs" type="checkbox" id="day-night" {{ autoLightMode }} />
 	<label class="day-night-switch" for="day-night">
 		<div class="celestial sun"></div>
 		<div class="celestial moon">
@@ -25,7 +25,7 @@
 </div>
 
 <div class="col justify-content-center">
-	<input type="checkbox" id="botonFocos" class="lightbulbButton" hidden {{ autoLight }}></input>
+	<input type="checkbox" id="botonFocos" class="lightbulbButton disable_inputs" hidden {{ autoLight }}></input>
 	<label for="botonFocos" class="toggleLightbulb">
 		<div class="OnOfftoggle"></div>
 	</label>

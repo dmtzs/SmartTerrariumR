@@ -138,6 +138,19 @@ def indexEvents():
                 return "error"
             sem.release()
             return "changeLight"
+
+    if request.method == "POST" and "rellenar" in request.form:
+        rellenar = request.form.get("rellenar")
+        if rellenar:
+            text = "bwtr{}".format(str(rellenar))
+            sem.acquire()
+            succes = conn.communication(text)
+            if not succes:
+                return "error"
+            sem.release()
+            return "rellenando"
+        return "nothing"
+
     return "error"
 
 

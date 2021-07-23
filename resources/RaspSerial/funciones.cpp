@@ -26,7 +26,7 @@ int iniciar = 0;                   //Iniciar para que se ejecute la función ini
 int dia_noche = 0;                 // Para saber que foco se debe prender. dia = 1, noche = 0
 int onOffDia = 0, onOffNoche = 0;  //Estado de los focos de dia y de noche
 int automatico = 0;                //0 manual y 1 automático.
-int statusFlotador = 0;
+int statusFlotador = 0;            //Estado del sensor del bebedero. 1 = lleno, 0 = no lleno
 float rangoHumedad = 0, rangoTempReservaAgua = 0, rangoTempDHT = 0;
 float* TH = new float[3];          //lecturas de sensor para mandar por serial
 
@@ -310,5 +310,10 @@ void chooseAction(String Action){
   //aciva o desactiva el llenado del bebedero
   if(Action.equals("bwtr")){
     rellenarBebedero();
+  }
+
+  //aciva la bomba para humedecer el terrario
+  if(Action.equals("hmdf")){
+    humedecerTerrario();
   }
 }

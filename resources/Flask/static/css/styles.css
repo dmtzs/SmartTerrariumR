@@ -8,7 +8,7 @@
 }
 
 .card-overlay {
-	background: rgba(71, 114, 65, 0.644);
+	background: rgba(104, 167, 96, 0.644);
 }
 
 .bloqueTempHum {
@@ -145,9 +145,10 @@ a:focus {
 .menu-button,
 .menu-button:focus,
 .menu-button:hover,
-.menu-button.active {
-	border-radius: 50%;
-	background-color: rgba(0, 120, 175, 0.658);
+.menu-button.active,
+.manual-buttons {
+	border-radius: 20%;
+	background-color: #6cbde5a2;
 	border-width: 2px;
 	border-color: rgb(0, 92, 92);
 }

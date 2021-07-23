@@ -173,6 +173,11 @@ def contacto():
     return render_template('contacto.html')
 
 
+@app.route('/help')
+def help():
+    return render_template('bienvenida.html')
+
+
 @app.route('/closeApp', methods=['POST'])
 def closeAll():
     msg = request.form.get("closeMsg")

@@ -1,44 +1,44 @@
 <!DOCTYPE html>
 <html lang="es">
-	<head>
-		<meta charset="UTF-8" />
-		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>
-			{% block title %} Administrador de terrario {% endblock %}
-		</title>
 
-		{# Own styles #}
-		<link rel="stylesheet" href="{{url_for('static', filename= 'bootstrap/css/bootstrap.css')}}" type="text/css"/>
-		<link rel="stylesheet" href="{{url_for('static', filename= 'css/styles.css')}}" type="text/css"/>
-		<link rel="stylesheet" href="{{url_for('static', filename= 'css/dayNight.css')}}" type="text/css"/>
+<head>
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>
+		{% block title %} Administrador de terrario {% endblock %}
+	</title>
 
-		{# Font Awesome JS #}
-		<script defer src="{{url_for('static', filename= 'fontawesome/solid.js')}}"></script>
-		<script defer src="{{url_for('static', filename= 'fontawesome/fontawesome.js')}}"></script>
+	{# Own styles #}
+	<link rel="stylesheet" href="{{url_for('static', filename= 'bootstrap/css/bootstrap.css')}}" type="text/css" />
+	<link rel="stylesheet" href="{{url_for('static', filename= 'css/styles.css')}}" type="text/css" />
+	<link rel="stylesheet" href="{{url_for('static', filename= 'css/dayNight.css')}}" type="text/css" />
 
-		{# Sound #}
-		<audio src="{{url_for('static', filename= 'Sound/SonidoNat.mp3')}}" type="audio/mp3" autoplay loop></audio>
-		
-	</head>
-	<body class="color-deseado">
-		<div class="card-overlay">
-			<div id="loader"></div>
-			<div class="wrapper">
-				{% include 'includes/navbar.html' %}
+	{# Font Awesome JS #}
+	<script defer src="{{url_for('static', filename= 'fontawesome/solid.js')}}"></script>
+	<script defer src="{{url_for('static', filename= 'fontawesome/fontawesome.js')}}"></script>
 
-				<section id="content">
-					<button type="button" id="sidebarCollapse" class="btn btn-info stack-top menu-button"{{dis}}>
-						<i class="fas fa-align-left"></i>
-						Menú
-					</button>
+	{# Sound #}
+	<audio src="{{url_for('static', filename= 'Sound/SonidoNat.mp3')}}" type="audio/mp3" autoplay loop></audio>
+</head>
 
-					{% block content %}
-					
-					{% endblock %}
-				</section>
-			</div>
+<body class="color-deseado">
+	<div class="card-overlay">
+		<div id="loader"></div>
+		<div class="wrapper">
+			{% include 'includes/navbar.html' %}
+
+			<section id="content">
+				<button type="button" id="sidebarCollapse" class="btn btn-info stack-top menu-button" {{dis}}>
+					<i class="fas fa-align-left"></i>
+					Menú
+				</button>
+
+				{% block content %} {% endblock %}
+			</section>
 		</div>
-	</body>
-	{% include 'includes/scripts.html' %}
+	</div>
+</body>
+{% include 'includes/scripts.html' %}
+
 </html>

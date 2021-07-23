@@ -9,30 +9,25 @@
   <ul class="list-unstyled components">
     <p>Menú</p>
     <li>
-      <li><a href="/">Inicio</a></li>
+    <li><a href="/">Inicio</a></li>
     </li>
     <li>
       <a href="{{url_for('configuracion')}}">Configuración</a>
     </li>
     <li>
-      <a
-        href="#homeSubmenu"
-        data-bs-toggle="collapse"
-        aria-expanded="false"
-        class="dropdown-toggle"
-        >Modo de operación</a>
+      <a href="#homeSubmenu" data-bs-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Modo de
+        operación</a>
       <ul class="collapse list-unstyled" id="homeSubmenu">
         <li>
           <div class="container">
             <div class="d-flex justify-content-around align-items-center">
               <label class="form-check-label" for="modoOperacion">Manual</label>
-                <div class="form-check form-switch form-switch-md">
-                  <form method="POST" id="modoOp">
-                    <input class="form-check-input" type="checkbox" id="modoOperacion"
-                       name="modoOperacion">
-                  </form>
-                </div>
-                <label class="form-check-label" for="modoOperacion">Automático</label>
+              <div class="form-check form-switch form-switch-md">
+                <form method="POST" id="modoOp">
+                  <input class="form-check-input" type="checkbox" id="modoOperacion" name="modoOperacion">
+                </form>
+              </div>
+              <label class="form-check-label" for="modoOperacion">Automático</label>
             </div>
           </div>
         </li>
@@ -50,12 +45,12 @@
     <ul class="list-unstyled CTAs">
       <li>
         <a href="#" class="close-btn" id="close-btn">
-            <i class="fas fa-power-off"></i>
+          <i class="fas fa-power-off"></i>
         </a>
       </li>
     </ul>
     <div class="rights">
-      Administrador de terrario, todos los derechos reservados - 
+      Administrador de terrario, todos los derechos reservados -
       {{ now.day }}-{{now.month }}-{{ now.year }}
     </div>
   </div>

@@ -113,7 +113,6 @@ void floatingSensor()
     statusFlotador = 0;
   }*/
   statusFlotador = random(2);
-  Serial.println(statusFlotador);
 }
 
 /*
@@ -310,8 +309,6 @@ void chooseAction(String Action){
 
   //aciva o desactiva el llenado del bebedero
   if(Action.equals("bwtr")){
-    Serial.print(value.toInt());
-    Serial.println(statusFlotador);
     rellenarBebedero();
   }
 }

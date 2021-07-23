@@ -3,7 +3,7 @@
 void setupProyecto();
 void sendSerialRasp();
 void eventoSerial();
-String floatingSensor();
+void floatingSensor();
 void TempHum();
 void sensorSumergible();
 void humedecerTerrario(float hum);

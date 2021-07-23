@@ -148,8 +148,7 @@ def indexEvents():
             if not succes:
                 return "error"
             sem.release()
-            return "rellenando"
-        return "nothing"
+        return "rellenando"
 
     return "error"
 

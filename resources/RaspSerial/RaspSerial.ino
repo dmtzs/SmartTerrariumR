@@ -2,7 +2,7 @@
 
 unsigned long previousMillis = 0;
 const long interval = 1000;
-const long secondInterval = 5000;
+int secondInterval = 0;
 
 void setup()
 {
@@ -16,11 +16,12 @@ void loop()
   //inicio();//Descomentar cuando esté todo armado y hecho
   if (currentMillis - previousMillis >= interval){
     floatingSensor();
-    if (currentMillis - previousMillis >= secondInterval){
-      previousMillis = currentMillis;
+    previousMillis = currentMillis;
+    secondInterval++;
+    if (secondInterval == 5){
+      secondInterval = 0;
       sensorSumergible();
       TempHum();
-      Serial.println("AA");
     }
   }
   

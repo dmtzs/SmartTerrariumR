@@ -4,3 +4,10 @@ Here you can find the explanation of each of the methods that are in the whole p
 This is the official documentation of the program.
 
 ## Raspberry
+Just a quick example for description and next the fragment of code
+```
+def readData(self):
+    with open(os.path.abspath(self.filename), 'r') as jsonFile:
+        self.jsonData = json.load(jsonFile)
+        jsonFile.close()
+```

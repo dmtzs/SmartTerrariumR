@@ -142,6 +142,16 @@ a:focus {
     SIDEBAR STYLE
 ----------------------------------------------------- */
 
+.menu-button,
+.menu-button:focus,
+.menu-button:hover,
+.menu-button.active {
+	border-radius: 50%;
+	background-color: rgba(0, 139, 139, 0.699);
+	border-width: 2px;
+	border-color: rgb(0, 92, 92);
+}
+
 .wrapper {
 	display: flex;
 	align-items: stretch;

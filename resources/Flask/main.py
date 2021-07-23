@@ -175,7 +175,7 @@ def contacto():
 
 @app.route('/help')
 def help():
-    return render_template('bienvenida.html')
+    return render_template('bienvenida.html', status="hidden")
 
 
 @app.route('/closeApp', methods=['POST'])

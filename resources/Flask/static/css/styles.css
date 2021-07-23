@@ -46,6 +46,34 @@
 	float: center;
 }
 
+.manual-buttons {
+	display: inline-block;
+	font-weight: 400;
+	line-height: 1.5;
+	color: #212529;
+	text-align: center;
+	text-decoration: none;
+	vertical-align: middle;
+	cursor: pointer;
+	border-radius: 10px;
+	background-color: #6cbde5a2;
+	border-width: 2px;
+	border-color: rgb(0, 92, 92);
+	padding: 0.375rem 0.75rem;
+	font-size: 1rem;
+	border-radius: 20px;
+	transition: color 0.3s ease-in-out, background-color 0.3s ease-in-out,
+		border-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.manual-buttons.pressed {
+	border-radius: 10px;
+	background-color: #e56c6ca2;
+	border-width: 2px;
+	border-color: rgb(131, 0, 0);
+	box-shadow: 0 0 0 0.1rem rgba(204, 11, 11, 0.5);
+}
+
 .botonFocos {
 	background-color: transparent;
 	border-radius: 5px;
@@ -145,8 +173,7 @@ a:focus {
 .menu-button,
 .menu-button:focus,
 .menu-button:hover,
-.menu-button.active,
-.manual-buttons {
+.menu-button.active {
 	border-radius: 20%;
 	background-color: #6cbde5a2;
 	border-width: 2px;

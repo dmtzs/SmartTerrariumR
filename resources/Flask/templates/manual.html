@@ -1,7 +1,7 @@
 {% extends 'layout.html' %}
 
 {% block title %}
-	Modo Manual
+Modo Manual
 {% endblock %}
 
 {%block content %}
@@ -15,10 +15,14 @@
 		{% include 'includes/diaNoche.html' %}
 		<div class="col botonesManual">
 			<div class="row justify-content-center">
-				<button type="button" class="btn btn-info bot-rellenar-bebedero manual-buttons">Rellenar bebedero</button>
+				<button type="button" class="bot-rellenar-bebedero manual-buttons" id="rellenar-bebedero">
+					Rellenar bebedero
+				</button>
 			</div>
 			<div class="row justify-content-center">
-				<button type="button" class="btn btn-info bot-humedecer-terrario manual-buttons">Humedecer</button>
+				<button type="button" class="bot-humedecer-terrario manual-buttons" id="humedecer">
+					Humedecer
+				</button>
 			</div>
 		</div>
 	</div>

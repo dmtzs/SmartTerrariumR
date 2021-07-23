@@ -1,4 +1,3 @@
-
 <script src="{{url_for('static', filename= 'js/validarForm.js')}}"></script>
 
 <div class="bloqueTempHum">
@@ -6,23 +5,33 @@
     <div class="row">
       <div class="col">
         <label for="exampleFormControlInput1" class="form-label">Rango temperatura reserva de agua</label>
-        <input id="TempAguaReserva" step="any" type="number" class="form-control" placeholder="{{ rango1 }}" aria-label="{{ rango1 }}" name="TempAguaReserva" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" maxlength="5" min="15.55" max="35">
+        <input id="TempAguaReserva" step="any" type="number" class="form-control" placeholder="{{ rango1 }}"
+          aria-label="{{ rango1 }}" name="TempAguaReserva"
+          oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+          maxlength="5" min="15.55" max="35">
       </div>
-  
+
       <div class="col">
         <label for="exampleFormControlInput1" class="form-label">Rango temperatura terrario</label>
-        <input id="TempTerrario" step="any" type="number" class="form-control" placeholder="{{ rango2 }}" aria-label="{{ rango2 }}" name="TempTerrario" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" maxlength="5" min="15.55" max="35">
+        <input id="TempTerrario" step="any" type="number" class="form-control" placeholder="{{ rango2 }}"
+          aria-label="{{ rango2 }}" name="TempTerrario"
+          oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+          maxlength="5" min="15.55" max="35">
       </div>
     </div>
     <br>
     <div class="row">
       <div class="col">
         <label for="exampleFormControlInput1" class="form-label">Rango humedad terrario</label>
-        <input id="Humedad" step="any" type="number" class="form-control" placeholder="{{ rango3 }}" aria-label="{{ rango3 }}" name="Humedad" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" maxlength="5" min="15.55" max="35">
+        <input id="Humedad" step="any" type="number" class="form-control" placeholder="{{ rango3 }}"
+          aria-label="{{ rango3 }}" name="Humedad"
+          oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+          maxlength="5" min="15.55" max="35">
       </div>
-  
+
       <div class="col">
-        <input type="text" class="form-control" placeholder="Vacio" aria-label="Vacio" style="visibility: hidden;" name="Vacio">
+        <input type="text" class="form-control" placeholder="Vacio" aria-label="Vacio" style="visibility: hidden;"
+          name="Vacio">
       </div>
     </div>
     <br>

@@ -147,7 +147,7 @@ a:focus {
 .menu-button:hover,
 .menu-button.active {
 	border-radius: 50%;
-	background-color: rgba(0, 139, 139, 0.699);
+	background-color: rgba(0, 120, 175, 0.658);
 	border-width: 2px;
 	border-color: rgb(0, 92, 92);
 }
@@ -204,6 +204,8 @@ a:focus {
 	height: 1.5rem;
 	width: calc(2rem + 0.75rem);
 	border-radius: 3rem;
+	background-color: rgba(0, 104, 122, 0.877);
+	border-color: transparent;
 }
 
 #sidebar label {
@@ -295,11 +297,11 @@ a.close-btn {
 #loader {
 	position: fixed;
 	width: 100%;
-	height: 5%;
+	height: 15%;
 	bottom: 0%;
 	z-index: 1;
 	overflow: visible;
-	background: url("../Uploads/loader.gif") no-repeat center center;
+	background: url("../Uploads/snake-loader.gif") no-repeat center center;
 }
 
 /* ---------------------------------------------------

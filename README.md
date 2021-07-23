@@ -58,7 +58,7 @@ Here is the diagram connection about how you need to connect all components, to 
 ![](resources/Imgs/Diagrama.png)
 
 ## Documentation
-If you want to see the documentation click [here](documentation.md)
+If you want to see the documentation click [here](Documentation.md)
 
 <br><br>
 

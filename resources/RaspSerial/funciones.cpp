@@ -287,7 +287,7 @@ void chooseAction(String Action){
   //Modificar
   //regresa el stream de datos para la pagina de inicio
   if(Action.equals("strm")){
-    out = "{\"strm\":{\"t_1\":" + String(TH[0]) + ",\"t_2\":" + String(TH[1]) + ",\"h_1\":" + String(TH[2]) + "}}";
+    out = String(TH[0]) + "," + String(TH[1]) + "," + String(TH[2]);
     out.toCharArray(outString, buffersize);
   }
 
@@ -314,6 +314,5 @@ void chooseAction(String Action){
 
   //aciva la bomba para humedecer el terrario
   if(Action.equals("hmdf")){
-    humedecerTerrario();
   }
 }

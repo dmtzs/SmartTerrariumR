@@ -152,8 +152,11 @@ a:focus {
 #sidebar {
 	min-width: 250px;
 	max-width: 250px;
-	background: #7386d5;
+	/* background: #7386d5; */
+	background-image: url("../Uploads/purplescales.png");
+	background-repeat: repeat;
 	color: #fff;
+	font-family: cursive;
 	transition: all 0.6s cubic-bezier(0.945, 0.02, 0.27, 0.665);
 	transform-origin: center left; /* Set the transformed position of sidebar to center left side. */
 	position: absolute;
@@ -172,7 +175,9 @@ a:focus {
 
 #sidebar .sidebar-header {
 	padding: 20px;
-	background: #6d7fcc;
+	font-family: cursive;
+	background-image: url("../Uploads/purplescales.png");
+	background-repeat: repeat;
 }
 
 #sidebar ul.components {
@@ -208,13 +213,14 @@ a:focus {
 
 #sidebar ul li a:hover {
 	color: #7386d5;
-	background: #fff;
+	background: rgba(255, 255, 255, 0.733);
 }
 
 #sidebar ul li.active > a,
 a[aria-expanded="true"] {
 	color: #fff;
-	background: #6d7fcc;
+	background-image: url("../Uploads/purplescales.png");
+	background-repeat: repeat;
 }
 
 a[data-bs-toggle="collapse"] {

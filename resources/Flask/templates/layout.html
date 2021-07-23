@@ -9,39 +9,17 @@
 		</title>
 
 		{# Own styles #}
-		<link
-			rel="stylesheet"
-			href="{{url_for('static', filename= 'bootstrap/css/bootstrap.css')}}"
-			type="text/css"
-		/>
-		<link
-			rel="stylesheet"
-			href="{{url_for('static', filename= 'css/styles.css')}}"
-			type="text/css"
-		/>
-		<link
-			rel="stylesheet"
-			href="{{url_for('static', filename= 'css/dayNight.css')}}"
-			type="text/css"
-		/>
+		<link rel="stylesheet" href="{{url_for('static', filename= 'bootstrap/css/bootstrap.css')}}" type="text/css"/>
+		<link rel="stylesheet" href="{{url_for('static', filename= 'css/styles.css')}}" type="text/css"/>
+		<link rel="stylesheet" href="{{url_for('static', filename= 'css/dayNight.css')}}" type="text/css"/>
 
 		{# Font Awesome JS #}
-		<script
-			defer
-			src="{{url_for('static', filename= 'fontawesome/solid.js')}}"
-		></script>
-		<script
-			defer
-			src="{{url_for('static', filename= 'fontawesome/fontawesome.js')}}"
-		></script>
+		<script defer src="{{url_for('static', filename= 'fontawesome/solid.js')}}"></script>
+		<script defer src="{{url_for('static', filename= 'fontawesome/fontawesome.js')}}"></script>
 
 		{# Sound #}
-		<audio
-			src="{{url_for('static', filename= 'Sound/SonidoNat.mp3')}}"
-			type="audio/mp3"
-			autoplay
-			loop
-		></audio>
+		<audio src="{{url_for('static', filename= 'Sound/SonidoNat.mp3')}}" type="audio/mp3" autoplay loop></audio>
+		
 	</head>
 	<body class="color-deseado">
 		<div class="card-overlay">
@@ -50,17 +28,14 @@
 				{% include 'includes/navbar.html' %}
 
 				<section id="content">
-					<button
-						type="button"
-						id="sidebarCollapse"
-						class="btn btn-info stack-top menu-button"
-						{{dis}}
-					>
+					<button type="button" id="sidebarCollapse" class="btn btn-info stack-top menu-button"{{dis}}>
 						<i class="fas fa-align-left"></i>
 						Menú
 					</button>
 
-					{% block content %} {% endblock %}
+					{% block content %}
+					
+					{% endblock %}
 				</section>
 			</div>
 		</div>

@@ -4,10 +4,10 @@ Here you can find the explanation of each of the methods that are in the whole p
 This is the official documentation of the program.
 
 ## Arduino
-@Author: Guillermo Ortega Romo and Diego Martínez Sánchez
+### File: funciones.cpp
+@Authors: Guillermo Ortega Romo and Diego Martínez Sánchez
 <br>
-@Description: A function in which are all the setup talking about the actions that the pin´s should do and other initializing functions from the-
-<br>
+@Description: A function in which are all the setup talking about the actions that the pin´s should do and other initializing functions from the
 beggining of the execution of the arduino program.
 ```
 void setupProyecto()
@@ -66,8 +66,7 @@ void eventoSerial(){
 
 @Author: Diego Martínez Sánchez
 <br>
-@Description: A function to get the state of the floating water sensor in order to let the arduino know about the drinker if we need to refill-
-<br>
+@Description: A function to get the state of the floating water sensor in order to let the arduino know about the drinker if we need to refill
 manual or in automatic way in order to manage better the parameters of the terrarium.
 
 ```
@@ -87,9 +86,8 @@ void floatingSensor()
 
 @Author: Diego Martínez Sánchez
 <br>
-@Description: A function to update the variables of the array that will be used to send the data to the raspberry program in to show the parameters-
-<br>
-through the raspberry application and to manage the automatic functionality of the terrarium.
+@Description: A function to update the variables of the array that will be used to send the data to the raspberry program in to show the
+parameters through the raspberry application and to manage the automatic functionality of the terrarium.
 ```
 void TempHum()
 {
@@ -99,6 +97,7 @@ void TempHum()
 ```
 
 @Author: Diego Martínez Sánchez
+<br>
 @Description: A function for activate the humidity water bomb in order to humidify the terrarium in the automatic mode.
 ```
 void humedecerTerrario(float hum)

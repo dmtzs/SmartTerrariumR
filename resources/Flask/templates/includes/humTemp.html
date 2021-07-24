@@ -3,17 +3,17 @@
 	<br />
 	<div class="izq">
 		<h4 class="personalTitulos">Agua reserva</h4>
-		<h4 class="personalTitulos" id="t_1"></h4>
+		<h4 class="personalTitulos streamData" id="t_1"></h4>
 	</div>
 	<div class="dere">
 		<h4 class="personalTitulos">Terrario</h4>
-		<h4 class="personalTitulos" id="t_2"></h4>
+		<h4 class="personalTitulos streamData" id="t_2"></h4>
 	</div>
 </div>
 
 <div class="Hum">
 	<h3 class="personalTitulos">Humedad</h3>
-	<h3 class="personalTitulos" id="h_1"></h3>
+	<h3 class="personalTitulos streamData" id="h_1"></h3>
 </div>
 
 <script>
@@ -31,10 +31,20 @@
 		"online",
 		function (e) {
 			data = e.data.csvToArray();
-			document.querySelector("#t_1").innerText = data[0][0] + "°C";
-			document.querySelector("#t_2").innerText = data[0][1] + "°C";
-			document.querySelector("#h_1").innerText = data[0][2] + "%";
-		},
-		true
-	);
+			$("#t_1").animate({
+				'opacity': 0
+			}, 500, function () {
+				$(this).html(data[0][0] + "°C").animate({ 'opacity': 1 }, 500);
+			});
+			$("#t_2").animate({
+				'opacity': 0
+			}, 500, function () {
+				$(this).html(data[0][1] + "°C").animate({ 'opacity': 1 }, 500);
+			});
+			$("#h_1").animate({
+				'opacity': 0
+			}, 500, function () {
+				$(this).html(data[0][2] + " %").animate({ 'opacity': 1 }, 500);
+			});
+		});
 </script>

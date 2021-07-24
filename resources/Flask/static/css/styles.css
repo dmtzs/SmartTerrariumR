@@ -9,6 +9,8 @@
 
 .card-overlay {
 	background: rgba(104, 167, 96, 0.644);
+	min-width: 650px;
+	min-height: 400px;
 }
 
 .bloqueTempHum {
@@ -49,6 +51,7 @@
 .manual-buttons {
 	display: inline-block;
 	font-weight: 400;
+	font-family: cursive;
 	line-height: 1.5;
 	color: #212529;
 	text-align: center;
@@ -100,11 +103,14 @@
 
 .personalTitulos {
 	text-align: center;
-	font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
-		"Lucida Sans", Arial, sans-serif;
+	font-family: cursive;
 	font-size: xx-large;
 	font-weight: 700;
 	color: rgb(0, 41, 20);
+}
+
+.streamData {
+	color: rgba(50, 16, 114, 0.644);
 }
 
 .dere {
@@ -145,7 +151,7 @@
 }
 
 .stack-top {
-	z-index: 99;
+	z-index: 98;
 	position: relative;
 }
 

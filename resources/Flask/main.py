@@ -1,6 +1,6 @@
 try:
     import time
-    import json
+    import csv
     import threading
     from gevent.pywsgi import WSGIServer
     from jsonObject import jsonObject
@@ -21,6 +21,9 @@ sem = threading.Semaphore()
 firstTime = True
 modo = ""
 lightMode = ""
+
+# Almacena los datos recibidos en el stream del index
+streamData = []
 
 # JSON read
 jsonMain = jsonObject()
@@ -81,6 +84,7 @@ def index():
 def listen():
 
     def respond_to_client():
+        global streamData
         while True:
             sem.acquire()
             succes = conn.communication("strm")
@@ -88,9 +92,12 @@ def listen():
             # print(conn.receivedData)
             if not succes:
                 pass
+            reader = csv.reader(conn.receivedData.splitlines())
+            streamData = list(reader)
+            # print(streamData)
             yield f"id: 1\ndata: {conn.receivedData}\nevent: online\n\n"
             # DO NOT QUIT: This time sleep is for initialize the electron.
-            time.sleep(2)
+            time.sleep(5)
     return Response(respond_to_client(), mimetype='text/event-stream')
 
 

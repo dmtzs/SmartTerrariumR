@@ -280,7 +280,8 @@ void chooseAction(String Action){
   //Modificar
   //regresa el stream de datos para la pagina de inicio
   if(Action.equals("strm")){
-    out = String(TH[0]) + "," + String(TH[1]) + "," + String(TH[2]);
+    out = String(TH[0]) + "," + String(TH[1]) +
+          "," + String(TH[2]) + "," + String(statusFlotador);
     out.toCharArray(outString, buffersize);
   }
 

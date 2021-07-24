@@ -12,6 +12,11 @@ Also the water will be warm with another sensor for keep warm the reserve of wat
 More functionalities are going to be developed with the time
 <br><br>
 
+## Documentation
+If you want to see the documentation click [here](Documentation.md).
+<br>
+Also please see below the list of the hardware which are going to be used in this project.
+
 ## Rasp Berry python program
 The user interface will be developed with python using electron and flask microframework for the graphic interface in order to show all the data we need with an interface which is builded with css.
 <br>
@@ -56,9 +61,6 @@ This libraries should be installed only if you want to develop by yourself the a
 ## Connection diagram
 Here is the diagram connection about how you need to connect all components, to which pin´s, etc.
 ![](resources/Imgs/Diagrama.png)
-
-## Documentation
-If you want to see the documentation click [here](Documentation.md)
 
 <br><br>
 

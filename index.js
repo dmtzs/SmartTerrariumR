@@ -136,7 +136,7 @@ ipcMain.on('alertaForm', () => {
 
     let swalOptions = {
         title: "Por favor valida los campos del formulario",
-        text: "Los campos no pueden llevar letras y no puede quedar vacío",
+        text: "Los campos no pueden llevar letras y el rango de los valores deben ser entre 15.55 y 35",
         icon: "error",
         showCancelButton: false,
         showConfirmButton: true

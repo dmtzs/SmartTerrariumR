@@ -66,3 +66,53 @@ void eventoSerial(){
 
 @Author: Diego Martínez Sánchez
 <br>
+@Description: A function to get the state of the floating water sensor in order to let the arduino know about the drinker if we need to refill-
+<br>
+manual or in automatic way in order to manage better the parameters of the terrarium.
+
+```
+void floatingSensor()
+{
+  //For floating water sensor
+  if(digitalRead(sensorFlotador) == HIGH)
+  {
+    statusFlotador = 1;
+  }
+  else
+  {
+    statusFlotador = 0;
+  }
+}
+```
+
+@Author: Diego Martínez Sánchez
+<br>
+@Description: A function to update the variables of the array that will be used to send the data to the raspberry program in to show the parameters-
+<br>
+through the raspberry application and to manage the automatic functionality of the terrarium.
+```
+void TempHum()
+{
+  TH[1]= dht.readTemperature();
+  TH[2]= dht.readHumidity();
+}
+```
+
+@Author: Diego Martínez Sánchez
+@Description: A function for activate the humidity water bomb in order to humidify the terrarium in the automatic mode.
+```
+void humedecerTerrario(float hum)
+{
+  if (hum < rangoHumedad)
+  {
+    digitalWrite(bombaHumedad, HIGH);
+    //Checar si poner delay o solo esperar que el sensor DHT marque que se elevo la humedad.
+    delay(6000);
+    digitalWrite(bombaHumedad, LOW);
+  }
+  else
+  {
+    digitalWrite(bombaHumedad, LOW);
+  }
+}
+```

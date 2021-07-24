@@ -91,10 +91,7 @@ void eventoSerial(){
   }
 }
 
-/*
- * @Author: Diego Martínez Sánchez
- * @Description: some description
- */
+// Function for knowing the state of the drinker, the floating water sensor state
 void floatingSensor()
 {
   /*
@@ -110,10 +107,7 @@ void floatingSensor()
   statusFlotador = random(2);
 }
 
-/*
- * @Author: Diego Martínez Sánchez
- * @Description: some description
- */
+// Function for the temperature and humidity of the terrarium
 void TempHum()
 {
   /*
@@ -124,13 +118,9 @@ void TempHum()
   TH[2]= random(50);
 }
 
-/*
- * @Author: Diego Martínez Sánchez
- * @Description: A function for activate the humidity water bomb for humidify the terrarium.
- */
+// Function for humidify the terrarium
 void humedecerTerrario(float hum)
 {
-  //Descomentar cuando se reciba el rango de humedad desde la raspberry.
   if (hum < rangoHumedad)
   {
     digitalWrite(bombaHumedad, HIGH);

@@ -7,7 +7,7 @@
 void chooseAction(String key);
 void focosEncendidosManual(int act);
 
-// ------------------------Pin´s definitions------------------------
+// ------------------------Pin´s  definitions------------------------
 #define sensorFlotador 2
 #define DHT_PIN 4
 #define DHTTYPE DHT22
@@ -17,6 +17,7 @@ void focosEncendidosManual(int act);
 #define bombaBebedero 8
 #define bombaHumedad 9
 
+// ------------------------Objects definitions------------------------
 DHT dht(DHT_PIN, DHTTYPE);
 OneWire ourWire(3); //pin 3 for submersible water sensor.
 
@@ -55,6 +56,7 @@ void setupProyecto()
   pinMode(calentarAguaReserva, OUTPUT);
   pinMode(bombaBebedero, OUTPUT);
   pinMode(bombaHumedad, OUTPUT); //Checar si debe ser diferente la config del pin para usar lo de PWM.
+  
   for(int i = 0; i < buffersize; i++){
     inString[i] = 0;
     outString[i] = 0;

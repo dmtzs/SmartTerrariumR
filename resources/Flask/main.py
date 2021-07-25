@@ -43,7 +43,7 @@ def date_now():
 
 
 def firstTimeLoad():
-    global jsonMain, modo, lightMode, rangoResAgua, rangoTerrario, rangoHum, correoGDCode
+    global jsonMain, modo, lightMode, rangoResAgua, rangoTerrario, rangoHum, correoGDCode, nomL
 
     jsonMain.readData()
     modo= jsonMain.jsonData['configuracion']['modo']
@@ -52,6 +52,7 @@ def firstTimeLoad():
     rangoTerrario= jsonMain.jsonData['configuracion']['temperaturas-rangos']['rangoTempDHT']
     rangoHum= jsonMain.jsonData['configuracion']['humedad-rango']['rangoHumedad']
     correoGDCode= jsonMain.jsonData['correo']
+    nomL= jsonMain.jsonData['usuario']['usuario-nl']
 
     number = 1 if modo == "true" or modo == 1 else 0
     text = "auto{}".format(str(number))
@@ -68,12 +69,12 @@ def firstTimeLoad():
 
 @app.route('/')  # Initial route of the project.
 def index():
-    global firstTime
+    global firstTime, nomL
 
     if firstTime:
         firstTimeLoad()
         firstTime = False
-        return render_template('bienvenida.html', dato1=modo, pushed=modo, lightmode=lightMode, offButton=1, dis="hidden")
+        return render_template('bienvenida.html', dato1=modo, pushed=modo, lightmode=lightMode, offButton=1, dis="hidden", nl= nomL)
 
     if modo == 'true' or modo == 1:
         return render_template('automatico.html', autoLightMode="disabled", autoLight="disabled")

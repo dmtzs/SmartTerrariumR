@@ -74,7 +74,7 @@ def index():
     if firstTime:
         firstTimeLoad()
         firstTime = False
-        return render_template('bienvenida.html', dato1=modo, pushed=modo, lightmode=lightMode, offButton=1, dis="hidden", nl= nomL)
+        return render_template('bienvenida.html', pushed=modo, lightmode=lightMode, offButton=1, dis="hidden", nl= nomL)
 
     if modo == 'true' or modo == 1:
         return render_template('automatico.html', autoLightMode="disabled", autoLight="disabled")

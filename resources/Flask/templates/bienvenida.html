@@ -7,10 +7,17 @@
 {% block content %}
 
 <h1>Bienvenido {{nl}}</h1>
-<h2>Esta es la página de bienvenida, aqui veras algo al iniciar la app</h2><br></br>
-<h2 {{status}}>Presiona el boton para ir a la vista de monitoreo</h2>
+<h3>
+    Espero estés teniendo un buen día, recuerda que en la opción de contacto se mostrará la forma
+    en la que nos puedes contacctar en caso de que haya algún problema con la aplicación o quieras
+    agregar, modificar o si está fallando y necesitas soporte.
+</h3>
 
-<h4>{{dato1}}</h4>
+<h3>Disfruta de la app</h3>
+
+<br></br>
+
+<h2 {{status}}>Presiona el boton para ir a la vista de monitoreo</h2>
 
 <button type="button" class="btn btn-success" id="boton_inicio" {{status}}>Cargar</button>
 {% endblock %}

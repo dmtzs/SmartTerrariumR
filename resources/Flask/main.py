@@ -43,14 +43,15 @@ def date_now():
 
 
 def firstTimeLoad():
-    global jsonMain, modo, lightMode, rangoResAgua, rangoTerrario, rangoHum
+    global jsonMain, modo, lightMode, rangoResAgua, rangoTerrario, rangoHum, correoGDCode
 
     jsonMain.readData()
-    modo = jsonMain.jsonData['configuracion']['modo']
-    lightMode = jsonMain.jsonData['configuracion']['dia-noche']
-    rangoResAgua = jsonMain.jsonData['configuracion']['temperaturas-rangos']['rangoResAgua']
-    rangoTerrario = jsonMain.jsonData['configuracion']['temperaturas-rangos']['rangoTempDHT']
-    rangoHum = jsonMain.jsonData['configuracion']['humedad-rango']['rangoHumedad']
+    modo= jsonMain.jsonData['configuracion']['modo']
+    lightMode= jsonMain.jsonData['configuracion']['dia-noche']
+    rangoResAgua= jsonMain.jsonData['configuracion']['temperaturas-rangos']['rangoResAgua']
+    rangoTerrario= jsonMain.jsonData['configuracion']['temperaturas-rangos']['rangoTempDHT']
+    rangoHum= jsonMain.jsonData['configuracion']['humedad-rango']['rangoHumedad']
+    correoGDCode= jsonMain.jsonData['correo']
 
     number = 1 if modo == "true" or modo == 1 else 0
     text = "auto{}".format(str(number))
@@ -190,7 +191,9 @@ def configuracion():
 
 @app.route('/contacto')
 def contacto():
-    return render_template('contacto.html')
+    global correoGDCode
+
+    return render_template('contacto.html', correo= correoGDCode)
 
 
 @app.route('/help')

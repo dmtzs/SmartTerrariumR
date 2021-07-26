@@ -34,7 +34,7 @@ sudo apt install npm
 //"start": "electron ." -> en windows, archivo: package.json
 
 Si en linux se tiene problemas para ejecutar lo de flask:
-[Solución]!(https://medium.com/@sanzidkawsar/the-python-flask-problem-oserror-errno-98-address-already-in-use-flask-49daaccaef4f)
+[Solución](https://medium.com/@sanzidkawsar/the-python-flask-problem-oserror-errno-98-address-already-in-use-flask-49daaccaef4f)
 
 ## Archivo json -> appData
 - Continuar creando el archivo json en donde se tomará alguna de las configuraciones de la app como los rangos de las temperaturas, humedad, etc

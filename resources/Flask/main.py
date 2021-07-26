@@ -43,7 +43,7 @@ def date_now():
 
 
 def firstTimeLoad():
-    global jsonMain, modo, lightMode, rangoResAgua, rangoTerrario, rangoHum, correoGDCode, nomL, nomApp, versionApp
+    global jsonMain, modo, lightMode, rangoResAgua, rangoTerrario, rangoHum, correoGDCode, nomL, nomApp, versionApp, descripcionApp
 
     jsonMain.readData()
     modo= jsonMain.jsonData['configuracion']['modo']
@@ -55,11 +55,12 @@ def firstTimeLoad():
     nomL= jsonMain.jsonData['usuario']['usuario-nl']
     nomApp= jsonMain.jsonData['nombre-app']
     versionApp= jsonMain.jsonData['version']
+    descripcionApp= jsonMain.jsonData['descripcion-app']
 
-    number = 1 if modo == "true" or modo == 1 else 0
-    text = "auto{}".format(str(number))
+    number= 1 if modo == "true" or modo == 1 else 0
+    text= "auto{}".format(str(number))
     sem.acquire()
-    _ = conn.communication(text)
+    _= conn.communication(text)
     sem.release()
 
     number = 1 if lightMode == "true" or lightMode == 1 else 0
@@ -194,9 +195,9 @@ def configuracion():
 
 @app.route('/contacto')
 def contacto():
-    global correoGDCode, nomApp, versionApp
+    global correoGDCode, nomApp, versionApp, descripcionApp
 
-    return render_template('contacto.html', correo= correoGDCode, nombreApp= nomApp, versionDeApp= versionApp)
+    return render_template('contacto.html', correo= correoGDCode, nombreApp= nomApp, versionDeApp= versionApp, decApp= descripcionApp)
 
 
 @app.route('/help')

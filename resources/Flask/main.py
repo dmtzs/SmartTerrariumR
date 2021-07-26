@@ -43,7 +43,7 @@ def date_now():
 
 
 def firstTimeLoad():
-    global jsonMain, modo, lightMode, rangoResAgua, rangoTerrario, rangoHum, correoGDCode, nomL
+    global jsonMain, modo, lightMode, rangoResAgua, rangoTerrario, rangoHum, correoGDCode, nomL, nomApp, versionApp
 
     jsonMain.readData()
     modo= jsonMain.jsonData['configuracion']['modo']
@@ -53,6 +53,8 @@ def firstTimeLoad():
     rangoHum= jsonMain.jsonData['configuracion']['humedad-rango']['rangoHumedad']
     correoGDCode= jsonMain.jsonData['correo']
     nomL= jsonMain.jsonData['usuario']['usuario-nl']
+    nomApp= jsonMain.jsonData['nombre-app']
+    versionApp= jsonMain.jsonData['version']
 
     number = 1 if modo == "true" or modo == 1 else 0
     text = "auto{}".format(str(number))
@@ -69,12 +71,12 @@ def firstTimeLoad():
 
 @app.route('/')  # Initial route of the project.
 def index():
-    global firstTime, nomL
+    global firstTime, nomL, nomApp
 
     if firstTime:
         firstTimeLoad()
         firstTime = False
-        return render_template('bienvenida.html', pushed=modo, lightmode=lightMode, offButton=1, dis="hidden", nl= nomL)
+        return render_template('bienvenida.html', pushed=modo, lightmode=lightMode, offButton=1, dis="hidden", nl= nomL, nomRealApp= nomApp)
 
     if modo == 'true' or modo == 1:
         return render_template('automatico.html', autoLightMode="disabled", autoLight="disabled")
@@ -192,9 +194,9 @@ def configuracion():
 
 @app.route('/contacto')
 def contacto():
-    global correoGDCode
+    global correoGDCode, nomApp, versionApp
 
-    return render_template('contacto.html', correo= correoGDCode)
+    return render_template('contacto.html', correo= correoGDCode, nombreApp= nomApp, versionDeApp= versionApp)
 
 
 @app.route('/help')

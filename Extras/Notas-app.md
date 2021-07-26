@@ -10,6 +10,7 @@
 - Generar ejecutable para proteger el código, checar si se puede hacer via comandos y ver si es más fácil distribuir el ejecutable o primero el código y sobre la rasp ejecutar los comandos de creación del ejecutable y después borrar el repositorio correspondiente.
 <br>
 Crea paquete json para modificarlo posteriormente aunque es para crear proyecto de nodejs
+
 ```
 npm init
 ```

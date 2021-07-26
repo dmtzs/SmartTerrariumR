@@ -46,21 +46,21 @@ def firstTimeLoad():
     global jsonMain, modo, lightMode, rangoResAgua, rangoTerrario, rangoHum, correoGDCode, nomL, nomApp, versionApp, descripcionApp
 
     jsonMain.readData()
-    modo= jsonMain.jsonData['configuracion']['modo']
-    lightMode= jsonMain.jsonData['configuracion']['dia-noche']
-    rangoResAgua= jsonMain.jsonData['configuracion']['temperaturas-rangos']['rangoResAgua']
-    rangoTerrario= jsonMain.jsonData['configuracion']['temperaturas-rangos']['rangoTempDHT']
-    rangoHum= jsonMain.jsonData['configuracion']['humedad-rango']['rangoHumedad']
-    correoGDCode= jsonMain.jsonData['correo']
-    nomL= jsonMain.jsonData['usuario']['usuario-nl']
-    nomApp= jsonMain.jsonData['nombre-app']
-    versionApp= jsonMain.jsonData['version']
-    descripcionApp= jsonMain.jsonData['descripcion-app']
+    modo = jsonMain.jsonData['configuracion']['modo']
+    lightMode = jsonMain.jsonData['configuracion']['dia-noche']
+    rangoResAgua = jsonMain.jsonData['configuracion']['temperaturas-rangos']['rangoResAgua']
+    rangoTerrario = jsonMain.jsonData['configuracion']['temperaturas-rangos']['rangoTempDHT']
+    rangoHum = jsonMain.jsonData['configuracion']['humedad-rango']['rangoHumedad']
+    correoGDCode = jsonMain.jsonData['correo']
+    nomL = jsonMain.jsonData['usuario']['usuario-nl']
+    nomApp = jsonMain.jsonData['nombre-app']
+    versionApp = jsonMain.jsonData['version']
+    descripcionApp = jsonMain.jsonData['descripcion-app']
 
-    number= 1 if modo == "true" or modo == 1 else 0
-    text= "auto{}".format(str(number))
+    number = 1 if modo == "true" or modo == 1 else 0
+    text = "auto{}".format(str(number))
     sem.acquire()
-    _= conn.communication(text)
+    _ = conn.communication(text)
     sem.release()
 
     number = 1 if lightMode == "true" or lightMode == 1 else 0
@@ -77,7 +77,7 @@ def index():
     if firstTime:
         firstTimeLoad()
         firstTime = False
-        return render_template('bienvenida.html', pushed=modo, lightmode=lightMode, offButton=1, dis="hidden", nl= nomL, nomRealApp= nomApp)
+        return render_template('bienvenida.html', pushed=modo, lightmode=lightMode, offButton=1, dis="hidden", nl=nomL, nomRealApp=nomApp)
 
     if modo == 'true' or modo == 1:
         return render_template('automatico.html', autoLightMode="disabled", autoLight="disabled")
@@ -162,6 +162,17 @@ def indexEvents():
             sem.release()
         return "rellenando"
 
+    if request.method == "POST" and "humedecer" in request.form:
+        hmd = request.form.get("humedecer")
+        if hmd:
+            text = "hmdf"
+            sem.acquire()
+            succes = conn.communication(text)
+            if not succes:
+                return "error"
+            sem.release()
+        return "humedecido"
+
     return "error"
 
 
@@ -197,7 +208,7 @@ def configuracion():
 def contacto():
     global correoGDCode, nomApp, versionApp, descripcionApp
 
-    return render_template('contacto.html', correo= correoGDCode, nombreApp= nomApp, versionDeApp= versionApp, decApp= descripcionApp)
+    return render_template('contacto.html', correo=correoGDCode, nombreApp=nomApp, versionDeApp=versionApp, decApp=descripcionApp)
 
 
 @app.route('/help')
@@ -212,7 +223,7 @@ def closeAll():
         conn.closeConnection()
     return "closed"
 
-#----------------------------Error Handlers------------------------------------# 
+#----------------------------Error Handlers------------------------------------#
 
 
 @app.route("/error500")

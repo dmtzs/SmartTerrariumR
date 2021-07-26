@@ -1,4 +1,4 @@
-// Functions for the project
+// Functions for the project 
 
 void setupProyecto();
 void sendSerialRasp();

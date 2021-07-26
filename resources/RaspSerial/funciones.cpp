@@ -2,7 +2,7 @@
 #include <DHT.h>
 #include <OneWire.h>
 #include <DallasTemperature.h>
-
+#include "variables.h"
 
 void chooseAction(String key);
 void focosEncendidosManual(int act);

@@ -1,4 +1,5 @@
 #include "funciones.h"
+#include "variables.h"
 
 unsigned long previousMillis = 0;
 const long interval = 1000;
@@ -24,7 +25,11 @@ void loop()
       TempHum();
     }
   }
-  
+
+  if(automatico == 1){
+//  Serial.println(automatico  
+  }
+
   sendSerialRasp();
   
   //Validar que si el sensor de temperatura sumergible baja a cierta temperatura encienda la resistencia por un tiempo para calentar el agua.

@@ -22,7 +22,7 @@ firstTime = True
 modo = ""
 lightMode = ""
 
-# Almacena los datos recibidos en el stream del index
+# Keeps the data received from the arduino´s stream
 streamData = []
 
 # JSON read
@@ -211,7 +211,7 @@ def closeAll():
         conn.closeConnection()
     return "closed"
 
-#----------------------------Error Handlers------------------------------------#
+#----------------------------Error Handlers------------------------------------# 
 
 
 @app.route("/error500")

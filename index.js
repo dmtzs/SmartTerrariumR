@@ -129,15 +129,31 @@ ipcMain.on('window-close', () => {
     app.quit();
 });
 
-ipcMain.on('alertaForm', () => {
+ipcMain.on('alertaFormError', () => {
     const Alert = require("electron-alert");
 
     let alert = new Alert();
 
     let swalOptions = {
         title: "Por favor valida los campos del formulario",
-        text: "Los campos no pueden llevar letras y el rango de los valores deben ser entre 15.55 y 35",
+        text: "Los campos no pueden llevar letras y el rango de los valores deben ser entre 15.55 y 50",
         icon: "error",
+        showCancelButton: false,
+        showConfirmButton: true
+    };
+
+    alert.fireFrameless(swalOptions, null, true, false);
+});
+
+ipcMain.on('alertaFormSuccess', () => {
+    const Alert = require("electron-alert");
+
+    let alert = new Alert();
+
+    let swalOptions = {
+        title: "Datos aplicados con éxito",
+        text: "Los cambios se veran reflejados en el modo automático de la aplicación",
+        icon: "success",
         showCancelButton: false,
         showConfirmButton: true
     };

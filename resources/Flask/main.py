@@ -181,6 +181,7 @@ def configuracion():
     global rangoResAgua, rangoTerrario, rangoHum
 
     if request.method == "POST":
+        mensajeExito= "Ya puedes ir a otra vista de la aplicación"
         TempAgua = request.form['TempAguaReserva']
         TempTerra = request.form['TempTerrario']
         Hum = request.form['Humedad']
@@ -200,7 +201,7 @@ def configuracion():
             jsonMain.writeData_changeRanges(Hum, 2)
         # Validar que si los campos se quedan vacíos entonces mande el valor que ya está en configuración desde el principio.
         # Mandar también las variables al arduino y de igual manera actualizar el archivo json con los nuevos valores.
-        return render_template('configuracion.html', rango1=f"{TempAgua}", rango2=f"{TempTerra}", rango3=f"{Hum}", exito="Datos actualizados con éxito")
+        return render_template('configuracion.html', rango1=f"{TempAgua}", rango2=f"{TempTerra}", rango3=f"{Hum}", exito=mensajeExito)
     return render_template('configuracion.html', rango1=f"{rangoResAgua}", rango2=f"{rangoTerrario}", rango3=f"{rangoHum}")
 
 

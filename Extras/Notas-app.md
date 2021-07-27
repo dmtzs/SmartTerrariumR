@@ -54,6 +54,8 @@ Si en linux se tiene problemas para ejecutar lo de flask:
 - [Permisos puerto serial](https://askubuntu.com/questions/58119/changing-permissions-on-serial-port)
 - De igual forma se podría usar un script para automatizar estos pasos necesarios de manera obligatoria
 - Comando: sudo usermod -a -G dialout $USER
-- [Teclado matricial](https://descubrearduino.com/conectar-teclado-a-raspberry-pi/)
+- [Teclado matricial físico](https://descubrearduino.com/conectar-teclado-a-raspberry-pi/)
+- [Teclado html](https://www.youtube.com/watch?v=uGohVJhgSN8&t=594s)
+- [Teclado jquery](https://www.jose-aguilar.com/blog/teclado-virtual-con-jquery/)
 - Para checar proceso de python: ps -ef | grep python3
 - Para la pantalla táctil: sudo ./LCD7B-show

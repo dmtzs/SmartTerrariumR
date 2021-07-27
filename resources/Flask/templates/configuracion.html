@@ -1,13 +1,15 @@
 {% extends 'layout.html' %}
 
 {% block title %}
-    Configuracion
+Configuracion
 {% endblock %}
 
 {% block content %}
 <h1>Panel de administración del terrario</h1>
 
 {% include 'includes/camposInputs.html' %}
+{% include 'includes/teclado.html' %}
+
 
 <h1 style="text-align: center;">{{exito}}</h1>
 

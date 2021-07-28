@@ -45,6 +45,11 @@ String Action = "nnnn";
 
 
 // ------------------------Setup function------------------------
+/*
+ * @Authors: Guillermo Ortega Romo and Diego Martínez Sánchez
+ * @Description: A function in which are all the setup talking about the actions that the pin´s should do and other initializing-
+ * functions from the beggining of the execution of the arduino program.
+*/
 void setupProyecto()
 {
   dht.begin();
@@ -64,7 +69,10 @@ void setupProyecto()
 }
 
 // ------------------------Functions for the functionality of the project------------------------
-
+/*
+ * @Author: Diego Martínez Sánchez
+ * @Description: For turning on all components everytime the app its initialized all components for check that all components works fine.
+*/
 void inicio()//Poner en void cuando compruebe en efecto la variable global se mantiene en 1 después.
 {
   if (iniciar == 0)
@@ -75,6 +83,10 @@ void inicio()//Poner en void cuando compruebe en efecto la variable global se ma
   }
 }
 
+/*
+ * @Author: Guillermo Ortega Romo
+ * @Description: Fucntion to detect if something comes from the serial port.
+*/
 void eventoSerial(){
   count = 0;
   while (Serial.available()) {
@@ -91,7 +103,11 @@ void eventoSerial(){
   }
 }
 
-// Function for knowing the state of the drinker, the floating water sensor state
+/*
+ * @Author: Diego Martínez Sánchez
+ * @Description: A function to get the state of the floating water sensor in order to let the arduino know about the drinker if we need to refill-
+ * manual or in automatic way in order to manage better the parameters of the terrarium.
+*/
 void floatingSensor()
 {
   /*
@@ -107,7 +123,11 @@ void floatingSensor()
   statusFlotador = random(2);
 }
 
-// Function for the temperature and humidity of the terrarium
+/*
+ * @Author: Diego Martínez Sánchez
+ * @Description: A function to update the variables of the array that will be used to send the data to the raspberry program in to show the-
+ * parameters through the raspberry application and to manage the automatic functionality of the terrarium.
+*/
 void TempHum()
 {
   /*
@@ -118,7 +138,10 @@ void TempHum()
   TH[2]= random(50);
 }
 
-// Function for humidify the terrarium
+/*
+ * @Author: Diego Martínez Sánchez
+ * @Description: A function for activate the humidity water bomb in order to humidify the terrarium in the automatic mode.
+*/
 void humedecerTerrario(float hum)
 {
   if (hum < rangoHumedad)

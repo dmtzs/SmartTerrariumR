@@ -1,26 +1,28 @@
 {% extends 'layout.html' %}
 
 {% block title %}
-    Bienvenida
+Bienvenida
 {% endblock %}
 
 {% block content %}
 
-<h1>{{nomRealApp}}</h1>
-<br>
-<h2>Bienvenido {{nl}}</h2>
-<br>
-<h3>
-    Espero estés teniendo un buen día, recuerda que en la opción de contacto se mostrará la forma
-    en la que nos puedes contacctar en caso de que haya algún problema con la aplicación o quieras
-    agregar, modificar o si está fallando y necesitas soporte.
-</h3>
+    <h1>{{nomRealApp}}</h1>
+    <br>
+    <h2>Bienvenido {{nl}}</h2>
+    <br>
+    <h3>
+        Espero estés teniendo un buen día, recuerda que en la opción de contacto se mostrará la forma
+        en la que nos puedes contacctar en caso de que haya algún problema con la aplicación o quieras
+        agregar, modificar o si está fallando y necesitas soporte.
+    </h3>
 
-<h3>Disfruta de la app</h3>
+    <h3>Disfruta de la app</h3>
 
-<br></br>
+    <br></br>
 
 <h2 {{status}}>Presiona el boton para ir a la vista de monitoreo</h2>
+<div class="boton_inicio">
+    <button type="button" class="btn btn-success" id="boton_inicio" {{status}}>Cargar</button>
+</div>
 
-<button type="button" class="btn btn-success" id="boton_inicio" {{status}}>Cargar</button>
 {% endblock %}

@@ -1,5 +1,7 @@
 .grandeParrafos {
 	font-size: x-large;
+	margin-left: 2%;
+	display:inline-block
 }
 
 .color-deseado {
@@ -22,6 +24,8 @@
 	margin-top: 5%;
 	width: 90%;
 	height: 40%;
+	text-align: center;
+	margin-left: 2%;
 }
 
 .DiaNoche {
@@ -173,6 +177,18 @@
 body {
 	width: 100%;
 	height: 100%;
+}
+
+h1 {
+	text-align: center;
+}
+
+h3 {
+	margin-left: 2%;
+}
+
+h4 {
+	margin-left: 2%;
 }
 
 a,
@@ -332,6 +348,7 @@ a.close-btn {
 
 #content {
 	width: 100%;
+	
 	min-height: 100vh;
 	transition: all 0.3s;
 }

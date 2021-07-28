@@ -29,7 +29,9 @@
 	width: 90%;
 	height: 40%;
 	align-content: center;
+	align-items: center;
 	margin-top: 2%;
+	margin-left: 5%;
 }
 
 .bot-rellenar-bebedero {
@@ -130,10 +132,11 @@
 	padding: 0;
 }
 
-.container.h-100 {
-	position: fixed;
-	top: 0px;
+.container-fluid.h-100 {
+	position: absolute;
+	top: 0px;    
 }
+
 
 .footer {
 	position: absolute;
@@ -192,6 +195,8 @@ a:focus {
 	background-color: #6cbde5a2;
 	border-width: 2px;
 	border-color: rgb(0, 92, 92);
+	margin-top: 20px;
+	margin-left: 20px;
 }
 
 .wrapper {
@@ -327,7 +332,6 @@ a.close-btn {
 
 #content {
 	width: 100%;
-	padding: 20px;
 	min-height: 100vh;
 	transition: all 0.3s;
 }

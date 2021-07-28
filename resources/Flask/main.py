@@ -180,27 +180,33 @@ def indexEvents():
 def configuracion():
     global rangoResAgua, rangoTerrario, rangoHum
 
-    if request.method == "POST":
-        TempAgua = request.form['TempAguaReserva']
-        TempTerra = request.form['TempTerrario']
-        Hum = request.form['Humedad']
-        if rangoResAgua != TempAgua:
-            rangoResAgua = TempAgua
+    if request.method== "POST":
+        TempAgua= request.form['TempAguaReserva']
+        TempTerra= request.form['TempTerrario']
+        Hum= request.form['Humedad']
+        if TempAgua== "" or TempAgua== rangoResAgua:
+            pass
+        elif rangoResAgua != TempAgua:
+            rangoResAgua= TempAgua
             jsonMain.readData()
             jsonMain.writeData_changeRanges(TempAgua, 0)
 
+        if TempTerra== "" or TempTerra== rangoTerrario:
+            pass
         elif rangoTerrario != TempTerra:
-            rangoTerrario = TempTerra
+            rangoTerrario= TempTerra
             jsonMain.readData()
             jsonMain.writeData_changeRanges(TempTerra, 1)
 
+        if Hum== "" or Hum== rangoHum:
+            pass
         elif rangoHum != Hum:
-            rangoHum = Hum
+            rangoHum= Hum
             jsonMain.readData()
             jsonMain.writeData_changeRanges(Hum, 2)
         # Validar que si los campos se quedan vacíos entonces mande el valor que ya está en configuración desde el principio.
         # Mandar también las variables al arduino y de igual manera actualizar el archivo json con los nuevos valores.
-        return render_template('configuracion.html', rango1=f"{TempAgua}", rango2=f"{TempTerra}", rango3=f"{Hum}")
+        return render_template('configuracion.html', rango1=f"{rangoResAgua}", rango2=f"{rangoTerrario}", rango3=f"{rangoHum}")
     return render_template('configuracion.html', rango1=f"{rangoResAgua}", rango2=f"{rangoTerrario}", rango3=f"{rangoHum}")
 
 

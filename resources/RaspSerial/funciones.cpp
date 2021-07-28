@@ -3,6 +3,7 @@
 #include <OneWire.h>
 #include <DallasTemperature.h>
 #include "variables.h"
+#include "EasyCommaLib.h"
 
 void chooseAction(String key);
 void focosEncendidosManual(int act);
@@ -41,7 +42,7 @@ bool stringComplete = false;        // whether the string is complete
 int count = 0;
 String out = "";
 String value;
-String Action = "nnnn";
+String ActionApp = "nnnn";
 
 
 // ------------------------Setup function------------------------
@@ -271,12 +272,12 @@ void sendSerialRasp()
 {
   if (stringComplete) {  
     //lee el json recibido por comunicacion serial
-    Action = String(inString);
+    ActionApp = String(inString);
     
-    value = Action.substring(4, buffersize);
-    Action = Action.substring(0, 4);
+    value = ActionApp.substring(4, buffersize);
+    ActionApp = ActionApp.substring(0, 4);
     
-    chooseAction(Action);
+    chooseAction(ActionApp);
 
     Serial.println(outString);
     Serial.println();
@@ -291,37 +292,45 @@ void sendSerialRasp()
   delay(100);
 }
 
-void chooseAction(String Action){
+void chooseAction(String Action2){
   //Modificar
   //regresa el stream de datos para la pagina de inicio
-  if(Action.equals("strm")){
+  if(Action2.equals("strm")){
     out = String(TH[0]) + "," + String(TH[1]) +
           "," + String(TH[2]) + "," + String(statusFlotador);
     out.toCharArray(outString, buffersize);
   }
 
-  //cambia el modo de operacion
-  if(Action.equals("auto")){
+  //Changes the operation mode
+  if(Action2.equals("auto")){
     automatico = value.toInt();
   }
 
-  //apaga o prende el foco dependiendo si es de dia o de noche
-  if(Action.equals("bulb")){
+  //Turns on or off the bulb according if its day or night
+  if(Action2.equals("bulb")){
     focosEncendidosManual(0);
   }
 
-  //cambia el modo de dia y noche
-  if(Action.equals("lght")){
+  //Change the day or night mode
+  if(Action2.equals("lght")){
     dia_noche = value.toInt();
     focosEncendidosManual(1);
   }
 
-  //aciva o desactiva el llenado del bebedero
-  if(Action.equals("bwtr")){
+  //Activates or desactivate the refill of the drinker
+  if(Action2.equals("bwtr")){
     rellenarBebedero();
   }
 
-  //aciva la bomba para humedecer el terrario
-  if(Action.equals("hmdf")){
+  //Activates the water bomb for humidifiying the terrarrium
+  if(Action2.equals("hmdf")){
+  }
+
+  if(Action2.equals("conf")){
+    Serial.print("valor");
+    Serial.println(value);
+    /*rangoHumedad= 0;
+    rangoTempReservaAgua= 0;
+    rangoTempDHT= 0;*/
   }
 }

@@ -64,12 +64,13 @@ const createLoadingScreen = () => {
 			frame: false,
 			/// and set the transparency, to remove any window background color
 			transparent: true,
+			show: false,
 		})
 	);
 	loadingScreen.setResizable(false);
 	loadingScreen.loadURL("file://" + __dirname + "/resources/loading.html");
 	loadingScreen.on("closed", () => (loadingScreen = null));
-	loadingScreen.webContents.on("did-finish-load", () => {
+	loadingScreen.once("ready-to-show", () => {
 		loadingScreen.show();
 	});
 };

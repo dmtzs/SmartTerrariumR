@@ -156,9 +156,6 @@
 
 .boton_inicio {
 	text-align: center;
-	background: #fff;
-	color: #7386d5;
-	border-radius: 10px;
 }
 
 .stack-top {
@@ -189,10 +186,12 @@ h2 {
 
 h3 {
 	margin-left: 2%;
+	margin-right: 2%;
 }
 
 h4 {
 	margin-left: 2%;
+	margin-right: 2%;
 }
 
 a,

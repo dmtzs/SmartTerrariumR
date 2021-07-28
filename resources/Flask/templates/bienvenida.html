@@ -1,7 +1,7 @@
 {% extends 'layout.html' %}
 
 {% block title %}
-    Bienvenida
+Bienvenida
 {% endblock %}
 
 {% block content %}
@@ -20,7 +20,9 @@
 
     <br></br>
 
-    <h2 {{status}}>Presiona el boton para ir a la vista de monitoreo</h2>
+<h2 {{status}}>Presiona el boton para ir a la vista de monitoreo</h2>
+<div class="boton_inicio">
+    <button type="button" class="btn btn-success" id="boton_inicio" {{status}}>Cargar</button>
+</div>
 
-    <button style="margin-left: 50%;" type="button" class="btn btn-success" id="boton_inicio" {{status}}>Cargar</button>
 {% endblock %}

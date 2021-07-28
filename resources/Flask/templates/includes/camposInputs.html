@@ -1,11 +1,12 @@
 <script src="{{url_for('static', filename= 'js/validarForm.js')}}"></script>
 
+
 <div class="bloqueTempHum">
   <form action="" method="post" onsubmit="return validarFormulario()">
     <div class="row">
       <div class="col">
         <label for="exampleFormControlInput1" class="form-label">Rango temperatura reserva de agua</label>
-        <input id="TempAguaReserva" step="any" type="number" class="form-control" placeholder="{{ rango1 }}"
+        <input id="TempAguaReserva" step="any" type="number" class="jQKeyboard form-control" placeholder="{{ rango1 }}"
           aria-label="{{ rango1 }}" name="TempAguaReserva"
           oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
           maxlength="5" min="15.55" max="35">
@@ -34,6 +35,8 @@
           name="Vacio">
       </div>
     </div>
+    <label>Input</label>
+    <input type="text" id="testInput" class="jQKeyboard" placeholder="testing" value="" />
     <br>
     <button id="Enviar" type="submit" value="Enviar" title="Enviar" class="btn btn-primary">Enviar</button>
   </form>

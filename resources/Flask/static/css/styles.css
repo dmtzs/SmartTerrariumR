@@ -130,7 +130,7 @@
 	padding: 0;
 }
 
-.container-fluid.h-100 {
+.container.h-100 {
 	position: fixed;
 	top: 0px;
 }

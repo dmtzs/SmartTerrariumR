@@ -34,15 +34,5 @@ $(function () {
 			});
 			return false;
 		}
-		else {
-			Swal.fire({
-				title: "Datos aplicados con éxito",
-				text: "Los cambios se veran reflejados en el modo automático de la aplicación",
-				icon: "success",
-				showCancelButton: false,
-				showConfirmButton: true,
-			});
-			return true;
-		}
 	});
 });

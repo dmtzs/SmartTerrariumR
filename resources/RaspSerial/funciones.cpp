@@ -3,7 +3,6 @@
 #include <OneWire.h>
 #include <DallasTemperature.h>
 #include "variables.h"
-//#include "EasyCommaLib.h"
 
 void chooseAction(String key);
 void focosEncendidosManual(int act);
@@ -329,22 +328,6 @@ void chooseAction(String Action2){
   if(Action2.equals("conf")){
     Serial.print("valor");
     Serial.println(value);
-//    float ranges[3];
-//    int r=0, t=0;
-//    
-//    for (int i=0; i < value.length(); i++)
-//    { 
-//     if(value.charAt(i) == ',') 
-//      { 
-//        ranges[t] = value.substring(r, i).toFloat(); 
-//        r=(i+1); 
-//        t++; 
-//      }
-//    }
-//    for(int i=0; i<3;i++){
-//      Serial.println(ranges[i]);
-//    }
-    
     /*rangoHumedad= 0;
     rangoTempReservaAgua= 0;
     rangoTempDHT= 0;*/

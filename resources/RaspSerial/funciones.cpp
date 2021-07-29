@@ -22,12 +22,14 @@ DHT dht(DHT_PIN, DHTTYPE);
 OneWire ourWire(3); //pin 3 for submersible water sensor.
 
 // ------------------------Global variables------------------------
+#define separador ','              //Separator for conf flag.
 DallasTemperature submersibleSensor(&ourWire);
-int iniciar = 0;                   //Iniciar para que se ejecute la función iniciar solo una vez.
-int dia_noche = 0;                 // Para saber que foco se debe prender. dia = 1, noche = 0
-int onOffDia = 0, onOffNoche = 0;  //Estado de los focos de dia y de noche
-int automatico = 0;                //0 manual y 1 automático.
-int statusFlotador = 0;            //Estado del sensor del bebedero. 1 = lleno, 0 = no lleno
+int iniciar = 0;                   //Just for execute a function once
+int dia_noche = 0;                 //To know which bulb needs to turn on or off. day = 1, night = 0
+int onOffDia = 0, onOffNoche = 0;  //State of the bulbs, day and nigth.
+int automatico = 0;                //0 manual y 1 automatic.
+int statusFlotador = 0;            //State of the drinker. 1 = lleno, 0 = no lleno
+int inicioConf, finConf;                   //For comma separated values.
 float rangoHumedad = 0, rangoTempReservaAgua = 0, rangoTempDHT = 0;
 float* TH = new float[3];          //lecturas de sensor para mandar por serial
 
@@ -326,8 +328,21 @@ void chooseAction(String Action2){
   }
 
   if(Action2.equals("conf")){
-    Serial.print("valor");
-    Serial.println(value);
+    String cadeConf;
+    inicioConf= 0;
+    finConf= value.indexOf(separador, inicioConf);
+
+    while(finConf!= -1) {
+      cadeConf= value.substring(inicioConf, finConf);
+      Serial.println(cadeConf);
+      delay(1000);
+
+      inicioConf= finConf+1;
+      finConf= value.indexOf(separador, inicioConf);
+    }
+    cadeConf= value.substring(inicioConf, value.length());
+    Serial.println(cadeConf);
+    delay(1000);
     /*rangoHumedad= 0;
     rangoTempReservaAgua= 0;
     rangoTempDHT= 0;*/

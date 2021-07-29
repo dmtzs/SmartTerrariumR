@@ -3,8 +3,7 @@ try:
     import csv
     import threading
     from gevent.pywsgi import WSGIServer
-    from jsonObject import jsonObject
-    from ArduinoConnection import ArduinoConnection
+    from TerrariumLib import ArduinoConnection, jsonObject
     from flask import Flask, Response, stream_with_context, request, render_template, redirect, url_for
     from datetime import datetime
     from gevent import monkey
@@ -13,7 +12,7 @@ except Exception as eImp:
     print(f"Ocurrió el error de importación: {eImp}")
 
 # Inits arduino connection
-conn = ArduinoConnection()
+conn = ArduinoConnection.ArduinoConnection()
 conn.startCommunication()
 
 # Variables for reading operation mode
@@ -26,7 +25,7 @@ lightMode = ""
 streamData = []
 
 # JSON read
-jsonMain = jsonObject()
+jsonMain = jsonObject.jsonObject()
 
 # Creation of the flask app.
 app = Flask(__name__)

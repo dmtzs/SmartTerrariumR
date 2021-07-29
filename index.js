@@ -162,36 +162,33 @@ ipcMain.on("window-close", () => {
 	app.quit();
 });
 
-ipcMain.on("alertaFormError", () => {
-	let alert = new Alert();
+// ipcMain.on("alertaFormError", () => {
+// 	let alert = new Alert();
 
-	let swalOptions = {
-		title: "Por favor valida los campos del formulario",
-		text: "Los campos no pueden llevar letras y el rango de los valores deben ser entre 15.55 y 50",
-		icon: "error",
-		showCancelButton: false,
-		showConfirmButton: true,
-	};
+// 	let swalOptions = {
+// 		title: "Por favor valida los campos del formulario",
+// 		text: "Los campos no pueden llevar letras y el rango de los valores deben ser entre 15.55 y 50",
+// 		icon: "error",
+// 		showCancelButton: false,
+// 		showConfirmButton: true,
+// 	};
 
-	alert.fireFrameless(swalOptions, null, true, false);
-});
+// 	alert.fireFrameless(swalOptions, mainWindow, true, false);
+// });
 
-ipcMain.on("alertaFormSuccess", () => {
-	let alert = new Alert();
+// ipcMain.on("alertaFormSuccess", () => {
+// 	let alert = new Alert();
 
-	let swalOptions = {
-		title: "Datos aplicados con éxito",
-		text: "Los cambios se veran reflejados en el modo automático de la aplicación",
-		icon: "success",
-		showCancelButton: false,
-		showConfirmButton: true,
-		backdrop: `
-			rgba(0,0,123,0.4)
-		`,
-	};
+// 	let swalOptions = {
+// 		title: "Datos aplicados con éxito",
+// 		text: "Los cambios se veran reflejados en el modo automático de la aplicación",
+// 		icon: "success",
+// 		showCancelButton: false,
+// 		showConfirmButton: true,
+// 	};
 
-	alert.fireFrameless(swalOptions, null, true, false);
-	/*Probar sweet alert: https://sweetalert2.github.io/*/
-});
+// 	alert.fireFrameless(swalOptions, mainWindow, true, false);
+// 	/*Probar sweet alert: https://sweetalert2.github.io/*/
+// });
 
 //Buscar proceso en linux: ps -ef | grep python3

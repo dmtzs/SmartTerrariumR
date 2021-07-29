@@ -191,6 +191,7 @@ ipcMain.on("alertaFormSuccess", () => {
 	};
 
 	alert.fireFrameless(swalOptions, null, true, false);
+	/*Probar sweet alert: https://sweetalert2.github.io/*/
 });
 
 //Buscar proceso en linux: ps -ef | grep python3

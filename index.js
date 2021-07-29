@@ -3,6 +3,7 @@ const { app, BrowserWindow, Menu, ipcMain } = require("electron"); //12308
 const { exec } = require("child_process");
 const path = require("path");
 const waitPort = require("wait-port");
+const Alert = require("electron-alert");
 
 const params = {
 	host: "localhost",
@@ -162,8 +163,6 @@ ipcMain.on("window-close", () => {
 });
 
 ipcMain.on("alertaFormError", () => {
-	const Alert = require("electron-alert");
-
 	let alert = new Alert();
 
 	let swalOptions = {
@@ -178,8 +177,6 @@ ipcMain.on("alertaFormError", () => {
 });
 
 ipcMain.on("alertaFormSuccess", () => {
-	const Alert = require("electron-alert");
-
 	let alert = new Alert();
 
 	let swalOptions = {
@@ -188,6 +185,9 @@ ipcMain.on("alertaFormSuccess", () => {
 		icon: "success",
 		showCancelButton: false,
 		showConfirmButton: true,
+		backdrop: `
+			rgba(0,0,123,0.4)
+		`,
 	};
 
 	alert.fireFrameless(swalOptions, null, true, false);

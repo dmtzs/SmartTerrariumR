@@ -296,7 +296,7 @@ void sendSerialRasp()
 
 void chooseAction(String Action2){
   //Modificar
-  //regresa el stream de datos para la pagina de inicio
+  //Returns stream data to the page on monitor in the flask app
   if(Action2.equals("strm")){
     out = String(TH[0]) + "," + String(TH[1]) +
           "," + String(TH[2]) + "," + String(statusFlotador);
@@ -328,7 +328,7 @@ void chooseAction(String Action2){
   if(Action2.equals("hmdf")){
   }
 
-  //Modifys
+  //Modifies the range values for turning on some components in automatic mode
   if(Action2.equals("conf")){
     String cadeConf;
     int contadorTemp= 0;
@@ -347,11 +347,8 @@ void chooseAction(String Action2){
     cadeConf= value.substring(inicioConf, value.length());
     confValues[contadorTemp]= cadeConf.toFloat();
     delay(500);
-    Serial.println(confValues[0]);
-    Serial.println(confValues[1]);
-    Serial.println(confValues[2]);
-    /*rangoHumedad= 0;
-    rangoTempReservaAgua= 0;
-    rangoTempDHT= 0;*/
+    rangoHumedad= confValues[0];
+    rangoTempReservaAgua= confValues[1];
+    rangoTempDHT= confValues[2];
   }
 }

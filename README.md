@@ -13,7 +13,7 @@ More functionalities are going to be developed with the time
 <br><br>
 
 ## Documentation
-We dont have a document as documentation but all code has comments ir order to be used as documentation for each method created in the project.
+We dont have a document as documentation but all code has comments in order to be used as documentation for each method created in the project.
 <br>
 Also please see below the list of the hardware which are going to be used in this project.
 

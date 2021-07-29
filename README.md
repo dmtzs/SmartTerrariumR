@@ -13,7 +13,7 @@ More functionalities are going to be developed with the time
 <br><br>
 
 ## Documentation
-If you want to see the documentation click [here](Documentation.md).
+We dont have a document as documentation but all code has comments ir order to be used as documentation for each method created in the project.
 <br>
 Also please see below the list of the hardware which are going to be used in this project.
 

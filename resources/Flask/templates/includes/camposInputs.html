@@ -1,40 +1,38 @@
 <div class="bloqueTempHum">
-  <form action="" method="post" onsubmit="return validarFormulario()">
-    <div class="row">
-      <div class="col">
-        <label for="exampleFormControlInput1" class="form-label">Rango temperatura reserva de agua</label>
-        <input id="TempAguaReserva" step="any" type="text" class="jQKeyboard form-control" placeholder="{{ rango1 }}"
-          aria-label="{{ rango1 }}" name="TempAguaReserva"
-          oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
-          maxlength="5" min="15.55" max="35" />
-      </div>
-
-      <div class="col">
-        <label for="exampleFormControlInput1" class="form-label">Rango temperatura terrario</label>
-        <input id="TempTerrario" step="any" type="text" class="jQKeyboard form-control" placeholder="{{ rango2 }}"
-          aria-label="{{ rango2 }}" name="TempTerrario"
-          oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
-          maxlength="5" min="15.55" max="35" />
-      </div>
+  <div class="row">
+    <div class="col">
+      <label for="exampleFormControlInput1" class="form-label">Rango temperatura reserva de agua</label>
+      <input id="TempAguaReserva" step="any" type="text" class="jQKeyboard form-control" placeholder="{{ rango1 }}"
+        aria-label="{{ rango1 }}" name="TempAguaReserva"
+        oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+        maxlength="5" min="15.55" max="35" />
     </div>
-    <br>
-    <div class="row">
-      <div class="col">
-        <label for="exampleFormControlInput1" class="form-label">Rango humedad terrario</label>
-        <input id="Humedad" step="any" type="text" class="jQKeyboard form-control" placeholder="{{ rango3 }}"
-          aria-label="{{ rango3 }}" name="Humedad"
-          oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
-          maxlength="5" min="15.55" max="35" />
-      </div>
 
-      <div class="col">
-        <input type="text" class="form-control" placeholder="Vacio" aria-label="Vacio" style="visibility: hidden;"
-          name="Vacio">
-      </div>
+    <div class="col">
+      <label for="exampleFormControlInput1" class="form-label">Rango temperatura terrario</label>
+      <input id="TempTerrario" step="any" type="text" class="jQKeyboard form-control" placeholder="{{ rango2 }}"
+        aria-label="{{ rango2 }}" name="TempTerrario"
+        oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+        maxlength="5" min="15.55" max="35" />
     </div>
-    <br>
-    <button id="Enviar" type="submit" value="Enviar" title="Enviar" class="btn btn-primary">Enviar</button>
-  </form>
+  </div>
+  <br>
+  <div class="row">
+    <div class="col">
+      <label for="exampleFormControlInput1" class="form-label">Rango humedad terrario</label>
+      <input id="Humedad" step="any" type="text" class="jQKeyboard form-control" placeholder="{{ rango3 }}"
+        aria-label="{{ rango3 }}" name="Humedad"
+        oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+        maxlength="5" min="15.55" max="35" />
+    </div>
+
+    <div class="col">
+      <input type="text" class="form-control" placeholder="Vacio" aria-label="Vacio" style="visibility: hidden;"
+        name="Vacio">
+    </div>
+  </div>
+  <br>
+  <button id="Enviar" type="submit" value="Enviar" title="Enviar" class="btn btn-primary">Enviar</button>
 </div>
 
 <script src="{{url_for('static', filename= 'libraries/sweetalert/sweetalert2.all.min.js')}}"></script>

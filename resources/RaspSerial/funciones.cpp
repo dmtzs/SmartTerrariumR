@@ -31,10 +31,11 @@ int automatico = 0;                //0 manual y 1 automatic.
 int statusFlotador = 0;            //State of the drinker. 1 = lleno, 0 = no lleno
 int inicioConf, finConf;                   //For comma separated values.
 float rangoHumedad = 0, rangoTempReservaAgua = 0, rangoTempDHT = 0;
-float* TH = new float[3];          //lecturas de sensor para mandar por serial
+float* TH = new float[3];          //Metrics of the sensors to be sent thropugh serial.
+float* confValues= new float[3];   //For the values of the vonf flag
 
 
-//----------------Variables para comunicacion serial---------------
+//----------------Variables for serial communication---------------
 char inChar;
 const int buffersize = 64;
 char inString[buffersize];          // a String to hold incoming data from raspberry
@@ -330,20 +331,25 @@ void chooseAction(String Action2){
   //Modifys
   if(Action2.equals("conf")){
     String cadeConf;
+    int contadorTemp= 0;
     inicioConf= 0;
     finConf= value.indexOf(separador, inicioConf);
 
     while(finConf!= -1) {
       cadeConf= value.substring(inicioConf, finConf);
-      Serial.println(cadeConf);
-      delay(1000);
+      confValues[contadorTemp]= cadeConf.toFloat();
+      delay(500);
 
       inicioConf= finConf+1;
       finConf= value.indexOf(separador, inicioConf);
+      contadorTemp+= 1;
     }
     cadeConf= value.substring(inicioConf, value.length());
-    Serial.println(cadeConf);
-    delay(1000);
+    confValues[contadorTemp]= cadeConf.toFloat();
+    delay(500);
+    Serial.println(confValues[0]);
+    Serial.println(confValues[1]);
+    Serial.println(confValues[2]);
     /*rangoHumedad= 0;
     rangoTempReservaAgua= 0;
     rangoTempDHT= 0;*/

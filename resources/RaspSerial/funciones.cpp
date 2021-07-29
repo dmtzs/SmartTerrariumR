@@ -4,7 +4,7 @@
 #include <DallasTemperature.h>
 #include "variables.h"
 
-void chooseAction(String key);
+void chooseAction();
 void focosEncendidosManual(int act);
 
 // ------------------------Pin´s  definitions------------------------
@@ -279,7 +279,7 @@ void sendSerialRasp()
     value = ActionApp.substring(4, buffersize);
     ActionApp = ActionApp.substring(0, 4);
     
-    chooseAction(ActionApp);
+    chooseAction();
 
     Serial.println(outString);
     Serial.println();
@@ -294,42 +294,42 @@ void sendSerialRasp()
   delay(100);
 }
 
-void chooseAction(String Action2){
+void chooseAction(){
   //Modificar
   //Returns stream data to the page on monitor in the flask app
-  if(Action2.equals("strm")){
+  if(ActionApp.equals("strm")){
     out = String(TH[0]) + "," + String(TH[1]) +
           "," + String(TH[2]) + "," + String(statusFlotador);
     out.toCharArray(outString, buffersize);
   }
 
   //Changes the operation mode
-  if(Action2.equals("auto")){
+  if(ActionApp.equals("auto")){
     automatico = value.toInt();
   }
 
   //Turns on or off the bulb according if its day or night
-  if(Action2.equals("bulb")){
+  if(ActionApp.equals("bulb")){
     focosEncendidosManual(0);
   }
 
   //Change the day or night mode
-  if(Action2.equals("lght")){
+  if(ActionApp.equals("lght")){
     dia_noche = value.toInt();
     focosEncendidosManual(1);
   }
 
   //Activates or desactivate the refill of the drinker
-  if(Action2.equals("bwtr")){
+  if(ActionApp.equals("bwtr")){
     rellenarBebedero();
   }
 
   //Activates the water bomb for humidifiying the terrarrium
-  if(Action2.equals("hmdf")){
+  if(ActionApp.equals("hmdf")){
   }
 
   //Modifies the range values for turning on some components in automatic mode
-  if(Action2.equals("conf")){
+  if(ActionApp.equals("conf")){
     String cadeConf;
     int contadorTemp= 0;
     inicioConf= 0;

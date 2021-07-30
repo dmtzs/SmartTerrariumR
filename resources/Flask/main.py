@@ -57,13 +57,15 @@ def firstTimeLoad():
     descripcionApp = jsonMain.jsonData['descripcion-app']
 
     number = 1 if modo == "true" or modo == 1 else 0
-    text = "auto{}".format(str(number))
+    # text = "auto{}".format(str(number))
+    text= f"auto{str(number)}"#Try and if not uncomment the above line.
     sem.acquire()
     _ = conn.communication(text)
     sem.release()
 
     number = 1 if lightMode == "true" or lightMode == 1 else 0
-    text = "lght{}".format(str(number))
+    # text = "lght{}".format(str(number))
+    text = f"lght{str(number)}"#Try and if not uncomment the above line.
     sem.acquire()
     _ = conn.communication(text)
     sem.release()
@@ -116,7 +118,8 @@ def indexEvents():
             jsonMain.readData()
             jsonMain.writeData_changeMode(modo)
             number = 1 if modo == "true" or modo == 1 else 0
-            text = "auto{}".format(str(number))
+            # text = "auto{}".format(str(number))
+            text= f"auto{str(number)}"#Try and if not uncomment the above line.
             sem.acquire()
             succes = conn.communication(text)
             if not succes:
@@ -131,7 +134,8 @@ def indexEvents():
             jsonMain.readData()
             jsonMain.writeData_changeLightMode(lightMode)
             number = 1 if lightMode == "true" or lightMode == 1 else 0
-            text = "lght{}".format(str(number))
+            # text = "lght{}".format(str(number))
+            text= f"lght{str(number)}"#Try and if not uncomment the above line.
             sem.acquire()
             succes = conn.communication(text)
             if not succes:
@@ -153,7 +157,8 @@ def indexEvents():
     if request.method == "POST" and "rellenar" in request.form:
         rellenar = request.form.get("rellenar")
         if rellenar:
-            text = "bwtr{}".format(str(rellenar))
+            # text = "bwtr{}".format(str(rellenar))
+            text= f"bwtr{str(rellenar)}"#Try and if not uncomment the above line.
             sem.acquire()
             succes = conn.communication(text)
             if not succes:

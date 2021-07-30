@@ -1,1 +1,0 @@
-# Aquí poner los métodos que se repiten en el flask

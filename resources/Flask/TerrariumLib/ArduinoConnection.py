@@ -8,7 +8,7 @@ try:
 except ImportError as eImp:
     print(f"The following error import ocurred: {eImp}")
 
-
+# @Description: Class for manage all the arduino connection from the app of the raspberry to the arduino.
 class ArduinoConnection():
     thisSystem = platform.system()
     baudrate = 115200
@@ -16,6 +16,7 @@ class ArduinoConnection():
     buffersize = 64
     tries = 0
 
+    # @description: Init the attributes of the class.
     def __init__(self):
         self.connection = None
         self.sendData = ""
@@ -28,6 +29,8 @@ class ArduinoConnection():
             comandoShell = "clear"
         os.system(comandoShell)
 
+    # @Description: Inits the connection to the Arduino more specifically for checking is there´s an Arduino available-
+    #               for been used in to the app.
     def initConnection(self):
         try:
             if self.thisSystem == "Windows":
@@ -55,6 +58,8 @@ class ArduinoConnection():
             print(f"\n\n\t\t\t\tOcurrió el ERROR: {e}")
             self.recieving = False
 
+    # @Description: This method is used for reading the data that comes from the Arduino in order to be showed-
+    #               in the raspberry app to the user.
     def readArduino(self):
         rawstring = self.connection.read(
             self.buffersize).decode('utf-8').rstrip()
@@ -64,21 +69,26 @@ class ArduinoConnection():
             self.recieving = False
             self.receivedData = rawstring
 
+    # @Description: This method is for sending the instructions to the Arduino, so the Arduino will know what-
+    #               to do with the rest of the components installed in the terrarrium.
     def writeArduino(self, Data):
         self.sendData = Data + "\n"
         self.sendData = self.sendData.encode('utf-8')
         self.connection.write(self.sendData)
         self.sendData = self.sendData.decode('utf-8').rstrip()
 
+    # @Description: A method to know the OS in which the app is running and the return of a shell command.
     def limpiarShell(self):
         if self.thisSystem == "Windows":
             return "cls", self.thisSystem
         else:
             return "clear", self.thisSystem
 
+    # @Description: Just for closing the connection with the Arduino.
     def closeConnection(self):
         self.connection.close()
 
+    # @Description: Inits the communication with the Arduino to start the main functionality of the same Arduino.
     def startCommunication(self):
         self.initConnection()
         self.tries = 0
@@ -87,6 +97,7 @@ class ArduinoConnection():
             self.tries = self.tries + 1
         time.sleep(2)
 
+    # @Description: 
     def communication(self, text):
         if self.connection:
             self.limpiarShell()

@@ -18,7 +18,7 @@ We dont have a document as documentation but all code has comments in order to b
 Also please see below the list of the hardware which are going to be used in this project.
 
 ## Rasp Berry python program
-The user interface will be developed with python using electron and flask microframework for the graphic interface in order to show all the data we need with an interface which is builded with css.
+The user interface will be developed with python using electron and flask microframework for the graphic interface in order to show all the data we need with an interface which is builded with css and of course the flask is for all the connections and instructions with the Arduino.
 <br>
 The program will process the data that comes from the arduino via USB and the python program will be processing this data.
 All this in order to be showed through a display connected to the raspberry.
@@ -33,7 +33,7 @@ All this in order to be showed through a display connected to the raspberry.
 * Execute "python3 InstalacionBase.py" in order to install all python libraries and configuration needed for this project.
 <br><br>
 
-## Arduino program
+## Arduino C++ program
 The Arduino is used in order to acquire the parameters we want to show through the LCD of the raspberry and also receive data from the raspberry to do some actions with the arduino.
 <br>
 All the necesary data will be displayed in the display of the raspberry for its correct manage from the user.
@@ -50,13 +50,18 @@ This libraries should be installed only if you want to develop by yourself the a
 ## Sensor´s and materials list used
 * dht22 humidity and temperature sensor
 * DS18B20 submersible sensor
-* Horn of 2 inches of 1.5 watts
+* Horn with auxiliar connection(if you want)
 * Water float sensor
 * Raspberry pi 4 B+
-* LCD touch display of 7 inches
+* LCD touch display of 15.6 inches
 * 256 gb SD
 * 3 relays
 * 1 L298D chip (H bridge)
+* 1 pression water bomb of 12 volts
+* 1 coffe maker water bomb of 12 volts
+* 1 water resistor for keeping warm the reserve of water
+* 1 night bulb
+* 1 day bulb
 
 ## Connection diagram
 Here is the diagram connection about how you need to connect all components, to which pin´s, etc.

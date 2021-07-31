@@ -69,7 +69,7 @@ const createLoadingScreen = () => {
 		})
 	);
 	loadingScreen.setResizable(false);
-	loadingScreen.loadURL("file://" + __dirname + "/resources/loading.html");
+	loadingScreen.loadURL("file://" + __dirname + "/resources/Flask/templates/loading.html");
 	loadingScreen.on("closed", () => (loadingScreen = null));
 	loadingScreen.once("ready-to-show", () => {
 		loadingScreen.show();

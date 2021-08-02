@@ -1,8 +1,11 @@
 {
+    "autor": "GDCode labs & studios",
     "nombre-app": "GDCode - Terrarium manager",
     "version": "1.0.0",
     "descripcion-app": "Aplicacion para administrar el terrario de reptiles y mantener su habitat en las condiciones deseadas por el cuidador",
     "correo": "gd-code@outlook.com",
+    "actualizacion": "Por definir fecha",
+    "fecha-lanzamiento": "Por definir fecha",
     "usuario": {
         "usuario-nl": "Diego Martinez Sanchez",
         "usuario-nc": "Diego"

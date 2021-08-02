@@ -10,6 +10,12 @@
         "usuario-nl": "Diego Martinez Sanchez",
         "usuario-nc": "Diego"
     },
+    "urls": {
+        "repositorio-host": "github",
+        "repositorio-herramienta": "git",
+        "repositorio-source-https": "https://github.com/dmtzs/ProyectoRaspArduino.git",
+        "repositorio-source-ssh": "git@github.com:dmtzs/ProyectoRaspArduino.git"
+    },
     "configuracion": {
         "modo": 0,
         "dia-noche": 0,

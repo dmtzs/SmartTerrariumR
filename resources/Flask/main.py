@@ -194,6 +194,7 @@ def configuracion():
         TempAgua= request.form['TempAguaReserva']
         TempTerra= request.form['TempTerrario']
         Hum= request.form['Humedad']
+
         if TempAgua== "" or TempAgua== rangoResAgua:
             pass
         elif rangoResAgua != TempAgua:
@@ -214,7 +215,15 @@ def configuracion():
             rangoHum= Hum
             jsonMain.readData()
             jsonMain.writeData_changeRanges(Hum, 2)
-        # Mandar también las variables al arduino y de igual manera actualizar el archivo json con los nuevos valores.
+
+        # Preguntar a memo si así es como ya quedaría la comunicación con el arduino para actualizar los rangos.
+        text= f"conf{rangoResAgua}{rangoTerrario}{rangoHum}"
+        sem.acquire()
+        succes = conn.communication(text)
+        if not succes:
+            return "error"
+        sem.release()
+        
         return render_template('configuracion.html', rango1=f"{rangoResAgua}", rango2=f"{rangoTerrario}", rango3=f"{rangoHum}", bandeSuccess= True)
     return render_template('configuracion.html', rango1=f"{rangoResAgua}", rango2=f"{rangoTerrario}", rango3=f"{rangoHum}")
 

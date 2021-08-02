@@ -55,6 +55,7 @@ String ActionApp = "nnnn";
 */
 void setupProyecto()
 {
+  pinMode(LED_BUILTIN, OUTPUT);// Quitar después de comprobar bandera de conf.
   dht.begin();
   Serial.begin(115200);
   submersibleSensor.begin();
@@ -347,8 +348,21 @@ void chooseAction(){
     cadeConf= value.substring(inicioConf, value.length());
     confValues[contadorTemp]= cadeConf.toFloat();
     delay(500);
-    rangoHumedad= confValues[0];
-    rangoTempReservaAgua= confValues[1];
-    rangoTempDHT= confValues[2];
+    rangoTempReservaAgua= confValues[0];
+    rangoTempDHT= confValues[1];
+    rangoHumedad= confValues[2];
+    /*Quitar después de probar que se recibe el mensaje de la manera correcta*/
+    digitalWrite(LED_BUILTIN, HIGH);
+    delay(2000);
+    digitalWrite(LED_BUILTIN, LOW);
+    delay(2000);
+    digitalWrite(LED_BUILTIN, HIGH);
+    delay(2000);
+    digitalWrite(LED_BUILTIN, LOW);
+    delay(2000);
+    digitalWrite(LED_BUILTIN, HIGH);
+    delay(2000);
+    digitalWrite(LED_BUILTIN, LOW);
+    delay(2000);
   }
 }

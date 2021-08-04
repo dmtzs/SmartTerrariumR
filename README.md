@@ -13,9 +13,14 @@ More functionalities are going to be developed with the time
 <br><br>
 
 ## Documentation
-We dont have a document as documentation but all code has comments in order to be used as documentation for each method created in the project.
+We dont have a document or a web page as documentation still, that documentation webpage will be builded with the time but all code has comments in order to be used as documentation for each method created in the project for now.
 <br>
 Also please see below the list of the hardware which are going to be used in this project.
+
+## Mobile Application kotlin program
+This mobile app will have the same functionality like the desktop app, with the difference that you will now control the main app executed in the raspberry through this mobile app from anywhere if you need it.
+<br>
+This mobile app will be developed with the time after most of the main app of the raspberry is finish.
 
 ## Rasp Berry python program
 The user interface will be developed with python using electron and flask microframework for the graphic interface in order to show all the data we need with an interface which is builded with css and of course the flask is for all the connections and instructions with the Arduino.

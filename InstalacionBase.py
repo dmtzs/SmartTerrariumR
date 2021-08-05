@@ -4,7 +4,7 @@ try:
 except ImportError as eImp:
     print(f"The following import error ocurred: {eImp}")
 
-
+# @Description: Method that returns the system and a shell command in order to clean the terminal in which this program is executed.
 def limpShellSystem():
     sistema = platform.system()
 
@@ -12,24 +12,24 @@ def limpShellSystem():
         return "cls", sistema
     else:
         return "clear", sistema
-
+# @Description: Method used to execute the commands that were sent by the main method
+def execComands(comandsExec):
+    for comm in comandsExec:
+        os.system(comm)
 
 def main(sistema):
-    #Pensar si incluir: "sudo apt install florence -y", "sudo apt install at-spi2-core -y"
+    # @Description: Variables that contains commands according to the operative system that the program is being executed
     comandosLinux= ["sudo apt update", "sudo apt upgrade", "sudo apt install python3-pip", "pip3 install -r requirements.txt", "sudo apt install nodejs",
                     "sudo apt install npm", "npm install electron wait-port electron-alert", "sudo usermod -a -G dialout $USER"]
     
-    comandosWindows= "npm install electron wait-port electron-alert"
+    comandosWindows= ["pip install -r requirements.txt", "npm install electron wait-port electron-alert"]
 
     if sistema== "Windows":
-        os.system(comandosWindows)
+        execComands(comandosWindows)
     elif sistema== "Linux":
-        for comm in comandosLinux:
-            os.system(comm)
+        execComands(comandosLinux)
     else:
-        print("Solo se puede ejecutar en linux y windows")
-    # Pensar si ejecutar desde aquí el programa de electron.
-
+        print("This program can be executed only in Windows and Linux operative systems")
 
 if __name__ == "__main__":
     try:

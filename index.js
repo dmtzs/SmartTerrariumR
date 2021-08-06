@@ -3,7 +3,6 @@ const { app, BrowserWindow, Menu, ipcMain } = require("electron"); //12308
 const { exec } = require("child_process");
 const path = require("path");
 const waitPort = require("wait-port");
-const Alert = require("electron-alert");
 
 const params = {
 	host: "localhost",

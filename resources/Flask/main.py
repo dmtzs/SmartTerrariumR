@@ -33,6 +33,8 @@ app = Flask(__name__)
 app.secret_key = "clave_secreta_flask"
 
 #---------------------------------Context processor for the date------------------------------------#
+
+
 @app.context_processor
 def date_now():
     return {
@@ -44,6 +46,8 @@ def date_now():
 # @Description: This function loads the data of the appData json file in which are defined all the automatic parameters, user information, etc in order to be used-
 #               in the aplication for its correct functionality. The functions creates global variables in order to manage the parameters of the json file so it can-
 #               be used in all the program for the endpoints that requires this information.
+
+
 def firstTimeLoad():
     global jsonMain, modo, lightMode, rangoResAgua, rangoTerrario, rangoHum, correoGDCode, nomL, nomApp, versionApp, descripcionApp
 
@@ -61,20 +65,22 @@ def firstTimeLoad():
 
     number = 1 if modo == "true" or modo == 1 else 0
     # text = "auto{}".format(str(number))
-    text= f"auto{str(number)}"#Try and if not uncomment the above line.
+    text = f"auto{str(number)}"  # Try and if not uncomment the above line.
     sem.acquire()
     _ = conn.communication(text)
     sem.release()
 
     number = 1 if lightMode == "true" or lightMode == 1 else 0
     # text = "lght{}".format(str(number))
-    text = f"lght{str(number)}"#Try and if not uncomment the above line.
+    text = f"lght{str(number)}"  # Try and if not uncomment the above line.
     sem.acquire()
     _ = conn.communication(text)
     sem.release()
 
 # @Description: This endpoint will be used for the welcome html template at the first time the application is executed. After this page is changed this endpoint will-
 #               be used to serve the other templates of the automatic and manual mode. This is also the initial endpoint of the project.
+
+
 @app.route('/')  # Initial route of the project.
 def index():
     global firstTime, nomL, nomApp
@@ -91,6 +97,8 @@ def index():
 
 # @Description: This endpoint is just for the stream of the temperatures and humidity measured in the arduino and sended from the arduino to the raspberry in order to be-
 #               showed in the app in the raspberry.
+
+
 @app.route("/listen")
 def listen():
     def respond_to_client():
@@ -112,6 +120,8 @@ def listen():
 
 # @Description: In this endpoint are managed all the buttons of the manual mode, in order to activate all the components that the arduino will be managing. So with this-
 #               the users can be in complete control of all the functionality that will have this app.
+
+
 @app.route('/indexevents', methods=["POST"])
 def indexEvents():
     global modo, lightMode
@@ -124,12 +134,13 @@ def indexEvents():
             jsonMain.writeData_changeMode(modo)
             number = 1 if modo == "true" or modo == 1 else 0
             # text = "auto{}".format(str(number))
-            text= f"auto{str(number)}"#Try and if not uncomment the above line.
+            # Try and if not uncomment the above line.
+            text = f"auto{str(number)}"
             sem.acquire()
             succes = conn.communication(text)
+            sem.release()
             if not succes:
                 return "error"
-            sem.release()
         return "mode changed"
 
     if request.method == "POST" and "lighMode" in request.form:
@@ -140,12 +151,13 @@ def indexEvents():
             jsonMain.writeData_changeLightMode(lightMode)
             number = 1 if lightMode == "true" or lightMode == 1 else 0
             # text = "lght{}".format(str(number))
-            text= f"lght{str(number)}"#Try and if not uncomment the above line.
+            # Try and if not uncomment the above line.
+            text = f"lght{str(number)}"
             sem.acquire()
             succes = conn.communication(text)
+            sem.release()
             if not succes:
                 return "error"
-            sem.release()
         return "light mode changed"
 
     if request.method == "POST" and "lightStatus" in request.form:
@@ -154,21 +166,22 @@ def indexEvents():
             text = "bulb"
             sem.acquire()
             succes = conn.communication(text)
+            sem.release()
             if not succes:
                 return "error"
-            sem.release()
             return "changeLight"
 
     if request.method == "POST" and "rellenar" in request.form:
         rellenar = request.form.get("rellenar")
         if rellenar:
             # text = "bwtr{}".format(str(rellenar))
-            text= f"bwtr{str(rellenar)}"#Try and if not uncomment the above line.
+            # Try and if not uncomment the above line.
+            text = f"bwtr{str(rellenar)}"
             sem.acquire()
             succes = conn.communication(text)
+            sem.release()
             if not succes:
                 return "error"
-            sem.release()
         return "rellenando"
 
     if request.method == "POST" and "humedecer" in request.form:
@@ -177,54 +190,56 @@ def indexEvents():
             text = "hmdf"
             sem.acquire()
             succes = conn.communication(text)
+            sem.release()
             if not succes:
                 return "error"
-            sem.release()
         return "humedecido"
 
     return "error"
 
 # @Description: For managing all the ranges for the automatic mode so the arduino will know when to do somethign like turn on or off the biulbs, to know if-
 #               the night or day bulb should be on or off, turn on the water bomb to humidify the terrarrium, to refill the drinker when its almost empty, etc.
+
+
 @app.route('/configuracion', methods=["POST", "GET"])
 def configuracion():
     global rangoResAgua, rangoTerrario, rangoHum
 
-    if request.method== "POST":
-        TempAgua= request.form['TempAguaReserva']
-        TempTerra= request.form['TempTerrario']
-        Hum= request.form['Humedad']
+    if request.method == "POST":
+        TempAgua = request.form['TempAguaReserva']
+        TempTerra = request.form['TempTerrario']
+        Hum = request.form['Humedad']
 
-        if TempAgua== "" or TempAgua== rangoResAgua:
+        if TempAgua == "" or TempAgua == rangoResAgua:
             pass
         elif rangoResAgua != TempAgua:
-            rangoResAgua= TempAgua
+            rangoResAgua = TempAgua
             jsonMain.readData()
             jsonMain.writeData_changeRanges(TempAgua, 0)
 
-        if TempTerra== "" or TempTerra== rangoTerrario:
+        if TempTerra == "" or TempTerra == rangoTerrario:
             pass
         elif rangoTerrario != TempTerra:
-            rangoTerrario= TempTerra
+            rangoTerrario = TempTerra
             jsonMain.readData()
             jsonMain.writeData_changeRanges(TempTerra, 1)
 
-        if Hum== "" or Hum== rangoHum:
+        if Hum == "" or Hum == rangoHum:
             pass
         elif rangoHum != Hum:
-            rangoHum= Hum
+            rangoHum = Hum
             jsonMain.readData()
             jsonMain.writeData_changeRanges(Hum, 2)
 
         # Preguntar a memo si así es como ya quedaría la comunicación con el arduino para actualizar los rangos.
-        text= f"conf{rangoResAgua}{rangoTerrario}{rangoHum}"
+        text = f"conf{rangoResAgua}{rangoTerrario}{rangoHum}"
         sem.acquire()
         succes = conn.communication(text)
         sem.release()
         if not succes:
             return "error"
-        
-        return render_template('configuracion.html', rango1=f"{rangoResAgua}", rango2=f"{rangoTerrario}", rango3=f"{rangoHum}", bandeSuccess= True)
+
+        return render_template('configuracion.html', rango1=f"{rangoResAgua}", rango2=f"{rangoTerrario}", rango3=f"{rangoHum}", bandeSuccess=True)
     return render_template('configuracion.html', rango1=f"{rangoResAgua}", rango2=f"{rangoTerrario}", rango3=f"{rangoHum}")
 
 

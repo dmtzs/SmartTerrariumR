@@ -17,8 +17,8 @@
         "repositorio-source-ssh": "git@github.com:dmtzs/ProyectoRaspArduino.git"
     },
     "configuracion": {
-        "modo": 0,
-        "dia-noche": 0,
+        "modo": 1,
+        "dia-noche": 1,
         "temperaturas-rangos": {
             "rangoResAgua": "32",
             "rangoTempDHT": "25.05"

@@ -220,9 +220,9 @@ def configuracion():
         text= f"conf{rangoResAgua}{rangoTerrario}{rangoHum}"
         sem.acquire()
         succes = conn.communication(text)
+        sem.release()
         if not succes:
             return "error"
-        sem.release()
         
         return render_template('configuracion.html', rango1=f"{rangoResAgua}", rango2=f"{rangoTerrario}", rango3=f"{rangoHum}", bandeSuccess= True)
     return render_template('configuracion.html', rango1=f"{rangoResAgua}", rango2=f"{rangoTerrario}", rango3=f"{rangoHum}")

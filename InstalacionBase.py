@@ -38,5 +38,7 @@ if __name__ == "__main__":
         main(sistema)
     except Exception as ex:
         print(f"The following error ocurred: {ex}")
+    except KeyboardInterrupt:
+        print("Se presiono Ctrl+c, finalizando programa con ejecución incorrecta")
     finally:
         print("Finalizando ejecución de programa de instalaciones base")

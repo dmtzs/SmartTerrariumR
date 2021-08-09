@@ -1,11 +1,5 @@
 # Notas para la aplicación
 
-## Interfaz principal
-- Conectar a una API del clima para mostrar el clima actual
-- Boton para controlar la bomba de agua que vaciara el traste de agua de la serpienteI(tal vez se necesite modificar el programa de arduino si se quiere implementar)
-- Mostrar estado del sensor para la reserva de agua saber si se necesita llenar o no
-- Mostrar temperatura de la reserva de agua pues debe estar entre tibia casi caliente
-
 ## Cosas electron
 - Generar ejecutable para proteger el código, checar si se puede hacer via comandos y ver si es más fácil distribuir el ejecutable o primero el código y sobre la rasp ejecutar los comandos de creación del ejecutable y después borrar el repositorio correspondiente.
 <br>
@@ -45,11 +39,6 @@ Si en linux se tiene problemas para ejecutar lo de flask:
 - Lo que está antes de la configuración es para mostrar un poco de info general de la app.
 - Lo de modo app es para que se inicie en modo automático de manera predeterminada
 
-## Actualizaciones futuras
-- Checar la viabilidad de la implementacion de api de tiempo para saber que hora es y activar o desactivar el modo dia y noche
-- Checar la viabilidad de la implementacion de cambiar entre español e inglés, en este caso sería para inglés porque la de español ya está hecha
-- Checar viabilidad para implementar widgets en temperaturas y humedad de la app, que sea una opción que el usuario pueda cambiar
-
 ## Preparar rasp para el arduino
 - [Permisos puerto serial](https://askubuntu.com/questions/58119/changing-permissions-on-serial-port)
 - De igual forma se podría usar un script para automatizar estos pasos necesarios de manera obligatoria
@@ -72,3 +61,6 @@ Algo común es realizar el manejo de versiones mediante 3 números: X.Y.Z y cada
 - Versión mayor o X, cuando agreguemos nuevas funcionalidades importantes, puede ser como un nuevo modulo o característica clave para la funcionalidad.
 - Versión menor o Y, cuando hacemos correcciones menores, cuando arreglamos un error y se agregan funcionalidades que no son cruciales para el proyecto.
 - Revisión o Z, cada vez que entregamos el proyecto.
+
+## Comando comentarios adicionales desde terminal git
+- git commit -m "Title" -m "Description .........."

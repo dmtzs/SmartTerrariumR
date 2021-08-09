@@ -13,7 +13,7 @@ More functionalities are going to be developed with the time
 <br><br>
 
 ## Documentation
-We dont have a document or a web page as documentation still, that documentation webpage will be builded with the time but all code has comments in order to be used as documentation for each method created in the project for now.
+We are developing a github page in the wiki part in order to use that space as a documentation, that documentation page will be builded with the time but all code has comments in order to be used as documentation for each method created in the project just for now. [Click here](https://github.com/dmtzs/ProyectoRaspArduino/wiki) in order to go to that documentation page.
 <br>
 Also please see below the list of the hardware which are going to be used in this project.
 

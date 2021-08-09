@@ -21,6 +21,8 @@ Also please see below the list of the hardware which are going to be used in thi
 This mobile app will have the same functionality like the desktop app, with the difference that you will now control the main app executed in the raspberry through this mobile app from anywhere if you need it.
 <br>
 This mobile app will be developed with the time after most of the main app of the raspberry is finish.
+<br>
+If you want to see the repository [click here](https://github.com/dmtzs/TerrariumMobileApp) to go to the repository of the mobile app of the terrarium.
 
 ## Rasp Berry python program
 The user interface will be developed with python using electron and flask microframework for the graphic interface in order to show all the data we need with an interface which is builded with css and of course the flask is for all the connections and instructions with the Arduino.

@@ -4,8 +4,11 @@
 #include <DallasTemperature.h>
 #include "variables.h"
 
+// ------------------------Prototype functions------------------------
 void chooseAction();
 void focosEncendidosManual(int act);
+void humedecerTerrarioManual();
+void rellenarBebederoManual();
 
 // ------------------------Pin´s  definitions------------------------
 #define sensorFlotador 2

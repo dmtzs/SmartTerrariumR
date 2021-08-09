@@ -146,9 +146,9 @@ void TempHum()
  * @Author: Diego Martínez Sánchez
  * @Description: A function for activate the humidity water bomb in order to humidify the terrarium in the automatic mode.
 */
-void humedecerTerrario(float hum)
+void humedecerTerrarioAuto()
 {
-  if (hum < rangoHumedad)
+  if (TH[2] < rangoHumedad)
   {
     digitalWrite(bombaHumedad, HIGH);
     //Checar si poner delay o solo esperar que el sensor DHT marque que se elevo la humedad.
@@ -163,6 +163,17 @@ void humedecerTerrario(float hum)
 
 /*
  * @Author: Diego Martínez Sánchez
+ * @Description: A function for activate the humidity water bomb in order to humidify the terrarium in the automatic mode.
+*/
+void humedecerTerrarioManual()
+{
+  digitalWrite(bombaHumedad, HIGH);
+  delay(6000);//Ver si poner variable en este delay.
+  digitalWrite(bombaHumedad, LOW);
+}
+
+/*
+ * @Author: Diego Martínez Sánchez
  * @Description: This function measures the temperature of the water that will be used for refill the drinker and humidify the terrarium.
  *               Also this function will activate a resistor that will keep warm the reserve water of this recipient.
  */
@@ -170,8 +181,7 @@ void sensorSumergible()
 {
   /*
   submersibleSensor.requestTemperatures();
-  TH[0]= submersibleSensor.getTempCByIndex(0);
-  TH[0]= 0;*/
+  TH[0]= submersibleSensor.getTempCByIndex(0);*/
   TH[0] = random(50);
 }
 
@@ -260,13 +270,26 @@ void reserveWater(float tempSub)
  * @Author: Diego Martínez Sánchez
  * @Description: Function for refill the drinker of the terrarium only if the floating sensor is in "on" state
  */
- void rellenarBebedero()
+ void rellenarBebederoAuto()
  {
   if(statusFlotador == 0){
-    digitalWrite(bombaBebedero, value.toInt());
+    digitalWrite(bombaBebedero, HIGH);
+    delay(10000);
+    digitalWrite(bombaBebedero, LOW);
   }
  }
-
+ 
+/*
+ * @Author: Diego Martínez Sánchez
+ * @Description: Function for refill the drinker of the terrarium only if the floating sensor is in "on" state
+ */
+void rellenarBebederoManual()
+{
+  digitalWrite(bombaBebedero, HIGH);
+  delay(10000);
+  digitalWrite(bombaBebedero, LOW);
+}
+ 
 /*
  * @Author: Guillermo Ortega Romo
  * @Description: Fucntion for receive the data from de raspberry and put it in a global variable to manage the rest of the Arduino program.
@@ -322,11 +345,12 @@ void chooseAction(){
 
   //Activates or desactivate the refill of the drinker
   if(ActionApp.equals("bwtr")){
-    rellenarBebedero();
+    rellenarBebederoManual();
   }
 
   //Activates the water bomb for humidifiying the terrarrium
   if(ActionApp.equals("hmdf")){
+    humedecerTerrarioManual();
   }
 
   //Modifies the range values for turning on some components in automatic mode
@@ -351,18 +375,6 @@ void chooseAction(){
     rangoTempReservaAgua= confValues[0];
     rangoTempDHT= confValues[1];
     rangoHumedad= confValues[2];
-    /*Quitar después de probar que se recibe el mensaje de la manera correcta*/
-    digitalWrite(LED_BUILTIN, HIGH);
-    delay(2000);
-    digitalWrite(LED_BUILTIN, LOW);
-    delay(2000);
-    digitalWrite(LED_BUILTIN, HIGH);
-    delay(2000);
-    digitalWrite(LED_BUILTIN, LOW);
-    delay(2000);
-    digitalWrite(LED_BUILTIN, HIGH);
-    delay(2000);
-    digitalWrite(LED_BUILTIN, LOW);
-    delay(2000);
+    //Agregar cambiar la variable apra 
   }
 }

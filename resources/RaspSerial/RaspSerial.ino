@@ -1,5 +1,11 @@
+/*
+ * @Filename: RaspSerial.ino MainFile
+ * @Authors: Guillermo Ortega Romo and Diego Martínez Sánchez
+ * @Description: Main file of the project, contains the main loop function
+*/
+
 #include "funciones.h"
-#include "variables.h"
+#include "extern.h"
 
 unsigned long previousMillis = 0;
 const long interval = 1000;

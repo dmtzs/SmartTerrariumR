@@ -1,4 +1,8 @@
-// Functions for the project 
+/*
+ * @Filename: funciones.h
+ * @Authors: Guillermo Ortega Romo and Diego Martínez Sánchez
+ * @Description: This file is used to declare all functions used on the program
+*/
 
 void setupProyecto();
 void sendSerialRasp();

@@ -22,6 +22,7 @@ firstTime = True
 modo = ""
 lightMode = ""
 
+
 # Keeps the data received from the arduino´s stream
 streamData = []
 

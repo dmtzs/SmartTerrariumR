@@ -2,3 +2,4 @@ testresources
 flask
 pyserial
 gevent
+pyinstaller

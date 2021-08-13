@@ -5,7 +5,7 @@ except ImportError as eImp:
     print(f"The following import error ocurred: {eImp}")
 
 # @Description: Method that returns the system and a shell command in order to clean the terminal in which this program is executed.
-def limpShellSystem():
+def ShellAndSystem():
     sistema = platform.system()
 
     if sistema == "Windows":
@@ -33,7 +33,7 @@ def main(sistema):
 
 if __name__ == "__main__":
     try:
-        comShell, sistema= limpShellSystem()
+        comShell, sistema= ShellAndSystem()
         os.system(comShell)
         main(sistema)
     except Exception as ex:

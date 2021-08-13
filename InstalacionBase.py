@@ -22,7 +22,7 @@ def main(sistema):
     comandosLinux= ["sudo apt update", "sudo apt upgrade", "sudo apt install python3-pip", "pip3 install -r requirements.txt", "sudo apt install nodejs",
                     "sudo apt install npm", "npm install electron wait-port", "sudo usermod -a -G dialout $USER"]
     
-    comandosWindows= ["pip install -r requirements.txt", "npm install electron wait-port electron-alert"]
+    comandosWindows= ["pip install -r requirements.txt", "npm install electron wait-port"]
 
     if sistema== "Windows":
         execComands(comandosWindows)

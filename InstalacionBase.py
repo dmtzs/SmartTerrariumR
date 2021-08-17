@@ -32,6 +32,21 @@ def installBase(sistema):
     else:
         print("This program can be executed only in Windows and Linux operative systems")
 
+def help(sistema):
+    os.system("clear")
+    cadeInstall= "Para instalar todas las dependencias necesarias del programa"
+    cadeExe= "Para crear el ejecutable con pyinstaller para el back end de flask"
+    commPython= ""
+
+    if sistema== "Windows":
+        commPython= "python"
+    else:
+        commPython= "python3"
+
+    print(f"\n\n\n{commPython} InstalacionBase.py --install: {cadeInstall}")
+    print(f"\n{commPython} InstalacionBase.py --exeFlask: {cadeExe}")
+    print(f"\n{commPython} InstalacionBase.py --help: Para mostrar el presente panel de ayuda\n")
+
 def main(sistema):
     lenargv= len(sys.argv)
 
@@ -41,19 +56,7 @@ def main(sistema):
         elif sys.argv[1]== "--exeFlask":
             print("Aquí ejecutar el comando necesario para poder hacer el ejecutable del flask")
         elif sys.argv[1]== "--help":
-            os.system("clear")
-            cadeInstall= "Para instalar todas las dependencias necesarias del programa"
-            cadeExe= "Para crear el ejecutable con pyinstaller para el back end de flask"
-            commPython= ""
-
-            if sistema== "Windows":
-                commPython= "python"
-            else:
-                commPython= "python3"
-
-            print(f"\n\n\n{commPython} InstalacionBase.py --install: {cadeInstall}")
-            print(f"\n{commPython} InstalacionBase.py --exeFlask: {cadeExe}")
-            print(f"\n{commPython} InstalacionBase.py --help: Para mostrar el presente panel de ayuda\n")
+            help(sistema)
         else:
             print("No ingresaste ningún comando válido")
     else:

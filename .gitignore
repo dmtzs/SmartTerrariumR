@@ -3,3 +3,4 @@ Terrario.pdf
 __pycache__
 node_modules
 *.scss
+.vscode

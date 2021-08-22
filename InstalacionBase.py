@@ -59,6 +59,10 @@ def main(sistema):
             help(sistema)
         else:
             print("No ingresaste ningún comando válido")
+            if sistema== "Windows":
+                print("Ingresa python InstalacionesBase.py --help para ver la ayuda disponible")
+            else:
+                print("Ingresa python3 InstalacionesBase.py --help para ver la ayuda disponible")
     else:
         print("Solo se puede recibir un argumento, no más y no menos")
 

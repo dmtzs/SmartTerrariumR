@@ -3,7 +3,7 @@ try:
     import platform
     import sys
 except ImportError as eImp:
-    print(f"The following import error ocurred: {eImp}")
+    print(f"Ocurrió el siguiente error de importación: {eImp}")
 
 # @Description: Method that returns the system and a shell command in order to clean the terminal in which this program is executed.
 def ShellAndSystem():
@@ -72,8 +72,8 @@ if __name__ == "__main__":
         os.system(comShell)
         main(sistema)
     except Exception as ex:
-        print(f"The following error ocurred: {ex}")
+        print(f"Ocurrió el siguiente error: {ex}")
     except KeyboardInterrupt:
-        print("Se presiono Ctrl+c, finalizando programa con ejecución incorrecta")
+        print("Se presiono Ctrl+C, finalizando programa con ejecución incorrecta")
     finally:
         print("Finalizando ejecución de programa")

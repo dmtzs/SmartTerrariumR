@@ -13,11 +13,13 @@ def ShellAndSystem():
         return "cls", sistema
     else:
         return "clear", sistema
+
 # @Description: Method used to execute the commands that were sent by the main method
 def execComands(comandsExec):
     for comm in comandsExec:
         os.system(comm)
 
+# @Description: Method for install all the dependencies we need in order to make the program work in the way its supposed to be.
 def installBase(sistema):
     # @Description: Variables that contains commands according to the operative system that the program is being executed
     comandosLinux= ["sudo apt update", "sudo apt upgrade", "sudo apt install python3-pip", "pip3 install -r requirements.txt", "sudo apt install nodejs",
@@ -32,6 +34,7 @@ def installBase(sistema):
     else:
         print("This program can be executed only in Windows and Linux operative systems")
 
+# @Description: Method in which you can see the help in order to know how to use the present program in the correct way.
 def help(sistema):
     os.system("clear")
     cadeInstall= "Para instalar todas las dependencias necesarias del programa"
@@ -47,6 +50,7 @@ def help(sistema):
     print(f"\n{commPython} InstalacionBase.py --exeFlask: {cadeExe}")
     print(f"\n{commPython} InstalacionBase.py --help: Para mostrar el presente panel de ayuda\n")
 
+# @Description: Method which calls all the other methods of this script, this is like the brain.
 def main(sistema):
     lenargv= len(sys.argv)
 

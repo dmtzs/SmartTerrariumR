@@ -43,10 +43,9 @@ void setupProyecto()
  */
 void sensorSumergible()
 {
-  /*
   submersibleSensor.requestTemperatures();
-  TH[0]= submersibleSensor.getTempCByIndex(0);*/
-  TH[0] = random(50);
+  TH[0]= submersibleSensor.getTempCByIndex(0);
+  //TH[0] = random(50);
 }
 
 /*
@@ -56,7 +55,6 @@ void sensorSumergible()
 */
 void floatingSensor()
 {
-  /*
   //For floating water sensor
   if(digitalRead(sensorFlotador) == HIGH)
   {
@@ -65,8 +63,8 @@ void floatingSensor()
   else
   {
     statusFlotador = 0;
-  }*/
-  statusFlotador = random(2);
+  }
+  //statusFlotador = random(2);
 }
 
 /*
@@ -76,12 +74,11 @@ void floatingSensor()
 */
 void TempHum()
 {
-  /*
   TH[1]= dht.readTemperature();
   TH[2]= dht.readHumidity();
-  */
-  TH[1]= random(50);
-  TH[2]= random(50);
+  
+  /*TH[1]= random(50);
+  TH[2]= random(50);*/
 }
 // ------------------------------------------------------------------------------ //
 // ------------------------------------------------------------------------------ //

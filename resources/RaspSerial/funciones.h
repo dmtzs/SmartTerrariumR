@@ -7,11 +7,15 @@
 void setupProyecto();
 void sendSerialRasp();
 void eventoSerial();
+
+//Automatic functions
 void humedecerTerrarioAuto();
 void reserveWaterAuto();
 void focosEncendidosAuto();
 void rellenarBebederoAuto();
-//No se las de abajo para qué sean
+void focosEncendidosAuto();
+
+//Functions for the sensors of humidity and temperatures.
 void floatingSensor();
 void sensorSumergible();
 void TempHum();

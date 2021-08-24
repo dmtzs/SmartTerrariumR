@@ -323,18 +323,17 @@ void reserveWaterAuto()
  * @Author: Diego Martínez Sánchez
  * @Description: Function for turning on the correct bulbs according to the day, if its at night then it will turns on the night bulb and if not the day bulb.
  */
- /*
- void focosEncendidosAuto(float tempDHT)
+ void focosEncendidosAuto()
  {
-  if (tempDHT < rangoTempDHT)
+  if (TH[1] < rangoTempDHT)//Poner la validacion con el del reloj.
   {
-    if (dia == 1 && noche == 0)
+    if (dia_noche== 1)
     {
       //Encender el foco de día, falta definir pin
       digitalWrite(focoDia, HIGH);
       digitalWrite(focoNoche, LOW);
     }
-    else if (noche == 1 && dia == 0)
+    else if (dia_noche== 0)
     {
       //Encender el foco de noche, falta definir pin
       digitalWrite(focoNoche, HIGH);
@@ -354,8 +353,6 @@ void reserveWaterAuto()
     digitalWrite(focoNoche, LOW);
   }
  }
- */
-
 
  /*
  * @Author: Diego Martínez Sánchez
@@ -372,4 +369,3 @@ void reserveWaterAuto()
  
 // ------------------------------------------------------------------------------ //
 // ------------------------------------------------------------------------------ //
- 

@@ -22,7 +22,7 @@ void loop()
   
   //inicio();//Descomentar cuando esté todo armado y hecho
   if (currentMillis - previousMillis >= interval){
-    floatingSensor();//Por qué se llama a esta función, ya no recuerdo
+    floatingSensor();
     previousMillis = currentMillis;
     secondInterval++;
     if (secondInterval == 5){
@@ -33,7 +33,11 @@ void loop()
   }
 
   if(automatico == 1){
-//  Serial.println(automatico  
+    humedecerTerrarioAuto();
+    reserveWaterAuto();
+    focosEncendidosAuto();
+    rellenarBebederoAuto();
+    focosEncendidosAuto();
   }
 
   sendSerialRasp();

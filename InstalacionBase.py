@@ -21,9 +21,9 @@ def execComands(comandsExec):
 def installBase(sistema):
     # @Description: Variables that contains commands according to the operative system that the program is being executed
     comandosLinux= ["sudo apt update", "sudo apt upgrade", "sudo apt install python3-pip", "pip3 install -r requirements.txt", "sudo apt install nodejs",
-                    "sudo apt install npm", "npm install electron wait-port --save -prod", "sudo usermod -a -G dialout $USER"]
+                    "sudo apt install npm", "npm install electron wait-port --save-prod", "sudo usermod -a -G dialout $USER"]
     
-    comandosWindows= ["pip install -r requirements.txt", "npm install electron wait-port --save -prod"]
+    comandosWindows= ["pip install -r requirements.txt", "npm install electron wait-port --save-prod"]
 
     if sistema== "Windows":
         execComands(comandosWindows)

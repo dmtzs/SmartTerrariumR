@@ -37,7 +37,7 @@ All this in order to be showed through a display connected to the raspberry.
 * The model of the raspberry is pi4 B+.
 * You can use raspberry models like pi3 and pi3 B but are not still tested in this ones.
 * USB cable for connect both boards between them.
-* Execute the command below in order to install all python libraries in order to install all configuration needed for this project and to create the flask executable. Also the flag --help will give you the same instructions about which flags are allowed by the program InstalacionBase python file
+* Execute the command below in order to install all python libraries and all configuration needed for this project and to create the flask executable. Also the flag --help will give you the same instructions about which flags are allowed by the program InstalacionBase python file
 ```
 python3 InstalacionBase.py --help
 ```

@@ -34,6 +34,10 @@ def installBase(sistema):
     else:
         print("This program can be executed only in Windows and Linux operative systems")
 
+def ExeFlask():
+    os.system('pyinstaller --noconfirm --onefile --console  "./resources/Flask/main.py"')# Preguntar a memo si es así el comando para crear el ejecutable
+    #Falta posteriormente borrar todas las carpetas de flask y en donde almacena el ejecutable el comando.
+
 # @Description: Method in which you can see the help in order to know how to use the present program in the correct way.
 def help(sistema):
     os.system("clear")
@@ -58,7 +62,8 @@ def main(sistema):
         if sys.argv[1]== "--install":
             installBase(sistema)
         elif sys.argv[1]== "--exeFlask":
-            print("Aquí ejecutar el comando necesario para poder hacer el ejecutable del flask")
+            print("La función sigue en desarrollo")
+            #ExeFlask()
         elif sys.argv[1]== "--help":
             help(sistema)
         else:

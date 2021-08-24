@@ -41,7 +41,7 @@ int automatico = 0;                //0 manual y 1 automatic.
 int statusFlotador = 0;            //State of the drinker. 1 = lleno, 0 = no lleno
 int inicioConf, finConf;                   //For comma separated values.
 float rangoHumedad = 0, rangoTempReservaAgua = 0, rangoTempDHT = 0;
-float* TH = new float[3];          //Metrics of the sensors to be sent thropugh serial.
+float* TH = new float[3];          //Metrics of the sensors to be sent through serial.
 float* confValues= new float[3];   //For the values of the vonf flag
 
 

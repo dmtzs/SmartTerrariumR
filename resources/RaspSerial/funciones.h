@@ -7,10 +7,11 @@
 void setupProyecto();
 void sendSerialRasp();
 void eventoSerial();
+void humedecerTerrarioAuto();
+void reserveWaterAuto();
+void focosEncendidosAuto();
+void rellenarBebederoAuto();
+//No se las de abajo para qué sean
 void floatingSensor();
-void TempHum();
 void sensorSumergible();
-void humedecerTerrario(float hum);
-void reserveWater(float tempSub);
-void focosEncendidosAutomatico(float tempDHT);
-void rellenarBebedero(String estadoFlotador);
+void TempHum();

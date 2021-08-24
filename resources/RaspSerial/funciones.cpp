@@ -306,10 +306,10 @@ void humedecerTerrarioAuto()
  * @Author: Diego Martínez Sánchez
  * @Description: Function for keeping warm the water of the reserve water.
  */
-void reserveWater(float tempSub)
+void reserveWaterAuto()
 {
   //Descomentar cuando se reciba el rango de la temperatura a la que se desea mantener la reserva de agua desde la raspberry.
-  if (tempSub < rangoTempReservaAgua)
+  if (TH[0] < rangoTempReservaAgua)
   {
     digitalWrite(calentarAguaReserva, HIGH);
   }
@@ -324,7 +324,7 @@ void reserveWater(float tempSub)
  * @Description: Function for turning on the correct bulbs according to the day, if its at night then it will turns on the night bulb and if not the day bulb.
  */
  /*
- void focosEncendidosAutomatico(float tempDHT)
+ void focosEncendidosAuto(float tempDHT)
  {
   if (tempDHT < rangoTempDHT)
   {

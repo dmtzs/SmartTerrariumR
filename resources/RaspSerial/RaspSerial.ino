@@ -22,7 +22,7 @@ void loop()
   
   //inicio();//Descomentar cuando esté todo armado y hecho
   if (currentMillis - previousMillis >= interval){
-    floatingSensor();
+    floatingSensor();//Por qué se llama a esta función, ya no recuerdo
     previousMillis = currentMillis;
     secondInterval++;
     if (secondInterval == 5){

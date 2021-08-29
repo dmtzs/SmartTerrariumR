@@ -34,10 +34,6 @@ def installBase(sistema):
     else:
         print("This program can be executed only in Windows and Linux operative systems")
 
-def ExeFlask():
-    os.system('pyinstaller --noconfirm --onefile --console  "./resources/Flask/main.py"')# Preguntar a memo si es así el comando para crear el ejecutable
-    #Falta posteriormente borrar todas las carpetas de flask y en donde almacena el ejecutable el comando.
-
 # @Description: Method in which you can see the help in order to know how to use the present program in the correct way.
 def help(sistema):
     os.system("clear")
@@ -54,6 +50,20 @@ def help(sistema):
     print(f"\n{commPython} InstalacionBase.py --exeFlask: {cadeExe}")
     print(f"\n{commPython} InstalacionBase.py --help: Para mostrar el presente panel de ayuda\n")
 
+# Description: Method to create the executable file in order to protect more the code.
+def ExeFlask(sistema):
+    rmFolders= ["resources", "Extras", ".vscode"]
+
+    os.system('pyinstaller --noconfirm --onefile --console  "./resources/Flask/main.py"')# Preguntar a memo si es así el comando para crear el ejecutable
+    # Falta crear el ejecutable del flask y de igual manera mover el ejecutable a la carpeta principal como lo habíamos hecho antes.
+    if sistema== "Windows":
+        for folder in rmFolders:
+            os.system(f"RMDIR /S {folder}")
+    elif sistema== "Linux":
+        pass
+    else:
+        print("No se puede ejecutar el programa en ambientes que no sean windows o linux")
+
 # @Description: Method which calls all the other methods of this script, this is like the brain.
 def main(sistema):
     lenargv= len(sys.argv)
@@ -63,7 +73,7 @@ def main(sistema):
             installBase(sistema)
         elif sys.argv[1]== "--exeFlask":
             print("La función sigue en desarrollo")
-            #ExeFlask()
+            #ExeFlask(sistema)
         elif sys.argv[1]== "--help":
             help(sistema)
         else:
@@ -74,6 +84,10 @@ def main(sistema):
                 print("Ingresa python3 InstalacionesBase.py --help para ver la ayuda disponible")
     else:
         print("Solo se puede recibir un argumento, no más y no menos")
+        if sistema== "Windows":
+            print("Intenta con python InstalacionesBase.py --help")
+        else:
+            print("Intenta con python3 InstalacionesBase.py --help")
 
 if __name__ == "__main__":
     try:

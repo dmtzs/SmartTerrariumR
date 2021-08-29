@@ -64,3 +64,6 @@ Algo común es realizar el manejo de versiones mediante 3 números: X.Y.Z y cada
 
 ## Comando comentarios adicionales desde terminal git
 - git commit -m "Title" -m "Description .........."
+
+## Crear ejecutable para el flask
+- Por definir

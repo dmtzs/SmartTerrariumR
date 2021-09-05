@@ -57,6 +57,7 @@ def ExeFlask(sistema):
 
     os.system('pyinstaller --noconfirm --onefile --console --name "Server" --icon "./resources/Imgs/server.ico" "./resources/Flask/main.py"')# Preguntar a memo si es así el comando para crear el ejecutable
     # Falta crear el ejecutable del flask y de igual manera mover el ejecutable a la carpeta principal como lo habíamos hecho antes.
+    # Falta saber qué archivos mover que necesitemos no estén incluidos en la parte del ejecutable.
     if sistema== "Windows":
         for folder in rmFolders:
             shutil.rmtree(f"./{folder}")

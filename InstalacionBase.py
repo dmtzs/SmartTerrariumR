@@ -2,6 +2,7 @@ try:
     import os
     import platform
     import sys
+    import shutil
 except ImportError as eImp:
     print(f"Ocurrió el siguiente error de importación: {eImp}")
 
@@ -54,11 +55,11 @@ def help(sistema):
 def ExeFlask(sistema):
     rmFolders= ["resources", "Extras", ".vscode"]
 
-    os.system('pyinstaller --noconfirm --onefile --console  "./resources/Flask/main.py"')# Preguntar a memo si es así el comando para crear el ejecutable
+    os.system('pyinstaller --noconfirm --onefile --console --name "Server" --icon "./resources/Imgs/server.ico" "./resources/Flask/main.py"')# Preguntar a memo si es así el comando para crear el ejecutable
     # Falta crear el ejecutable del flask y de igual manera mover el ejecutable a la carpeta principal como lo habíamos hecho antes.
     if sistema== "Windows":
         for folder in rmFolders:
-            os.system(f"RMDIR /S {folder}")
+            shutil.rmtree(f"./{folder}")
     elif sistema== "Linux":
         pass
     else:

@@ -53,16 +53,14 @@ def help(sistema):
 
 # Description: Method to create the executable file in order to protect more the code.
 def ExeFlask(sistema):
-    rmFolders= ["resources", "Extras", ".vscode"]
-    
+    rmFolders= ["RaspSerial", "Flask", "build", "dist", "Extras", ".vscode"]
+
     os.system('pyinstaller --noconfirm --onefile --windowed --name "Server" --icon "./resources/Imgs/serverIco.ico" --add-data "./resources/Flask/static;static/" --add-data "./resources/Flask/templates;templates/" "./resources/Flask/main.py"')
-    # Falta crear el ejecutable del flask y de igual manera mover el ejecutable a la carpeta principal como lo habíamos hecho antes.
-    # Falta saber qué archivos mover que necesitemos no estén incluidos en la parte del ejecutable.
-    if sistema== "Windows":
-        for folder in rmFolders:
-            shutil.rmtree(f"./{folder}")
-    elif sistema== "Linux":
-        pass
+    
+    # Falta borrar las carpetas que no sean necesarias después de la creación del ejecutable.
+    shutil.move("./resources/Flask/dist/Server.exe", "./")
+    for folder in rmFolders:
+        shutil.rmtree(f"./{folder}")
     else:
         print("No se puede ejecutar el programa en ambientes que no sean windows o linux")
 

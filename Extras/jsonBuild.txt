@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "postinstall": "install-app-deps",
-    "start": "npm install && electron .",
+    "start": "electron .",
     "pack": "electron-builder --dir",
     "dist": "electron-builder"
   },
@@ -22,18 +22,21 @@
     "appId": "com.rasp.terrarium",
     "productName": "Terrautomaton",
     "directories": {
-      "output": "dist",
-      "buildResources": "Flask"
+      "output": "Terrautomaton"
     },
-    "files": [
-      "**/*"
-    ],
     "extraResources": [
       {
-        "from": "resources/Flask",
-        "to": "Flask",
+        "from": "resources/",
+        "to": "resources/",
         "filter": [
-          "**/*"
+          "appData.json"
+        ]
+      },
+      {
+        "from": "resources/Flask/dist/",
+        "to": "./",
+        "filter": [
+          "Server.exe"
         ]
       }
     ],
@@ -49,14 +52,14 @@
     },
     "win": {
       "target": "NSIS",
-      "icon": "build/icon.ico"
+      "icon": "resources/Imgs/BoaEsmeraldaApp.ico"
     }
   },
-  "dependencies": {},
-  "devDependencies": {
-    "electron": "latest",
-    "electron-builder": "latest",
-    "process": "^0.11.10",
+  "dependencies": {
     "wait-port": "^0.2.9"
+  },
+  "devDependencies": {
+    "electron": "^14.0.0",
+    "electron-builder": "^22.11.7"
   }
 }

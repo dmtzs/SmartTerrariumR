@@ -56,7 +56,10 @@ def ExeFlask(sistema):
     rmFolders= [("RaspSerial", "Flask"), ("Extras", ".vscode")]
 
     os.system('pyinstaller --noconfirm --onefile --windowed --name "Server" --icon "./resources/Imgs/serverIco.ico" --add-data "./resources/Flask/static;static/" --add-data "./resources/Flask/templates;templates/" "./resources/Flask/main.py"')
-    shutil.move("./resources/Flask/dist/Server.exe", "./")
+    shutil.move("./resources/Flask/dist/Server.exe", "./Server.exe")
+    os.system("npm run dist")
+    shutil.move("./Server.exe", "./Terrautomaton/win-unpacked/Server.exe")
+    # Borrar el resto de carpetas y archivos que no estén dentro de Terrautomaton
     for h in range(len(rmFolders)):
         for folder in rmFolders[h]:
             if h== 0:

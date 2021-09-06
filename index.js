@@ -14,7 +14,7 @@ let OSName = process.platform;
 
 var childString = "nothing";
 if (OSName === "win32") {
-	childString = "python resources/Flask/main.py";
+	childString = "Server.exe";
 }
 if (OSName === "linux") {
 	childString = "python3 resources/Flask/main.py";
@@ -68,7 +68,9 @@ const createLoadingScreen = () => {
 		})
 	);
 	loadingScreen.setResizable(false);
-	loadingScreen.loadURL("file://" + __dirname + "/resources/Flask/templates/loading.html");
+	loadingScreen.loadURL(
+		"file://" + __dirname + "/resources/Flask/templates/loading.html"
+	);
 	loadingScreen.on("closed", () => (loadingScreen = null));
 	loadingScreen.once("ready-to-show", () => {
 		loadingScreen.show();
@@ -141,7 +143,7 @@ app.on("activate", () => {
 app.on("window-all-closed", () => {
 	if (process.platform !== "darwin") {
 		if (OSName === "win32") {
-			exec('taskkill /IM "python.exe" /F');
+			exec('taskkill /IM "Server.exe" /F');
 		}
 		if (OSName === "linux") {
 			exec('pkill -xf "python3 resources/Flask/main.py"');
@@ -152,7 +154,7 @@ app.on("window-all-closed", () => {
 
 ipcMain.on("window-close", () => {
 	if (OSName === "win32") {
-		exec('taskkill /IM "python.exe" /F');
+		exec('taskkill /IM "Server.exe" /F');
 	}
 	if (OSName === "linux") {
 		exec('pkill -xf "python3 resources/Flask/main.py"');

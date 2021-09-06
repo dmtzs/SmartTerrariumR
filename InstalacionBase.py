@@ -54,8 +54,9 @@ def help(sistema):
 # Description: Method to create the executable file in order to protect more the code of the flask and also to create the package of the electron including all code.
 def ExeFlask(sistema):
     rmFolders= [("RaspSerial", "Flask"), ("Extras", ".vscode")]
+    comPyinstaller= 'pyinstaller --noconfirm --onefile --windowed --name "Server" --icon "./resources/Imgs/serverIco.ico" --add-data "./resources/Flask/static;static/" --add-data "./resources/Flask/templates;templates/" "./resources/Flask/main.py"'
 
-    os.system('pyinstaller --noconfirm --onefile --windowed --name "Server" --icon "./resources/Imgs/serverIco.ico" --add-data "./resources/Flask/static;static/" --add-data "./resources/Flask/templates;templates/" "./resources/Flask/main.py"')
+    os.system(comPyinstaller)
     shutil.move("./resources/Flask/dist/Server.exe", "./Server.exe")
     os.system("npm run dist")
     shutil.move("./Server.exe", "./Terrautomaton/win-unpacked/Server.exe")

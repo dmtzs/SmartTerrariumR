@@ -8,7 +8,7 @@ try:
     from datetime import datetime
     from gevent import monkey
     monkey.patch_all()
-except Exception as eImp:
+except ImportError as eImp:
     print(f"Ocurrió el error de importación: {eImp}")
 
 #---------------------------------Variables and objects------------------------------------#

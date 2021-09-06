@@ -14,7 +14,7 @@
     "url": "git+https://github.com/dmtzs/ProyectoRaspArduino.git"
   },
   "author": "Diego and Guillermo",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/dmtzs/ProyectoRaspArduino/issues"
   },

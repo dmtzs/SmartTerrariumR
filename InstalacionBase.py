@@ -51,16 +51,18 @@ def help(sistema):
     print(f"\n{commPython} InstalacionBase.py --exeFlask: {cadeExe}")
     print(f"\n{commPython} InstalacionBase.py --help: Para mostrar el presente panel de ayuda\n")
 
-# Description: Method to create the executable file in order to protect more the code.
+# Description: Method to create the executable file in order to protect more the code of the flask and also to create the package of the electron including all code.
 def ExeFlask(sistema):
-    rmFolders= ["RaspSerial", "Flask", "build", "dist", "Extras", ".vscode"]
+    rmFolders= [("RaspSerial", "Flask"), ("Extras", ".vscode")]
 
     os.system('pyinstaller --noconfirm --onefile --windowed --name "Server" --icon "./resources/Imgs/serverIco.ico" --add-data "./resources/Flask/static;static/" --add-data "./resources/Flask/templates;templates/" "./resources/Flask/main.py"')
-    
-    # Falta borrar las carpetas que no sean necesarias después de la creación del ejecutable.
     shutil.move("./resources/Flask/dist/Server.exe", "./")
-    for folder in rmFolders:
-        shutil.rmtree(f"./{folder}")
+    for h in range(len(rmFolders)):
+        for folder in rmFolders[h]:
+            if h== 0:
+                shutil.rmtree(f"./resources/{folder}")
+            else:
+                shutil.rmtree(f"./{folder}")
     else:
         print("No se puede ejecutar el programa en ambientes que no sean windows o linux")
 

@@ -22,7 +22,7 @@
     "appId": "com.rasp.terrarium",
     "productName": "Terrautomaton",
     "directories": {
-      "output": "dist"
+      "output": "Terrautomaton"
     },
     "extraResources": [
       {
@@ -30,6 +30,13 @@
         "to": "resources/",
         "filter": [
           "appData.json"
+        ]
+      },
+      {
+        "from": "resources/Flask/dist/",
+        "to": "./",
+        "filter": [
+          "Server.exe"
         ]
       }
     ],

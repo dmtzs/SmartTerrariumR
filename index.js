@@ -14,7 +14,7 @@ let OSName = process.platform;
 
 var childString = "nothing";
 if (OSName === "win32") {
-	childString = "Server.exe";
+	childString = "resources/Server.exe";
 }
 if (OSName === "linux") {
 	childString = "python3 resources/Flask/main.py";

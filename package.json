@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "postinstall": "install-app-deps",
-    "start": "electron index.js"
+    "start": "electron .",
+    "pack": "electron-builder --dir",
+    "dist": "electron-builder"
   },
   "repository": {
     "type": "git",
@@ -16,8 +18,41 @@
   "bugs": {
     "url": "https://github.com/dmtzs/ProyectoRaspArduino/issues"
   },
+  "build": {
+    "appId": "com.rasp.terrarium",
+    "productName": "Terrautomaton",
+    "directories": {
+      "output": "dist"
+    },
+    "extraResources": [
+      {
+        "from": "resources/",
+        "to": "resources/",
+        "filter": [
+          "appData.json"
+        ]
+      }
+    ],
+    "nsis": {
+      "allowToChangeInstallationDirectory": "true",
+      "oneClick": "false"
+    },
+    "linux": {
+      "target": [
+        "AppImage",
+        "deb"
+      ]
+    },
+    "win": {
+      "target": "NSIS",
+      "icon": "resources/Imgs/BoaEsmeraldaApp.ico"
+    }
+  },
   "dependencies": {
-    "electron": "^13.2.2",
     "wait-port": "^0.2.9"
+  },
+  "devDependencies": {
+    "electron": "^14.0.0",
+    "electron-builder": "^22.11.7"
   }
 }

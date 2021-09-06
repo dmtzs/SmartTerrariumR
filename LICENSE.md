@@ -1,4 +1,4 @@
-# Personal semi free License
+# GDCode semi free License
 
 ## Copyright (c) 2021 Diego Martínez Sánchez and  Guillermo Ortega Romo
 

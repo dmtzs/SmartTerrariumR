@@ -1,8 +1,7 @@
 try:
-    import time
     import json
     import os
-except Exception as eImp:
+except ImportError as eImp:
     print(f"Ocurrió el error de importación: {eImp}")
 
 # @Description: Class for manage the json appData in order to be used in the app or to update the same json file.

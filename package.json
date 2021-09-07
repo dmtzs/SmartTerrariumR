@@ -13,7 +13,7 @@
     "type": "git",
     "url": "git+https://github.com/dmtzs/ProyectoRaspArduino.git"
   },
-  "author": "Diego and Guillermo",
+  "author": "Diego and Guillermo <gd-code@outlook.com>",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/dmtzs/ProyectoRaspArduino/issues"

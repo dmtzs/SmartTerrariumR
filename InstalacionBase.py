@@ -23,8 +23,9 @@ def execComands(comandsExec):
 # @Description: Method for install all the dependencies we need in order to make the program work in the way its supposed to be.
 def installBase(sistema):
     # @Description: Variables that contains commands according to the operative system that the program is being executed
-    comandosLinux= ["sudo apt update", "sudo apt upgrade", "sudo apt install python3-pip", "pip3 install -r requirements.txt", "sudo apt install nodejs",
-                    "sudo apt install npm", "npm install wait-port --save-prod", "npm install electron electron-builder --save-dev", "sudo usermod -a -G dialout $USER"]
+    comandosLinux= ["sudo apt update", "sudo apt upgrade", "sudo apt install python3-pip", "pip3 install -r requirements.txt", "sudo apt install curl",
+                    "curl -sL https://deb.nodesource.com/setup_14.x | sudo bash -", "cat /etc/apt/sources.list.d/nodesource.list", "sudo apt install -y nodejs",
+                    "npm install wait-port --save-prod", "npm install electron electron-builder --save-dev", "sudo usermod -a -G dialout $USER"]
     
     comandosWindows= ["pip install -r requirements.txt", "npm install electron wait-port --save-prod"]
 

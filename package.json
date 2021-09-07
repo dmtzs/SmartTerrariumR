@@ -20,9 +20,9 @@
   },
   "build": {
     "appId": "com.rasp.terrarium",
-    "productName": "Terrautomaton",
+    "productName": "TerrariumApp",
     "directories": {
-      "output": "Terrautomaton"
+      "output": "TerrariumApp"
     },
     "extraResources": [
       {

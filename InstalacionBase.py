@@ -60,7 +60,7 @@ def ExeFlask(sistema):
     os.system(comPyinstaller)
     shutil.move("./resources/Flask/dist/Server.exe", "./Server.exe")
     os.system("npm run dist")
-    shutil.move("./Server.exe", "./Terrautomaton/win-unpacked/Server.exe")
+    shutil.move("./Server.exe", "./TerrariumApp/win-unpacked/Server.exe")#Si es en linux es linux-unpacked y el icono es un png de 256x256
     # Borrar el resto de carpetas y archivos que no estén dentro de Terrautomaton
     for h in range(len(rmFolders)):
         for folder in rmFolders[h]:

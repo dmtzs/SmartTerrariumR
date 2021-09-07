@@ -54,13 +54,16 @@ def help(sistema):
 
 # Description: Method to create the executable file in order to protect more the code of the flask and also to create the package of the electron including all code.
 def ExeFlask(sistema):
-    rmFolders= [("RaspSerial", "Flask"), ("Extras", ".vscode")]
+    rmFolders= [("RaspSerial", "Flask", "Imgs"), ("Extras", ".vscode")]
     comPyinstaller= 'pyinstaller --noconfirm --onefile --windowed --name "Server" --icon "./resources/Imgs/serverIco.ico" --add-data "./resources/Flask/static;static/" --add-data "./resources/Flask/templates;templates/" "./resources/Flask/main.py"'
 
     os.system(comPyinstaller)
-    shutil.move("./resources/Flask/dist/Server.exe", "./Server.exe")
     os.system("npm run dist")
-    shutil.move("./Server.exe", "./TerrariumApp/win-unpacked/Server.exe")#Si es en linux es linux-unpacked y el icono es un png de 256x256
+
+    if sistema== "Windows":
+        shutil.move("./Server.exe", "./TerrariumApp/win-unpacked/Server.exe")#Si es en linux el icono es un png de 256x256
+    else:
+        shutil.move("./Server.exe", "./TerrariumApp/linux-unpacked/Server.exe")
     # Borrar el resto de carpetas y archivos que no estén dentro de Terrautomaton
     for h in range(len(rmFolders)):
         for folder in rmFolders[h]:

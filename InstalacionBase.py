@@ -49,7 +49,7 @@ def help(sistema):
         commPython= "python3"
 
     print(f"\n\n\n{commPython} InstalacionBase.py --install: {cadeInstall}")
-    print(f"\n{commPython} InstalacionBase.py --exeFlask: {cadeExe}")
+    print(f"\n{commPython} InstalacionBase.py --exes: {cadeExe}")
     print(f"\n{commPython} InstalacionBase.py --help: Para mostrar el presente panel de ayuda\n")
 
 # Description: A complementary method for the ExeFlask method that returns strings with ; or : according to its operating system in which the script is running.
@@ -115,7 +115,7 @@ def main(sistema):
         if sys.argv[1]== "--install":
             installBase(sistema)
 
-        elif sys.argv[1]== "--exeFlask":
+        elif sys.argv[1]== "--exes":
             ExeFlask(sistema)
 
         elif sys.argv[1]== "--help":

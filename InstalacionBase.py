@@ -62,24 +62,19 @@ def cadesExeFlask(bandeLocal):
 
 # Description: A complementary method for the ExeFlask method that runs a for loop in order to be executed only if the script is been running in a windows or linux environment.
 def loopForExeFlask():
-    resFolders= ("RaspSerial", "Flask", "Imgs")
-    mainFolders= ("Extras", ".vscode", "dist")
-    archsNo= (".gitattributes", ".gitignore", "LICENSE.md", "package-lock.json", "package.json", "README.md", "requirements.txt")
-    rmFolders= [resFolders, mainFolders, archsNo]
+    #resFolders= ("RaspSerial", "Flask", "Imgs")
+    mainFolders= ("Extras", ".vscode", "dist", "build", "resources", "node_modules", ".git")
+    archsNo= (".gitattributes", ".gitignore", "LICENSE.md", "package-lock.json", "package.json", "README.md", "requirements.txt", "index.js", "Server.spec")
+    #rmFolders= [resFolders, mainFolders, archsNo]
+    rmFolders= [mainFolders, archsNo]
 
     for h in range(len(rmFolders)):
         for folder in rmFolders[h]:
             if h== 0:
-                shutil.rmtree(f"./resources/{folder}")
-            elif h== 1:
                 shutil.rmtree(f"./{folder}")
             else:
-                rmArchs= f"./resources/{folder}"
-                if os.path.isfile(rmArchs):
-                    os.remove(rmArchs)
-                else:
-                    rmArchs= f"./{folder}"
-                    os.remove(rmArchs)
+                rmArchs= f"./{folder}"
+                os.remove(rmArchs)
 
 # Description: Method to create the executable file in order to protect more the code of the flask and also to create the package of the electron including all code.
 def ExeFlask(sistema):

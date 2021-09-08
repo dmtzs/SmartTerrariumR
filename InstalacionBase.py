@@ -55,16 +55,27 @@ def help(sistema):
 # Description: Method to create the executable file in order to protect more the code of the flask and also to create the package of the electron including all code.
 def ExeFlask(sistema):
     rmFolders= [("RaspSerial", "Flask", "Imgs"), ("Extras", ".vscode")]
-    comPyinstaller= 'pyinstaller --noconfirm --onefile --windowed --name "Server" --icon "./resources/Imgs/serverIco.ico" --add-data "./resources/Flask/static;static/" --add-data "./resources/Flask/templates;templates/" "./resources/Flask/main.py"'
-
-    os.system(comPyinstaller)
-    os.system("npm run dist")
+    banderasPyinstaller= "--noconfirm --onefile --windowed"
+    nomApp= '--name "Server"'
+    icono= '--icon "./resources/Imgs/serverIco.ico"'
+    archPrinFlask= "./resources/Flask/main.py"
 
     if sistema== "Windows":
-        shutil.move("./Server.exe", "./TerrariumApp/win-unpacked/Server.exe")#Si es en linux el icono es un png de 256x256
-    else:
-        shutil.move("./Server.exe", "./TerrariumApp/linux-unpacked/Server.exe")
-    # Borrar el resto de carpetas y archivos que no estén dentro de Terrautomaton
+        static= "./resources/Flask/static;static/"
+        templates= "./resources/Flask/templates;templates/"
+        comPyinstaller= f'pyinstaller {banderasPyinstaller} {nomApp} {icono} --add-data "{static}" --add-data "{templates}" "{archPrinFlask}"'
+        os.system(comPyinstaller)
+        os.system("npm run dist")
+        shutil.move("./dist/Server.exe", "./TerrariumApp/win-unpacked/Server.exe")#Falta revisar la forma en que los crea en windows
+
+    elif sistema== "Linux":
+        static= "./resources/Flask/static:static/"
+        templates= "./resources/Flask/templates:templates/"
+        comPyinstaller= f'pyinstaller {banderasPyinstaller} {nomApp} {icono} --add-data "{static}" --add-data "{templates}" "{archPrinFlask}"'
+        os.system(comPyinstaller)
+        os.system("npm run dist")
+        shutil.move("./dist/Server", "./TerrariumApp/linux-unpacked/Server")#If its in linux the icon should be a png of 256x256
+    
     for h in range(len(rmFolders)):
         for folder in rmFolders[h]:
             if h== 0:
@@ -81,17 +92,20 @@ def main(sistema):
     if lenargv== 2:
         if sys.argv[1]== "--install":
             installBase(sistema)
+
         elif sys.argv[1]== "--exeFlask":
-            print("La función sigue en desarrollo")
-            #ExeFlask(sistema)
+            ExeFlask(sistema)
+
         elif sys.argv[1]== "--help":
             help(sistema)
+
         else:
             print("No ingresaste ningún comando válido")
             if sistema== "Windows":
                 print("Ingresa python InstalacionesBase.py --help para ver la ayuda disponible")
             else:
                 print("Ingresa python3 InstalacionesBase.py --help para ver la ayuda disponible")
+
     else:
         print("Solo se puede recibir un argumento, no más y no menos")
         if sistema== "Windows":

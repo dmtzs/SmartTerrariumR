@@ -41,7 +41,8 @@
       "target": [
         "AppImage",
         "deb"
-      ]
+      ],
+      "icon": "resources/Imgs/Boapng.png"
     },
     "win": {
       "target": "NSIS",

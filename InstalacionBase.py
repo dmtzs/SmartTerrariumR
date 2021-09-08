@@ -52,36 +52,48 @@ def help(sistema):
     print(f"\n{commPython} InstalacionBase.py --exeFlask: {cadeExe}")
     print(f"\n{commPython} InstalacionBase.py --help: Para mostrar el presente panel de ayuda\n")
 
-# Description: Method to create the executable file in order to protect more the code of the flask and also to create the package of the electron including all code.
-def ExeFlask(sistema):
+# Description: A complementary method for the ExeFlask method that returns strings with ; or : according to its operating system in which the script is running.
+def cadesExeFlask(bandeLocal):
+    if bandeLocal== "w":
+        return "./resources/Flask/static;static/", "./resources/Flask/templates;templates/"
+        
+    elif bandeLocal== "l":
+        return "./resources/Flask/static:static/", "./resources/Flask/templates:templates/"
+
+# Description: A complementary method for the ExeFlask method that runs a for loop in order to be executed only if the script is been running in a windows or linux environment.
+def loopForExeFlask():
     rmFolders= [("RaspSerial", "Flask", "Imgs"), ("Extras", ".vscode")]
-    banderasPyinstaller= "--noconfirm --onefile --windowed"
-    nomApp= '--name "Server"'
-    icono= '--icon "./resources/Imgs/serverIco.ico"'
-    archPrinFlask= "./resources/Flask/main.py"
 
-    if sistema== "Windows":
-        static= "./resources/Flask/static;static/"
-        templates= "./resources/Flask/templates;templates/"
-        comPyinstaller= f'pyinstaller {banderasPyinstaller} {nomApp} {icono} --add-data "{static}" --add-data "{templates}" "{archPrinFlask}"'
-        os.system(comPyinstaller)
-        os.system("npm run dist")
-        shutil.move("./dist/Server.exe", "./TerrariumApp/win-unpacked/Server.exe")#Falta revisar la forma en que los crea en windows
-
-    elif sistema== "Linux":
-        static= "./resources/Flask/static:static/"
-        templates= "./resources/Flask/templates:templates/"
-        comPyinstaller= f'pyinstaller {banderasPyinstaller} {nomApp} {icono} --add-data "{static}" --add-data "{templates}" "{archPrinFlask}"'
-        os.system(comPyinstaller)
-        os.system("npm run dist")
-        shutil.move("./dist/Server", "./TerrariumApp/linux-unpacked/Server")#If its in linux the icon should be a png of 256x256
-    
     for h in range(len(rmFolders)):
         for folder in rmFolders[h]:
             if h== 0:
                 shutil.rmtree(f"./resources/{folder}")
             else:
                 shutil.rmtree(f"./{folder}")
+
+# Description: Method to create the executable file in order to protect more the code of the flask and also to create the package of the electron including all code.
+def ExeFlask(sistema):
+    banderasPyinstaller= "--noconfirm --onefile --windowed"
+    nomApp= '--name "Server"'
+    icono= '--icon "./resources/Imgs/serverIco.ico"'
+    archPrinFlask= "./resources/Flask/main.py"
+
+    if sistema== "Windows":
+        static, templates= cadesExeFlask("w")
+        comPyinstaller= f'pyinstaller {banderasPyinstaller} {nomApp} {icono} --add-data "{static}" --add-data "{templates}" "{archPrinFlask}"'
+        os.system(comPyinstaller)
+        os.system("npm run dist")
+        shutil.move("./dist/Server.exe", "./TerrariumApp/win-unpacked/Server.exe")#Falta revisar la forma en que los crea en windows
+        loopForExeFlask()
+
+    elif sistema== "Linux":
+        static, templates= cadesExeFlask("l")
+        comPyinstaller= f'pyinstaller {banderasPyinstaller} {nomApp} {icono} --add-data "{static}" --add-data "{templates}" "{archPrinFlask}"'
+        os.system(comPyinstaller)
+        os.system("npm run dist")
+        shutil.move("./dist/Server", "./TerrariumApp/linux-unpacked/Server")#If its in linux the icon should be a png of 256x256
+        loopForExeFlask()
+    
     else:
         print("No se puede ejecutar el programa en ambientes que no sean windows o linux")
 

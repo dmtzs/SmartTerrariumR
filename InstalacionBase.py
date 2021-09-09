@@ -83,7 +83,7 @@ def loopForExeFlask():
 def txtGithub():
     file= open("Repo.txt", "w")
     file.write("Ligas de repositorios\n")
-    file.write("SSH: git@github.com:dmtzs/ProyectoRaspArduino.git")
+    file.write("SSH: git@github.com:dmtzs/ProyectoRaspArduino.git\n")
     file.write("HTTPS: https://github.com/dmtzs/ProyectoRaspArduino.git")
     file.close()
 

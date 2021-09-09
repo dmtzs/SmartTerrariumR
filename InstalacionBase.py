@@ -76,6 +76,14 @@ def loopForExeFlask():
                 rmArchs= f"./{folder}"
                 os.remove(rmArchs)
 
+# Description: A function that creates at the end of the production configuration a txt file in which we will have two lines if we want to clone later again the repository.
+def txtGithub():
+    file= open("Repo.txt", "w")
+    file.write("Ligas de repositorios\n")
+    file.write("SSH: git@github.com:dmtzs/ProyectoRaspArduino.git")
+    file.write("HTTPS: https://github.com/dmtzs/ProyectoRaspArduino.git")
+    file.close()
+
 # Description: Method to create the executable file in order to protect more the code of the flask and also to create the package of the electron including all code.
 def ExeFlask(sistema):
     banderasPyinstaller= "--noconfirm --onefile --windowed"

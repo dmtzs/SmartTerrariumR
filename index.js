@@ -17,7 +17,7 @@ if (OSName === "win32") {
 	childString = "Server.exe";
 }
 if (OSName === "linux") {
-	childString = "./resources/Server";
+	childString = "./linux-unpacked/Server";
 }
 
 // const template= [
@@ -146,7 +146,7 @@ app.on("window-all-closed", () => {
 			exec('taskkill /IM "Server.exe" /F');
 		}
 		if (OSName === "linux") {
-			exec('pkill -xf "./resources/Server"');
+			exec('pkill -xf "./linux-unpacked/Server"');
 		}
 		app.quit();
 	}
@@ -157,7 +157,7 @@ ipcMain.on("window-close", () => {
 		exec('taskkill /IM "Server.exe" /F');
 	}
 	if (OSName === "linux") {
-		exec('pkill -xf "./resources/Server"');
+		exec('pkill -xf "./linux-unpacked/Server"');
 		//exec('reboot');
 	}
 	app.quit();

@@ -75,6 +75,9 @@ def loopForExeFlask():
             else:
                 rmArchs= f"./{folder}"
                 os.remove(rmArchs)
+    txtGithub()
+    global bandeProd
+    bandeProd= 1
 
 # Description: A function that creates at the end of the production configuration a txt file in which we will have two lines if we want to clone later again the repository.
 def txtGithub():
@@ -139,6 +142,8 @@ def main(sistema):
             print("Intenta con python3 InstalacionesBase.py --help")
 
 if __name__ == "__main__":
+    global bandeProd
+    bandeProd= 0
     try:
         comShell, sistema= ShellAndSystem()
         os.system(comShell)
@@ -149,3 +154,7 @@ if __name__ == "__main__":
         print("Se presiono Ctrl+C, finalizando programa con ejecución incorrecta")
     finally:
         print("Finalizando ejecución de programa")
+        if bandeProd== 0:
+            pass
+        else:
+            os.remove("InstalacionBase.py")

@@ -55,10 +55,10 @@ def help(sistema):
 # Description: A complementary method for the ExeFlask method that returns strings with ; or : according to its operating system in which the script is running.
 def cadesExeFlask(bandeLocal):
     if bandeLocal== "w":
-        return "./resources/Flask/static;static/", "./resources/Flask/templates;templates/"
+        return "./resources/Flask/static;static/", "./resources/Flask/templates;templates/", '--name "Server"'
         
     elif bandeLocal== "l":
-        return "./resources/Flask/static:static/", "./resources/Flask/templates:templates/"
+        return "./resources/Flask/static:static/", "./resources/Flask/templates:templates/", '--name "Server.exe"'
 
 # Description: A complementary method for the ExeFlask method that runs a for loop in order to be executed only if the script is been running in a windows or linux environment.
 def loopForExeFlask():
@@ -94,8 +94,7 @@ def ExeFlask(sistema):
     archPrinFlask= "./resources/Flask/main.py"
 
     if sistema== "Windows":
-        nomApp= '--name "Server"'
-        static, templates= cadesExeFlask("w")
+        static, templates, nomApp= cadesExeFlask("w")
         comPyinstaller= f'pyinstaller {banderasPyinstaller} {nomApp} {icono} --add-data "{static}" --add-data "{templates}" "{archPrinFlask}"'
         os.system(comPyinstaller)
         os.system("npm run dist")
@@ -103,8 +102,7 @@ def ExeFlask(sistema):
         loopForExeFlask()
 
     elif sistema== "Linux":
-        nomApp= '--name "Server.exe"'
-        static, templates= cadesExeFlask("l")
+        static, templates, nomApp= cadesExeFlask("l")
         comPyinstaller= f'pyinstaller {banderasPyinstaller} {nomApp} {icono} --add-data "{static}" --add-data "{templates}" "{archPrinFlask}"'
         os.system(comPyinstaller)
         os.system("npm run dist")

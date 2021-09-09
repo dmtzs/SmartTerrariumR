@@ -17,7 +17,7 @@ if (OSName === "win32") {
 	childString = "Server.exe";
 }
 if (OSName === "linux") {
-	childString = "python3 resources/Flask/main.py";
+	childString = "./resources/Server";
 }
 
 // const template= [
@@ -146,7 +146,7 @@ app.on("window-all-closed", () => {
 			exec('taskkill /IM "Server.exe" /F');
 		}
 		if (OSName === "linux") {
-			exec('pkill -xf "python3 resources/Flask/main.py"');
+			exec('pkill -xf "./resources/Server"');
 		}
 		app.quit();
 	}
@@ -157,7 +157,7 @@ ipcMain.on("window-close", () => {
 		exec('taskkill /IM "Server.exe" /F');
 	}
 	if (OSName === "linux") {
-		exec('pkill -xf "python3 resources/Flask/main.py"');
+		exec('pkill -xf "./resources/Server"');
 		//exec('reboot');
 	}
 	app.quit();

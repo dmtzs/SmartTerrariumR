@@ -106,7 +106,7 @@ def ExeFlask(sistema):
         comPyinstaller= f'pyinstaller {banderasPyinstaller} {nomApp} {icono} --add-data "{static}" --add-data "{templates}" "{archPrinFlask}"'
         os.system(comPyinstaller)
         os.system("npm run dist")
-        shutil.move("./dist/Server", "./TerrariumApp/linux-unpacked/Server")#If its in linux the icon should be a png of 256x256
+        shutil.move("./dist/Server.exe", "./TerrariumApp/linux-unpacked/Server.exe")#If its in linux the icon should be a png of 256x256
         loopForExeFlask()
     
     else:

@@ -55,16 +55,16 @@ def help(sistema):
 # Description: A complementary method for the ExeFlask method that returns strings with ; or : according to its operating system in which the script is running.
 def cadesExeFlask(bandeLocal):
     if bandeLocal== "w":
-        return "./resources/Flask/static;static/", "./resources/Flask/templates;templates/", '--name "Server"'
+        return "./resources/Flask/static;static/", "./resources/Flask/templates;templates/"
         
     elif bandeLocal== "l":
-        return "./resources/Flask/static:static/", "./resources/Flask/templates:templates/", '--name "Server.exe"'
+        return "./resources/Flask/static:static/", "./resources/Flask/templates:templates/"
 
 # Description: A complementary method for the ExeFlask method that runs a for loop in order to be executed only if the script is been running in a windows or linux environment.
 def loopForExeFlask():
     #resFolders= ("RaspSerial", "Flask", "Imgs")
     mainFolders= ("Extras", ".vscode", "dist", "build", "resources", "node_modules", ".git")
-    archsNo= (".gitattributes", ".gitignore", "LICENSE.md", "package-lock.json", "package.json", "README.md", "requirements.txt", "index.js", "Server.exe.spec")
+    archsNo= (".gitattributes", ".gitignore", "LICENSE.md", "package-lock.json", "package.json", "README.md", "requirements.txt", "index.js", "Server.spec")
     #rmFolders= [resFolders, mainFolders, archsNo]
     rmFolders= [mainFolders, archsNo]
 
@@ -90,11 +90,12 @@ def txtGithub():
 # Description: Method to create the executable file in order to protect more the code of the flask and also to create the package of the electron including all code.
 def ExeFlask(sistema):
     banderasPyinstaller= "--noconfirm --onefile --windowed"
+    nomApp= '--name "Server"'
     icono= '--icon "./resources/Imgs/serverIco.ico"'
     archPrinFlask= "./resources/Flask/main.py"
 
     if sistema== "Windows":
-        static, templates, nomApp= cadesExeFlask("w")
+        static, templates= cadesExeFlask("w")
         comPyinstaller= f'pyinstaller {banderasPyinstaller} {nomApp} {icono} --add-data "{static}" --add-data "{templates}" "{archPrinFlask}"'
         os.system(comPyinstaller)
         os.system("npm run dist")
@@ -102,11 +103,11 @@ def ExeFlask(sistema):
         loopForExeFlask()
 
     elif sistema== "Linux":
-        static, templates, nomApp= cadesExeFlask("l")
+        static, templates= cadesExeFlask("l")
         comPyinstaller= f'pyinstaller {banderasPyinstaller} {nomApp} {icono} --add-data "{static}" --add-data "{templates}" "{archPrinFlask}"'
         os.system(comPyinstaller)
         os.system("npm run dist")
-        shutil.move("./dist/Server.exe", "./TerrariumApp/linux-unpacked/Server.exe")#If its in linux the icon should be a png of 256x256
+        shutil.move("./dist/Server", "./TerrariumApp/linux-unpacked/Server")#If its in linux the icon should be a png of 256x256
         loopForExeFlask()
     
     else:

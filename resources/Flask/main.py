@@ -281,5 +281,8 @@ if __name__ == "__main__":
         # -----------------Prod mode----------------
         appServer=  WSGIServer(("127.0.0.1", 5000), app)
         appServer.serve_forever()
+    except KeyboardInterrupt:
+        print("Se presionó Ctrl + C")
+        print("Apagando servidor...")
     except Exception as err:
         print(f"Ocurrió el siguiente error: {err}")

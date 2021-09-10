@@ -1,6 +1,6 @@
 //--------------------------------------------Importaciones de bibliotecas, constantes y variables--------------------------------------------
 const { app, BrowserWindow, Menu, ipcMain } = require("electron"); //12308
-const { exec } = require("child_process");
+const { exec, execFile } = require("child_process");
 const path = require("path");
 const waitPort = require("wait-port");
 
@@ -17,7 +17,7 @@ if (OSName === "win32") {
 	childString = "Server.exe";
 }
 if (OSName === "linux") {
-	childString = "./linux-unpacked/Server";
+	childString = "/linux-unpacked/Server";
 }
 
 // const template= [
@@ -39,7 +39,7 @@ if (OSName === "linux") {
 //     }
 // ];
 
-const hijo = exec(childString, (error, stdout, stderr) => {
+const hijo = execFile(__dirname + childString, (error, stdout, stderr) => {
 	if (error) {
 		console.log(error.stack);
 		console.log(`Error code: ${error.code}`);

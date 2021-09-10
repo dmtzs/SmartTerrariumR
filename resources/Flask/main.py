@@ -4,7 +4,7 @@ try:
     import threading
     from gevent.pywsgi import WSGIServer
     from TerrariumLib import ArduinoConnection, jsonObject
-    from flask import Flask, Response, stream_with_context, request, render_template, redirect, url_for
+    from flask import Flask, Response, request, render_template
     from datetime import datetime
     from gevent import monkey
     monkey.patch_all()
@@ -274,4 +274,12 @@ def error():
 #-------------------------------Execute----------------------------------------#
 
 if __name__ == "__main__":
-    app.run(host="127.0.0.1", port=5000, debug=False)
+    try:
+        # -----------------Dev mode-----------------
+        #app.run(host="127.0.0.1", port=5000, debug=False)
+
+        # -----------------Prod mode----------------
+        appServer=  WSGIServer(("127.0.0.1", 5000), app)
+        appServer.serve_forever()
+    except Exception as err:
+        print(f"Ocurrió el siguiente error: {err}")

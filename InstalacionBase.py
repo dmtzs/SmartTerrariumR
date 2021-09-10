@@ -64,7 +64,7 @@ def cadesExeFlask(bandeLocal):
 def loopForExeFlask():
     #resFolders= ("RaspSerial", "Flask", "Imgs")
     mainFolders= ("Extras", ".vscode", "dist", "build", "resources", "node_modules", ".git")
-    archsNo= (".gitattributes", ".gitignore", "LICENSE.md", "package-lock.json", "package.json", "README.md", "requirements.txt", "index.js", "Server.spec")
+    archsNo= (".gitattributes", ".gitignore", "LICENSE.md", "package-lock.json", "package.json", "README.md", "requirements.txt", "index.js", "Server.exe.spec")
     #rmFolders= [resFolders, mainFolders, archsNo]
     rmFolders= [mainFolders, archsNo]
 

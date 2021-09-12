@@ -14,10 +14,10 @@ let OSName = process.platform;
 
 var childString = "nothing";
 if (OSName === "win32") {
-	childString = "Server.exe";
+	childString = "./Server.exe";
 }
 if (OSName === "linux") {
-	childString = "/linux-unpacked/Server";
+	childString = "./Server";
 }
 
 // const template= [
@@ -39,7 +39,7 @@ if (OSName === "linux") {
 //     }
 // ];
 
-const hijo = execFile(__dirname + childString, (error, stdout, stderr) => {
+const hijo = execFile(childString, (error, stdout, stderr) => {
 	if (error) {
 		console.log(error.stack);
 		console.log(`Error code: ${error.code}`);

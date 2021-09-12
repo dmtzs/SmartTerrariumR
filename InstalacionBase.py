@@ -27,7 +27,7 @@ def installBase(sistema):
                     "curl -sL https://deb.nodesource.com/setup_14.x | sudo bash -", "cat /etc/apt/sources.list.d/nodesource.list", "sudo apt install -y nodejs",
                     "npm install wait-port --save-prod", "npm install electron electron-builder --save-dev", "sudo usermod -a -G dialout $USER"]
     
-    comandosWindows= ["pip install -r requirements.txt", "npm install electron wait-port --save-prod"]
+    comandosWindows= ["pip install -r requirements.txt", "npm install electron wait-port --save-prod", "npm install electron electron-builder --save-dev"]
 
     if sistema== "Windows":
         execComands(comandosWindows)
@@ -100,7 +100,6 @@ def ExeFlask(sistema):
         os.system(comPyinstaller)
         os.system("npm run dist")
         shutil.move("./dist/Server.exe", "./TerrariumApp/win-unpacked/Server.exe")#Falta revisar la forma en que los crea en windows
-        loopForExeFlask()
 
     elif sistema== "Linux":
         static, templates= cadesExeFlask("l")

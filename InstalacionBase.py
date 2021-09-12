@@ -61,23 +61,31 @@ def cadesExeFlask(bandeLocal):
         return "./resources/Flask/static:static/", "./resources/Flask/templates:templates/"
 
 # Description: A complementary method for the ExeFlask method that runs a for loop in order to be executed only if the script is been running in a windows or linux environment.
-def loopForExeFlask():
+def ArchYFolders(sistema):
     #resFolders= ("RaspSerial", "Flask", "Imgs")
     mainFolders= ("Extras", ".vscode", "dist", "build", "resources", "node_modules", ".git")
     archsNo= (".gitattributes", ".gitignore", "LICENSE.md", "package-lock.json", "package.json", "README.md", "requirements.txt", "index.js", "Server.spec")
-    #rmFolders= [resFolders, mainFolders, archsNo]
-    rmFolders= [mainFolders, archsNo]
+    mainFoldersWin= ("dist", "build")
+    
+    rmFoldersLin= [mainFolders, archsNo]
+    rmFoldersWin= [mainFoldersWin, ("Server.spec")]
 
-    for h in range(len(rmFolders)):
-        for folder in rmFolders[h]:
+    if sistema== "Windows":
+        loopForExeFlask(rmFoldersWin)
+    else:
+        loopForExeFlask(rmFoldersLin)
+    txtGithub()
+    global bandeProd
+    bandeProd= 1
+
+def loopForExeFlask(assets):
+    for h in range(len(assets)):
+        for folder in assets[h]:
             if h== 0:
                 shutil.rmtree(f"./{folder}")
             else:
                 rmArchs= f"./{folder}"
                 os.remove(rmArchs)
-    txtGithub()
-    global bandeProd
-    bandeProd= 1
 
 # Description: A function that creates at the end of the production configuration a txt file in which we will have two lines if we want to clone later again the repository.
 def txtGithub():
@@ -100,6 +108,7 @@ def ExeFlask(sistema):
         os.system(comPyinstaller)
         os.system("npm run dist")
         shutil.move("./dist/Server.exe", "./TerrariumApp/win-unpacked/Server.exe")#Falta revisar la forma en que los crea en windows
+        ArchYFolders(sistema)
 
     elif sistema== "Linux":
         static, templates= cadesExeFlask("l")
@@ -107,7 +116,7 @@ def ExeFlask(sistema):
         os.system(comPyinstaller)
         os.system("npm run dist")
         shutil.move("./dist/Server", "./TerrariumApp/linux-unpacked/Server")#If its in linux the icon should be a png of 256x256
-        loopForExeFlask()
+        ArchYFolders(sistema)
     
     else:
         print("No se puede ejecutar el programa en ambientes que no sean windows o linux")

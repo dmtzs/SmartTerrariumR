@@ -116,7 +116,7 @@ def ExeFlask(sistema):
         os.system(comPyinstaller)
         os.system("npm run dist")
         shutil.move("./dist/Server", "./TerrariumApp/linux-unpacked/Server")#If its in linux the icon should be a png of 256x256
-        shutil.move("./TerrariumApp/TerrariumApp-1.0.0.AppImage", "./TerrariumApp/linux-unpacked/TerrariumApp-1.0.0.AppImage")
+        shutil.move("./TerrariumApp/TerrariumApp-1.0.0.AppImage", "./TerrariumApp/linux-unpacked/SmartTerra.AppImage")
         ArchYFolders(sistema)
     
     else:

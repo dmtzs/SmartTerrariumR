@@ -146,7 +146,7 @@ app.on("window-all-closed", () => {
 			exec('taskkill /IM "Server.exe" /F');
 		}
 		if (OSName === "linux") {
-			exec('pkill -xf "./linux-unpacked/Server"');
+			exec('pkill -xf "./Server"');
 		}
 		app.quit();
 	}
@@ -157,7 +157,7 @@ ipcMain.on("window-close", () => {
 		exec('taskkill /IM "Server.exe" /F');
 	}
 	if (OSName === "linux") {
-		exec('pkill -xf "./linux-unpacked/Server"');
+		exec('pkill -xf "./Server"');
 		//exec('reboot');
 	}
 	app.quit();

@@ -73,7 +73,7 @@ def ArchYFolders(sistema):
         loopForExeFlask(rmFoldersWin)
     else:
         loopForExeFlask(rmFoldersLin)
-    txtGithub()
+        txtGithub()
     global bandeProd
     bandeProd= 1
 
@@ -84,7 +84,6 @@ def loopForExeFlask(assets):
                 shutil.rmtree(f"./{folder}")
             else:
                 rmArchs= f"./{folder}"
-                print(rmArchs)
                 os.remove(rmArchs)
 
 # Description: A function that creates at the end of the production configuration a txt file in which we will have two lines if we want to clone later again the repository.

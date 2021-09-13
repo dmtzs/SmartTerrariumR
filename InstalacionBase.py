@@ -62,13 +62,12 @@ def cadesExeFlask(bandeLocal):
 
 # Description: A complementary method for the ExeFlask method that runs a for loop in order to be executed only if the script is been running in a windows or linux environment.
 def ArchYFolders(sistema):
-    #resFolders= ("RaspSerial", "Flask", "Imgs")
     mainFolders= ("Extras", ".vscode", "dist", "build", "resources", "node_modules", ".git")
     archsNo= (".gitattributes", ".gitignore", "LICENSE.md", "package-lock.json", "package.json", "README.md", "requirements.txt", "index.js", "Server.spec")
     mainFoldersWin= ("dist", "build")
     
     rmFoldersLin= [mainFolders, archsNo]
-    rmFoldersWin= [mainFoldersWin, ("Server.spec")]
+    rmFoldersWin= [mainFoldersWin, ("Server.spec",)]
 
     if sistema== "Windows":
         loopForExeFlask(rmFoldersWin)
@@ -85,6 +84,7 @@ def loopForExeFlask(assets):
                 shutil.rmtree(f"./{folder}")
             else:
                 rmArchs= f"./{folder}"
+                print(rmArchs)
                 os.remove(rmArchs)
 
 # Description: A function that creates at the end of the production configuration a txt file in which we will have two lines if we want to clone later again the repository.
@@ -165,5 +165,5 @@ if __name__ == "__main__":
         print("Finalizando ejecución de programa")
         if bandeProd== 0:
             pass
-        else:
+        elif bandeProd!= 0 and sistema== "Linux":
             os.remove("InstalacionBase.py")

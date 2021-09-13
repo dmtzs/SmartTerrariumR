@@ -1,5 +1,5 @@
 //--------------------------------------------Importaciones de bibliotecas, constantes y variables--------------------------------------------
-const { app, BrowserWindow, Menu, ipcMain } = require("electron"); //12308
+const { app, BrowserWindow, Menu, ipcMain } = require("electron");
 const { exec, execFile } = require("child_process");
 const path = require("path");
 const waitPort = require("wait-port");

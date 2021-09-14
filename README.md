@@ -1,3 +1,10 @@
+<p align="center">
+    <img src="https://img.shields.io/github/last-commit/dmtzs/ProyectoRaspArduino">
+    <img src="https://img.shields.io/github/contributors/dmtzs/ProyectoRaspArduino">
+    <img src="https://img.shields.io/github/issues/dmtzs/ProyectoRaspArduino?label=issues">
+    <img src="https://img.shields.io/github/stars/dmtzs/ProyectoRaspArduino">
+  </p>
+
 # GDCode - Terrarium manager
 
 ## The project

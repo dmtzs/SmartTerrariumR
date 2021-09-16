@@ -52,7 +52,6 @@ All this in order to be showed through a display connected to the raspberry.
 ```
 python3 InstalacionBase.py --help
 ```
-<br><br>
 
 ## Arduino C++ program
 The Arduino is used in order to acquire the parameters we want to show through the LCD of the raspberry and also receive data from the raspberry to do some actions with the arduino.

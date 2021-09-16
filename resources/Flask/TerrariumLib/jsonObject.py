@@ -7,7 +7,8 @@ except ImportError as eImp:
 # @Description: Class for manage the json appData in order to be used in the app or to update the same json file.
 #               In this class are all the methods to read, write and update the data of the json file
 class jsonObject():
-    filename = 'resources/appData.json'
+    filename= "resources/appData.json"
+    filename2= "../appData.json"
 
     # @Description: Init the attributes for the class.
     def __init__(self):
@@ -15,14 +16,28 @@ class jsonObject():
 
     # @Description: Method to read the data from the json file.
     def readData(self):
-        with open(os.path.abspath(self.filename), 'r') as jsonFile:
+        auxFile= ""
+
+        if os.path.isfile(os.path.abspath(self.filename)):
+            auxFile= os.path.abspath(self.filename)
+        else:
+            auxFile= os.path.abspath(self.filename2)
+        
+        with open(auxFile, 'r') as jsonFile:
             self.jsonData = json.load(jsonFile)
             jsonFile.close()
 
     # @Description: Method to write all the data in the json file.
     def writeData(self):
+        auxFile= ""
         self.jsonData = json.dumps(self.jsonData, indent=4)
-        with open(os.path.abspath(self.filename), 'w') as jsonFile:
+
+        if os.path.isfile(os.path.abspath(self.filename)):
+            auxFile= os.path.abspath(self.filename)
+        else:
+            auxFile= os.path.abspath(self.filename2)
+
+        with open(auxFile, 'w') as jsonFile:
             jsonFile.write(self.jsonData)
             jsonFile.close()
 

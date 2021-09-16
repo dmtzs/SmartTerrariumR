@@ -12,15 +12,11 @@
 </p>
 
 ## The project
-The purpose of this project is to manage the parameters of my pet that is a snake.
+The purpose of this project is to manage the parameters of reptile pets.
 <br>
-The data that will be processed is going to be the temperature and humidity with a dht22 sensor, a submersible temperature sensor and an automatic system for spreading water in order to humidify the terrarium every time the humidity is over 50%.
+A project that is used for creating a smart terrarium for your reptile pets. This project is for managing all parameters that the reptile needs in order to have a great life.
 <br>
-The spotlights will be turned on or off according to the temperature and it will light the night or day according to the time of day that will be received through an external API connected with the application.
-<br>
-Also the water will be warm with another sensor for keep warm the reserve of water and the trough will be filled automatically when the water float sensor is activated.
-<br>
-More functionalities are going to be developed with the time
+This is a smart things project that has a manual and automatic mode so you can manage the terrarium as you prefer.
 <br><br>
 
 ## Documentation

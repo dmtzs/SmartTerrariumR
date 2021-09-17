@@ -17,7 +17,7 @@ if (OSName === "win32") {
 	childString = "./Server.exe";
 }
 if (OSName === "linux") {
-	childString = "./Server";
+	childString = "/opt/TerrariumApp/./Server";
 }
 
 // const template= [

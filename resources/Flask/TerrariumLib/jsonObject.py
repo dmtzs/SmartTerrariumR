@@ -18,10 +18,10 @@ class jsonObject():
     def readData(self):
         auxFile= ""
 
-        if os.path.isfile(os.path.abspath(self.filename)):
-            auxFile= os.path.abspath(self.filename)
+        if os.path.isfile("/opt/TerrariumApp/" + self.filename):
+            auxFile= "/opt/TerrariumApp/" + self.filename
         else:
-            auxFile= os.path.abspath(self.filename2)
+            auxFile= self.filename2
         
         with open(auxFile, 'r') as jsonFile:
             self.jsonData = json.load(jsonFile)
@@ -32,10 +32,10 @@ class jsonObject():
         auxFile= ""
         self.jsonData = json.dumps(self.jsonData, indent=4)
 
-        if os.path.isfile(os.path.abspath(self.filename)):
-            auxFile= os.path.abspath(self.filename)
+        if os.path.isfile("/opt/TerrariumApp/" + self.filename):
+            auxFile= "/opt/TerrariumApp/" + self.filename
         else:
-            auxFile= os.path.abspath(self.filename2)
+            auxFile= self.filename2
 
         with open(auxFile, 'w') as jsonFile:
             jsonFile.write(self.jsonData)

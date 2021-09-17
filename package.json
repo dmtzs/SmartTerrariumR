@@ -30,7 +30,9 @@
         "to": "./",
         "filter": [
           "appData.json"
-        ],
+        ]
+      },
+      {
         "from": "dist/",
         "to": "../",
         "filter": [

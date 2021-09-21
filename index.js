@@ -84,7 +84,7 @@ function createWindow() {
 		/*width: 800,
         height: 480,*/
 		title: "Terrario", //Esto se cambia por el mismo flask ya que se pone el tiítulo de la página en la que estás
-		icon: __dirname + "../resources/Imgs/BoaEsmeraldaA.ico",
+		//icon: __dirname + "../resources/Imgs/BoaEsmeraldaA.ico",
 		minimizable: false,
 		show: false,
 		webPreferences: {

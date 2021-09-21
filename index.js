@@ -20,25 +20,6 @@ if (OSName === "linux") {
 	childString = "./Server";
 }
 
-// const template= [
-//     {
-//         label: "Reiniciar",
-//         submenu: [
-//             {
-//                 label: "reiniciar sistema",
-//                 accelerator: "Alt+F4",
-//                 click(){
-//                     exec('taskkill /IM "python.exe" /F');
-//                     //exec('pkill -xf "python3 ./Flask/main.py"');
-//                     //exec('reboot');
-//                     //Queda pendiente función para validar sistema operativo, si es mac no se ejecuta la app si no ejecutar el kill correspondiente.
-//                     app.quit();
-//                 }
-//             }
-//         ]
-//     }
-// ];
-
 const hijo = execFile(childString, (error, stdout, stderr) => {
 	if (error) {
 		console.log(error.stack);

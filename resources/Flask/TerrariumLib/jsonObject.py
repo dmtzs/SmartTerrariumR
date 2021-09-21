@@ -18,28 +18,34 @@ class jsonObject():
     def readData(self):
         auxFile= ""
 
-        if os.path.isfile("/opt/TerrariumApp/" + self.filename):
-            auxFile= "/opt/TerrariumApp/" + self.filename
+        if os.path.isfile(self.filename):
+            auxFile= self.filename
         else:
             auxFile= self.filename2
-        
-        with open(auxFile, 'r') as jsonFile:
-            self.jsonData = json.load(jsonFile)
-            jsonFile.close()
+
+        try:
+            with open(auxFile, 'r') as jsonFile:
+                self.jsonData = json.load(jsonFile)
+                jsonFile.close()
+        except Exception:
+            print("No se encontró el archivo appData.json en ninguna de las rutas")
 
     # @Description: Method to write all the data in the json file.
     def writeData(self):
         auxFile= ""
         self.jsonData = json.dumps(self.jsonData, indent=4)
 
-        if os.path.isfile("/opt/TerrariumApp/" + self.filename):
-            auxFile= "/opt/TerrariumApp/" + self.filename
+        if os.path.isfile(self.filename):
+            auxFile= self.filename
         else:
             auxFile= self.filename2
 
-        with open(auxFile, 'w') as jsonFile:
-            jsonFile.write(self.jsonData)
-            jsonFile.close()
+        try:
+            with open(auxFile, 'w') as jsonFile:
+                jsonFile.write(self.jsonData)
+                jsonFile.close()
+        except Exception:
+            print("No se encontró el archivo appData.json en ninguna de las rutas")
 
     # @Description: Method to update in the json file the parameter of the state of the operation mode of the app.
     def writeData_changeMode(self, newMode):

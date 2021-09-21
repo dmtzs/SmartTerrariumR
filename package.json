@@ -6,8 +6,8 @@
   "scripts": {
     "postinstall": "install-app-deps",
     "start": "electron .",
-    "pack": "build-app --dir",
-    "dist": "build-app"
+    "pack": "electron-builder --dir",
+    "dist": "electron-builder"
   },
   "repository": {
     "type": "git",

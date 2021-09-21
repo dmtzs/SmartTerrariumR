@@ -21,6 +21,7 @@
   "build": {
     "appId": "com.rasp.terrarium",
     "productName": "TerrariumApp",
+    "icon": "resources/Imgs/Boapng.png",
     "directories": {
       "output": "TerrariumApp"
     },

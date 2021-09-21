@@ -46,10 +46,7 @@
       "oneClick": "false"
     },
     "linux": {
-      "target": [
-        "AppImage",
-        "deb"
-      ],
+      "target": "AppImage",
       "icon": "resources/Imgs/Boapng.png"
     },
     "win": {

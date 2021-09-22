@@ -181,4 +181,4 @@ ipcMain.on("window-close", () => {
 	app.quit();
 });
 
-//Buscar proceso en linux: ps -ef | grep python3
+//Buscar proceso en linux: ps -ef | grep python3 o ps aux | grep python3

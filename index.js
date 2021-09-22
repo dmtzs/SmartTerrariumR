@@ -13,22 +13,40 @@ const params = {
 let OSName = process.platform;
 
 var childString = "nothing";
-if (OSName === "win32") {
-	childString = "./Server.exe";
-}
-if (OSName === "linux") {
-	childString = "./Server";
-}
 
-const hijo = execFile(childString, (error, stdout, stderr) => {
-	if (error) {
-		console.log(error.stack);
-		console.log(`Error code: ${error.code}`);
-		console.log(`Signal received: ${error.signal}`);
+try {//Check if at last we can put in a function the part of const hijo because that part maybe we can do it more modular
+	if (OSName === "win32") {
+		childString = "./Server.exe";
 	}
-	console.log(`Child Process STDOUT: ${stdout}`);
-	console.log(`Child Process STDERR: ${stderr}`);
-});
+	if (OSName === "linux") {
+		childString = "./Server";
+	}
+	const hijo = execFile(childString, (error, stdout, stderr) => {
+		if (error) {
+			console.log(error.stack);
+			console.log(`Error code: ${error.code}`);
+			console.log(`Signal received: ${error.signal}`);
+		}
+		console.log(`Child Process STDOUT: ${stdout}`);
+		console.log(`Child Process STDERR: ${stderr}`);
+	});
+} catch (error) {
+	if (OSName === "win32") {
+		childString = "python ./resources/Flask/main.py";
+	}
+	if (OSName === "linux") {
+		childString = "python3 ./resources/Flask/main.py";
+	}
+	const hijo = execFile(childString, (error, stdout, stderr) => {
+		if (error) {
+			console.log(error.stack);
+			console.log(`Error code: ${error.code}`);
+			console.log(`Signal received: ${error.signal}`);
+		}
+		console.log(`Child Process STDOUT: ${stdout}`);
+		console.log(`Child Process STDERR: ${stderr}`);
+	});
+}
 
 let mainWindow;
 

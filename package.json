@@ -45,10 +45,6 @@
       "allowToChangeInstallationDirectory": "true",
       "oneClick": "false"
     },
-    "AppImage": {
-      "allowToChangeInstallationDirectory": "true",
-      "oneClick": "false"
-    },
     "linux": {
       "target": "AppImage",
       "icon": "resources/Imgs/Boapng.png"

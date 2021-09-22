@@ -141,23 +141,42 @@ app.on("activate", () => {
 
 app.on("window-all-closed", () => {
 	if (process.platform !== "darwin") {
-		if (OSName === "win32") {
-			exec('taskkill /IM "Server.exe" /F');
-		}
-		if (OSName === "linux") {
-			exec('pkill -xf "./Server"');
+		try {
+			if (OSName === "win32") {
+				exec('taskkill /IM "Server.exe" /F');
+			}
+			if (OSName === "linux") {
+				exec('pkill -xf "./Server"');
+			}
+		} catch (error) {
+			if (OSName === "win32") {
+				exec('taskkill /IM "Server.exe" /F');//We still need to check this what todo for windows exception
+			}
+			if (OSName === "linux") {
+				exec('pkill -xf "python3 ./resources/Flask/main.py"');
+			}
 		}
 		app.quit();
 	}
 });
 
 ipcMain.on("window-close", () => {
-	if (OSName === "win32") {
-		exec('taskkill /IM "Server.exe" /F');
-	}
-	if (OSName === "linux") {
-		exec('pkill -xf "./Server"');
-		//exec('reboot');
+	try {
+		if (OSName === "win32") {
+			exec('taskkill /IM "Server.exe" /F');
+		}
+		if (OSName === "linux") {
+			exec('pkill -xf "./Server"');
+			//exec('reboot');
+		}
+	} catch (error) {
+		if (OSName === "win32") {
+			exec('taskkill /IM "Server.exe" /F');//We still need to check this what todo for windows exception
+		}
+		if (OSName === "linux") {
+			exec('pkill -xf "python3 ./resources/Flask/main.py"');
+			//exec('reboot');
+		}
 	}
 	app.quit();
 });

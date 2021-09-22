@@ -1,5 +1,5 @@
 //--------------------------------------------Importaciones de bibliotecas, constantes y variables--------------------------------------------
-const { app, BrowserWindow, Menu, ipcMain } = require("electron");
+const { app, BrowserWindow, Menu, ipcMain, NativeImage } = require("electron");
 const { exec, execFile } = require("child_process");
 const path = require("path");
 const waitPort = require("wait-port");
@@ -65,7 +65,7 @@ function createWindow() {
 		/*width: 800,
         height: 480,*/
 		title: "Terrario", //Esto se cambia por el mismo flask ya que se pone el tiítulo de la página en la que estás
-		icon: __dirname + "../resources/Imgs/Boapng.png",
+		icon: NativeImage.createFromPath(__dirname + "../resources/Imgs/Boapng.png"),
 		minimizable: false,
 		show: false,
 		webPreferences: {

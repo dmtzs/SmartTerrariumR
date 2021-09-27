@@ -82,7 +82,3 @@ This libraries should be installed only if you want to develop by yourself the a
 ## Connection diagram
 Here is the diagram connection about how you need to connect all components, to which pin´s, etc.
 ![](resources/Imgs/Diagrama.png)
-
-<br><br>
-
-# The project is open and still on development

@@ -92,7 +92,7 @@ Here is the diagram connection about how you need to connect all components, to 
 
 # We know this more a payment project but consider a donation for do more opensource code!!
 This project is not an opensource project. That doesn't mean we don't need any money.
-<br>
+<br><br>
 Please consider a donation to help us and if we receive enough donations then we can do support for the opensource part of this application.
 You can download this app and its over your responsability to maintain this by yourself if you are not our client but if we receive enough donations we can make support for an opensource type.
 

@@ -9,7 +9,13 @@
     <img src="https://img.shields.io/github/contributors/dmtzs/SmartTerrariumR">
     <img src="https://img.shields.io/github/issues/dmtzs/SmartTerrariumR?label=issues">
     <img src="https://img.shields.io/github/stars/dmtzs/SmartTerrariumR">
-    <img src="https://img.shields.io/github/languages/code-size/dmtzs/SmartTerrariumR">
+</p>
+
+<p align="center">
+  <img src="https://img.shields.io/github/languages/code-size/dmtzs/SmartTerrariumR">
+  <img alt="GitHub repo size" src="https://img.shields.io/github/repo-size/dmtzs/SmartTerrariumR">
+  <img alt="Lines of code" src="https://img.shields.io/tokei/lines/github/dmtzs/SmartTerrariumR?label=total%20lines%20in%20repo">
+  <img alt="GitHub language count" src="https://img.shields.io/github/languages/count/dmtzs/SmartTerrariumR">
 </p>
 
 ## The project

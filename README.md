@@ -9,6 +9,7 @@
     <img src="https://img.shields.io/github/contributors/dmtzs/SmartTerrariumR">
     <img src="https://img.shields.io/github/issues/dmtzs/SmartTerrariumR?label=issues">
     <img src="https://img.shields.io/github/stars/dmtzs/SmartTerrariumR">
+    <img src="https://img.shields.io/github/languages/code-size/dmtzs/SmartTerrariumR">
 </p>
 
 ## The project

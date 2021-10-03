@@ -89,3 +89,11 @@ This libraries should be installed only if you want to develop by yourself the a
 ## Connection diagram
 Here is the diagram connection about how you need to connect all components, to which pin´s, etc.
 ![](resources/Imgs/Diagrama.png)
+
+# We know this more a payment project but consider a donation for do more opensource code!!
+This project is not an opensource project. That doesn't mean we don't need any money.
+<br>
+Please consider a donation to help us and if we receive enough donations then we can do support for the opensource part of this application.
+You can download this app and its over your responsability to maintain this by yourself if you are not our client but if we receive enough donations we can make support for an opensource type.
+
+To donate, please follow this [link](https://ceneka.net/dmtzs).

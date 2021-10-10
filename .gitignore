@@ -3,6 +3,7 @@ Terrario.pdf
 __pycache__
 node_modules
 *.scss
+*.zip
 .vscode
 Server.exe
 Server.spec

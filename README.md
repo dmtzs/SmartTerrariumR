@@ -16,7 +16,6 @@
   <img alt="GitHub repo size" src="https://img.shields.io/github/repo-size/dmtzs/SmartTerrariumR">
   <img alt="Lines of code" src="https://img.shields.io/tokei/lines/github/dmtzs/SmartTerrariumR?label=total%20lines%20in%20repo">
   <img alt="GitHub language count" src="https://img.shields.io/github/languages/count/dmtzs/SmartTerrariumR">
-  <img alt="GitHub top language" src="https://img.shields.io/github/languages/top/dmtzs/SmartTerrariumR">
 </p>
 
 ## The project

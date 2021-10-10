@@ -1,8 +1,10 @@
 try:
     import os
-    import platform
     import sys
+    import wget
     import shutil
+    import zipfile
+    import platform
 except ImportError as eImp:
     print(f"Ocurrió el siguiente error de importación: {eImp}")
 
@@ -20,6 +22,21 @@ def execComands(comandsExec):
     for comm in comandsExec:
         os.system(comm)
 
+# @Description: Method for dowloading through wget the local libraries we need in order to load all the styles and other functionalities
+#               of the electron project, etc.
+def localLibs():
+    libsDirectory= "./resources/Flask/static/libraries/"
+    localLibsUrl= "https://github.com/dmtzs/SmartTerrariumR/releases/download/Local_libraries/localLibraries.zip"
+    fileToUnzip= f"{libsDirectory}localLibraries.zip"
+
+    os.mkdir(libsDirectory)
+    wget.download(localLibsUrl, out= libsDirectory)
+
+    with zipfile.ZipFile(fileToUnzip, 'r') as uzip:
+        uzip.extractall(libsDirectory)
+
+    os.remove(fileToUnzip)
+
 # @Description: Method for install all the dependencies we need in order to make the program work in the way its supposed to be.
 def installBase(sistema):
     # @Description: Variables that contains commands according to the operative system that the program is being executed
@@ -29,10 +46,12 @@ def installBase(sistema):
     
     comandosWindows= ["pip install -r requirements.txt", "npm install electron wait-port --save-prod", "npm install electron electron-builder --save-dev"]
 
+    localLibs()
     if sistema== "Windows":
         execComands(comandosWindows)
     elif sistema== "Linux":
         execComands(comandosLinux)
+
     else:
         print("This program can be executed only in Windows and Linux operative systems")
 

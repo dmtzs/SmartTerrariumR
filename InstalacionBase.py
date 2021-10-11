@@ -29,13 +29,40 @@ def localLibs():
     localLibsUrl= "https://github.com/dmtzs/SmartTerrariumR/releases/download/Local_libraries/localLibraries.zip"
     fileToUnzip= f"{libsDirectory}localLibraries.zip"
 
-    os.mkdir(libsDirectory)
-    wget.download(localLibsUrl, out= libsDirectory)
+    if os.path.isdir(libsDirectory):
+        folders= ["bootstrap", "fontawesome", "jquery", "popper", "sweetalert"]
+        aux= []
+        
+        for folder in folders:
+            if os.path.isdir(f"{libsDirectory}{folder}/"):
+                pass
 
-    with zipfile.ZipFile(fileToUnzip, 'r') as uzip:
-        uzip.extractall(libsDirectory)
+            else:
+                aux.append(folder)
 
-    os.remove(fileToUnzip)
+        folders= aux
+        del aux
+
+        if len(folders) > 0:
+            wget.download(localLibsUrl, out= libsDirectory)
+        
+            with zipfile.ZipFile(fileToUnzip, 'r') as uzip:
+                for file in uzip.namelist():
+                    for fold in folders:
+                        if file.startswith(f"{fold}/"):
+                            uzip.extract(file, libsDirectory)
+            
+            os.remove(fileToUnzip)
+        else:
+            pass
+    else:
+        os.mkdir(libsDirectory)
+        wget.download(localLibsUrl, out= libsDirectory)
+
+        with zipfile.ZipFile(fileToUnzip, 'r') as uzip:
+            uzip.extractall(libsDirectory)
+
+        os.remove(fileToUnzip)
 
 # @Description: Method for install all the dependencies we need in order to make the program work in the way its supposed to be.
 def installBase(sistema):

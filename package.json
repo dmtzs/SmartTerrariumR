@@ -27,13 +27,6 @@
     },
     "extraResources": [
       {
-        "from": "resources/",
-        "to": "./",
-        "filter": [
-          "appData.json"
-        ]
-      },
-      {
         "from": "dist/",
         "to": "../",
         "filter": [
@@ -46,7 +39,7 @@
       "oneClick": "false"
     },
     "linux": {
-      "target": "AppImage",
+      "target": ["AppImage", "deb"],
       "icon": "resources/Imgs/Boapng.png"
     },
     "win": {

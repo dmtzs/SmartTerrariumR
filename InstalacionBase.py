@@ -1,15 +1,3 @@
-try:
-    import os
-    import sys
-    import wget
-    import shutil
-    import zipfile
-    import platform
-except ImportError as eImp:
-    firstComms= ["sudo apt install python3-pip", "pip3 install -r requirements.txt"]
-    print(f"Ocurrió el siguiente error de importación: {eImp}")
-    for i in firstComms:
-        os.system(i)
 
 # @Description: Method that returns the system and a shell command in order to clean the terminal in which this program is executed.
 def ShellAndSystem():
@@ -198,10 +186,31 @@ def main(sistema):
             print("Intenta con python3 InstalacionesBase.py --help")
 
 if __name__ == "__main__":
+    try:
+        import os
+        import sys
+        import wget
+        import shutil
+        import zipfile
+        import platform
+    except ImportError as eImp:
+        print(f"Ocurrió el siguiente error de importación: {eImp}")
+        comShell, sistema= ShellAndSystem()
+        if sistema== "Linux":
+            firstComms= ["sudo apt install python3-pip", "pip3 install -r requirements.txt"]
+            
+            for i in firstComms:
+                os.system(i)
+        elif sistema== "Windows":
+            firstComms= "pip install -r requirements.txt"
+            os.system(firstComms)
+        del firstComms
+    else:
+        comShell, sistema= ShellAndSystem()
+
     global bandeProd
     bandeProd= 0
     try:
-        comShell, sistema= ShellAndSystem()
         os.system(comShell)
         main(sistema)
     except Exception as ex:

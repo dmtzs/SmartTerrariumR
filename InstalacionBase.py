@@ -101,10 +101,10 @@ def help(sistema):
 # Description: A complementary method for the ExeFlask method that returns strings with ; or : according to its operating system in which the script is running.
 def cadesExeFlask(bandeLocal):
     if bandeLocal== "w":
-        return "./resources/Flask/static;static/", "./resources/Flask/templates;templates/"
+        return "./resources/Flask/app;app/", "./resources/Flask/TerrariumLib;TerrariumLib/"
         
     elif bandeLocal== "l":
-        return "./resources/Flask/static:static/", "./resources/Flask/templates:templates/"
+        return "./resources/Flask/app:app/", "./resources/Flask/TerrariumLib:TerrariumLib/"
 
 # Description: A complementary method for the ExeFlask method that runs a for loop in order to be executed only if the script is been running in a windows or linux environment.
 def ArchYFolders(sistema):

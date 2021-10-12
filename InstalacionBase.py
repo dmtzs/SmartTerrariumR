@@ -6,7 +6,10 @@ try:
     import zipfile
     import platform
 except ImportError as eImp:
+    firstComms= ["sudo apt install python3-pip", "pip3 install -r requirements.txt"]
     print(f"Ocurrió el siguiente error de importación: {eImp}")
+    for i in firstComms:
+        os.system(i)
 
 # @Description: Method that returns the system and a shell command in order to clean the terminal in which this program is executed.
 def ShellAndSystem():

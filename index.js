@@ -11,7 +11,8 @@ const params = {
 
 //Detectar sistema operativo
 let OSName = process.platform;
-
+let mainUser= process.env.USER;
+let serverPath= `/home/${mainUser}/Documents/SmartTerrariumR/`
 var childString = "nothing";
 
 try {//Check if at last we can put in a function the part of const hijo because that part maybe we can do it more modular
@@ -19,7 +20,7 @@ try {//Check if at last we can put in a function the part of const hijo because 
 		childString = "./Server.exe";
 	}
 	if (OSName === "linux") {
-		childString = "./Server";
+		childString = `${serverPath}Server`;
 	}
 	const hijo = execFile(childString, (error, stdout, stderr) => {
 		if (error) {
@@ -50,25 +51,25 @@ try {//Check if at last we can put in a function the part of const hijo because 
 
 let mainWindow;
 
-/// create a global var, wich will keep a reference to out loadingScreen window
+// create a global var, wich will keep a reference to out loadingScreen window
 let loadingScreen;
 const createLoadingScreen = () => {
-	/// create a browser window
+	// create a browser window
 	loadingScreen = new BrowserWindow(
 		Object.assign({
-			/// define width and height for the window
+			// define width and height for the window
 			width: 250,
 			height: 400,
-			/// remove the window frame, so it will become a frameless window
+			// remove the window frame, so it will become a frameless window
 			frame: false,
-			/// and set the transparency, to remove any window background color
+			// and set the transparency, to remove any window background color
 			transparent: true,
 			show: false,
 		})
 	);
 	loadingScreen.setResizable(false);
 	loadingScreen.loadURL(
-		"file://" + __dirname + "/resources/Flask/templates/loading.html"
+		"file://" + __dirname + "/resources/Flask/templates/loading.html"//Maybe this needs to change but maybe not
 	);
 	loadingScreen.on("closed", () => (loadingScreen = null));
 	loadingScreen.once("ready-to-show", () => {
@@ -146,7 +147,7 @@ app.on("window-all-closed", () => {
 				exec('taskkill /IM "Server.exe" /F');
 			}
 			if (OSName === "linux") {
-				exec('pkill -xf "./Server"');
+				exec('pkill -xf "' + `${serverPath}Server` + '"');
 			}
 		} catch (error) {
 			if (OSName === "win32") {
@@ -166,7 +167,8 @@ ipcMain.on("window-close", () => {
 			exec('taskkill /IM "Server.exe" /F');
 		}
 		if (OSName === "linux") {
-			exec('pkill -xf "./Server"');
+			exec('pkill -xf "' + `${serverPath}Server` + '"');
+			//exec('pkill -xf "./Server"');
 			//exec('reboot');
 		}
 	} catch (error) {
@@ -181,4 +183,4 @@ ipcMain.on("window-close", () => {
 	app.quit();
 });
 
-//Buscar proceso en linux: ps -ef | grep python3 o ps aux | grep python3
+// Look for the process in linux: ps -ef | grep python3 o ps aux | grep python3

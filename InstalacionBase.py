@@ -125,10 +125,7 @@ def loopForExeFlask(assets):
 
 # Description: A function that creates at the end of the production configuration a txt file in which we will have two lines if we want to clone later again the repository.
 def txtGithub():
-    global cadeAbsPath
     cadesInRepo= ["Ligas de repositorios\n", "SSH: git@github.com:dmtzs/ProyectoRaspArduino.git\n", "HTTPS: https://github.com/dmtzs/ProyectoRaspArduino.git\n"]
-    cadesInRepo.append(cadeAbsPath)
-    del cadeAbsPath
 
     with open("Repo.txt", "w") as file:
         for line in cadesInRepo:
@@ -158,9 +155,6 @@ def ExeFlask(sistema):
         shutil.move("./resources/appData.json", "./")
         shutil.move("./dist/Server", "./")
         shutil.move("./TerrariumApp/terrario-app_1.0.0_amd64.deb", "./terrario-app_1.0.0_amd64.deb")
-
-        global cadeAbsPath
-        cadeAbsPath= os.path.abspath("./")
         
         ArchYFolders(sistema)
         os.mkdir("./resources/")

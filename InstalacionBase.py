@@ -99,7 +99,7 @@ def cadesExeFlask(bandeLocal):
 
 # Description: A complementary method for the ExeFlask method that runs a for loop in order to be executed only if the script is been running in a windows or linux environment.
 def ArchYFolders(sistema):
-    mainFolders= ("Extras", ".vscode", "dist", "build", "resources", "node_modules", ".git")
+    mainFolders= ("Extras", ".vscode", "dist", "build", "resources", "node_modules", ".git", "TerrariumApp")
     archsNo= (".gitattributes", ".gitignore", "LICENSE.md", "package-lock.json", "package.json", "README.md", "requirements.txt", "index.js", "Server.spec")
     mainFoldersWin= ("dist", "build")
     
@@ -151,10 +151,15 @@ def ExeFlask(sistema):
         comPyinstaller= f'pyinstaller {banderasPyinstaller} {nomApp} {icono} --add-data "{static}" --add-data "{templates}" "{archPrinFlask}"'
         os.system(comPyinstaller)
         os.system("npm run dist")
-        shutil.move("./TerrariumApp/TerrariumApp-1.0.0.AppImage", "./TerrariumApp/linux-unpacked/SmartTerra.AppImage")
-        #shutil.move("./dist/Server", "./")
+        #shutil.move("./TerrariumApp/TerrariumApp-1.0.0.AppImage", "./TerrariumApp/linux-unpacked/SmartTerra.AppImage")
+        shutil.move("./TerrariumApp/TerrariumApp-1.0.0.AppImage", "./SmartTerra.AppImage")
+        shutil.move("./dist/Server", "./")
+        shutil.move("./resources/appData.json", "./")
         
         ArchYFolders(sistema)
+
+        os.mkdir("./resources/")
+        shutil.move("./appData.json", "./resources/")
     
     else:
         print("No se puede ejecutar el programa en ambientes que no sean windows o linux")

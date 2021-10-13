@@ -161,7 +161,7 @@ def ExeFlask(sistema):
         ArchYFolders(sistema)
         os.mkdir("./resources/")
         shutil.move("./appData.json", "./resources/appData.json")
-        os.system("sudo dpkg -i /TerrariumApp/terrario-app_1.0.0_amd64.deb")
+        os.system("sudo dpkg -i ./TerrariumApp/terrario-app_1.0.0_amd64.deb")
     
     else:
         print("No se puede ejecutar el programa en ambientes que no sean windows o linux")

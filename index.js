@@ -13,43 +13,44 @@ const params = {
 let OSName = process.platform;
 var childString = "nothing";
 
-try {//Check if at last we can put in a function the part of const hijo because that part maybe we can do it more modular
-	if (OSName === "win32") {
-		childString = "./Server.exe";
-	}
-	if (OSName === "linux") {
-		childString = "./Server";
-	}
+if (OSName === "win32") {
+	childString = "./Server.exe";
+	//childString = "./resources/Flask/main.py";
+}
+if (OSName === "linux") {
+	childString = "./Server";
+}
+if (OSName !== "darwin") {
 	var hijo = execFile(childString, (error, stdout, stderr) => {
 		if (error) {
 			console.log(error.stack);
 			console.log(`Error code: ${error.code}`);
 			console.log(`Signal received: ${error.signal}`);
+			console.log(`Child Process STDOUT: ${stdout}`);
+			console.log(`Child Process STDERR: ${stderr}`);
+			
+			childString = "./resources/Flask/main.py";
+			if (OSName === "win32") {
+				commando= "python";
+			}
+			if (OSName === "linux") {
+				commando= "python3";
+			}
+			hijo = execFile(commando, [childString], (error, stdout, stderr) => {
+				if (error) {
+					console.log(error.stack);
+					console.log(`Error code: ${error.code}`);
+					console.log(`Signal received: ${error.signal}`);
+					console.log(`Child Process STDOUT: ${stdout}`);
+					console.log(`Child Process STDERR: ${stderr}`);
+				}
+			});
 		}
-		console.log(`Child Process STDOUT: ${stdout}`);
-		console.log(`Child Process STDERR: ${stderr}`);
-	});
-} catch (error) {
-	if (OSName === "win32") {
-		childString = "python ./resources/Flask/main.py";
-	}
-	if (OSName === "linux") {
-		childString = "python3 ./resources/Flask/main.py";
-	}
-	var hijo = execFile(childString, (error, stdout, stderr) => {
-		if (error) {
-			console.log(error.stack);
-			console.log(`Error code: ${error.code}`);
-			console.log(`Signal received: ${error.signal}`);
-		}
-		console.log(`Child Process STDOUT: ${stdout}`);
-		console.log(`Child Process STDERR: ${stderr}`);
 	});
 }
 
+// Create a global var, wich will keep a reference to out loadingScreen window and main window
 let mainWindow;
-
-// Create a global var, wich will keep a reference to out loadingScreen window
 let loadingScreen;
 const createLoadingScreen = () => {
 	// create a browser window
@@ -114,23 +115,28 @@ hijo.on("exit", (code) => {
 	console.log(`Child process exited with exit code ${code}`);
 });
 
-app.whenReady().then(() => {
-	// Deletes the error connection refused when we start the application
-	createLoadingScreen();
-	waitPort(params)
-		.then((open) => {
-			createWindow();
-			if (open) console.log("The port is now open!");
-			else console.log("The port did not open before the timeout...");
-		})
-		.catch((err) => {
-			console.err(
-				`An unknown error occured while waiting for the port: ${err}`
-			);
-		});
-	// const mainMenu= Menu.buildFromTemplate(template);
-	// Menu.setApplicationMenu(mainMenu);
-});
+if (OSName !== "darwin") {
+	app.whenReady().then(() => {
+		// Deletes the error connection refused when we start the application
+		createLoadingScreen();
+		waitPort(params)
+			.then((open) => {
+				createWindow();
+				if (open) console.log("The port is now open!");
+				else console.log("The port did not open before the timeout...");
+			})
+			.catch((err) => {
+				console.err(
+					`An unknown error occured while waiting for the port: ${err}`
+				);
+			});
+		// const mainMenu= Menu.buildFromTemplate(template);
+		// Menu.setApplicationMenu(mainMenu);
+	});
+}
+else {
+	console.log("The application only supports Linux and Windows systems")
+}
 
 app.on("activate", () => {
 	if (BrowserWindow.getAllWindows().length == 0) {
@@ -139,45 +145,26 @@ app.on("activate", () => {
 });
 
 app.on("window-all-closed", () => {
-	if (process.platform !== "darwin") {
-		try {
-			if (OSName === "win32") {
-				exec('taskkill /IM "Server.exe" /F');
-			}
-			if (OSName === "linux") {
-				exec('pkill -xf "./Server"');
-			}
-		} catch (error) {
-			if (OSName === "win32") {
-				exec('taskkill /IM "Server.exe" /F');// We still need to check this what todo for windows exception
-			}
-			if (OSName === "linux") {
-				exec('pkill -xf "python3 ./resources/Flask/main.py"');
-			}
-		}
-		app.quit();
+	if (OSName === "win32") {
+		exec('taskkill /IM "Server.exe" /F');
 	}
+	if (OSName === "linux") {
+		exec('pkill -xf "./Server"');
+		exec('pkill -xf "python3 ./resources/Flask/main.py"');
+	}
+	app.quit();
 });
 
 ipcMain.on("window-close", () => {
-	try {
-		if (OSName === "win32") {
-			exec('taskkill /IM "Server.exe" /F');
-		}
-		if (OSName === "linux") {
-			exec('pkill -xf "./Server"');
-			//exec('reboot');
-		}
-	} catch (error) {
-		if (OSName === "win32") {
-			exec('taskkill /IM "Server.exe" /F');//We still need to check this what todo for windows exception
-		}
-		if (OSName === "linux") {
-			exec('pkill -xf "python3 ./resources/Flask/main.py"');
-			//exec('reboot');
-		}
+	if (OSName === "win32") {
+		exec('taskkill /IM "Server.exe" /F');
 	}
-	app.quit();
+	if (OSName === "linux") {
+		exec('pkill -xf "./Server"');
+		exec('pkill -xf "python3 ./resources/Flask/main.py"');
+		exec('reboot');
+	}
+app.quit();
 });
 
 // Look for the process in linux: ps -ef | grep python3 o ps aux | grep python3

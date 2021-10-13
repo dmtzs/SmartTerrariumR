@@ -16,7 +16,7 @@ def execComands(comandsExec):
 # @Description: Method for dowloading through wget the local libraries we need in order to load all the styles and other functionalities
 #               of the electron project, etc.
 def localLibs():
-    libsDirectory= "./resources/Flask/static/libraries/"
+    libsDirectory= "./resources/Flask/app/static/libraries/"
     localLibsUrl= "https://github.com/dmtzs/SmartTerrariumR/releases/download/Local_libraries/localLibraries.zip"
     fileToUnzip= f"{libsDirectory}localLibraries.zip"
 
@@ -125,11 +125,14 @@ def loopForExeFlask(assets):
 
 # Description: A function that creates at the end of the production configuration a txt file in which we will have two lines if we want to clone later again the repository.
 def txtGithub():
-    file= open("Repo.txt", "w")
-    file.write("Ligas de repositorios\n")
-    file.write("SSH: git@github.com:dmtzs/ProyectoRaspArduino.git\n")
-    file.write("HTTPS: https://github.com/dmtzs/ProyectoRaspArduino.git")
-    file.close()
+    global cadeAbsPath
+    cadesInRepo= ["Ligas de repositorios\n", "SSH: git@github.com:dmtzs/ProyectoRaspArduino.git\n", "HTTPS: https://github.com/dmtzs/ProyectoRaspArduino.git\n"]
+    cadesInRepo.append(cadeAbsPath)
+    del cadeAbsPath
+
+    with open("Repo.txt", "w") as file:
+        for line in cadesInRepo:
+            file.write(line)
 
 # Description: Method to create the executable file in order to protect more the code of the flask and also to create the package of the electron including all code.
 def ExeFlask(sistema):
@@ -153,9 +156,12 @@ def ExeFlask(sistema):
         os.system("npm run dist")
         #shutil.move("./TerrariumApp/TerrariumApp-1.0.0.AppImage", "./TerrariumApp/linux-unpacked/SmartTerra.AppImage")
         shutil.move("./resources/appData.json", "./")
+        global cadeAbsPath
+        cadeAbsPath= os.path.abspath("./resources/appData.json")
         ArchYFolders(sistema)
         os.mkdir("./resources/")
         shutil.move("./appData.json", "./resources/appData.json")
+        os.system("sudo dpkg -i /TerrariumApp/terrario-app_1.0.0_amd64.deb")
     
     else:
         print("No se puede ejecutar el programa en ambientes que no sean windows o linux")

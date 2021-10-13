@@ -41,7 +41,6 @@
         ]
       }
     ],
-
     "nsis": {
       "allowToChangeInstallationDirectory": "true",
       "oneClick": "false"

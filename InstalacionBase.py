@@ -156,12 +156,15 @@ def ExeFlask(sistema):
         os.system("npm run dist")
         #shutil.move("./TerrariumApp/TerrariumApp-1.0.0.AppImage", "./TerrariumApp/linux-unpacked/SmartTerra.AppImage")
         shutil.move("./resources/appData.json", "./")
+        shutil.move("./dist/Server", "./")
         global cadeAbsPath
-        cadeAbsPath= os.path.abspath("./resources/appData.json")
+        cadeAbsPath= os.path.abspath("./")
         ArchYFolders(sistema)
         os.mkdir("./resources/")
         shutil.move("./appData.json", "./resources/appData.json")
-        os.system("sudo dpkg -i ./TerrariumApp/terrario-app_1.0.0_amd64.deb")
+        shutil.move("./TerrariumApp/terrario-app_1.0.0_amd64.deb", "./terrario-app_1.0.0_amd64.deb")
+        shutil.rmtree("./TerrariumApp/")
+        os.system("sudo dpkg -i ./terrario-app_1.0.0_amd64.deb")
     
     else:
         print("No se puede ejecutar el programa en ambientes que no sean windows o linux")

@@ -190,12 +190,15 @@ def main(sistema):
 
 if __name__ == "__main__":
     try:
+        # Native libraries
         import os
         import sys
-        import wget
         import shutil
         import zipfile
         import platform
+
+        # Not native libraries
+        import wget
     except ImportError as eImp:
         print(f"Ocurrió el siguiente error de importación: {eImp}")
         comShell, sistema= ShellAndSystem()

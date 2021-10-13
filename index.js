@@ -1,15 +1,15 @@
-//--------------------------------------------Importaciones de bibliotecas, constantes y variables--------------------------------------------
+//--------------------------------------------Libraries imports constants and variables--------------------------------------------
 const { app, BrowserWindow, ipcMain } = require("electron");
 const { exec, execFile } = require("child_process");
 const path = require("path");
 const waitPort = require("wait-port");
 
+// Variabels and constants
 const params = {
 	host: "localhost",
 	port: 5000,
 };
 
-//Detectar sistema operativo
 let OSName = process.platform;
 let mainUser= process.env.USER;
 let serverPath= `/home/${mainUser}/Documents/SmartTerrariumR/`
@@ -51,7 +51,7 @@ try {//Check if at last we can put in a function the part of const hijo because 
 
 let mainWindow;
 
-// create a global var, wich will keep a reference to out loadingScreen window
+// Create a global var, wich will keep a reference to out loadingScreen window
 let loadingScreen;
 const createLoadingScreen = () => {
 	// create a browser window
@@ -77,13 +77,13 @@ const createLoadingScreen = () => {
 	});
 };
 
-//--------------------------------------------Función cerebro--------------------------------------------
+//--------------------------------------------Brain function--------------------------------------------
 function createWindow() {
 	mainWindow = new BrowserWindow({
 		fullscreen: true,
 		/*width: 800,
         height: 480,*/
-		title: "Terrario", //Esto se cambia por el mismo flask ya que se pone el tiítulo de la página en la que estás
+		title: "Terrario",
 		//icon: NativeImage.createFromPath("resources/Imgs/Boapng.png"),
 		minimizable: false,
 		show: false,
@@ -99,9 +99,9 @@ function createWindow() {
 	mainWindow.loadURL("http://127.0.0.1:5000/");
 
 	mainWindow.webContents.session.clearCache();
-	//espera a que cargue flask para mostrar la ventana (elimina la pantalla blanca al ejecutar la aplicacion)
+	// It waits until the flask is loaded in order to show the window (deletes the white screen at the execution moment of the app)
 	mainWindow.once("ready-to-show", () => {
-		/// then close the loading screen window and show the main window
+		// Then close the loading screen window and show the main window
 		if (loadingScreen) {
 			setTimeout(() => {
 				loadingScreen.close();
@@ -111,13 +111,13 @@ function createWindow() {
 	});
 }
 
-//--------------------------------------------Eventos sobre la app--------------------------------------------
+//--------------------------------------------Events over the app--------------------------------------------
 hijo.on("exit", (code) => {
 	console.log(`Child process exited with exit code ${code}`);
 });
 
 app.whenReady().then(() => {
-	//elimina el error de connection refused al iniciar la aplicacion
+	// Deletes the error connection refused when we start the application
 	createLoadingScreen();
 	waitPort(params)
 		.then((open) => {
@@ -151,7 +151,7 @@ app.on("window-all-closed", () => {
 			}
 		} catch (error) {
 			if (OSName === "win32") {
-				exec('taskkill /IM "Server.exe" /F');//We still need to check this what todo for windows exception
+				exec('taskkill /IM "Server.exe" /F');// We still need to check this what todo for windows exception
 			}
 			if (OSName === "linux") {
 				exec('pkill -xf "python3 ./resources/Flask/main.py"');

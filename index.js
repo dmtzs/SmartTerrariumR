@@ -20,7 +20,7 @@ try {//Check if at last we can put in a function the part of const hijo because 
 	if (OSName === "linux") {
 		childString = "./Server";
 	}
-	const hijo = execFile(childString, (error, stdout, stderr) => {
+	var hijo = execFile(childString, (error, stdout, stderr) => {
 		if (error) {
 			console.log(error.stack);
 			console.log(`Error code: ${error.code}`);
@@ -36,7 +36,7 @@ try {//Check if at last we can put in a function the part of const hijo because 
 	if (OSName === "linux") {
 		childString = "python3 ./resources/Flask/main.py";
 	}
-	const hijo = execFile(childString, (error, stdout, stderr) => {
+	var hijo = execFile(childString, (error, stdout, stderr) => {
 		if (error) {
 			console.log(error.stack);
 			console.log(`Error code: ${error.code}`);
@@ -67,7 +67,7 @@ const createLoadingScreen = () => {
 	);
 	loadingScreen.setResizable(false);
 	loadingScreen.loadURL(
-		"file://" + __dirname + "/resources/Flask/templates/loading.html"//Maybe this needs to change but maybe not
+		"file://" + __dirname + "/resources/Flask/app/templates/loading.html"//Maybe this needs to change but maybe not
 	);
 	loadingScreen.on("closed", () => (loadingScreen = null));
 	loadingScreen.once("ready-to-show", () => {

@@ -11,8 +11,6 @@ const params = {
 };
 
 let OSName = process.platform;
-let mainUser= process.env.USER;
-let serverPath= `/home/${mainUser}/Documents/SmartTerrariumR/`
 var childString = "nothing";
 
 try {//Check if at last we can put in a function the part of const hijo because that part maybe we can do it more modular
@@ -20,7 +18,7 @@ try {//Check if at last we can put in a function the part of const hijo because 
 		childString = "./Server.exe";
 	}
 	if (OSName === "linux") {
-		childString = `${serverPath}Server`;
+		childString = "./Server";
 	}
 	const hijo = execFile(childString, (error, stdout, stderr) => {
 		if (error) {
@@ -147,7 +145,7 @@ app.on("window-all-closed", () => {
 				exec('taskkill /IM "Server.exe" /F');
 			}
 			if (OSName === "linux") {
-				exec('pkill -xf "' + `${serverPath}Server` + '"');
+				exec('pkill -xf "./Server"');
 			}
 		} catch (error) {
 			if (OSName === "win32") {
@@ -167,8 +165,7 @@ ipcMain.on("window-close", () => {
 			exec('taskkill /IM "Server.exe" /F');
 		}
 		if (OSName === "linux") {
-			exec('pkill -xf "' + `${serverPath}Server` + '"');
-			//exec('pkill -xf "./Server"');
+			exec('pkill -xf "./Server"');
 			//exec('reboot');
 		}
 	} catch (error) {

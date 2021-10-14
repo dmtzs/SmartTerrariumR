@@ -151,7 +151,6 @@ def ExeFlask(sistema):
         comPyinstaller= f'pyinstaller {banderasPyinstaller} {nomApp} {icono} --add-data "{static}" --add-data "{templates}" "{archPrinFlask}"'
         os.system(comPyinstaller)
         os.system("npm run dist")
-        #shutil.move("./TerrariumApp/TerrariumApp-1.0.0.AppImage", "./TerrariumApp/linux-unpacked/SmartTerra.AppImage")
         shutil.move("./TerrariumApp/TerrariumApp-1.0.0.AppImage", "./SmartTerra.AppImage")
         shutil.move("./dist/Server", "./")
         shutil.move("./resources/appData.json", "./")

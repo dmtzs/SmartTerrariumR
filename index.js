@@ -12,13 +12,14 @@ const params = {
 
 let OSName = process.platform;
 var childString = "nothing";
+var commando= ""
 
 if (OSName === "win32") {
 	childString = "./Server.exe";
 	//childString = "./resources/Flask/main.py";
 }
 if (OSName === "linux") {
-	childString = "./Server";
+	childString= "./Server"
 }
 if (OSName !== "darwin") {
 	var hijo = execFile(childString, (error, stdout, stderr) => {
@@ -149,8 +150,10 @@ app.on("window-all-closed", () => {
 		exec('taskkill /IM "Server.exe" /F');
 	}
 	if (OSName === "linux") {
-		exec('pkill -xf "./Server"');
-		exec('pkill -xf "python3 ./resources/Flask/main.py"');
+		exec(`pkill -xf "${childString}"`);
+		if (commando != "") {
+			exec(`pkill -xf "${commando} ./resources/Flask/main.py"`);
+		}
 	}
 	app.quit();
 });
@@ -160,9 +163,13 @@ ipcMain.on("window-close", () => {
 		exec('taskkill /IM "Server.exe" /F');
 	}
 	if (OSName === "linux") {
-		exec('pkill -xf "./Server"');
-		exec('pkill -xf "python3 ./resources/Flask/main.py"');
-		exec('reboot');
+		if (commando != "") {
+			exec(`pkill -xf "${commando} ./resources/Flask/main.py"`);
+		}
+		else {
+			exec('pkill -xf "./Server"');
+			exec('reboot');
+		}
 	}
 app.quit();
 });

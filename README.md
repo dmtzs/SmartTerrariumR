@@ -5,10 +5,11 @@
 </p>
 
 <p align="center">
-    <img src="https://img.shields.io/github/last-commit/dmtzs/SmartTerrariumR">
-    <img src="https://img.shields.io/github/contributors/dmtzs/SmartTerrariumR">
-    <img src="https://img.shields.io/github/issues/dmtzs/SmartTerrariumR?label=issues">
-    <img src="https://img.shields.io/github/stars/dmtzs/SmartTerrariumR">
+  <img src="https://img.shields.io/github/last-commit/dmtzs/SmartTerrariumR">
+  <img src="https://img.shields.io/github/contributors/dmtzs/SmartTerrariumR">
+  <img src="https://img.shields.io/github/issues/dmtzs/SmartTerrariumR?label=issues">
+  <img src="https://img.shields.io/github/stars/dmtzs/SmartTerrariumR">
+  <img alt="GitHub top language" src="https://img.shields.io/github/languages/top/dmtzs/SmartTerrariumR">
 </p>
 
 <p align="center">

@@ -99,7 +99,7 @@ def cadesExeFlask(bandeLocal):
 
 # Description: A complementary method for the ExeFlask method that runs a for loop in order to be executed only if the script is been running in a windows or linux environment.
 def ArchYFolders(sistema):
-    mainFolders= ("Extras", ".vscode", "dist", "build", "resources", "node_modules", ".git", "TerrariumApp")
+    mainFolders= (".vscode", "dist", "build", "resources", "node_modules", ".git", "TerrariumApp")
     archsNo= (".gitattributes", ".gitignore", "LICENSE.md", "package-lock.json", "package.json", "README.md", "requirements.txt", "index.js", "Server.spec")
     mainFoldersWin= ("dist", "build")
     

@@ -151,7 +151,16 @@ def ExeFlask(sistema):
         comPyinstaller= f'pyinstaller {banderasPyinstaller} {nomApp} {icono} --add-data "{static}" --add-data "{templates}" "{archPrinFlask}"'
         os.system(comPyinstaller)
         os.system("npm run dist")
-        shutil.move("./TerrariumApp/TerrariumApp-1.0.0.AppImage", "./SmartTerra.AppImage")
+        
+        try:
+            shutil.move("./TerrariumApp/TerrariumApp-1.0.0.AppImage", "./SmartTerra.AppImage")
+        except:
+            shutil.move("./TerrariumApp/TerrariumApp-1.0.0-arm64.AppImage", "./SmartTerra.AppImage")
+        else:
+            print("Revisa si estás ejecutando el programa en la raspberry o en otro lado con diferente nombre")
+            print("Terminando programa")
+            exit()
+
         shutil.move("./dist/Server", "./")
         shutil.move("./resources/appData.json", "./")
         
@@ -214,21 +223,24 @@ if __name__ == "__main__":
             firstComms= "pip install -r requirements.txt"
             os.system(firstComms)
         del firstComms
+        print("Bibliotecas faltantes instaladas.")
+        print("Por favor vuelve a ejecutar este programa con el mismo comando.")
+        
     else:
         comShell, sistema= ShellAndSystem()
 
-    global bandeProd
-    bandeProd= 0
-    try:
-        os.system(comShell)
-        main(sistema)
-    except Exception as ex:
-        print(f"Ocurrió el siguiente error: {ex}")
-    except KeyboardInterrupt:
-        print("Se presiono Ctrl+C, finalizando programa con ejecución incorrecta")
-    finally:
-        print("Finalizando ejecución de programa")
-        if bandeProd== 0:
-            pass
-        elif bandeProd!= 0 and sistema== "Linux":
-            os.remove("InstalacionBase.py")
+        global bandeProd
+        bandeProd= 0
+        try:
+            os.system(comShell)
+            main(sistema)
+        except Exception as ex:
+            print(f"Ocurrió el siguiente error: {ex}")
+        except KeyboardInterrupt:
+            print("Se presiono Ctrl+C, finalizando programa con ejecución incorrecta")
+        finally:
+            print("Finalizando ejecución de programa")
+            if bandeProd== 0:
+                pass
+            elif bandeProd!= 0 and sistema== "Linux":
+                os.remove("InstalacionBase.py")

@@ -156,10 +156,6 @@ def ExeFlask(sistema):
             shutil.move("./TerrariumApp/TerrariumApp-1.0.0.AppImage", "./SmartTerra.AppImage")
         except:
             shutil.move("./TerrariumApp/TerrariumApp-1.0.0-arm64.AppImage", "./SmartTerra.AppImage")
-        else:
-            print("Revisa si estás ejecutando el programa en la raspberry o en otro lado con diferente nombre")
-            print("Terminando programa")
-            exit()
 
         shutil.move("./dist/Server", "./")
         shutil.move("./resources/appData.json", "./")

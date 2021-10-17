@@ -1,12 +1,13 @@
 
 # @Description: Method that returns the system and a shell command in order to clean the terminal in which this program is executed.
 def ShellAndSystem():
-    sistema = platform.system()
+    sistema= platform.system()
+    arqui= platform.machine()
 
     if sistema == "Windows":
-        return "cls", sistema
+        return "cls", sistema, arqui
     else:
-        return "clear", sistema
+        return "clear", sistema, arqui
 
 # @Description: Method used to execute the commands that were sent by the main method
 def execComands(comandsExec):
@@ -125,11 +126,23 @@ def loopForExeFlask(assets):
 
 # Description: A function that creates at the end of the production configuration a txt file in which we will have two lines if we want to clone later again the repository.
 def txtGithub():
-    cadesInRepo= ["Ligas de repositorios\n", "SSH: git@github.com:dmtzs/ProyectoRaspArduino.git\n", "HTTPS: https://github.com/dmtzs/ProyectoRaspArduino.git\n"]
+    cadesInRepo= ["Ligas de repositorios\n", "SSH: git@github.com:dmtzs/SmartTerrariumR.git\n", "HTTPS: https://github.com/dmtzs/SmartTerrariumR.git\n"]
 
     with open("Repo.txt", "w") as file:
         for line in cadesInRepo:
             file.write(line)
+
+# @Description: Creation of a method that creates a file neccessary for init in an automatic mode the application-
+#               of the smart terrarium and content of the startTerra.sh file.
+def contentInitAppAndShFiles(archContent, nameArch, flag):
+    with open(nameArch, "wt") as fp:
+        for elem in archContent:
+            fp.write(elem)
+
+    if flag== 0:
+        os.system("chmod +x startTerra.sh")
+    else:
+        pass
 
 # Description: Method to create the executable file in order to protect more the code of the flask and also to create the package of the electron including all code.
 def ExeFlask(sistema):
@@ -148,7 +161,23 @@ def ExeFlask(sistema):
 
     elif sistema== "Linux":
         static, templates= cadesExeFlask("l")
+        actUsu= os.getenv("USER")
         comPyinstaller= f'pyinstaller {banderasPyinstaller} {nomApp} {icono} --add-data "{static}" --add-data "{templates}" "{archPrinFlask}"'
+        shContent= [f"{chr(35)}!/bin/bash\n", "cd ~/Documents/SmartTerrariumR\n", "exec ./SmartTerra.AppImage"]
+        initFileContent= ["[Desktop Entry]\n",
+                  "Type=Application\n",
+                  "Exec=/home/dmtzs/Documents/SmartTerrariumR/startTerra.sh\n",
+                  "Hidden=false\n",
+                  "NoDisplay=false\n",
+                  "X-GNOME-Autostart-enabled=true\n",
+                  "Name[es]=Smart Terrarium\n",
+                  "Name=Smart Terrarium\n",
+                  "Comment[es]=Inits the application of the smart terrarium\n",
+                  "Comment=Inits the application of the smart terrarium\n",
+                  "X-GNOME-Autostart-Delay= 3"]
+        shInitFiles= [shContent, initFileContent]
+        fileNames= ["startTerra.sh", f"/home/{actUsu}/.config/autostart/startTerra.sh.desktop"]
+
         os.system(comPyinstaller)
         os.system("npm run dist")
         
@@ -164,6 +193,11 @@ def ExeFlask(sistema):
 
         os.mkdir("./resources/")
         shutil.move("./appData.json", "./resources/")
+        
+        for turn in range(2):
+            contentInitAppAndShFiles(shInitFiles[turn], fileNames[turn], turn)
+
+        print("Verifica si se creo el archivo de inicio y reinicia el sistema operativo")
     
     else:
         print("No se puede ejecutar el programa en ambientes que no sean windows o linux")
@@ -209,7 +243,7 @@ if __name__ == "__main__":
         import wget
     except ImportError as eImp:
         print(f"Ocurrió el siguiente error de importación: {eImp}")
-        comShell, sistema= ShellAndSystem()
+        comShell, sistema, _= ShellAndSystem()
         if sistema== "Linux":
             firstComms= ["sudo apt install python3-pip", "pip3 install -r requirements.txt"]
             
@@ -223,7 +257,7 @@ if __name__ == "__main__":
         print("Por favor vuelve a ejecutar este programa con el mismo comando.")
         
     else:
-        comShell, sistema= ShellAndSystem()
+        comShell, sistema, _= ShellAndSystem()
 
         global bandeProd
         bandeProd= 0

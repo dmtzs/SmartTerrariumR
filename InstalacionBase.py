@@ -198,7 +198,7 @@ def ExeFlask(sistema):
         shutil.move("./appData.json", "./resources/")
         
         for turn in range(2):
-            contentInitAppAndShFiles(shInitFiles, fileNames, turn)
+            contentInitAppAndShFiles(shInitFiles[turn], fileNames[turn], turn)
 
         print("Verifica si se creo el archivo de inicio y reinicia el sistema operativo")
     

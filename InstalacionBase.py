@@ -90,7 +90,7 @@ def help(sistema):
     print(f"\n{commPython} InstalacionBase.py --exes: {cadeExe}")
     print(f"\n{commPython} InstalacionBase.py --help: Para mostrar el presente panel de ayuda\n")
 
-# Description: A complementary method for the ExeFlask method that returns strings with ; or : according to its operating system in which the script is running.
+# @Description: A complementary method for the ExeFlask method that returns strings with ; or : according to its operating system in which the script is running.
 def cadesExeFlask(bandeLocal):
     if bandeLocal== "w":
         return "./resources/Flask/app;app/", "./resources/Flask/TerrariumLib;TerrariumLib/"
@@ -98,7 +98,7 @@ def cadesExeFlask(bandeLocal):
     elif bandeLocal== "l":
         return "./resources/Flask/app:app/", "./resources/Flask/TerrariumLib:TerrariumLib/"
 
-# Description: A complementary method for the ExeFlask method that runs a for loop in order to be executed only if the script is been running in a windows or linux environment.
+# @Description: A complementary method for the ExeFlask method that runs a for loop in order to be executed only if the script is been running in a windows or linux environment.
 def ArchYFolders(sistema):
     mainFolders= (".vscode", "dist", "build", "resources", "node_modules", ".git", "TerrariumApp")
     archsNo= (".gitattributes", ".gitignore", "LICENSE.md", "package-lock.json", "package.json", "README.md", "requirements.txt", "index.js", "Server.spec")
@@ -115,6 +115,7 @@ def ArchYFolders(sistema):
     global bandeProd
     bandeProd= 1
 
+# @Description: A method that just deletes uneccessary files and folders after we create the production environment.
 def loopForExeFlask(assets):
     for h in range(len(assets)):
         for folder in assets[h]:
@@ -124,7 +125,7 @@ def loopForExeFlask(assets):
                 rmArchs= f"./{folder}"
                 os.remove(rmArchs)
 
-# Description: A function that creates at the end of the production configuration a txt file in which we will have two lines if we want to clone later again the repository.
+# @Description: A function that creates at the end of the production configuration a txt file in which we will have two lines if we want to clone later again the repository.
 def txtGithub():
     cadesInRepo= ["Ligas de repositorios\n", "SSH: git@github.com:dmtzs/SmartTerrariumR.git\n", "HTTPS: https://github.com/dmtzs/SmartTerrariumR.git\n"]
 
@@ -144,7 +145,7 @@ def contentInitAppAndShFiles(archContent, nameArch, turn):
     else:
         pass
 
-# Description: Method to create the executable file in order to protect more the code of the flask and also to create the package of the electron including all code.
+# @Description: Method to create the executable file in order to protect more the code of the flask and also to create the package of the electron including all code.
 def ExeFlask(sistema):
     banderasPyinstaller= "--noconfirm --onefile --windowed"
     nomApp= '--name "Server"'
@@ -235,14 +236,14 @@ def main(sistema):
 
 if __name__ == "__main__":
     try:
-        # Native libraries
+        # Native python libraries
         import os
         import sys
         import shutil
         import zipfile
         import platform
 
-        # Not native libraries
+        # Not native python libraries
         import wget
     except ImportError as eImp:
         print(f"Ocurrió el siguiente error de importación: {eImp}")

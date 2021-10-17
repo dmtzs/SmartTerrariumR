@@ -164,7 +164,7 @@ def ExeFlask(sistema):
         actUsu= os.getenv("USER")
         actPath= os.path.realpath("./")
         auxActPath= actPath.split("/")
-        auxActPath= auxActPath[2]
+        auxActPath= auxActPath[3]
         comPyinstaller= f'pyinstaller {banderasPyinstaller} {nomApp} {icono} --add-data "{static}" --add-data "{templates}" "{archPrinFlask}"'
         shFileContent= [f"#!/bin/bash\n\n", f"cd ~/{auxActPath}/SmartTerrariumR\n", "exec ./SmartTerra.AppImage"]
         initFileContent= ["[Desktop Entry]\n",

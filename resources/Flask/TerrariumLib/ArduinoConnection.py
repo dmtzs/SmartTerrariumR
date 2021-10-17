@@ -97,7 +97,8 @@ class ArduinoConnection():
             self.tries = self.tries + 1
         time.sleep(2)
 
-    # @Description: 
+    # @Description: The method that do the stream of the temperatures, humidity and all data that comes
+    #               from the Arduino and also send the instructions to the arduino to do things.
     def communication(self, text):
         if self.connection:
             self.limpiarShell()

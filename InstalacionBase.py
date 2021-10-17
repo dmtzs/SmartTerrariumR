@@ -133,11 +133,16 @@ def txtGithub():
             file.write(line)
 
 # @Description: Creation of a method that creates a file neccessary for init in an automatic mode the application-
-#               of the smart terrarium.
-def contentInitAppAndShFiles(archContent, nameArch):
+#               of the smart terrarium and also the content of the sh file.
+def contentInitAppAndShFiles(archContent, nameArch, turn):
     with open(nameArch, "wt") as fp:
         for elem in archContent:
             fp.write(elem)
+    
+    if turn== 0:
+        os.system("chmod +x startTerra.sh")
+    else:
+        pass
 
 # Description: Method to create the executable file in order to protect more the code of the flask and also to create the package of the electron including all code.
 def ExeFlask(sistema):
@@ -158,7 +163,10 @@ def ExeFlask(sistema):
         static, templates= cadesExeFlask("l")
         actUsu= os.getenv("USER")
         actPath= os.path.realpath("./")
+        auxActPath= actPath.split("/")
+        auxActPath= auxActPath[2]
         comPyinstaller= f'pyinstaller {banderasPyinstaller} {nomApp} {icono} --add-data "{static}" --add-data "{templates}" "{archPrinFlask}"'
+        shFileContent= [f"#!/bin/bash\n\n", f"cd ~/{auxActPath}/SmartTerrariumR\n", "exec ./SmartTerra.AppImage"]
         initFileContent= ["[Desktop Entry]\n",
                   "Type=Application\n",
                   f"Exec={actPath}/startTerra.sh\n",
@@ -170,9 +178,9 @@ def ExeFlask(sistema):
                   "Comment[es]=Inits the application of the smart terrarium\n",
                   "Comment=Inits the application of the smart terrarium\n",
                   "X-GNOME-Autostart-Delay= 3"]
-        fileNameInitFile= f"/home/{actUsu}/.config/autostart/startTerra.sh.desktop"
+        shInitFiles= [shFileContent, initFileContent]
+        fileNames= ["./startTerra.sh", f"/home/{actUsu}/.config/autostart/startTerra.sh.desktop"]
 
-        os.system("chmod +x startTerra.sh")
         os.system(comPyinstaller)
         os.system("npm run dist")
         
@@ -189,7 +197,8 @@ def ExeFlask(sistema):
         os.mkdir("./resources/")
         shutil.move("./appData.json", "./resources/")
         
-        contentInitAppAndShFiles(initFileContent, fileNameInitFile)
+        for turn in range(2):
+            contentInitAppAndShFiles(shInitFiles, fileNames, turn)
 
         print("Verifica si se creo el archivo de inicio y reinicia el sistema operativo")
     

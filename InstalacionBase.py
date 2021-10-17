@@ -157,10 +157,11 @@ def ExeFlask(sistema):
     elif sistema== "Linux":
         static, templates= cadesExeFlask("l")
         actUsu= os.getenv("USER")
+        actPath= os.path.realpath("./")
         comPyinstaller= f'pyinstaller {banderasPyinstaller} {nomApp} {icono} --add-data "{static}" --add-data "{templates}" "{archPrinFlask}"'
         initFileContent= ["[Desktop Entry]\n",
                   "Type=Application\n",
-                  "Exec=/home/dmtzs/Documents/SmartTerrariumR/startTerra.sh\n",
+                  f"Exec={actPath}/startTerra.sh\n",
                   "Hidden=false\n",
                   "NoDisplay=false\n",
                   "X-GNOME-Autostart-enabled=true\n",

@@ -48,7 +48,7 @@ All this in order to be showed through a display connected to the raspberry.
 
 ### Installation, libraries and considerations
 * For its correct installation and use you need first python3 installed in your raspberry.
-* The project uses Ubuntu mate OS(arm64 bits version).
+* The project uses Ubuntu Desktop 21.10 OS(arm64 bits version).
 * The model of the raspberry is pi4 B+.
 * You can use raspberry models like pi3 and pi3 B but are not still tested in this ones.
 * USB cable for connect both boards between them.

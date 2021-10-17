@@ -133,16 +133,11 @@ def txtGithub():
             file.write(line)
 
 # @Description: Creation of a method that creates a file neccessary for init in an automatic mode the application-
-#               of the smart terrarium and content of the startTerra.sh file.
-def contentInitAppAndShFiles(archContent, nameArch, flag):
+#               of the smart terrarium.
+def contentInitAppAndShFiles(archContent, nameArch):
     with open(nameArch, "wt") as fp:
         for elem in archContent:
             fp.write(elem)
-
-    if flag== 0:
-        os.system("chmod +x startTerra.sh")
-    else:
-        pass
 
 # Description: Method to create the executable file in order to protect more the code of the flask and also to create the package of the electron including all code.
 def ExeFlask(sistema):
@@ -163,7 +158,6 @@ def ExeFlask(sistema):
         static, templates= cadesExeFlask("l")
         actUsu= os.getenv("USER")
         comPyinstaller= f'pyinstaller {banderasPyinstaller} {nomApp} {icono} --add-data "{static}" --add-data "{templates}" "{archPrinFlask}"'
-        shContent= [f"{chr(35)}!/bin/bash\n", "cd ~/Documents/SmartTerrariumR\n", "exec ./SmartTerra.AppImage"]
         initFileContent= ["[Desktop Entry]\n",
                   "Type=Application\n",
                   "Exec=/home/dmtzs/Documents/SmartTerrariumR/startTerra.sh\n",
@@ -175,9 +169,9 @@ def ExeFlask(sistema):
                   "Comment[es]=Inits the application of the smart terrarium\n",
                   "Comment=Inits the application of the smart terrarium\n",
                   "X-GNOME-Autostart-Delay= 3"]
-        shInitFiles= [shContent, initFileContent]
-        fileNames= ["startTerra.sh", f"/home/{actUsu}/.config/autostart/startTerra.sh.desktop"]
+        fileNameInitFile= f"/home/{actUsu}/.config/autostart/startTerra.sh.desktop"
 
+        os.system("chmod +x startTerra.sh")
         os.system(comPyinstaller)
         os.system("npm run dist")
         
@@ -194,8 +188,7 @@ def ExeFlask(sistema):
         os.mkdir("./resources/")
         shutil.move("./appData.json", "./resources/")
         
-        for turn in range(2):
-            contentInitAppAndShFiles(shInitFiles[turn], fileNames[turn], turn)
+        contentInitAppAndShFiles(initFileContent, fileNameInitFile)
 
         print("Verifica si se creo el archivo de inicio y reinicia el sistema operativo")
     

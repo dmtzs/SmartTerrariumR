@@ -81,8 +81,8 @@ const createLoadingScreen = () => {
 function createWindow() {
 	mainWindow = new BrowserWindow({
 		fullscreen: true,
-		/*width: 800,
-        height: 480,*/
+		/*width: 1000,
+        height: 680,*/
 		title: "Terrario",
 		//icon: NativeImage.createFromPath("resources/Imgs/Boapng.png"),
 		minimizable: false,

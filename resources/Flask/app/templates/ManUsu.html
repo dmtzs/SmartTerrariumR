@@ -7,4 +7,24 @@
 {% block content %}
     <h1>Manual de usuario</h1>
 
+    <p class="paragraphQR">
+        <span align="left">
+            <img width="280" src="{{ url_for('static', filename= 'Uploads/manualEs.png') }}" alt="Instructivo español">
+        </span>
+
+        <span class="separateQR"></span>
+    
+        <span align="right">
+            <img width="280" src="{{ url_for('static', filename= 'Uploads/manualEn.png') }}" alt="English instructive">
+        </span>
+    </p>
+
+    {# 
+        <p align= "center">
+            <small align="center">Instructivo español</small>
+            <span class="separatesmalls"></span>
+            <small align="center">English instructive</small>
+        </p>
+    #}
+
 {% endblock %}

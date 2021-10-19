@@ -62,7 +62,7 @@ This libraries should be installed only if you want to develop by yourself the a
 * You need to install from the IDE the dht.h library from adafruit in order to read the dht sensor and include it in the program.
 * You need to install from the IDE the OneWire.h library from Paul Stoffregen to read the submersible sensor.
 * You need to install from the IDE the DallasTemperature.h library from Miles Burton in order to be use with OneWire library.
-* If you´re using s linux distribution to upload the file to the Arduino remember to enable the permissions of writing over the USB port.
+* If you´re using a linux distribution to upload the file to the Arduino remember to enable the permissions of writing over the USB port.
 
 ## Sensor´s and materials list used
 * dht22 humidity and temperature sensor

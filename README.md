@@ -32,13 +32,6 @@ We are developing a github page in the wiki part in order to use that space as a
 <br>
 Also please see below the list of the hardware which are going to be used in this project.
 
-## Mobile Application kotlin program
-This mobile app will have the same functionality like the desktop app, with the difference that you will now control the main app executed in the raspberry through this mobile app from anywhere if you need it.
-<br>
-This mobile app will be developed with the time after most of the main app of the raspberry is finish.
-<br>
-If you want to see the repository [click here](https://github.com/dmtzs/TerrariumMobileApp) to go to the repository of the mobile app of the terrarium.
-
 ## Rasp Berry python program
 The user interface will be developed with python using electron and flask microframework for the graphic interface in order to show all the data we need with an interface which is builded with css and of course the flask is for all the connections and instructions with the Arduino.
 <br>
@@ -46,13 +39,13 @@ The program will process the data that comes from the arduino via USB and the py
 All this in order to be showed through a display connected to the raspberry.
 <br>
 
-### Installation, libraries and considerations
+### Specifications
 * For its correct installation and use you need first python3 installed in your raspberry.
 * The project uses Ubuntu Desktop 21.10 OS(arm64 bits version).
 * The model of the raspberry is pi4 B+.
 * You can use raspberry models like pi3 and pi3 B but are not still tested in this ones.
 * USB cable for connect both boards between them.
-* Execute the command below in order to install all python libraries and all configuration needed for this project and to create the flask executable. Also the flag --help will give you the same instructions about which flags are allowed by the program InstalacionBase python file
+* Execute the command below in order to know what other commands you need to execute in order to install all python libraries and all configuration needed for this project and to create the flask executable, etc. Also the flag --help will give you the instructions about which flags are allowed by the program InstalacionBase python file.
 ```
 python3 InstalacionBase.py --help
 ```
@@ -62,7 +55,7 @@ The Arduino is used in order to acquire the parameters we want to show through t
 <br>
 All the necesary data will be displayed in the display of the raspberry for its correct manage from the user.
 
-### Installation, libraries and considerations
+### Specifications
 This libraries should be installed only if you want to develop by yourself the arduino, if not it is not neccesary.
 * First you need to use an Arduino uno board in order to use the same pins as the program, if not consider that you will need to change the default pins.
 * You need the IDE of Arduino for upload the Arduino program to your board.

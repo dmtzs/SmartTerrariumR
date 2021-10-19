@@ -1,5 +1,5 @@
 <p align="center">
-  <img width="280" src="https://github.com/dmtzs/ProyectoRaspArduino/blob/master/resources/Imgs/BoaEsmeraldaAppOriginal.png" alt="logo">
+  <img width="300" src="https://github.com/dmtzs/ProyectoRaspArduino/blob/master/resources/Imgs/BoaEsmeraldaAppOriginal.png" alt="logo">
   <h1 align="center" style="margin: 0 auto 0 auto;">Smart terrarium</h1>
   <h5 align="center" style="margin: 0 auto 0 auto;">Smart terrarium for your reptile pets</h5>
 </p>

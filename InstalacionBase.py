@@ -199,7 +199,10 @@ def ExeFlask(sistema):
 
         os.mkdir("./resources/")
         for fileMove2 in moveFiles2:
-            shutil.move(f"./{fileMove2}", "./resources/")
+            if fileMove2== "Server":
+                pass
+            else:
+                shutil.move(f"./{fileMove2}", "./resources/")
         
         for turn in range(2):
             contentInitAppAndShFiles(shInitFiles[turn], fileNames[turn], turn)

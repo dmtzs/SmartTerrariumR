@@ -166,6 +166,8 @@ def ExeFlask(sistema):
         actPath= os.path.realpath("./")
         auxActPath= actPath.split("/")
         auxActPath= auxActPath[3]
+        moveFiles2= ["Server", "appData.json", "BoaEsmeraldaAppOriginal.png", "serverIco.ico"]
+        moveFiles= [f"./dist/{moveFiles2[0]}", f"./resources/{moveFiles2[1]}", f"./resources/Imgs/{moveFiles2[2]}", f"./resources/Imgs/{moveFiles2[3]}"]
         comPyinstaller= f'pyinstaller {banderasPyinstaller} {nomApp} {icono} --add-data "{static}" --add-data "{templates}" "{archPrinFlask}"'
         shFileContent= [f"#!/bin/bash\n\n", f"cd ~/{auxActPath}/SmartTerrariumR\n", "exec ./SmartTerra.AppImage"]
         initFileContent= ["[Desktop Entry]\n",
@@ -190,13 +192,14 @@ def ExeFlask(sistema):
         except:
             shutil.move("./TerrariumApp/TerrariumApp-1.0.0-arm64.AppImage", "./SmartTerra.AppImage")
 
-        shutil.move("./dist/Server", "./")
-        shutil.move("./resources/appData.json", "./")
+        for fileMove in moveFiles:
+            shutil.move(fileMove, "./")
         
         ArchYFolders(sistema)
 
         os.mkdir("./resources/")
-        shutil.move("./appData.json", "./resources/")
+        for fileMove2 in moveFiles2:
+            shutil.move(f"./{fileMove2}", "./resources/")
         
         for turn in range(2):
             contentInitAppAndShFiles(shInitFiles[turn], fileNames[turn], turn)

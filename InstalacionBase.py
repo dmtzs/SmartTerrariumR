@@ -200,6 +200,7 @@ def ExeFlask(sistema):
             shutil.move("./TerrariumApp/TerrariumApp-1.0.0-arm64.AppImage", "./SmartTerra.AppImage")
 
         shutil.move("./resources/appData.json", "./")
+        shutil.move("./dist/Server", "./")
         
         ArchYFolders(sistema)
 

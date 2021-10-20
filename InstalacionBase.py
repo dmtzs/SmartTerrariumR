@@ -1,5 +1,8 @@
 
 # @Description: Method that returns the system and a shell command in order to clean the terminal in which this program is executed.
+from os import path
+
+
 def ShellAndSystem():
     sistema= platform.system()
     arqui= platform.machine()
@@ -166,8 +169,7 @@ def ExeFlask(sistema):
         actPath= os.path.realpath("./")
         auxActPath= actPath.split("/")
         auxActPath= auxActPath[3]
-        moveFiles2= ["Server", "appData.json", "BoaEsmeraldaAppOriginal.png", "serverIco.ico"]
-        moveFiles= [f"./dist/{moveFiles2[0]}", f"./resources/{moveFiles2[1]}", f"./resources/Imgs/{moveFiles2[2]}", f"./resources/Imgs/{moveFiles2[3]}"]
+        pathEval= f"/home/{actUsu}/.config/autostart/"
         comPyinstaller= f'pyinstaller {banderasPyinstaller} {nomApp} {icono} --add-data "{static}" --add-data "{templates}" "{archPrinFlask}"'
         shFileContent= [f"#!/bin/bash\n\n", f"cd ~/{auxActPath}/SmartTerrariumR\n", "exec ./SmartTerra.AppImage"]
         initFileContent= ["[Desktop Entry]\n",
@@ -182,7 +184,12 @@ def ExeFlask(sistema):
                   "Comment=Inits the application of the smart terrarium\n",
                   "X-GNOME-Autostart-Delay= 3"]
         shInitFiles= [shFileContent, initFileContent]
-        fileNames= ["./startTerra.sh", f"/home/{actUsu}/.config/autostart/startTerra.sh.desktop"]
+        fileNames= ["./startTerra.sh", f"{pathEval}startTerra.sh.desktop"]
+
+        if os.path.isdir(pathEval):
+            pass
+        else:
+            os.mkdir(pathEval)
 
         os.system(comPyinstaller)
         os.system("npm run dist")
@@ -192,18 +199,13 @@ def ExeFlask(sistema):
         except:
             shutil.move("./TerrariumApp/TerrariumApp-1.0.0-arm64.AppImage", "./SmartTerra.AppImage")
 
-        for fileMove in moveFiles:
-            shutil.move(fileMove, "./")
+        shutil.move("./resources/appData.json", "./")
         
         ArchYFolders(sistema)
 
         os.mkdir("./resources/")
-        for fileMove2 in moveFiles2:
-            if fileMove2== "Server":
-                pass
-            else:
-                shutil.move(f"./{fileMove2}", "./resources/")
-        
+        shutil.move("./appData.json", "./resources/")
+
         for turn in range(2):
             contentInitAppAndShFiles(shInitFiles[turn], fileNames[turn], turn)
 

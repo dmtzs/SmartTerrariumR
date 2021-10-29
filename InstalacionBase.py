@@ -249,6 +249,7 @@ if __name__ == "__main__":
         import os
         import sys
         import shutil
+        import pkgutil
         import zipfile
         import platform
 
@@ -256,14 +257,24 @@ if __name__ == "__main__":
         import wget
     except ImportError as eImp:
         print(f"Ocurrió el siguiente error de importación: {eImp}")
+        print("Verificando modulos faltantes...")
         comShell, sistema, _= ShellAndSystem()
+        moduleArray= []
+
+        for modulo in pkgutil.iter_modules():
+            moduleArray.append(modulo[1])
+        
+        if "wget" not in moduleArray:
+            print("Intalando modulo wget")
+
         if sistema== "Linux":
-            firstComms= ["sudo apt install python3-pip", "pip3 install -r requirements.txt"]
+            firstComms= ["sudo apt install python3-pip", "pip3 install wget"]
             
             for i in firstComms:
                 os.system(i)
+                
         elif sistema== "Windows":
-            firstComms= "pip install -r requirements.txt"
+            firstComms= "pip install wget"
             os.system(firstComms)
         del firstComms
         print("Bibliotecas faltantes instaladas.")

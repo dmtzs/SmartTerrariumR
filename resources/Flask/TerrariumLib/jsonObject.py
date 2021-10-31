@@ -1,6 +1,10 @@
+#@File: jsonObject.py
+#@Author: Diego Martínez Sánchez and Guillermo Ortega Romo.
+#@Description: This module manages the data stored in the appData json file that is used to configure the app at the moment we init the raspberry-
+#              so everything will stay with all the configuration added even if the raspberry turns off in a anormal way.
 try:
-    import json
     import os
+    import json
 except ImportError as eImp:
     print(f"Ocurrió el error de importación: {eImp}")
 

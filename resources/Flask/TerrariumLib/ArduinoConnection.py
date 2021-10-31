@@ -1,9 +1,13 @@
+#@File: ArduinoConnection.py
+#@Author: Diego Martínez Sánchez and Guillermo Ortega Romo.
+#@Description: This module manages the connections with the arduino so we can do all the interaction needed in order to perform the functionality-
+#              of the terrarium to do it smart.
 try:
     import os
     import time
     import serial
-    import warnings
     import platform
+    import warnings
     import serial.tools.list_ports
 except ImportError as eImp:
     print(f"The following error import ocurred: {eImp}")

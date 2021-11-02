@@ -1,3 +1,7 @@
+#@File: routes.py
+#@Author: Diego Martínez Sánchez and Guillermo Ortega Romo.
+#@Description: This file has all the endpoints that are defined in order to perfrom all the functionality of the project to make the terrarrium-
+#              smart like is the main purpose of this project, more description per endpoint below.
 try:
     import csv
     import time

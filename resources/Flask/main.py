@@ -1,7 +1,7 @@
 #@File: main.py
 #@Author: Diego Martínez Sánchez and Guillermo Ortega Romo.
-#@Description: This file just run all the complete server builded with flask, in order to separate and have more order in the code thats why the-
-#              functionality is separated in different files so we can manage more friendly the server if its required.
+#@Description: This file starts all the complete server builded with flask, this code has only the way the app should be executed.
+#              Which means if the server should be executed in development mode or production.
 try:
     from app import app
     from gevent.pywsgi import WSGIServer

@@ -283,6 +283,7 @@ if __name__ == "__main__":
         
     else:
         comShell, sistema, _= ShellAndSystem()
+        del _
 
         global bandeProd
         bandeProd= 0

@@ -1,8 +1,9 @@
+#@File: InstalacionBase.py
+#@Author: Diego Martínez Sánchez.
+#@Description: This file contains all the methods that are used in order to install and create the production app for the terrarium.
 
-# @Description: Method that returns the system and a shell command in order to clean the terminal in which this program is executed.
-from os import path
-
-
+#---------------------------Methods---------------------------
+#@Description: Method that returns the system and a shell command in order to clean the terminal in which this program is executed.
 def ShellAndSystem():
     sistema= platform.system()
     arqui= platform.machine()

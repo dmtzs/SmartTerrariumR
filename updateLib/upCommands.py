@@ -1,5 +1,6 @@
 try:
     import sys
+    import json
 except ImportError as eImp:
     print(f"Ocurrió el siguiente error de importación: {eImp}")
 

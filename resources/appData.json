@@ -13,8 +13,8 @@
     "repositorio-info": {
         "repositorio-host": "github",
         "repositorio-herramienta": "git",
-        "repositorio-source-https": "https://github.com/dmtzs/ProyectoRaspArduino.git",
-        "repositorio-source-ssh": "git@github.com:dmtzs/ProyectoRaspArduino.git"
+        "repositorio-source-https": "https://github.com/dmtzs/SmartTerrariumR.git",
+        "repositorio-source-ssh": "git@github.com:dmtzs/SmartTerrariumR.git"
     },
     "configuracion": {
         "modo": 1,
@@ -26,5 +26,10 @@
         "humedad-rango": {
             "rangoHumedad": "32.06"
         }
+    },
+    "updates": {
+        "release-arduino": "",
+        "release-server": "",
+        "release-electron": ""
     }
 }

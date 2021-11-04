@@ -115,7 +115,6 @@ def ArchYFolders(sistema):
         loopForExeFlask(rmFoldersWin)
     else:
         loopForExeFlask(rmFoldersLin)
-        txtGithub()
     global bandeProd
     bandeProd= 1
 
@@ -129,9 +128,16 @@ def loopForExeFlask(assets):
                 rmArchs= f"./{folder}"
                 os.remove(rmArchs)
 
-# @Description: A function that creates at the end of the production configuration a txt file in which we will have two lines if we want to clone later again the repository.
+# @Description: A function that creates at the end of the production configuration a txt file in which we will have-
+#               two lines if we want to clone later again the repository.
 def txtGithub():
-    cadesInRepo= ["Ligas de repositorios\n", "SSH: git@github.com:dmtzs/SmartTerrariumR.git\n", "HTTPS: https://github.com/dmtzs/SmartTerrariumR.git\n"]
+    appDataPath= "resources/appData.json"
+    with open(appDataPath, "r") as jsonfile:
+        jsonData= json.loads(jsonfile)
+
+    jsonDataHTTP= jsonData["repositorio-info"]["repositorio-source-https"]
+    jsonDataSSH= jsonData["repositorio-info"]["repositorio-source-ssh"]
+    cadesInRepo= ["Ligas de repositorios:\n", f"SSH: {jsonDataSSH}\n", f"HTTPS: {jsonDataHTTP}\n"]
 
     with open("Repo.txt", "w") as file:
         for line in cadesInRepo:
@@ -207,6 +213,7 @@ def ExeFlask(sistema):
 
         os.mkdir("./resources/")
         shutil.move("./appData.json", "./resources/")
+        txtGithub()
 
         for turn in range(2):
             contentInitAppAndShFiles(shInitFiles[turn], fileNames[turn], turn)
@@ -249,6 +256,7 @@ if __name__ == "__main__":
         # Native python libraries
         import os
         import sys
+        import json
         import shutil
         import pkgutil
         import zipfile

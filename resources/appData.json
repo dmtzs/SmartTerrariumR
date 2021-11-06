@@ -29,7 +29,7 @@
     },
     "updates": {
         "release-arduino": "",
-        "release-server": "",
-        "release-electron": ""
+        "release-server": "https://github.com/dmtzs/SmartTerrariumR/releases/download/FlaskServer/Server",
+        "release-electron": "https://github.com/dmtzs/SmartTerrariumR/releases/download/ElectronApp/SmartTerra.AppImage"
     }
 }

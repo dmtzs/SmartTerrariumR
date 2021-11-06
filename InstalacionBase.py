@@ -135,7 +135,7 @@ def loopForExeFlask(assets):
 def txtGithub():
     appDataPath= "resources/appData.json"
     with open(appDataPath, "r") as jsonfile:
-        jsonData= json.loads(jsonfile)
+        jsonData= json.load(jsonfile)
 
     jsonDataHTTP= jsonData["repositorio-info"]["repositorio-source-https"]
     jsonDataSSH= jsonData["repositorio-info"]["repositorio-source-ssh"]

@@ -130,21 +130,6 @@ def loopForExeFlask(assets):
                 rmArchs= f"./{folder}"
                 os.remove(rmArchs)
 
-# @Description: A function that creates at the end of the production configuration a txt file in which we will have-
-#               two lines if we want to clone later again the repository.
-def txtGithub():
-    appDataPath= "resources/appData.json"
-    with open(appDataPath, "r") as jsonfile:
-        jsonData= json.load(jsonfile)
-
-    jsonDataHTTP= jsonData["repositorio-info"]["repositorio-source-https"]
-    jsonDataSSH= jsonData["repositorio-info"]["repositorio-source-ssh"]
-    cadesInRepo= ["Ligas de repositorios:\n", f"SSH: {jsonDataSSH}\n", f"HTTPS: {jsonDataHTTP}\n"]
-
-    with open("Repo.txt", "w") as file:
-        for line in cadesInRepo:
-            file.write(line)
-
 # @Description: Creation of a method that creates a file neccessary for init in an automatic mode the application-
 #               of the smart terrarium and also the content of the sh file.
 def contentInitAppAndShFiles(archContent, nameArch, turn):
@@ -216,7 +201,6 @@ def ExeFlask(sistema):
 
         os.mkdir("./resources/")
         shutil.move("./appData.json", "./resources/")
-        txtGithub()
 
         for turn in range(2):
             contentInitAppAndShFiles(shInitFiles[turn], fileNames[turn], turn)

@@ -6,7 +6,7 @@ try:
 except ImportError as eImp:
     print(f"Ocurrió el siguiente error de importación: {eImp}")
 
-class ExtraMethods():
+class MoreMethods():
     def helpMessages(self):
         print("--updateArduino: Updates the arduino with the .hex file that is in the release part of the github project")
         print("--updateServer: Updates the flask server with the .exe file of the flask server that is in the release part of the github project")
@@ -37,7 +37,7 @@ class ExtraMethods():
     def updateArduino(self):
         print("Aún en desarrollo")
 
-class UpdateMethods(ExtraMethods):
+class UpdateMethods(MoreMethods):
     serverLink= None
     electronLink= None
     arduinoLink= None

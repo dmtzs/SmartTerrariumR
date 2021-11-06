@@ -3,6 +3,7 @@ try:
     import sys
     import wget
     import json
+    import zipfile as zp
 except ImportError as eImp:
     print(f"Ocurrió el siguiente error de importación: {eImp}")
 
@@ -20,6 +21,7 @@ class MoreMethods():
 
         self.jsonData= self.jsonData["updates"]
 
+        self.avrdude= self.jsonData["release-avrdude"]
         self.arduinoLink= self.jsonData["release-arduino"]
         self.serverLink= self.jsonData["release-server"]
         self.electronLink= self.jsonData["release-electron"]
@@ -37,10 +39,19 @@ class MoreMethods():
     def updateArduino(self):
         print("Aún en desarrollo")
 
+    def downAvr(self):
+        wget.download(self.avrdude)
+
+        with zp.ZipFile("./avr.zip", "r") as av:
+            av.extractall("./avr/")
+
+        os.remove("avr.zip")
+
 class UpdateMethods(MoreMethods):
     serverLink= None
     electronLink= None
     arduinoLink= None
+    avrdude= None
     jsonData= None
 
     def __init__(self, command, system):
@@ -51,6 +62,11 @@ class UpdateMethods(MoreMethods):
         lenargv= len(sys.argv)
 
         self.jsonDataMet()
+
+        if os.path.isdir("avr"):
+            pass
+        else:
+            self.downAvr()
 
         if lenargv== 2:
             if sys.argv[1]== "--updateArduino":

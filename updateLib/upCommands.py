@@ -37,7 +37,13 @@ class MoreMethods():
         print("Electron app updated")
 
     def updateArduino(self):
-        print("Aún en desarrollo")
+        trashFiles= ["builtin_tools_versions.txt", "RaspSerial.ino.hex"]
+
+        wget.download(self.arduinoLink)
+        os.system(self.avrdudeCommand)# Maybe I still need to do dynamically the paths included in the command
+
+        for i in trashFiles:
+            os.remove(i)
 
     def downAvr(self):
         wget.download(self.avrdude)
@@ -48,6 +54,7 @@ class MoreMethods():
         os.remove("avr.zip")
 
 class UpdateMethods(MoreMethods):
+    avrdudeCommand= ""
     serverLink= None
     electronLink= None
     arduinoLink= None

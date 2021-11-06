@@ -243,7 +243,6 @@ if __name__ == "__main__":
         # Native python libraries
         import os
         import sys
-        import json
         import shutil
         import pkgutil
         import zipfile

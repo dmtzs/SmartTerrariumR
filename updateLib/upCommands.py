@@ -29,6 +29,9 @@ class UpdateMethods(extraMethods):
             if sys.argv[1]== "--updateElectron":
                 print("Aún en desarrollo")
 
+            if sys.argv[1]== "--updateAll":
+                print("Aún en desarrollo")
+
             if sys.argv[1]== "--help":
                 self.helpMessages()
 

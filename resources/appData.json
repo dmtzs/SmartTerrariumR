@@ -29,10 +29,10 @@
     },
     "updates": {
         "releases": {
-            "release-avrdude": "https://github.com/dmtzs/SmartTerrariumR/releases/download/avrdude/avr.zip",
-            "release-arduino": "https://github.com/dmtzs/SmartTerrariumR/releases/download/ArduinoProgram/RaspSerial.ino.hex",
-            "release-server": "https://github.com/dmtzs/SmartTerrariumR/releases/download/FlaskServer/Server",
-            "release-electron": "https://github.com/dmtzs/SmartTerrariumR/releases/download/ElectronApp/SmartTerra.AppImage"
+            "avrdude": "https://github.com/dmtzs/SmartTerrariumR/releases/download/avrdude/avr.zip",
+            "arduino": "https://github.com/dmtzs/SmartTerrariumR/releases/download/ArduinoProgram/RaspSerial.ino.hex",
+            "server": "https://github.com/dmtzs/SmartTerrariumR/releases/download/FlaskServer/Server",
+            "electron": "https://github.com/dmtzs/SmartTerrariumR/releases/download/ElectronApp/SmartTerra.AppImage"
         },
         "hash256": {
             "arduino": "E443BC64CC0450395FF590AFE6C2F017AD44917175B247F88FD803A213510158",

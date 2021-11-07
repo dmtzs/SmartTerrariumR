@@ -8,11 +8,6 @@ try:
     import os
     import platform
     from updateLib import * # Module imported: upCommands
-    # import sys
-    # import shutil
-
-    # Not native python libraries
-    #import wget
 except ImportError as eImp:
     print(f"Ocurrió el siguiente error de importación: {eImp}")
 

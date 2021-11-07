@@ -255,18 +255,26 @@ if __name__ == "__main__":
         print("Verificando modulos faltantes...")
         comShell, sistema, _= ShellAndSystem()
         moduleArray= []
+        banderas= [0, 0]
 
         for modulo in pkgutil.iter_modules():
             moduleArray.append(modulo[1])
         
         if "wget" not in moduleArray:
             print("Intalando modulo wget")
+            banderas[1]= 1
+
+        if "pip" not in moduleArray:
+            print("Instalando pip3")
+            banderas[0]= 1
 
         if sistema== "Linux":
             firstComms= ["sudo apt install python3-pip", "pip3 install wget"]
             
-            for i in firstComms:
-                os.system(i)
+            if firstComms[0]== 1:
+                os.system(firstComms[0])
+            if firstComms[1]== 1:
+                os.system(firstComms[1])
                 
         elif sistema== "Windows":
             firstComms= "pip install wget"

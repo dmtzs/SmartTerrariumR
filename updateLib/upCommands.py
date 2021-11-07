@@ -21,10 +21,10 @@ class MoreMethods():
 
         self.jsonData= self.jsonData["updates"]
 
-        self.avrdude= self.jsonData["releases"]["release-avrdude"]
-        self.arduinoLink= self.jsonData["releases"]["release-arduino"]
-        self.serverLink= self.jsonData["releases"]["release-server"]
-        self.electronLink= self.jsonData["releases"]["release-electron"]
+        self.avrdude= self.jsonData["releases"]["avrdude"]
+        self.arduinoLink= self.jsonData["releases"]["arduino"]
+        self.serverLink= self.jsonData["releases"]["server"]
+        self.electronLink= self.jsonData["releases"]["electron"]
 
     def updateServer(self):
         os.remove("Server")

@@ -45,6 +45,8 @@ class MoreMethods():
         for i in trashFiles:
             os.remove(i)
 
+        print("Arduino updated")
+
     def downAvr(self):
         wget.download(self.avrdude)
 
@@ -52,9 +54,26 @@ class MoreMethods():
             av.extractall("./avr/")
 
         os.remove("avr.zip")
+        print("Avrdude downloaded")
+
+    def firstFunctions(self):
+        os.system('pkill -xf "./Server"')
+        os.system('pkill -xf "./SmartTerra.AppImage"')
+        
+        coreRuta= os.path.realpath(__file__)
+        coreRuta= coreRuta[:-23]
+        restOfFlags= "-v -patmega328p -carduino -P/dev/ttyACM0 -b115200 -D -Uflash:w:RaspSerial.ino.hex:i"
+        self.avrdudeCommand= f"{coreRuta}avr/bin/avrdude -C{coreRuta}avr/etc/avrdude.conf {restOfFlags}"
+
+        self.jsonDataMet()
+
+        if os.path.isdir("avr"):
+            pass
+        else:
+            self.downAvr()
 
 class UpdateMethods(MoreMethods):
-    avrdudeCommand= ""
+    avrdudeCommand= None
     serverLink= None
     electronLink= None
     arduinoLink= None
@@ -66,14 +85,9 @@ class UpdateMethods(MoreMethods):
         self.system= system
 
     def coreUpdate(self):
+        self.firstFunctions()
+
         lenargv= len(sys.argv)
-
-        self.jsonDataMet()
-
-        if os.path.isdir("avr"):
-            pass
-        else:
-            self.downAvr()
 
         if lenargv== 2:
             if sys.argv[1]== "--updateArduino":

@@ -6,7 +6,6 @@
     "correo": "gd-code@outlook.com",
     "actualizacion": "Por definir fecha",
     "fecha-lanzamiento": "Por definir fecha",
-    "dia": "",
     "usuario": {
         "usuario-nl": "Diego Martinez Sanchez",
         "usuario-nc": "Diego"
@@ -29,6 +28,7 @@
         }
     },
     "updates": {
+        "dia": "null",
         "releases": {
             "avrdude": "https://github.com/dmtzs/SmartTerrariumR/releases/download/avrdude/avr.zip",
             "arduino": "https://github.com/dmtzs/SmartTerrariumR/releases/download/ArduinoProgram/RaspSerial.ino.hex",

@@ -52,16 +52,16 @@ def firstTimeLoad():
     global jsonMain, modo, lightMode, rangoResAgua, rangoTerrario, rangoHum, correoGDCode, nomL, nomApp, versionApp, descripcionApp
 
     jsonMain.readData()
-    modo = jsonMain.jsonData['configuracion']['modo']
-    lightMode = jsonMain.jsonData['configuracion']['dia-noche']
-    rangoResAgua = jsonMain.jsonData['configuracion']['temperaturas-rangos']['rangoResAgua']
-    rangoTerrario = jsonMain.jsonData['configuracion']['temperaturas-rangos']['rangoTempDHT']
-    rangoHum = jsonMain.jsonData['configuracion']['humedad-rango']['rangoHumedad']
-    correoGDCode = jsonMain.jsonData['correo']
-    nomL = jsonMain.jsonData['usuario']['usuario-nl']
-    nomApp = jsonMain.jsonData['nombre-app']
-    versionApp = jsonMain.jsonData['version']
-    descripcionApp = jsonMain.jsonData['descripcion-app']
+    modo = jsonMain.jsonData["configuracion"]["modo"]
+    lightMode = jsonMain.jsonData["configuracion"]["dia-noche"]
+    rangoResAgua = jsonMain.jsonData["configuracion"]["temperaturas-rangos"]["rangoResAgua"]
+    rangoTerrario = jsonMain.jsonData["configuracion"]["temperaturas-rangos"]["rangoTempDHT"]
+    rangoHum = jsonMain.jsonData["configuracion"]["humedad-rango"]["rangoHumedad"]
+    correoGDCode = jsonMain.jsonData["correo"]
+    nomL = jsonMain.jsonData["usuario"]["usuario-nl"]
+    nomApp = jsonMain.jsonData["nombre-app"]
+    versionApp = jsonMain.jsonData["version"]
+    descripcionApp = jsonMain.jsonData["descripcion-app"]
 
     number = 1 if modo == "true" or modo == 1 else 0
     # text = "auto{}".format(str(number))
@@ -80,7 +80,7 @@ def firstTimeLoad():
 
 # @Description: This endpoint will be used for the welcome html template at the first time the application is executed. After this page is changed this endpoint will-
 #               be used to serve the other templates of the automatic and manual mode. This is also the initial endpoint of the project.
-@app.route('/')  # Initial route of the project.
+@app.route("/")  # Initial route of the project.
 def index():
     global firstTime, nomL, nomApp
 
@@ -114,18 +114,20 @@ def listen():
             yield f"id: 1\ndata: {conn.receivedData}\nevent: online\n\n"
             # DO NOT QUIT: This time sleep is for initialize the electron.
             time.sleep(5)
-    return Response(respond_to_client(), mimetype='text/event-stream')
+    return Response(respond_to_client(), mimetype= "text/event-stream")
 
 
 # @Description: Endpoint that is used for verify the day registered in the appData.json file in order to verify if there are available updates.
 @app.route("/verify_updates")
 def verify_updates():
-    pass
+    def response_to_client():
+        pass
+    return Response(response_to_client(), mimetype= "text/event-stream")
 
 
 # @Description: In this endpoint are managed all the buttons of the manual mode, in order to activate all the components that the arduino will be managing. So with this-
 #               the users can be in complete control of all the functionality that will have this app.
-@app.route('/indexevents', methods=["POST"])
+@app.route("/indexevents", methods=["POST"])
 def indexEvents():
     global modo, lightMode
 
@@ -203,7 +205,7 @@ def indexEvents():
 
 # @Description: For managing all the ranges for the automatic mode so the arduino will know when to do somethign like turn on or off the biulbs, to know if-
 #               the night or day bulb should be on or off, turn on the water bomb to humidify the terrarrium, to refill the drinker when its almost empty, etc.
-@app.route('/configuracion', methods=["POST", "GET"])
+@app.route("/configuracion", methods=["POST", "GET"])
 def configuracion():
     global rangoResAgua, rangoTerrario, rangoHum
 
@@ -246,7 +248,7 @@ def configuracion():
 
 
 # @Description: Endpoint that is used for show contact information with us.
-@app.route('/contacto')
+@app.route("/contacto")
 def contacto():
     global correoGDCode, nomApp, versionApp, descripcionApp
 
@@ -254,13 +256,13 @@ def contacto():
 
 
 # @Description: Endpoint that is used for show QRCodes that shows you english and spanish manuals.
-@app.route('/help')
+@app.route("/help")
 def help():
     return render_template('ManUsu.html', status="hidden")
 
 
 # @Description: Endpoint that is used for closing the app according to the operative system.
-@app.route('/closeApp', methods=['POST'])
+@app.route("/closeApp", methods=['POST'])
 def closeAll():
     msg = request.form.get("closeMsg")
     if msg == "closeAll":

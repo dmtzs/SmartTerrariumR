@@ -82,4 +82,6 @@ class jsonObject():
     #               if there`s any available update for the production assets of the app.
     def write_data_day_update(self, dia):
         self.jsonData["updates"]["dia"]= dia
+
+        self.writeData()
         #We still need to review this method, maybe we need to add more things to make them work.

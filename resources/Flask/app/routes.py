@@ -217,21 +217,21 @@ def configuracion():
         elif rangoResAgua != TempAgua:
             rangoResAgua = TempAgua
             jsonMain.readData()
-            jsonMain.writeData_changeRanges(TempAgua, 0)
+            jsonMain.writeData_changeRanges(TempAgua, "temperaturas-rangos", "rangoResAgua")
 
         if TempTerra == "" or TempTerra == rangoTerrario:
             pass
         elif rangoTerrario != TempTerra:
             rangoTerrario = TempTerra
             jsonMain.readData()
-            jsonMain.writeData_changeRanges(TempTerra, 1)
+            jsonMain.writeData_changeRanges(TempTerra, "temperaturas-rangos", "rangoTempDHT")
 
         if Hum == "" or Hum == rangoHum:
             pass
         elif rangoHum != Hum:
             rangoHum = Hum
             jsonMain.readData()
-            jsonMain.writeData_changeRanges(Hum, 2)
+            jsonMain.writeData_changeRanges(Hum, "humedad-rango", "rangoHumedad")
 
         # Preguntar a memo si así es como ya quedaría la comunicación con el arduino para actualizar los rangos.
         text = f"conf{rangoResAgua}{rangoTerrario}{rangoHum}"

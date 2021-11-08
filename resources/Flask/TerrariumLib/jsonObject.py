@@ -30,7 +30,7 @@ class jsonObject():
         try:
             with open(auxFile, 'r') as jsonFile:
                 self.jsonData = json.load(jsonFile)
-                jsonFile.close()
+                #jsonFile.close()
         except Exception:
             print("No se encontró el archivo appData.json en ninguna de las rutas")
 
@@ -47,7 +47,7 @@ class jsonObject():
         try:
             with open(auxFile, 'w') as jsonFile:
                 jsonFile.write(self.jsonData)
-                jsonFile.close()
+                #jsonFile.close()
         except Exception:
             print("No se encontró el archivo appData.json en ninguna de las rutas")
 
@@ -77,3 +77,9 @@ class jsonObject():
             self.jsonData['configuracion']['humedad-rango']['rangoHumedad']= rangoRecibido
 
         self.writeData()
+
+    # @Description: Method that needs to update the day stored in the appData.json file in order to be used in the endpoint to verify-
+    #               if there`s any available update for the production assets of the app.
+    def write_data_day_update(self, dia):
+        self.jsonData["updates"]["dia"]= dia
+        #We still need to review this method, maybe we need to add more things to make them work.

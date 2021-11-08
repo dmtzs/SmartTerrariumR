@@ -253,39 +253,31 @@ if __name__ == "__main__":
     except ImportError as eImp:
         print(f"Ocurrió el siguiente error de importación: {eImp}")
         print("Verificando modulos faltantes...")
-        comShell, sistema, _= ShellAndSystem()
+        comShell, sistema, arch= ShellAndSystem()
+        del arch
         moduleArray= []
-        banderas= [0, 0]
 
         for modulo in pkgutil.iter_modules():
             moduleArray.append(modulo[1])
-        
-        if "wget" not in moduleArray:
-            print("Intalando modulo wget")
-            banderas[1]= 1
-
-        if "pip" not in moduleArray:
-            print("Instalando pip3")
-            banderas[0]= 1
 
         if sistema== "Linux":
-            firstComms= ["sudo apt install python3-pip", "pip3 install wget"]
-            
-            if firstComms[0]== 1:
-                os.system(firstComms[0])
-            if firstComms[1]== 1:
-                os.system(firstComms[1])
+            firstComms= {"pip":"sudo apt install python3-pip", "wget":"pip3 install wget"}
+
+            for llave in firstComms.keys():
+                if llave not in moduleArray:
+                    print(f"Instalando {llave}")
+                    os.system(firstComms[llave])
                 
         elif sistema== "Windows":
             firstComms= "pip install wget"
             os.system(firstComms)
-        del firstComms
+        
         print("Bibliotecas faltantes instaladas.")
         print("Por favor vuelve a ejecutar este programa con el mismo comando.")
         
     else:
-        comShell, sistema, _= ShellAndSystem()
-        del _
+        comShell, sistema, arch= ShellAndSystem()
+        del arch
 
         global bandeProd
         bandeProd= 0

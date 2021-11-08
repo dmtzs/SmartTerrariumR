@@ -23,9 +23,12 @@ def ShellAndSystem():
 if __name__ == "__main__":
     try:
         comm, sis= ShellAndSystem()
-        coreFile= upCommands.UpdateMethods(comm, sis)
-        os.system(comm)
-        coreFile.coreUpdate()
+        if sis== "Linux":
+            coreFile= upCommands.UpdateMethods(comm, sis)
+            os.system(comm)
+            coreFile.coreUpdate()
+        else:
+            print("This script should be only executed in a production environment and only in linux systems")
     except Exception as ex:
         print(f"Ocurrió el siguiente error: {ex}")
     except KeyboardInterrupt:

@@ -28,7 +28,7 @@ class jsonObject():
             auxFile= self.filename2
 
         try:
-            with open(auxFile, 'r') as jsonFile:
+            with open(auxFile, "r") as jsonFile:
                 self.jsonData = json.load(jsonFile)
                 #jsonFile.close()
         except Exception:
@@ -45,7 +45,7 @@ class jsonObject():
             auxFile= self.filename2
 
         try:
-            with open(auxFile, 'w') as jsonFile:
+            with open(auxFile, "w") as jsonFile:
                 jsonFile.write(self.jsonData)
                 #jsonFile.close()
         except Exception:
@@ -54,27 +54,22 @@ class jsonObject():
     # @Description: Method to update in the json file the parameter of the state of the operation mode of the app.
     def writeData_changeMode(self, newMode):
         text = 1 if newMode == "true" else 0
-        self.jsonData['configuracion']['modo'] = text
+        self.jsonData["configuracion"]["modo"] = text
 
         self.writeData()
 
     # @Description: Method to update in the json file the parameter of the state of the lightmode of the app.
     def writeData_changeLightMode(self, newMode):
-        if newMode == 'true':
-            self.jsonData['configuracion']['dia-noche'] = 1
-        if newMode == 'false':
-            self.jsonData['configuracion']['dia-noche'] = 0
+        if newMode == "true":
+            self.jsonData["configuracion"]["dia-noche"] = 1
+        if newMode == "false":
+            self.jsonData["configuracion"]["dia-noche"] = 0
 
         self.writeData()
 
     # @Description: Method to update the ranges for the humidity and temperatures that the automatic mode will be managing.
-    def writeData_changeRanges(self, rangoRecibido, bande):
-        if bande== 0:
-            self.jsonData['configuracion']['temperaturas-rangos']['rangoResAgua']= rangoRecibido
-        elif bande== 1:
-            self.jsonData['configuracion']['temperaturas-rangos']['rangoTempDHT']= rangoRecibido
-        elif bande== 2:
-            self.jsonData['configuracion']['humedad-rango']['rangoHumedad']= rangoRecibido
+    def writeData_changeRanges(self, rangoRecibido, tempHum, rango):
+        self.jsonData["configuracion"][tempHum][rango]= rangoRecibido
 
         self.writeData()
 

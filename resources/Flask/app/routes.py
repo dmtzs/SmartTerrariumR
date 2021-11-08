@@ -36,12 +36,10 @@ jsonMain = jsonObject.jsonObject()
 
 
 #---------------------------------Context processor for the date------------------------------------#
-
-
 @app.context_processor
 def date_now():
     return {
-        'now': datetime.utcnow()
+        'now': datetime.now()
     }
 
 #---------------------------------Endpoints------------------------------------#

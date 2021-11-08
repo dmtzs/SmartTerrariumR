@@ -36,6 +36,7 @@ jsonMain = jsonObject.jsonObject()
 
 
 #---------------------------------Context processor for the date------------------------------------#
+# @Description: Context proccessor used to get the actual calendar date.
 @app.context_processor
 def date_now():
     return {
@@ -47,8 +48,6 @@ def date_now():
 # @Description: This function loads the data of the appData json file in which are defined all the automatic parameters, user information, etc in order to be used-
 #               in the aplication for its correct functionality. The functions creates global variables in order to manage the parameters of the json file so it can-
 #               be used in all the program for the endpoints that requires this information.
-
-
 def firstTimeLoad():
     global jsonMain, modo, lightMode, rangoResAgua, rangoTerrario, rangoHum, correoGDCode, nomL, nomApp, versionApp, descripcionApp
 
@@ -78,10 +77,9 @@ def firstTimeLoad():
     _ = conn.communication(text)
     sem.release()
 
+
 # @Description: This endpoint will be used for the welcome html template at the first time the application is executed. After this page is changed this endpoint will-
 #               be used to serve the other templates of the automatic and manual mode. This is also the initial endpoint of the project.
-
-
 @app.route('/')  # Initial route of the project.
 def index():
     global firstTime, nomL, nomApp
@@ -96,10 +94,9 @@ def index():
     if modo == 'false' or modo == 0:
         return render_template('manual.html')
 
+
 # @Description: This endpoint is just for the stream of the temperatures and humidity measured in the arduino and sended from the arduino to the raspberry in order to be-
 #               showed in the app in the raspberry.
-
-
 @app.route("/listen")
 def listen():
     def respond_to_client():
@@ -119,10 +116,15 @@ def listen():
             time.sleep(5)
     return Response(respond_to_client(), mimetype='text/event-stream')
 
+
+# @Description: Endpoint that is used for verify the day registered in the appData.json file in order to verify if there are available updates.
+@app.route("/verify_updates")
+def verify_updates():
+    pass
+
+
 # @Description: In this endpoint are managed all the buttons of the manual mode, in order to activate all the components that the arduino will be managing. So with this-
 #               the users can be in complete control of all the functionality that will have this app.
-
-
 @app.route('/indexevents', methods=["POST"])
 def indexEvents():
     global modo, lightMode
@@ -198,10 +200,9 @@ def indexEvents():
 
     return "error"
 
+
 # @Description: For managing all the ranges for the automatic mode so the arduino will know when to do somethign like turn on or off the biulbs, to know if-
 #               the night or day bulb should be on or off, turn on the water bomb to humidify the terrarrium, to refill the drinker when its almost empty, etc.
-
-
 @app.route('/configuracion', methods=["POST", "GET"])
 def configuracion():
     global rangoResAgua, rangoTerrario, rangoHum
@@ -244,6 +245,7 @@ def configuracion():
     return render_template('configuracion.html', rango1=f"{rangoResAgua}", rango2=f"{rangoTerrario}", rango3=f"{rangoHum}")
 
 
+# @Description: Endpoint that is used for show contact information with us.
 @app.route('/contacto')
 def contacto():
     global correoGDCode, nomApp, versionApp, descripcionApp
@@ -251,11 +253,13 @@ def contacto():
     return render_template('contacto.html', correo=correoGDCode, nombreApp=nomApp, versionDeApp=versionApp, decApp=descripcionApp)
 
 
+# @Description: Endpoint that is used for show QRCodes that shows you english and spanish manuals.
 @app.route('/help')
 def help():
     return render_template('ManUsu.html', status="hidden")
 
 
+# @Description: Endpoint that is used for closing the app according to the operative system.
 @app.route('/closeApp', methods=['POST'])
 def closeAll():
     msg = request.form.get("closeMsg")
@@ -265,7 +269,7 @@ def closeAll():
 
 #----------------------------Error Handlers------------------------------------#
 
-
+# @Description: Endpoint to verify error 500 if its the case.
 @app.route("/error500")
 def error():
     return render_template('errorHandlers/error500.html')

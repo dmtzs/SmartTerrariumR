@@ -5,6 +5,7 @@
 	}
 </script>
 
+{# Scripts for load libraries for the styles #}
 <script src="{{url_for('static', filename= 'libraries/popper/popper.min.js')}}"></script>
 <script src="{{url_for('static', filename= 'libraries/bootstrap/js/bootstrap.js')}}"></script>
 <script src="{{url_for('static', filename= 'libraries/jquery/csvToArray.v2.1.min.js')}}"></script>
@@ -30,3 +31,41 @@
 {# Scripts for sweet alert and form validation in configuracion html template #}
 <script src="{{url_for('static', filename= 'libraries/sweetalert/sweetalert2.all.min.js')}}"></script>
 <script src="{{url_for('static', filename= 'js/validarForm.js')}}"></script>
+
+{# 
+	Script for check event in which the day is going to be validated and with this we are-
+	going to be able to verify if there`s any update regards the production assets. 
+#}
+
+{#<script>
+	var eventSource = new EventSource("/verify_updates");
+
+	eventSource.addEventListener(
+		"message",
+		function (e) {
+			console.log(e.data);
+		},
+		false
+	);
+
+	eventSource.addEventListener(
+		"online",
+		function (e) {
+			data = e.data.csvToArray();
+			$("#t_1").animate({
+				'opacity': 0
+			}, 500, function () {
+				$(this).html(data[0][0] + "°C").animate({ 'opacity': 1 }, 500);
+			});
+			$("#t_2").animate({
+				'opacity': 0
+			}, 500, function () {
+				$(this).html(data[0][1] + "°C").animate({ 'opacity': 1 }, 500);
+			});
+			$("#h_1").animate({
+				'opacity': 0
+			}, 500, function () {
+				$(this).html(data[0][2] + " %").animate({ 'opacity': 1 }, 500);
+			});
+		});
+</script>#}

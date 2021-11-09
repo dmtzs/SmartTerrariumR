@@ -25,6 +25,7 @@ sem = threading.Semaphore()
 firstTime = True
 modo = ""
 lightMode = ""
+updatesAssets= []#Variable for keep hash of the assets of the app.
 
 
 # Keeps the data received from the arduino´s stream
@@ -64,18 +65,21 @@ def firstTimeLoad():
     descripcionApp = jsonMain.jsonData["descripcion-app"]
 
     number = 1 if modo == "true" or modo == 1 else 0
-    # text = "auto{}".format(str(number))
-    text = f"auto{str(number)}"  # Try and if not uncomment the above line.
+    text = f"auto{str(number)}"
     sem.acquire()
     _ = conn.communication(text)
     sem.release()
 
     number = 1 if lightMode == "true" or lightMode == 1 else 0
-    # text = "lght{}".format(str(number))
-    text = f"lght{str(number)}"  # Try and if not uncomment the above line.
+    text = f"lght{str(number)}"
     sem.acquire()
     _ = conn.communication(text)
     sem.release()
+
+    #Below to add to the variable all assets of the hash to iterate and validate the three.
+    components= ["arduino", "server", "electron"]
+    for comp in components:
+        updatesAssets.append(jsonMain.jsonData["updates"]["hash256"][comp])
 
 
 # @Description: This endpoint will be used for the welcome html template at the first time the application is executed. After this page is changed this endpoint will-
@@ -121,6 +125,7 @@ def listen():
 @app.route("/verify_updates")
 def verify_updates():
     def response_to_client():
+        #Conecction to the database to validate hash and keep in a variable.
         pass
     return Response(response_to_client(), mimetype= "text/event-stream")
 

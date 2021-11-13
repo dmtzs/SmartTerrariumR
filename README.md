@@ -20,13 +20,13 @@
 </p>
 
 ## README Navbar
-- [Connection diagram](#connection-diagram)
 - [Documentation](#Documentation)
 - [Rasp Berry python program](#Rasp-Berry-python-program)
   - [Specifications](#Specifications)
 - [Arduino C++ program](#arduino-c-program)
   - [Specifications](#Specifications-1)
 - [Sensor´s and materials list used](#sensors-and-materials-list-used)
+- [Connection diagram](#connection-diagram)
 - [Donations](#We-know-this-more-a-payment-project-but-consider-a-donation-for-do-more-opensource-code)
 
 ## The project

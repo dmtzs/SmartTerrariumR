@@ -19,8 +19,15 @@
   <img alt="GitHub language count" src="https://img.shields.io/github/languages/count/dmtzs/SmartTerrariumR">
 </p>
 
-## Navbar
+## README Navbar
 - [Connection diagram](#connection-diagram)
+- [Documentation](#Documentation)
+- [Rasp Berry python program](#Rasp-Berry-python-program)
+  - [Specifications](#Specifications)
+- [Arduino C++ program](Arduino-C++-program)
+  - [Specifications](#Specifications-1)
+- [Sensor´s and materials list used](#Sensor´s-and-materials-list-used)
+- [Donations](#We-know-this-more-a-payment-project-but-consider-a-donation-for-do-more-opensource-code)
 
 ## The project
 The purpose of this project is to manage the parameters of reptile pets.

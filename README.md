@@ -20,7 +20,7 @@
 </p>
 
 ## Navbar
-- <a href="https://github.com/dmtzs/SmartTerrariumR/blob/master/README.md#connection-diagram">Link to Header</a>
+- <a href="#connection-diagram">Connection diagram</a>
 
 ## The project
 The purpose of this project is to manage the parameters of reptile pets.

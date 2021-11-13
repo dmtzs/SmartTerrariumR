@@ -22,3 +22,5 @@ if __name__ == "__main__":
         print("Apagando servidor...")
     except Exception as err:
         print(f"Ocurrió el siguiente error: {err}")
+    else:
+        print("\nReiniciando servidor")

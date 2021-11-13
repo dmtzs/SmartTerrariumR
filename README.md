@@ -20,7 +20,7 @@
 </p>
 
 ## Navbar
-- <a href="#connection-diagram">Connection diagram</a>
+- [Connection diagram](#connection-diagram)
 
 ## The project
 The purpose of this project is to manage the parameters of reptile pets.

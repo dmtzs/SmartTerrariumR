@@ -94,7 +94,7 @@ This libraries should be installed only if you want to develop by yourself the a
 Here is the diagram connection about how you need to connect all components, to which pin´s, etc.
 ![](resources/Imgs/Diagrama.png)
 
-# We know this more a payment project but consider a donation for do more opensource code!!
+# We know this is a payment project but consider a donation for do more opensource code!!
 This project is not an opensource project. That doesn't mean we don't need any money.
 <br><br>
 Please consider a donation to help us and if we receive enough donations then we can do support for the opensource part of this application.

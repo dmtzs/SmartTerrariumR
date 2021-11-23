@@ -19,7 +19,6 @@
   <img alt="GitHub language count" src="https://img.shields.io/github/languages/count/dmtzs/SmartTerrariumR">
 </p>
 
-## README Navbar
 - [Documentation](#Documentation)
 - [Rasp Berry python program](#Rasp-Berry-python-program)
   - [Specifications](#Specifications)

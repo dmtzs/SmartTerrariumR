@@ -20,6 +20,7 @@
 </p>
 
 - [Documentation](#Documentation)
+- [Supported versions for releases](#Supported-versions-for-releases)
 - [Rasp Berry python program](#Rasp-Berry-python-program)
   - [Specifications](#Specifications)
 - [Arduino C++ program](#arduino-c-program)

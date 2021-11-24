@@ -41,6 +41,9 @@ We are developing a github page in the wiki part in order to use that space as a
 <br>
 Also please see below the list of the hardware which are going to be used in this project.
 
+## Supported versions for releases
+To see the releases supported versions please [click here](https://github.com/dmtzs/SmartTerrariumR/blob/master/SECURITY.md) to see the supported ones and unsupported ones.
+
 ## Rasp Berry python program
 The user interface will be developed with python using electron and flask microframework for the graphic interface in order to show all the data we need with an interface which is builded with css and of course the flask is for all the connections and instructions with the Arduino.
 <br>

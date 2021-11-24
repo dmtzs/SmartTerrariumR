@@ -7,7 +7,9 @@ currently being supported with security updates.
 
 | Version | Supported          |
 | ------- | ------------------ |
-| 1.0.0   | :white_check_mark: |
+| ElectronApp 1.0.0   | :white_check_mark: |
+| Server 1.0.0   | :white_check_mark: |
+| Arduino 1.0.0   | :white_check_mark: |
 | Will be used with the time   | :x:                |
 
 ## Reporting a Vulnerability

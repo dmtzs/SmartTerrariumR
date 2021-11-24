@@ -2,15 +2,15 @@
 
 ## Supported Versions
 
-Use this section to tell people about which versions of your project are
-currently being supported with security updates.
+Release versions supported, the ones marked with an :x: are external software that we use in this project but are not of our ownership so we will not support newer versions than the ones that are already in the repository.
 
 | Version | Supported          |
 | ------- | ------------------ |
 | ElectronApp 1.0.0   | :white_check_mark: |
 | Server 1.0.0   | :white_check_mark: |
 | Arduino 1.0.0   | :white_check_mark: |
-| Will be used with the time   | :x:                |
+| avrdude   | :x: |
+| local_libraries   | :x: |
 
 ## Reporting a Vulnerability
 

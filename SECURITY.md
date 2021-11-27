@@ -31,3 +31,5 @@ If you wan to report an issue regarding the code or enhancement please raise an 
 
 # important
 This project will not be supported once the custom terrarium arrives. It will be considered to provide support if there are enough donations or on the contrary if you donate we could give you personalized support, just send an email to the email in the about us page in the wiki of this repo with your proof of the payment of the donation.
+
+The extra functionality in the payment project will be a mobile app that could be used in this project to connect to your terrariums remotely because the payment way of this project will be internet of things.

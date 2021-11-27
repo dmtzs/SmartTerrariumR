@@ -30,7 +30,6 @@ class jsonObject():
         try:
             with open(auxFile, "r") as jsonFile:
                 self.jsonData = json.load(jsonFile)
-                #jsonFile.close()
         except Exception:
             print("No se encontró el archivo appData.json en ninguna de las rutas")
 
@@ -47,7 +46,6 @@ class jsonObject():
         try:
             with open(auxFile, "w") as jsonFile:
                 jsonFile.write(self.jsonData)
-                #jsonFile.close()
         except Exception:
             print("No se encontró el archivo appData.json en ninguna de las rutas")
 

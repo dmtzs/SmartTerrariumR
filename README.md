@@ -27,7 +27,7 @@
   - [Specifications](#Specifications-1)
 - [Sensor´s and materials list used](#sensors-and-materials-list-used)
 - [Connection diagram](#connection-diagram)
-- [Donations](#We-know-this-more-a-payment-project-but-consider-a-donation-for-do-more-opensource-code)
+- [Donations](#We-know-this-is-a-payment-project-but-consider-a-donation-for-do-more-opensource-code!!)
 
 ## The project
 The purpose of this project is to manage the parameters of reptile pets.

@@ -120,16 +120,6 @@ def listen():
             time.sleep(5)
     return Response(respond_to_client(), mimetype= "text/event-stream")
 
-
-# @Description: Endpoint that is used for verify the day registered in the appData.json file in order to verify if there are available updates.
-@app.route("/verify_updates")
-def verify_updates():
-    def response_to_client():
-        #Conecction to the database to validate hash and keep in a variable.
-        pass
-    return Response(response_to_client(), mimetype= "text/event-stream")
-
-
 # @Description: In this endpoint are managed all the buttons of the manual mode, in order to activate all the components that the arduino will be managing. So with this-
 #               the users can be in complete control of all the functionality that will have this app.
 @app.route("/indexevents", methods=["POST"])

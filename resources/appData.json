@@ -26,19 +26,5 @@
         "humedad-rango": {
             "rangoHumedad": "32.06"
         }
-    },
-    "updates": {
-        "dia": "null",
-        "releases": {
-            "avrdude": "https://github.com/dmtzs/SmartTerrariumR/releases/download/avrdude/avr.zip",
-            "arduino": "https://github.com/dmtzs/SmartTerrariumR/releases/download/ArduinoProgram/RaspSerial.ino.hex",
-            "server": "https://github.com/dmtzs/SmartTerrariumR/releases/download/FlaskServer/Server",
-            "electron": "https://github.com/dmtzs/SmartTerrariumR/releases/download/ElectronApp/SmartTerra.AppImage"
-        },
-        "hash256": {
-            "arduino": "E443BC64CC0450395FF590AFE6C2F017AD44917175B247F88FD803A213510158",
-            "server": "8C463A631E81F82F6CB5CAF32E932533F05F7F2A9C50BB44EBF74C93703350FB",
-            "electron": "B46B20B920DCF4633BD46756B533C960D417FB77F46C8338CCAD21C6D6BEEB87"
-        }
     }
 }

@@ -13,7 +13,7 @@ try:
     from gevent import monkey
     monkey.patch_all()
 except ImportError as eImp:
-    print(f"Ocurrió el error de importación: {eImp}")
+    print(f"En el archivo {__file__} currió el error de importación: {eImp}")
 
 #---------------------------------Variables and objects------------------------------------#
 # Inits arduino connection
@@ -263,10 +263,3 @@ def closeAll():
     if msg == "closeAll":
         conn.closeConnection()
     return "closed"
-
-#----------------------------Error Handlers------------------------------------#
-
-# @Description: Endpoint to verify error 500 if its the case.
-@app.route("/error500")
-def error():
-    return render_template('errorHandlers/error500.html')

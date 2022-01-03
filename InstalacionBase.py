@@ -204,6 +204,7 @@ def ExeFlask(sistema):
 
         for turn in range(2):
             contentInitAppAndShFiles(shInitFiles[turn], fileNames[turn], turn)
+        exec(open("createCrontab.py").read())
 
         print("Verifica si se creo el archivo de inicio, reinicia el sistema operativo y agrega manualmente la variable de entorno que funcionará como llave secreta para la desencripción de AES")
     

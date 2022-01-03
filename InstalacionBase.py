@@ -205,7 +205,7 @@ def ExeFlask(sistema):
         for turn in range(2):
             contentInitAppAndShFiles(shInitFiles[turn], fileNames[turn], turn)
 
-        print("Verifica si se creo el archivo de inicio y reinicia el sistema operativo")
+        print("Verifica si se creo el archivo de inicio, reinicia el sistema operativo y agrega manualmente la variable de entorno que funcionará como llave secreta para la desencripción de AES")
     
     else:
         print("No se puede ejecutar el programa en ambientes que no sean windows o linux")

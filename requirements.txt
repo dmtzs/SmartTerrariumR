@@ -4,3 +4,4 @@ pyserial
 gevent
 pyinstaller
 wget
+python-crontab

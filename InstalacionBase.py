@@ -252,7 +252,7 @@ if __name__ == "__main__":
         # Not native python libraries
         import wget
     except ImportError as eImp:
-        print(f"Ocurrió el siguiente error de importación: {eImp}")
+        print(f"En el archivo {__file__} ocurrió el siguiente error de importación: {eImp}")
         print("Verificando modulos faltantes...")
         comShell, sistema, arch= ShellAndSystem()
         del arch

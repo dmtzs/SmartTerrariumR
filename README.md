@@ -104,7 +104,3 @@ Please consider a donation to help us and if we receive enough donations then we
 You can download this app and its over your responsability to maintain this by yourself if you are not our client but if we receive enough donations we can make support for an opensource type.
 
 To donate, please follow this [link](https://ceneka.net/dmtzs).
-
-<p align="center">
-  <img width="300" src="https://github.com/dmtzs/SmartTerrariumR/blob/master/WikiAssets/GDLogo.png" alt="GDCode-logo">
-</p>

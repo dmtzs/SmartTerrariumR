@@ -240,7 +240,7 @@ if __name__ == "__main__":
         import zipfile
 
         # My own libraries
-        from updateLib import updates, myExceptions
+        from updateLib import updates
 
         # Not native python libraries
         import wget
@@ -264,8 +264,7 @@ if __name__ == "__main__":
                     os.system(firstComms[llave])
         
         else:
-            my_exception = myExceptions.MyException()
-            raise my_exception("El script solo se puede ejecutar en entornos Linux")
+            print("El script solo se puede ejecutar en entornos Linux")
         
         print("Bibliotecas faltantes instaladas.")
         print("Por favor vuelve a ejecutar este programa con el mismo comando.")
@@ -294,5 +293,4 @@ if __name__ == "__main__":
                     os.remove("InstalacionBase.py")
 
         else:
-            my_exception = myExceptions.MyException("El script solo se puede ejecutar en entornos Linux")
-            raise my_exception
+            print("El script solo se puede ejecutar en entornos Linux")

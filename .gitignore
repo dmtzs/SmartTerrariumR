@@ -1,7 +1,7 @@
+# My stuffs to ignore
 Diagrama de conexión.fzz
 Terrario.pdf
 temp.py
-__pycache__
 node_modules
 *.scss
 *.zip
@@ -11,3 +11,12 @@ Server.spec
 TerrariumApp
 libraries
 pruebas
+
+# Flask stuff:
+instance/
+.webassets-cache
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class

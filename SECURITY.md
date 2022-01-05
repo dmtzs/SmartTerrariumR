@@ -1,4 +1,8 @@
-# Security Policy
+<p align="center">
+  <img width="300" src="https://github.com/dmtzs/SmartTerrariumR/blob/master/WikiAssets/GDLogo.png" alt="GDCode-logo">
+  <h1 align="center" style="margin: 0 auto 0 auto;">Security Policy</h1>
+  <h5 align="center" style="margin: 0 auto 0 auto;">Smart terrarium</h5>
+</p>
 
 ## Supported Versions
 

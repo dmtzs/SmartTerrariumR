@@ -26,5 +26,17 @@
         "humedad-rango": {
             "rangoHumedad": "32.06"
         }
+    },
+    "updates": {
+        "assets": {
+            "arduino": "RaspSerial.ino.hex",
+            "server": "Server",
+            "electron": "SmartTerra.AppImage"
+        },
+        "versions": {
+            "arduino": "1.0.0",
+            "server": "1.0.0",
+            "electron": "1.0.0"
+        }
     }
 }

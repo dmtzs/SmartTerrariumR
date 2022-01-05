@@ -4,7 +4,7 @@
   <h5 align="center" style="margin: 0 auto 0 auto;">Smart terrarium for your reptile pets</h5>
 </p>
 
-<p align="center">
+<!-- <p align="center">
   <img src="https://img.shields.io/github/last-commit/dmtzs/SmartTerrariumR">
   <img src="https://img.shields.io/github/contributors/dmtzs/SmartTerrariumR">
   <img src="https://img.shields.io/github/issues/dmtzs/SmartTerrariumR?label=issues">
@@ -17,7 +17,7 @@
   <img alt="GitHub repo size" src="https://img.shields.io/github/repo-size/dmtzs/SmartTerrariumR">
   <img alt="Lines of code" src="https://img.shields.io/tokei/lines/github/dmtzs/SmartTerrariumR?label=total%20lines%20in%20repo">
   <img alt="GitHub language count" src="https://img.shields.io/github/languages/count/dmtzs/SmartTerrariumR">
-</p>
+</p> -->
 
 - [Documentation](#Documentation)
 - [Supported versions for releases](#Supported-versions-for-releases)

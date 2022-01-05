@@ -107,7 +107,7 @@ def cadesExeFlask(bandeLocal):
 #               is been running in a windows or linux environment.
 def ArchYFolders(sistema):
     mainFolders= (".vscode", "dist", "build", "resources", "node_modules", ".git", "TerrariumApp", "WikiAssets")
-    archsNo= (".gitattributes", ".gitignore", "LICENSE.md", "package-lock.json", "package.json", "README.md", "requirements.txt", "index.js", "Server.spec")
+    archsNo= (".gitattributes", ".gitignore", "createCrontab.py", "package-lock.json", "package.json", "README.md", "requirements.txt", "index.js", "Server.spec")
     mainFoldersWin= ("dist", "build")
     
     rmFoldersLin= [mainFolders, archsNo]
@@ -188,6 +188,8 @@ def ExeFlask(sistema):
 
         os.system(comPyinstaller)
         os.system("npm run dist")
+
+        exec(open("createCrontab.py").read())
         
         try:
             shutil.move("./TerrariumApp/TerrariumApp-1.0.0.AppImage", "./SmartTerra.AppImage")
@@ -204,7 +206,6 @@ def ExeFlask(sistema):
 
         for turn in range(2):
             contentInitAppAndShFiles(shInitFiles[turn], fileNames[turn], turn)
-        exec(open("createCrontab.py").read())
 
         print("Verifica si se creo el archivo de inicio, reinicia el sistema operativo y agrega manualmente la variable de entorno que funcionará como llave secreta para la desencripción de AES")
     

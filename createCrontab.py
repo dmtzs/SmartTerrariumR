@@ -22,7 +22,7 @@ def main_flow():
 if __name__ == "__main__":
     try:
         methods = updates.ExtraMethods()
-        flag = methods.validate_os()
+        flag = methods.validate_os("validate_only")
 
         if flag:
             main_flow()

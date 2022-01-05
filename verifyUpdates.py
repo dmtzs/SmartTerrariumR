@@ -1,3 +1,6 @@
+#@File: verifyUpdates.py
+#@Author: Diego Martínez Sánchez.
+#@Description: This file will call the necessary methods from updateLib library for update the assets used in this project.
 try:
     from updateLib import updates
 except ImportError as eImp:
@@ -5,13 +8,13 @@ except ImportError as eImp:
 
 def main_flow():
     methods = updates.CheckUpdates()
-    flag = methods.validate_os()
+    flag = methods.validate_os("validate_only")
 
     if flag:# Crear archivo local de log para la ejecución de este programa y así verificar si se ejecutó correctamente o no.
         # Hacer cosas
         pass
     else:
-        pass
+        print("El script solo se puede ejecutar en entornos Linux")
 
 if __name__ == "__main__":
     try:

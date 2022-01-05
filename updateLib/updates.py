@@ -1,17 +1,31 @@
+#@File: updates.py
+#@Author: Diego Martínez Sánchez.
+#@Description: This file is in charge to validate if there are updates for the executables in this project so if yes, the it will download from box cloud all the updated assets.
 try:
     import requests
     import platform
+    from boxsdk import JWTAuth, Client
 except ImportError as eImp:
     print(f"En el archivo {__file__} ocurrió el siguiente error de importación: {eImp}")
 
 class ExtraMethods():
-    def validate_os(self):
+    #@Description: Method that returns the system and a shell command in order to clean the terminal in which this program is executed.
+    def validate_os(self, action=None):
         sistema = platform.system()
 
-        if sistema == "Linux":
-            return True
-        else:
-            return False
+        if action == "install":
+            arqui= platform.machine()
+
+            if sistema == "Windows":
+                return "cls", sistema, arqui
+            else:
+                return "clear", sistema, arqui
+
+        elif action == "validate_only":
+            if sistema == "Linux":
+                return True
+            else:
+                return False
 
 class CheckUpdates(ExtraMethods):
     # Primero usar API para verificar versiones actuales en la bd

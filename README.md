@@ -104,3 +104,5 @@ Please consider a donation to help us and if we receive enough donations then we
 You can download this app and its over your responsability to maintain this by yourself if you are not our client but if we receive enough donations we can make support for an opensource type.
 
 To donate, please follow this [link](https://ceneka.net/dmtzs).
+
+Also options in cryptocurrencies for donations will be added in this part.

@@ -1,4 +1,8 @@
-# GDCode semi free License
+
+<p align="center">
+  <h1 align="center" style="margin: 0 auto 0 auto;">GDCode semi free License</h1>
+  <h5 align="center" style="margin: 0 auto 0 auto;">Smart terrarium</h5>
+</p>
 
 ## Copyright (c) 2021 Diego Martínez Sánchez and  Guillermo Ortega Romo
 

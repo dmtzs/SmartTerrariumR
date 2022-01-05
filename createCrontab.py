@@ -1,28 +1,25 @@
 try:
     import os
-    import platform
     from crontab import CronTab
+    from updateLib import updates
 except ImportError as eImp:
     print(f"En el archivo {__file__} ocurrió el siguiente error de importación: {eImp}")
 
-def validate_os():
-    sistema = platform.system()
-
-    if sistema == "Linux":
-        return True
-    else:
-        return False
-
 def main_flow():
     actual_user = os.getenv("USER")
+    exe_file_from_cron = os.path.dirname(__file__)
+    file_to_execute = "python3 " + exe_file_from_cron + "/verifyUpdates.py"
 
-    my_cron = CronTab(user=actual_user)
-
-    print(my_cron)
+    with CronTab(user=actual_user) as my_cron:
+        job = my_cron.new(command=f"cd {exe_file_from_cron} && {file_to_execute}")
+        job.minute.on(0)
+        job.hour.on(10)
+        job.day.on(14, 28)
 
 if __name__ == "__main__":
     try:
-        flag = validate_os()
+        methods = updates.ExtraMethods()
+        flag = methods.validate_os()
 
         if flag:
             main_flow()
@@ -32,4 +29,4 @@ if __name__ == "__main__":
     except Exception as ex:
         print(f"En el archivo {__file__} ocurrió el siguiente error: {ex}")
     finally:
-        print("Finalizando ejecución de script")
+        print("Finalizando ejecución de script createCrontab.py")

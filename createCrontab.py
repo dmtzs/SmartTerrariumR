@@ -1,3 +1,6 @@
+#@File: createCrontab.py
+#@Author: Diego Martínez Sánchez.
+#@Description: This file is in charge to create a crontab in order to execute a script that will be on charge to update the assets for this application.
 try:
     import os
     from crontab import CronTab

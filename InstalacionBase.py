@@ -3,16 +3,6 @@
 #@Description: This file contains all the methods that are used in order to install and create the production app for the terrarium.
 
 #---------------------------Methods---------------------------
-#@Description: Method that returns the system and a shell command in order to clean the terminal in which this program is executed.
-def ShellAndSystem():
-    sistema= platform.system()
-    arqui= platform.machine()
-
-    if sistema == "Windows":
-        return "cls", sistema, arqui
-    else:
-        return "clear", sistema, arqui
-
 # @Description: Method used to execute the commands that were sent by the main method
 def execComands(comandsExec):
     for comm in comandsExec:
@@ -248,14 +238,17 @@ if __name__ == "__main__":
         import shutil
         import pkgutil
         import zipfile
-        import platform
+
+        # My own libraries
+        from updateLib import updates, myExceptions
 
         # Not native python libraries
         import wget
     except ImportError as eImp:
         print(f"En el archivo {__file__} ocurrió el siguiente error de importación: {eImp}")
         print("Verificando modulos faltantes...")
-        comShell, sistema, arch= ShellAndSystem()
+        methods = updates.ExtraMethods()
+        comShell, sistema, arch = methods.validate_os("install")
         del arch
         moduleArray= []
 
@@ -269,30 +262,37 @@ if __name__ == "__main__":
                 if llave not in moduleArray:
                     print(f"Instalando {llave}")
                     os.system(firstComms[llave])
-                
-        elif sistema== "Windows":
-            firstComms= "pip install wget"
-            os.system(firstComms)
+        
+        else:
+            my_exception = myExceptions.MyException()
+            raise my_exception("El script solo se puede ejecutar en entornos Linux")
         
         print("Bibliotecas faltantes instaladas.")
         print("Por favor vuelve a ejecutar este programa con el mismo comando.")
         
     else:
-        comShell, sistema, arch= ShellAndSystem()
-        del arch
+        methods = updates.ExtraMethods()
+        comShell, sistema, arch = methods.validate_os("install")
 
-        global bandeProd
-        bandeProd= 0
-        try:
-            os.system(comShell)
-            main(sistema)
-        except Exception as ex:
-            print(f"Ocurrió el siguiente error: {ex}")
-        except KeyboardInterrupt:
-            print("Se presiono Ctrl+C, finalizando programa con ejecución incorrecta")
-        finally:
-            print("Finalizando ejecución de programa")
-            if bandeProd== 0:
-                pass
-            elif bandeProd!= 0 and sistema== "Linux":
-                os.remove("InstalacionBase.py")
+        if sistema== "Linux":
+            del arch
+
+            global bandeProd
+            bandeProd= 0
+            try:
+                os.system(comShell)
+                main(sistema)
+            except Exception as ex:
+                print(f"Ocurrió el siguiente error: {ex}")
+            except KeyboardInterrupt:
+                print("Se presiono Ctrl+C, finalizando programa con ejecución incorrecta")
+            finally:
+                print("Finalizando ejecución de programa")
+                if bandeProd== 0:
+                    pass
+                elif bandeProd!= 0 and sistema== "Linux":
+                    os.remove("InstalacionBase.py")
+
+        else:
+            my_exception = myExceptions.MyException("El script solo se puede ejecutar en entornos Linux")
+            raise my_exception

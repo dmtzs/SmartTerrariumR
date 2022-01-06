@@ -27,6 +27,10 @@
             "rangoHumedad": "32.06"
         }
     },
+    "api-credentials": {
+        "usuario": "ZG10enM=",
+        "contrasena": "c25BazNfVGVycmE0TTNsMG4="
+    },
     "updates": {
         "assets": {
             "arduino": "RaspSerial.ino.hex",

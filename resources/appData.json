@@ -19,7 +19,7 @@
     "configuracion": {
         "modo": 1,
         "dia-noche": 1,
-        "modo-dia-noche": 0
+        "modo-dia-noche": 0,
         "temperaturas-rangos": {
             "rangoResAgua": "32",
             "rangoTempDHT": "25.05"

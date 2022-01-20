@@ -115,6 +115,7 @@ def listen():
             reader = csv.reader(conn.receivedData.splitlines())
             streamData = list(reader)
             # print(streamData)
+            # Read here the flag of the appData json file that is: modo-dia-noche. In order to send what automatic function do.
             yield f"id: 1\ndata: {conn.receivedData}\nevent: online\n\n"
             # DO NOT QUIT: This time sleep is for initialize the electron.
             time.sleep(5)

@@ -210,6 +210,9 @@ def main(sistema):
 
         elif sys.argv[1]== "--exes":
             ExeFlask(sistema)
+            exec(open("createCrontab.py").read())
+            os.remove("createCrontab.py")
+            print("Crontab creado correctamente")
 
         elif sys.argv[1]== "--help":
             help(sistema)
@@ -275,11 +278,6 @@ if __name__ == "__main__":
                 print("Se presiono Ctrl+C, finalizando programa con ejecución incorrecta")
             finally:
                 print("Finalizando ejecución de programa")
-                try:
-                    exec(open("createCrontab.py").read())
-                    os.remove("createCrontab.py")
-                except:
-                    print("Crontab ya ha sido creado")
                 if bandeProd== 0:
                     pass
                 elif bandeProd!= 0 and sistema== "Linux":

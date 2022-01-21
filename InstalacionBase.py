@@ -12,7 +12,7 @@ def execComands(comandsExec):
 #               of the electron project, etc.
 def localLibs():
     libsDirectory= "./resources/Flask/app/static/libraries/"
-    localLibsUrl= "https://github.com/dmtzs/SmartTerrariumR/releases/download/Local_libraries/localLibraries.zip"
+    localLibsUrl= "https://github.com/dmtzs/dmtzs/releases/download/temporal/localLibraries.zip"
     fileToUnzip= f"{libsDirectory}localLibraries.zip"
 
     if os.path.isdir(libsDirectory):

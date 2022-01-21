@@ -25,7 +25,7 @@ sem = threading.Semaphore()
 firstTime = True
 modo = ""
 lightMode = ""
-updatesAssets= []#Variable for keep hash of the assets of the app.
+# updatesAssets= []#Variable for keep hash of the assets of the app.
 
 
 # Keeps the data received from the arduino´s stream
@@ -76,10 +76,10 @@ def firstTimeLoad():
     _ = conn.communication(text)
     sem.release()
 
-    #Below to add to the variable all assets of the hash to iterate and validate the three.
-    components= ["arduino", "server", "electron"]
-    for comp in components:
-        updatesAssets.append(jsonMain.jsonData["updates"]["hash256"][comp])
+    # #Below to add to the variable all assets of the hash to iterate and validate the three.
+    # components= ["arduino", "server", "electron"]
+    # for comp in components:
+    #     updatesAssets.append(jsonMain.jsonData["updates"]["hash256"][comp])
 
 
 # @Description: This endpoint will be used for the welcome html template at the first time the application is executed. After this page is changed this endpoint will-

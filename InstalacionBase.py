@@ -236,7 +236,6 @@ if __name__ == "__main__":
         import os
         import sys
         import shutil
-        import pkgutil
         import zipfile
 
         # My own libraries
@@ -246,22 +245,13 @@ if __name__ == "__main__":
         import wget
     except ImportError as eImp:
         print(f"En el archivo {__file__} ocurrió el siguiente error de importación: {eImp}")
-        print("Verificando modulos faltantes...")
+        print("Instalando todas las bibliotecas de pyhton3")
         methods = updates.ExtraMethods()
         comShell, sistema, arch = methods.validate_os("install")
         del arch
-        moduleArray= []
-
-        for modulo in pkgutil.iter_modules():
-            moduleArray.append(modulo[1])
 
         if sistema== "Linux":
-            firstComms= {"pip":"sudo apt install python3-pip", "wget":"pip3 install wget"}
-
-            for llave in firstComms.keys():
-                if llave not in moduleArray:
-                    print(f"Instalando {llave}")
-                    os.system(firstComms[llave])
+            os.system("pip3 install -r requirements.txt")
         
         else:
             print("El script solo se puede ejecutar en entornos Linux")

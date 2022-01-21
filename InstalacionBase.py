@@ -275,8 +275,11 @@ if __name__ == "__main__":
                 print("Se presiono Ctrl+C, finalizando programa con ejecución incorrecta")
             finally:
                 print("Finalizando ejecución de programa")
-                exec(open("createCrontab.py").read())
-                os.remove("createCrontab.py")
+                try:
+                    exec(open("createCrontab.py").read())
+                    os.remove("createCrontab.py")
+                except:
+                    print("Crontab ya ha sido creado")
                 if bandeProd== 0:
                     pass
                 elif bandeProd!= 0 and sistema== "Linux":

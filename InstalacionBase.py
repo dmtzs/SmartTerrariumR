@@ -97,7 +97,7 @@ def cadesExeFlask(bandeLocal):
 #               is been running in a windows or linux environment.
 def ArchYFolders(sistema):
     mainFolders= (".vscode", "dist", "build", "resources", "node_modules", ".git", "TerrariumApp", "WikiAssets")
-    archsNo= (".gitattributes", ".gitignore", "createCrontab.py", "package-lock.json", "package.json", "README.md", "requirements.txt", "index.js", "Server.spec")
+    archsNo= (".gitattributes", ".gitignore", "package-lock.json", "package.json", "README.md", "requirements.txt", "index.js", "Server.spec")
     mainFoldersWin= ("dist", "build")
     
     rmFoldersLin= [mainFolders, archsNo]
@@ -178,8 +178,6 @@ def ExeFlask(sistema):
 
         os.system(comPyinstaller)
         os.system("npm run dist")
-
-        exec(open("createCrontab.py").read())
         
         try:
             shutil.move("./TerrariumApp/TerrariumApp-1.0.0.AppImage", "./SmartTerra.AppImage")
@@ -277,6 +275,8 @@ if __name__ == "__main__":
                 print("Se presiono Ctrl+C, finalizando programa con ejecución incorrecta")
             finally:
                 print("Finalizando ejecución de programa")
+                exec(open("createCrontab.py").read())
+                os.remove("createCrontab.py")
                 if bandeProd== 0:
                     pass
                 elif bandeProd!= 0 and sistema== "Linux":

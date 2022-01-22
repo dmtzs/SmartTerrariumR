@@ -100,6 +100,15 @@ def listen():
     def respond_to_client():
         global streamData
         while True:
+            if modo == 1:
+                # TODO: Only day and night bulbs all day
+                # I need to implement the part here in which we can turn on or off the day and night ligh-
+                # all day only in the automatic mode. Ask Memo if here is going to be a good idea to implement-
+                # that specific part in this endpoint or should be in another way
+                # Also we need to use ranges of day and night so we can know when to turn on the noght or day light.
+                # modo-dia-noche in automatic mode should be use for know if take in consideration the temperature-
+                # ranges or only the day and night ranges for maintain turned on all lights
+                pass
             sem.acquire()
             succes = conn.communication("strm")
             sem.release()

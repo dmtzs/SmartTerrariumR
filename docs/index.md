@@ -9,6 +9,9 @@ We can add more pages in this part using md files only and we can re direct to o
 So we can the instructives, etc. Also maybe is going to be good to use this for store here local libraries for example and for do that I need to investigate if that is possible from github pages.
 
 <br>
-<footer>
-    Smart Terrarium &copy; GDCode labs & studios
-</footer>
+<p align="center">
+  <img width="300" src="https://github.com/dmtzs/SmartTerrariumR/blob/master/WikiAssets/GDLogo.png" alt="GDCode-logo">
+  <footer>
+      Smart Terrarium &copy; GDCode labs & studios
+  </footer>
+</p>

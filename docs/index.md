@@ -1,5 +1,5 @@
 <p align="center">
-  <img width="300" src="https://github.com/dmtzs/SmartTerrariumR/blob/master/resources/Imgs/BoaEsmeraldaAppOriginal.png" alt="logo">
+  <img width="300" src="images/BoaEsmeraldaAppOriginal.png" alt="logo">
   <h1 align="center" style="margin: 0 auto 0 auto;">Smart terrarium</h1>
   <h5 align="center" style="margin: 0 auto 0 auto;">Smart terrarium for your reptile pets</h5>
 </p>
@@ -10,7 +10,7 @@ So we can the instructives, etc. Also maybe is going to be good to use this for 
 
 <br>
 <p align="center">
-  <img width="300" src="https://github.com/dmtzs/SmartTerrariumR/blob/master/WikiAssets/GDLogo.png" alt="GDCode-logo">
+  <img width="300" src="images/GDLogo.png" alt="GDCode-logo">
   <footer>
       Smart Terrarium &copy; GDCode labs & studios
   </footer>

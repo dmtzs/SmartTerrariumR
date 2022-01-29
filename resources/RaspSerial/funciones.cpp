@@ -236,7 +236,7 @@ void rellenarBebederoManual()
  * @Description: This function is used to manage the status of the   
  *               day and night lightbulbs
 */
- void focosEncendidosManual(int act){
+void focosEncendidosManual(int act){
   if (act == 0){
     if(dia_noche == 1)
         onOffDia = (onOffDia == 1) ? 0:1;  

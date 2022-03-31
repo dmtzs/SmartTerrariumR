@@ -13,7 +13,7 @@ except ImportError as eImp:
     print(f"The following error import ocurred: {eImp}")
 
 __author__ = 'Diego Martínez Sánchez and Guillermo Ortega Romo'
-__email__ = 'pydanny@gmail.com'
+__email__ = 'gd-code@outlook.com'
 __version__ = '1.0.0'
 __license__ = 'Semi free personal license'
 

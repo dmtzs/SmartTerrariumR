@@ -12,6 +12,11 @@ try:
 except ImportError as eImp:
     print(f"The following error import ocurred: {eImp}")
 
+__author__ = 'Diego Martínez Sánchez and Guillermo Ortega Romo'
+__email__ = 'pydanny@gmail.com'
+__version__ = '1.0.0'
+__license__ = 'Semi free personal license'
+
 # @Description: Class for manage all the arduino connection from the app of the raspberry to the arduino.
 class ArduinoConnection():
     thisSystem = platform.system()

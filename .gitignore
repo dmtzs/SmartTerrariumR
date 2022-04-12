@@ -10,7 +10,6 @@ Server.exe
 Server.spec
 TerrariumApp
 libraries
-pruebas
 
 # Flask stuff:
 instance/

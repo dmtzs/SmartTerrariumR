@@ -1,35 +1,40 @@
 try:
     import os
-    import time
     import serial
-    import platform
     import warnings
+    import platform
     import serial.tools.list_ports
 except ImportError as eImp:
-    print(f"The following error import ocurred: {eImp}")
+    print(f"El siguiente error de importación ocurrió en el archivo {__file__}: {eImp}")
 
-try:
-    if self.thisSystem == "Windows":
-        arduino_ports = [
-            p.device
-            for p in serial.tools.list_ports.comports()
-            # may need tweaking to match new arduinos
-            if "Arduino" in p.description or "Dispositivo" in p.description
-        ]
-        if not arduino_ports:
-            raise IOError("No Arduino found")
-        if len(arduino_ports) > 1:
-            warnings.warn('Multiple Arduinos found - using the first')
 
-        self.connection = serial.Serial(
-            arduino_ports[0], self.baudrate, timeout=self.timeout)
-    else:
-        serial_port = "/dev/" + \
-            os.popen(
-                "dmesg | egrep ttyACM | cut -f3 -d: | tail -n1").read().strip()
-        self.connection = serial.Serial(
-            serial_port, baudrate=self.baudrate, timeout=self.timeout)
-    self.recieving = True
-except Exception as e:
-    print(f"\n\n\t\t\t\tOcurrió el ERROR: {e}")
-    self.recieving = False
+def ports():
+    baudrate = 115200
+    timeout = 1.5
+
+    try:
+        if platform.system() == "Windows":
+            arduino_ports = [
+                p.device
+                for p in serial.tools.list_ports.comports()
+                # may need tweaking to match new arduinos
+                if "Arduino" in p.description or "Dispositivo" in p.description
+            ]
+            if not arduino_ports:
+                raise IOError("No Arduino found")
+            if len(arduino_ports) > 1:
+                warnings.warn('Multiple Arduinos found - using the first')
+
+            connection = serial.Serial(arduino_ports[0], baudrate, timeout=timeout)
+        else:
+            serial_port = "/dev/" + \
+                os.popen("dmesg | egrep ttyACM | cut -f3 -d: | tail -n1").read().strip()#Probar usando subprocess
+            print(f"Puertos serial detectados: {serial_port}")
+
+            connection = serial.Serial(serial_port, baudrate=baudrate, timeout=timeout)
+            print(f"Connection: {connection}")
+    except Exception as ex:
+        print(f"\n\n\t\t\t\tOcurrió el ERROR: {ex}")
+
+if __name__ == "__main__":
+    ports()

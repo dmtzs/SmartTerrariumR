@@ -35,7 +35,7 @@ def ports():
             ]
 
             # print(f"Puertos serial detectados: {serial_port}")
-            print(f"Puertos serial detectados: {arduino_ports}")
+            print(f"Puertos serial detectados: {arduino_ports[0]}")
 
             connection = serial.Serial("/dev/ttyAMA0", baudrate=baudrate, timeout=timeout)
             print(f"Connection: {connection}")

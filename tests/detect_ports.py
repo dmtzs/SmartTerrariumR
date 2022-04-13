@@ -3,6 +3,7 @@ try:
     import serial
     import warnings
     import platform
+    import subprocess
     import serial.tools.list_ports
 except ImportError as eImp:
     print(f"El siguiente error de importación ocurrió en el archivo {__file__}: {eImp}")
@@ -27,12 +28,18 @@ def ports():
 
             connection = serial.Serial(arduino_ports[0], baudrate, timeout=timeout)
         else:
-            serial_port = "/dev/" + \
-                os.popen("dmesg | egrep ttyACM | cut -f3 -d: | tail -n1").read().strip()#Probar usando subprocess
-            print(f"Puertos serial detectados: {serial_port}")
+            arduino_ports = [
+                p.device
+                for p in serial.tools.list_ports.comports()
+                # may need tweaking to match new arduinos
+            ]
 
-            connection = serial.Serial(serial_port, baudrate=baudrate, timeout=timeout)
+            # print(f"Puertos serial detectados: {serial_port}")
+            print(f"Puertos serial detectados: {arduino_ports}")
+
+            connection = serial.Serial("/dev/ttyAMA0", baudrate=baudrate, timeout=timeout)
             print(f"Connection: {connection}")
+            connection.close()
     except Exception as ex:
         print(f"\n\n\t\t\t\tOcurrió el ERROR: {ex}")
 

@@ -37,34 +37,36 @@ class ArduinoConnection():
         else:
             comandoShell = "clear"
         os.system(comandoShell)
+    
+    # @Description: Detect the serial ports in use and if there are more than one the program will use the first serial-
+    #               port available to be used.
+    def get_arduino_ports(self):
+        if self.thisSystem == "Windows":
+            arduino_ports = [
+                p.device
+                for p in serial.tools.list_ports.comports()
+                # may need tweaking to match new arduinos
+                if "Arduino" in p.description or "Dispositivo" in p.description
+            ]
+        else:
+            arduino_ports = [
+                p.device
+                for p in serial.tools.list_ports.comports()
+                # may need tweaking to match new arduinos
+            ]
+        if not arduino_ports:
+            raise IOError("No Arduino found")
+        if len(arduino_ports) > 1:
+            warnings.warn('Multiple Arduinos found - using the first')
+        
+        return arduino_ports[0]
 
     # @Description: Inits the connection to the Arduino more specifically for checking is there´s an Arduino available-
     #               for been used in to the app.
     def initConnection(self):
         try:
-            if self.thisSystem == "Windows":
-                arduino_ports = [
-                    p.device
-                    for p in serial.tools.list_ports.comports()
-                    # may need tweaking to match new arduinos
-                    if "Arduino" in p.description or "Dispositivo" in p.description
-                ]
-                if not arduino_ports:
-                    raise IOError("No Arduino found")
-                if len(arduino_ports) > 1:
-                    warnings.warn('Multiple Arduinos found - using the first')
-
-                self.connection = serial.Serial(arduino_ports[0], self.baudrate, timeout=self.timeout)
-            else:
-                arduino_ports = [
-                    p.device
-                    for p in serial.tools.list_ports.comports()
-                ]
-                if not arduino_ports:
-                    raise IOError("No Arduino found")
-                if len(arduino_ports) > 1:
-                    warnings.warn('Multiple Arduinos found - using the first')
-                self.connection = serial.Serial(arduino_ports[0], baudrate=self.baudrate, timeout=self.timeout)
+            arduino_detected = self.get_arduino_ports()
+            self.connection = serial.Serial(arduino_detected, self.baudrate, timeout=self.timeout)
             self.recieving = True
         except Exception as e:
             print(f"\n\n\t\t\t\tOcurrió el ERROR: {e}")

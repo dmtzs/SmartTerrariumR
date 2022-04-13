@@ -56,9 +56,9 @@ def installBase(sistema):
     # comandosLinux= ["sudo apt update", "sudo apt upgrade -y", "sudo apt install python3-pip", "pip3 install -r requirements.txt", "sudo apt install curl",
     #                 "curl -sL https://deb.nodesource.com/setup_14.x | sudo bash -", "cat /etc/apt/sources.list.d/nodesource.list", "sudo apt install -y nodejs",
     #                 "npm install wait-port --save-prod", "npm install electron electron-builder --save-dev", "sudo usermod -a -G dialout $USER"]
-    comandosLinux= ["pip3 install -r requirements.txt", "sudo apt install curl",
-                    "curl -sL https://deb.nodesource.com/setup_14.x | sudo bash -", "cat /etc/apt/sources.list.d/nodesource.list", "sudo apt install -y nodejs",
-                    "npm install wait-port --save-prod", "npm install electron electron-builder --save-dev"]
+    comandosLinux= ["pip3 install -r requirements.txt", "sudo apt install curl", "curl -sL https://deb.nodesource.com/setup_14.x | sudo bash -",
+                    "cat /etc/apt/sources.list.d/nodesource.list", "sudo apt install -y nodejs","npm install wait-port --save-prod",
+                    "npm install electron electron-builder --save-dev"]
     
     comandosWindows= ["pip install -r requirements.txt", "npm install electron wait-port --save-prod", "npm install electron electron-builder --save-dev"]
 

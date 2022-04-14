@@ -226,9 +226,13 @@ void chooseAction(){
  */
 void rellenarBebederoManual()
 {
-  digitalWrite(bombaBebedero, HIGH);
-  delay(10000);
-  digitalWrite(bombaBebedero, LOW);
+  if(bebederoSignal == 0){
+    bebederoSignal = 1;
+    digitalWrite(bombaBebedero, HIGH);
+  }else{
+    bebederoSignal = 0;
+    digitalWrite(bombaBebedero, LOW);
+  }
 }
 
 /*
@@ -268,9 +272,13 @@ void focosEncendidosManual(int act){
 */
 void humedecerTerrarioManual()
 {
-  digitalWrite(bombaHumedad, HIGH);
-  delay(6000);//Ver si poner variable en este delay.
-  digitalWrite(bombaHumedad, LOW);
+  if(humedecerSignal == 0){
+    humedecerSignal = 1;
+    digitalWrite(bombaHumedad, HIGH);
+  }else{
+    humedecerSignal = 0;
+    digitalWrite(humedecerSignal, LOW);
+  }
 }
 
 // ------------------------------------------------------------------------------ //

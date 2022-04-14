@@ -43,6 +43,8 @@ int inicioConf, finConf;                   //For comma separated values.
 float rangoHumedad = 0, rangoTempReservaAgua = 0, rangoTempDHT = 0;
 float* TH = new float[3];          //Metrics of the sensors to be sent through serial.
 float* confValues= new float[3];   //For the values of the vonf flag
+int bebederoSignal = 0;            //Keep the status of the motor for the drinker
+int humedecerSignal = 0;           //Keep the status of the motor for the sprays
 
 
 //----------------Variables for serial communication---------------

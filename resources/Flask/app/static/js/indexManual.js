@@ -35,6 +35,58 @@ $(function () {
 	});
 
 	$("#humedecer").on("click", function () {
-		console.log("humedecer");
+		$("#loader").show();
+
+		$(".disable_inputs").prop("disabled", true);
+
+		$("#humedecer").toggleClass("pressed");
+
+		$("#humedecer").text("Humedeciendo");
+
+		value = 1;
+		
+		$.ajax({
+			type: "POST",
+			url: "/indexevents",
+			data: { humedecer: value },
+			complete: function (response) {
+				if (response.responseText != "error") {
+					if ($("#humedecer").hasClass("pressed")) {
+						$("#humedecer").prop("disabled", false);
+					} else {
+						$(".disable_inputs").prop("disabled", false);
+					}
+					setTimeout(function(){callAjax();}, 8000);
+
+					function callAjax() {
+						$.ajax({
+							type: "POST",
+							url: "/indexevents",
+							data: { humedecer: value },
+							complete: function (response) {
+								if (response.responseText != "error") {
+									if ($("#humedecer").hasClass("pressed")) {
+										$("#humedecer").prop("disabled", false);
+									} else {
+										$(".disable_inputs").prop("disabled", false);
+									}
+									$("#humedecer").text("Humedecer");
+									$("#humedecer").toggleClass("pressed");
+									$("#loader").hide();
+									console.log(response.responseText);
+								} else {
+									window.location.replace("http://127.0.0.1:5000/error500");
+								}
+							},
+						});
+					}
+					
+					console.log(response.responseText);
+				} else {
+					window.location.replace("http://127.0.0.1:5000/error500");
+				}
+			},
+		});
+
 	});
 });

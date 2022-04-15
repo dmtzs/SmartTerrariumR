@@ -36,11 +36,8 @@ $(function () {
 
 	$("#humedecer").on("click", function () {
 		$("#loader").show();
-
 		$(".disable_inputs").prop("disabled", true);
-
 		$("#humedecer").toggleClass("pressed");
-
 		$("#humedecer").text("Humedeciendo");
 
 		value = 1;
@@ -51,11 +48,8 @@ $(function () {
 			data: { humedecer: value },
 			complete: function (response) {
 				if (response.responseText != "error") {
-					if ($("#humedecer").hasClass("pressed")) {
-						$("#humedecer").prop("disabled", false);
-					} else {
-						$(".disable_inputs").prop("disabled", false);
-					}
+					
+					$("#humedecer").prop("disabled", false);
 					setTimeout(function(){callAjax();}, 8000);
 
 					function callAjax() {
@@ -65,11 +59,7 @@ $(function () {
 							data: { humedecer: value },
 							complete: function (response) {
 								if (response.responseText != "error") {
-									if ($("#humedecer").hasClass("pressed")) {
-										$("#humedecer").prop("disabled", false);
-									} else {
-										$(".disable_inputs").prop("disabled", false);
-									}
+									$(".disable_inputs").prop("disabled", false);
 									$("#humedecer").text("Humedecer");
 									$("#humedecer").toggleClass("pressed");
 									$("#loader").hide();

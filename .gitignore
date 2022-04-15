@@ -10,6 +10,8 @@ Server.exe
 Server.spec
 TerrariumApp
 libraries
+package.json
+package-lock.json
 
 # Flask stuff:
 instance/

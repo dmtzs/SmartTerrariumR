@@ -26,6 +26,9 @@ void setupProyecto()
   pinMode(calentarAguaReserva, OUTPUT);
   pinMode(bombaBebedero, OUTPUT);
   pinMode(bombaHumedad, OUTPUT); //Checar si debe ser diferente la config del pin para usar lo de PWM.
+  digitalWrite(focoDia, HIGH);
+  digitalWrite(focoNoche, HIGH);
+  digitalWrite(calentarAguaReserva, HIGH);
   
   for(int i = 0; i < buffersize; i++){
     inString[i] = 0;
@@ -250,20 +253,22 @@ void focosEncendidosManual(int act){
   if (act == 1){
     if(dia_noche == 1){
       if(onOffNoche == 1){
-        onOffDia = 0;
-        onOffNoche = 1;
+        onOffDia = HIGH;
+        onOffNoche = LOW;
       }
     }
     if(dia_noche == 0){
       if(onOffDia == 1){
-        onOffNoche = 0;//original: 1
-        onOffDia = 1;//original 0
+        onOffNoche = HIGH;//original: 1
+        onOffDia = LOW;//original 0
       }
     }
   }
   
-  digitalWrite(focoDia, onOffDia);
-  digitalWrite(focoNoche, onOffNoche);
+  digitalWrite(focoDia, !onOffDia);
+  digitalWrite(focoNoche, !onOffNoche);
+  //digitalWrite(focoDia, onOffDia);
+  //digitalWrite(focoNoche, onOffNoche);
 }
 
 /*

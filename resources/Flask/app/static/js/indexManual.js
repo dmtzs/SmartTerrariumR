@@ -64,7 +64,6 @@ $(function () {
 			url: "/indexevents",
 			data: { humedecer: value },
 			complete: function (response) {
-				console.log("HUMEDECIENDO")
 				if (response.responseText != "error") {
 					
 					$("#humedecer").prop("disabled", false);

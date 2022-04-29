@@ -12,11 +12,11 @@ except ImportError as eImp:
 if __name__ == "__main__":
     try:
         # -----------------Dev mode-----------------
-        # app.run(host="127.0.0.1", port=5000, debug=True, use_reloader=False)
+        app.run(host="127.0.0.1", port=5000, debug=True, use_reloader=False)
 
         # -----------------Prod mode----------------
-        appServer=  WSGIServer(("127.0.0.1", 5000), app)
-        appServer.serve_forever()
+        # appServer=  WSGIServer(("127.0.0.1", 5000), app)
+        # appServer.serve_forever()
     except KeyboardInterrupt:
         print("Se presionó Ctrl + C")
         print("Apagando servidor...")

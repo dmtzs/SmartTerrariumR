@@ -226,7 +226,7 @@ void chooseAction(){
  */
 void rellenarBebederoManual()
 {
-  if(bebederoSignal == 0){
+  if (bebederoSignal == 0) {
     bebederoSignal = 1;
     digitalWrite(bombaBebedero, HIGH);
   }else{
@@ -272,12 +272,12 @@ void focosEncendidosManual(int act){
 */
 void humedecerTerrarioManual()
 {
-  if(humedecerSignal == 0){
+  if (humedecerSignal == 0) {
     humedecerSignal = 1;
     digitalWrite(bombaHumedad, HIGH);
   }else{
     humedecerSignal = 0;
-    digitalWrite(humedecerSignal, LOW);
+    digitalWrite(bombaHumedad, LOW);
   }
 }
 

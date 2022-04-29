@@ -32,12 +32,12 @@ if (OSName !== "darwin") {
 			
 			childString = "./resources/Flask/main.py";
 			if (OSName === "win32") {
-				commando= "python";
+				commando= "py -3.9 " + childString;
 			}
 			if (OSName === "linux") {
 				commando= "python3";
 			}
-			hijo = execFile(commando, [childString], (error, stdout, stderr) => {
+			hijo = exec(commando, (error, stdout, stderr) => {
 				if (error) {
 					console.log(error.stack);
 					console.log(`Error code: ${error.code}`);

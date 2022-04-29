@@ -250,19 +250,19 @@ void focosEncendidosManual(int act){
   if (act == 1){
     if(dia_noche == 1){
       if(onOffNoche == 1){
-        onOffDia = 1;
-        onOffNoche = 0;
+        onOffDia = 0;
+        onOffNoche = 1;
       }
     }
     if(dia_noche == 0){
       if(onOffDia == 1){
-        onOffNoche = 1;
-        onOffDia = 0;
+        onOffNoche = 0;//original: 1
+        onOffDia = 1;//original 0
       }
     }
   }
   
-  digitalWrite(focoDia, !onOffDia);
+  digitalWrite(focoDia, onOffDia);
   digitalWrite(focoNoche, onOffNoche);
 }
 

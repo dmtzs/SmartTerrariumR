@@ -12,6 +12,7 @@ TerrariumApp
 libraries
 package.json
 package-lock.json
+ArduinoOutput
 .vscode
 
 # Flask stuff:

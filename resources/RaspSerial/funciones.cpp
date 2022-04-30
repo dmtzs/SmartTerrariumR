@@ -267,8 +267,6 @@ void focosEncendidosManual(int act){
   
   digitalWrite(focoDia, !onOffDia);
   digitalWrite(focoNoche, !onOffNoche);
-  //digitalWrite(focoDia, onOffDia);
-  //digitalWrite(focoNoche, onOffNoche);
 }
 
 /*

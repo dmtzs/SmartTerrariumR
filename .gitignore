@@ -12,6 +12,7 @@ TerrariumApp
 libraries
 package.json
 package-lock.json
+.vscode
 
 # Flask stuff:
 instance/

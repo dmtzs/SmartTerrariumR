@@ -277,10 +277,10 @@ void humedecerTerrarioManual()
 {
   if (humedecerSignal == 0) {
     humedecerSignal = 1;
-    digitalWrite(bombaHumedad, HIGH);
+    digitalWrite(bombaHumedad, LOW);
   }else{
     humedecerSignal = 0;
-    digitalWrite(bombaHumedad, LOW);
+    digitalWrite(bombaHumedad, HIGH);
   }
 }
 

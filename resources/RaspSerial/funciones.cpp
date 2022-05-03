@@ -28,6 +28,7 @@ void setupProyecto()
   pinMode(bombaHumedad, OUTPUT); //Checar si debe ser diferente la config del pin para usar lo de PWM.
   digitalWrite(focoDia, HIGH);
   digitalWrite(focoNoche, HIGH);
+  digitalWrite(bombaHumedad, HIGH);
   digitalWrite(calentarAguaReserva, HIGH);
   
   for(int i = 0; i < buffersize; i++){

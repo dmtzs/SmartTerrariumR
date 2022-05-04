@@ -42,7 +42,7 @@
     "wait-port": "^0.2.9"
   },
   "devDependencies": {
-    "electron": "^14.1.1",
-    "electron-builder": "^22.13.1"
+    "electron": "^18.2.0",
+    "electron-builder": "^23.0.3"
   }
 }

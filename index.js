@@ -35,7 +35,7 @@ if (OSName !== "darwin") {
 				commando= "python " + childString;
 			}
 			if (OSName === "linux") {
-				commando= "python3";
+				commando= "python3 " + childString;
 			}
 			hijo = exec(commando, (error, stdout, stderr) => {
 				if (error) {

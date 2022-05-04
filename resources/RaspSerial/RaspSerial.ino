@@ -29,7 +29,7 @@ void loop()
       secondInterval = 0;
       sensorSumergible();
       TempHum();
-      // reserveWaterManualAuto();//TODO: Checar si si iría aquí el de la resistencia de la reserva de agua manual y que usaría el automático de igual manera
+      reserveWaterManualAuto();
     }
   }
 

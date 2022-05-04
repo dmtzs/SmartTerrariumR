@@ -25,7 +25,8 @@ void setupProyecto()
   pinMode(focoNoche, OUTPUT);
   pinMode(calentarAguaReserva, OUTPUT);
   pinMode(bombaBebedero, OUTPUT);
-  pinMode(bombaHumedad, OUTPUT); //Checar si debe ser diferente la config del pin para usar lo de PWM.
+  pinMode(bombaHumedad, OUTPUT);
+
   digitalWrite(focoDia, HIGH);
   digitalWrite(focoNoche, HIGH);
   digitalWrite(bombaHumedad, HIGH);
@@ -285,22 +286,6 @@ void humedecerTerrarioManual()
   }
 }
 
-/*
- * @Author: Diego Martínez Sánchez
- * @Description: Function for keeping warm the water of the reserve water in the manual mode.
- */
-void reserveWaterManual()
-{
-  if (TH[0] < rangoTempReservaAgua)
-  {
-    digitalWrite(calentarAguaReserva, LOW);
-  }
-  else
-  {
-    digitalWrite(calentarAguaReserva, HIGH);
-  }
-}
-
 // ------------------------------------------------------------------------------ //
 // ------------------------------------------------------------------------------ //
 
@@ -331,9 +316,8 @@ void humedecerTerrarioAuto()
  * @Author: Diego Martínez Sánchez
  * @Description: Function for keeping warm the water of the reserve water in the automatic mode.
  */
-void reserveWaterAuto()
+void reserveWaterManualAuto()
 {
-  //Descomentar cuando se reciba el rango de la temperatura a la que se desea mantener la reserva de agua desde la raspberry.
   if (TH[0] < rangoTempReservaAgua)
   {
     digitalWrite(calentarAguaReserva, LOW);

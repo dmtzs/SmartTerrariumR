@@ -29,12 +29,12 @@ void loop()
       secondInterval = 0;
       sensorSumergible();
       TempHum();
+      // reserveWaterManualAuto();//TODO: Checar si si iría aquí el de la resistencia de la reserva de agua manual
     }
   }
 
   if(automatico == 1){
     humedecerTerrarioAuto();
-    reserveWaterAuto();
     focosEncendidosAuto();
     rellenarBebederoAuto();
     focosEncendidosAuto();

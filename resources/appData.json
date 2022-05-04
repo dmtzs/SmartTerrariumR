@@ -21,7 +21,7 @@
         "dia-noche": 1,
         "modo-dia-noche": 0,
         "temperaturas-rangos": {
-            "rangoResAgua": "32",
+            "rangoResAgua": "30",
             "rangoTempDHT": "25.05"
         },
         "humedad-rango": {

@@ -10,7 +10,6 @@ void eventoSerial();
 
 //Automatic functions
 void humedecerTerrarioAuto();
-void reserveWaterAuto();
 void focosEncendidosAuto();
 void rellenarBebederoAuto();
 void focosEncendidosAuto();
@@ -19,3 +18,4 @@ void focosEncendidosAuto();
 void floatingSensor();
 void sensorSumergible();
 void TempHum();
+void reserveWaterManualAuto();

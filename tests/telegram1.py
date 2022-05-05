@@ -1,6 +1,6 @@
 import telebot
 
-token = "5397598254:AAGQtp5cBytl8J8uSEYRXTDI7-UEjRQyQik"
+token = ""
 bot = telebot.TeleBot(token)
 bot.config["api-key"] = token
 

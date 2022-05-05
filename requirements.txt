@@ -1,8 +1,10 @@
 wget
 flask
 gevent
+telebot
 pyserial
 boxsdk[jwt]
 pyinstaller
 testresources
 python-crontab
+pyTelegramBotAPI

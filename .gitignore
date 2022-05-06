@@ -15,6 +15,7 @@ package-lock.json
 ArduinoOutput
 .vscode
 secrets.txt
+tests
 
 # Flask stuff:
 instance/

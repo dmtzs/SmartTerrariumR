@@ -13,7 +13,7 @@
 
 // ------------------------Prototype functions------------------------
 void chooseAction();
-void focosEncendidosManual(int act);
+void focosEncendidosManualAuto(int act);
 void humedecerTerrarioManual();
 void rellenarBebederoManual();
 

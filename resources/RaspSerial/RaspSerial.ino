@@ -10,6 +10,7 @@
 unsigned long previousMillis = 0;
 const long interval = 1000;
 int secondInterval = 0;
+int thirdInterval = 0;
 
 void setup()
 {
@@ -25,19 +26,22 @@ void loop()
     floatingSensor();
     previousMillis = currentMillis;
     secondInterval++;
-    if (secondInterval == 5){
+    thirdInterval++;
+    if (secondInterval == 5) {
       secondInterval = 0;
       sensorSumergible();
       TempHum();
       reserveWaterManualAuto();
     }
+
+    // Revisa si hay que humedecer en modo automático cada 8 seg
+    if (thirdInterval == 8 && automatico == 1) {
+      humedecerTerrarioAuto();
+    }
   }
 
   if(automatico == 1){
-    humedecerTerrarioAuto();
-    focosEncendidosAuto();
-    rellenarBebederoAuto();
-    focosEncendidosAuto();
+    rellenarBebederoAuto(); //listo
   }
 
   sendSerialRasp();

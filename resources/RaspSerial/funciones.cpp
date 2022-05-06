@@ -174,13 +174,13 @@ void chooseAction(){
 
   //Turns on or off the bulb according if its day or night
   if(ActionApp.equals("bulb")){
-    focosEncendidosManual(0);
+    focosEncendidosManualAuto(0);
   }
 
   //Change the day or night mode
   if(ActionApp.equals("lght")){
     dia_noche = value.toInt();
-    focosEncendidosManual(1);
+    focosEncendidosManualAuto(1);
   }
 
   //Activates or desactivate the refill of the drinker
@@ -245,7 +245,7 @@ void rellenarBebederoManual()
  * @Description: This function is used to manage the status of the   
  *               day and night lightbulbs
 */
-void focosEncendidosManual(int act){
+void focosEncendidosManualAuto(int act){
   if (act == 0){
     if(dia_noche == 1)
         onOffDia = (onOffDia == 1) ? 0:1;  
@@ -299,16 +299,18 @@ void humedecerTerrarioManual()
 */
 void humedecerTerrarioAuto()
 {
-  if (TH[2] < rangoHumedad)
-  {
-    digitalWrite(bombaHumedad, HIGH);
-    //Checar si poner delay o solo esperar que el sensor DHT marque que se elevo la humedad.
-    delay(6000);
-    digitalWrite(bombaHumedad, LOW);
+  if (TH[2] < rangoHumedad) {
+    if (humedecerSignal == 0) {
+      humedecerSignal = 1;
+      digitalWrite(bombaHumedad, LOW);
+    }
+    else {
+      humedecerSignal = 0;
+      digitalWrite(bombaHumedad, HIGH);
+    }
   }
-  else
-  {
-    digitalWrite(bombaHumedad, LOW);
+  else{
+    digitalWrite(bombaHumedad, HIGH);
   }
 }
 
@@ -328,41 +330,6 @@ void reserveWaterManualAuto()
   }
 }
 
-/*
- * @Author: Diego Martínez Sánchez
- * @Description: Function for turning on the correct bulbs according to the day, if its at night then it will turns on the night bulb and if not the day bulb.
- */
- void focosEncendidosAuto()
- {
-  if (TH[1] < rangoTempDHT)//Poner la validacion con el del reloj.
-  {
-    if (dia_noche== 1)
-    {
-      //Encender el foco de día, falta definir pin
-      digitalWrite(focoDia, HIGH);
-      digitalWrite(focoNoche, LOW);
-    }
-    else if (dia_noche== 0)
-    {
-      //Encender el foco de noche, falta definir pin
-      digitalWrite(focoNoche, HIGH);
-      digitalWrite(focoDia, LOW);
-    }
-    else
-    {
-      //Mantener apagado ambos focos por si acaso
-      digitalWrite(focoDia, LOW);
-      digitalWrite(focoNoche, LOW);
-    }
-  }
-  else
-  {
-    //Mantener apagado ambos focos por si acaso
-    digitalWrite(focoDia, LOW);
-    digitalWrite(focoNoche, LOW);
-  }
- }
-
  /*
  * @Author: Diego Martínez Sánchez
  * @Description: Function for refill the drinker of the terrarium only if the floating sensor is in "on" state
@@ -370,9 +337,7 @@ void reserveWaterManualAuto()
  void rellenarBebederoAuto()
  {
   if(statusFlotador == 0){
-    digitalWrite(bombaBebedero, HIGH);
-    delay(10000);
-    digitalWrite(bombaBebedero, LOW);
+    digitalWrite(bombaBebedero, statusFlotador);
   }
  }
  

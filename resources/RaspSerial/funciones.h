@@ -10,9 +10,7 @@ void eventoSerial();
 
 //Automatic functions
 void humedecerTerrarioAuto();
-void focosEncendidosAuto();
 void rellenarBebederoAuto();
-void focosEncendidosAuto();
 
 //Functions for the sensors of humidity and temperatures.
 void floatingSensor();

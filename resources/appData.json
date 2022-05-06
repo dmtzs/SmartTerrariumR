@@ -22,11 +22,11 @@
         "modo-dia-noche": 0,
         "time-zone": "America/Mexico_City",
         "temperaturas-rangos": {
-            "rangoResAgua": "40",
+            "rangoResAgua": "30",
             "rangoTempDHT": "25.05"
         },
         "humedad-rango": {
-            "rangoHumedad": "1"
+            "rangoHumedad": "30"
         }
     },
     "api-credentials": {

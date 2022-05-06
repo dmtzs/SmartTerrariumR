@@ -82,8 +82,8 @@ void TempHum()
   TH[1]= dht.readTemperature();
   TH[2]= dht.readHumidity();
   
-  /*TH[1]= random(50);
-  TH[2]= random(50);*/
+  // TH[1]= random(29);
+  // TH[2]= random(29);
 }
 // ------------------------------------------------------------------------------ //
 // ------------------------------------------------------------------------------ //
@@ -337,7 +337,10 @@ void reserveWaterManualAuto()
  void rellenarBebederoAuto()
  {
   if(statusFlotador == 0){
-    digitalWrite(bombaBebedero, statusFlotador);
+    digitalWrite(bombaBebedero, !statusFlotador);
+  }
+  else {
+    digitalWrite(bombaBebedero, !statusFlotador);
   }
  }
  

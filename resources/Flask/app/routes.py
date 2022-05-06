@@ -75,6 +75,11 @@ def firstTimeLoad():
     _ = conn.communication(text)
     sem.release()
 
+    text = f"conf{rangoResAgua},{rangoTerrario},{rangoHum}"
+    sem.acquire()
+    _ = conn.communication(text)
+    sem.release()
+
 
 # @Description: This endpoint will be used for the welcome html template at the first time the application is executed. After this page is changed this endpoint will-
 #               be used to serve the other templates of the automatic and manual mode. This is also the initial endpoint of the project.
@@ -100,7 +105,7 @@ def listen():
     def respond_to_client():
         global streamData
         while True:
-            if modo == 1:
+            if modo == 'true' or modo == 1:
                 # TODO: Only day and night bulbs all day
                 # I need to implement the part here in which we can turn on or off the day and night ligh-
                 # all day only in the automatic mode. Ask Memo if here is going to be a good idea to implement-
@@ -235,7 +240,7 @@ def configuracion():
             jsonMain.writeData_changeRanges(Hum, "humedad-rango", "rangoHumedad")
 
         # Preguntar a memo si así es como ya quedaría la comunicación con el arduino para actualizar los rangos.
-        text = f"conf{rangoResAgua}{rangoTerrario}{rangoHum}"
+        text = f"conf{rangoResAgua},{rangoTerrario},{rangoHum}"
         sem.acquire()
         succes = conn.communication(text)
         sem.release()

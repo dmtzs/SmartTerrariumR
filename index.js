@@ -32,7 +32,7 @@ if (OSName !== "darwin") {
 			
 			childString = "./resources/Flask/main.py";
 			if (OSName === "win32") {
-				commando= "python " + childString;
+				commando= "py -3.9 " + childString;
 			}
 			if (OSName === "linux") {
 				commando= "python3 " + childString;

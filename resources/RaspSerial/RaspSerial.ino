@@ -36,11 +36,12 @@ void loop()
 
     // Revisa si hay que humedecer en modo automático cada 8 seg
     if (thirdInterval == 8 && automatico == 1) {
+      thirdInterval = 0;
       humedecerTerrarioAuto();
     }
   }
-
-  if(automatico == 1){
+  
+  if (automatico == 1) {
     rellenarBebederoAuto(); //listo
   }
 

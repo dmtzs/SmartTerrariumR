@@ -148,6 +148,7 @@ app.on("activate", () => {
 app.on("window-all-closed", () => {
 	if (OSName === "win32") {
 		exec('taskkill /IM "Server.exe" /F');
+		exec('taskkill /IM "Python.exe" /F');
 	}
 	if (OSName === "linux") {
 		exec(`pkill -xf "${childString}"`);
@@ -161,6 +162,7 @@ app.on("window-all-closed", () => {
 ipcMain.on("window-close", () => {
 	if (OSName === "win32") {
 		exec('taskkill /IM "Server.exe" /F');
+		exec('taskkill /IM "Python.exe" /F');
 	}
 	if (OSName === "linux") {
 		if (commando != "") {

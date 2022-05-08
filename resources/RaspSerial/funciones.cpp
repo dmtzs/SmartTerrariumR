@@ -248,9 +248,9 @@ void rellenarBebederoManual()
 void focosEncendidosManualAuto(int act){
   if (act == 0){
     if(dia_noche == 1)
-        onOffDia = (onOffDia == 1) ? 0:1;
+        onOffDia = value.toInt();
     if(dia_noche == 0)
-        onOffNoche = (onOffNoche == 1) ? 0:1;
+        onOffNoche = value.toInt();
   }
   if (act == 1) {
     //dia

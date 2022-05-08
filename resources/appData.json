@@ -17,7 +17,7 @@
         "repositorio-source-ssh": "git@github.com:dmtzs/SmartTerrariumR.git"
     },
     "configuracion": {
-        "modo": 1,
+        "modo": 0,
         "dia-noche": 1,
         "modo-dia-noche": 0,
         "time-zone": "America/Mexico_City",

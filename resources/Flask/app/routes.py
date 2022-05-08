@@ -51,11 +51,12 @@ def date_now():
 #               in the aplication for its correct functionality. The functions creates global variables in order to manage the parameters of the json file so it can-
 #               be used in all the program for the endpoints that requires this information.
 def firstTimeLoad():
-    global jsonMain, modo, lightMode, rangoResAgua, rangoTerrario, rangoHum, correoGDCode, nomL, nomApp, versionApp, descripcionApp, timeZone, now, timeDia, timeNoche
+    global jsonMain, modo, lightMode, onOff, rangoResAgua, rangoTerrario, rangoHum, correoGDCode, nomL, nomApp, versionApp, descripcionApp, timeZone, now, timeDia, timeNoche
 
     jsonMain.readData()
     modo = jsonMain.jsonData["configuracion"]["modo"]
     lightMode = jsonMain.jsonData["configuracion"]["dia-noche"]
+    onOff = 0
     rangoResAgua = jsonMain.jsonData["configuracion"]["temperaturas-rangos"]["rangoResAgua"]
     rangoTerrario = jsonMain.jsonData["configuracion"]["temperaturas-rangos"]["rangoTempDHT"]
     rangoHum = jsonMain.jsonData["configuracion"]["humedad-rango"]["rangoHumedad"]
@@ -76,7 +77,7 @@ def firstTimeLoad():
     sem.release()
 
     if modo == "true" or modo == 1:
-        text = "bulb"
+        text = f"bulb1"
         sem.acquire()
         _ = conn.communication(text)
         sem.release()
@@ -171,7 +172,7 @@ def listen():
 #               the users can be in complete control of all the functionality that will have this app.
 @app.route("/indexevents", methods=["POST"])
 def indexEvents():
-    global modo, lightMode
+    global modo, lightMode, onOff
 
     if request.method == "POST" and "modoOperacion" in request.form:
         receivedMode = request.form.get("modoOperacion")
@@ -186,6 +187,24 @@ def indexEvents():
             sem.acquire()
             succes = conn.communication(text)
             sem.release()
+
+            if number == 1:
+                text = f"bulb{str(number)}"
+                sem.acquire()
+                succes = conn.communication(text)
+                sem.release()
+
+            if number == 0:
+                text = f"bulb{str(onOff)}"
+                sem.acquire()
+                succes = conn.communication(text)
+                sem.release()
+                
+                text = f"lght{str(lightMode)}"
+                sem.acquire()
+                succes = conn.communication(text)
+                sem.release()
+
             if not succes:
                 return "error"
         return "mode changed"
@@ -210,7 +229,10 @@ def indexEvents():
     if request.method == "POST" and "lightStatus" in request.form:
         onoffLight = request.form.get("lightStatus")
         if onoffLight:
-            text = "bulb"
+            number = 1 if onoffLight == "true" or onoffLight == 1 else 0
+            onOff = number
+            text = f"bulb{str(number)}"
+            # text = "bulb"
             sem.acquire()
             succes = conn.communication(text)
             sem.release()

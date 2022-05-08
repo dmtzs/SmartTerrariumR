@@ -27,6 +27,10 @@
         },
         "humedad-rango": {
             "rangoHumedad": "30"
+        },
+        "horarios": {
+            "dia": "07:30",
+            "noche": "20:00"
         }
     },
     "api-credentials": {

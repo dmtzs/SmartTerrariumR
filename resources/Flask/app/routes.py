@@ -11,6 +11,8 @@ try:
     from app import app
     from flask import render_template, Response, request
     from gevent import monkey
+    import datetime as dt 
+    import pytz
     monkey.patch_all()
 except ImportError as eImp:
     print(f"En el archivo {__file__} currió el error de importación: {eImp}")
@@ -49,7 +51,7 @@ def date_now():
 #               in the aplication for its correct functionality. The functions creates global variables in order to manage the parameters of the json file so it can-
 #               be used in all the program for the endpoints that requires this information.
 def firstTimeLoad():
-    global jsonMain, modo, lightMode, rangoResAgua, rangoTerrario, rangoHum, correoGDCode, nomL, nomApp, versionApp, descripcionApp
+    global jsonMain, modo, lightMode, rangoResAgua, rangoTerrario, rangoHum, correoGDCode, nomL, nomApp, versionApp, descripcionApp, timeZone, now, timeDia, timeNoche
 
     jsonMain.readData()
     modo = jsonMain.jsonData["configuracion"]["modo"]
@@ -62,6 +64,10 @@ def firstTimeLoad():
     nomApp = jsonMain.jsonData["nombre-app"]
     versionApp = jsonMain.jsonData["version"]
     descripcionApp = jsonMain.jsonData["descripcion-app"]
+    timeZone = jsonMain.jsonData["configuracion"]["time-zone"]
+    timeDia = jsonMain.jsonData["configuracion"]["horarios"]["dia"]
+    timeNoche = jsonMain.jsonData["configuracion"]["horarios"]["noche"]
+    now = dt.datetime.now(pytz.timezone(timeZone)).time()
 
     number = 1 if modo == "true" or modo == 1 else 0
     text = f"auto{str(number)}"
@@ -69,11 +75,18 @@ def firstTimeLoad():
     _ = conn.communication(text)
     sem.release()
 
-    number = 1 if lightMode == "true" or lightMode == 1 else 0
-    text = f"lght{str(number)}"
-    sem.acquire()
-    _ = conn.communication(text)
-    sem.release()
+    if modo == "true" or modo == 1:
+        text = "bulb"
+        sem.acquire()
+        _ = conn.communication(text)
+        sem.release()
+
+    if modo == "false" or modo == 0:
+        number = 1 if lightMode == "true" or lightMode == 1 else 0
+        text = f"lght{str(number)}"
+        sem.acquire()
+        _ = conn.communication(text)
+        sem.release()
 
     text = f"conf{rangoResAgua},{rangoTerrario},{rangoHum}"
     sem.acquire()
@@ -98,12 +111,22 @@ def index():
         return render_template('manual.html')
 
 
+# @Description: Validates if actual time is inside the bounds of day or night to
+#   change the bulbs in automatic mode
+def isNowInTimePeriod(startTime, endTime, nowTime): 
+    if startTime < endTime: 
+        return nowTime >= startTime and nowTime <= endTime 
+    else: 
+        #Over midnight: 
+        return nowTime >= startTime or nowTime <= endTime
+
+
 # @Description: This endpoint is just for the stream of the temperatures and humidity measured in the arduino and sended from the arduino to the raspberry in order to be-
 #               showed in the app in the raspberry.
 @app.route("/listen")
 def listen():
     def respond_to_client():
-        global streamData
+        global streamData, now 
         while True:
             if modo == 'true' or modo == 1:
                 # TODO: Only day and night bulbs all day
@@ -113,7 +136,22 @@ def listen():
                 # Also we need to use ranges of day and night so we can know when to turn on the noght or day light.
                 # modo-dia-noche in automatic mode should be use for know if take in consideration the temperature-
                 # ranges or only the day and night ranges for maintain turned on all lights
-                pass
+                now = dt.datetime.now(pytz.timezone(timeZone)).time()
+                
+                horaDia = timeDia.split(":")
+                horaNoche = timeNoche.split(":")
+
+                if(isNowInTimePeriod(dt.time(int(horaDia[0]),int(horaDia[1])), dt.time(int(horaNoche[0]),int(horaNoche[1])), now)):
+                    number = 1
+                else:
+                    number = 0
+
+                text = f"lght{str(number)}"
+              
+                sem.acquire()
+                _ = conn.communication(text)
+                sem.release()
+            
             sem.acquire()
             succes = conn.communication("strm")
             sem.release()
@@ -211,12 +249,28 @@ def indexEvents():
 #               the night or day bulb should be on or off, turn on the water bomb to humidify the terrarrium, to refill the drinker when its almost empty, etc.
 @app.route("/configuracion", methods=["POST", "GET"])
 def configuracion():
-    global rangoResAgua, rangoTerrario, rangoHum
+    global rangoResAgua, rangoTerrario, rangoHum, timeDia, timeNoche
 
     if request.method == "POST":
         TempAgua = request.form['TempAguaReserva']
         TempTerra = request.form['TempTerrario']
         Hum = request.form['Humedad']
+        horaDia = request.form['timeDia']
+        horaNoche = request.form['timeNoche']
+        
+        if horaDia == "" or horaDia == timeDia:
+            pass
+        elif timeDia != horaDia:
+            timeDia = horaDia
+            jsonMain.readData()
+            jsonMain.write_data_hour_range(timeDia, "dia")
+            
+        if horaNoche == "" or horaNoche == timeNoche:
+            pass
+        elif timeNoche != horaNoche:
+            timeNoche = horaNoche
+            jsonMain.readData()
+            jsonMain.write_data_hour_range(timeNoche, "noche")
 
         if TempAgua == "" or TempAgua == rangoResAgua:
             pass
@@ -247,8 +301,8 @@ def configuracion():
         if not succes:
             return "error"
 
-        return render_template('configuracion.html', rango1=f"{rangoResAgua}", rango2=f"{rangoTerrario}", rango3=f"{rangoHum}", bandeSuccess=True)
-    return render_template('configuracion.html', rango1=f"{rangoResAgua}", rango2=f"{rangoTerrario}", rango3=f"{rangoHum}")
+        return render_template('configuracion.html', rango1=f"{rangoResAgua}", rango2=f"{rangoTerrario}", rango3=f"{rangoHum}", rango4=f"{timeDia}", rango5=f"{timeNoche}", bandeSuccess=True)
+    return render_template('configuracion.html', rango1=f"{rangoResAgua}", rango2=f"{rangoTerrario}", rango3=f"{rangoHum}", rango4=f"{timeDia}", rango5=f"{timeNoche}")
 
 
 # @Description: Endpoint that is used for show contact information with us.

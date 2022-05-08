@@ -28,8 +28,18 @@
       </div>
   
       <div class="col">
-        <input type="text" class="form-control" placeholder="Vacio" aria-label="Vacio" style="visibility: hidden;"
-          name="Vacio">
+        <div class="row">
+          <div class="col">
+            <label for="exampleFormControlInput1" class="form-label">Inicio del día</label><br>
+            <input type="time" id="timeDia" name="timeDia" min="00:00" max="24:00" value="{{ rango4 }}">
+          </div>
+          <div class="col">
+            <label for="exampleFormControlInput1" class="form-label">Inicio del la noche</label><br>
+            <input type="time" id="timeNoche" name="timeNoche" min="00:00" max="24:00" value="{{ rango5 }}">
+          </div>
+        </div>
+        <!-- <input type="text" class="form-control" placeholder="Vacio" aria-label="Vacio" style="visibility: hidden;"
+          name="Vacio"> -->
       </div>
     </div>
     <br>

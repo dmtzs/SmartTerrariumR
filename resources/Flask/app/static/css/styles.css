@@ -1,3 +1,37 @@
+input[type=time] {
+	border: none;
+	border-radius: 30%;
+	color: #000000;
+	font-size: 90%;
+	font-family: helvetica;
+	width: 50%;
+	background-color: whitesmoke;
+}
+
+/* Wrapper around the hour, minute, second, and am/pm fields as well as 
+the up and down buttons and the 'X' button */
+input[type=time]::-webkit-datetime-edit-fields-wrapper {
+	display: flex;
+}
+
+/* The space between the fields - between hour and minute, the minute and 
+second, second and am/pm */
+input[type=time]::-webkit-datetime-edit-text {
+	padding: 19px 4px;
+}
+
+/* Hour */
+input[type=time]::-webkit-datetime-edit-hour-field {
+	border-radius: 15%;
+	padding: 19px 13px;
+}
+
+/* Minute */
+input[type=time]::-webkit-datetime-edit-minute-field {
+	border-radius: 15%;
+	padding: 19px 13px;
+}
+
 .logoCentrado {
 	text-align: center;
 }

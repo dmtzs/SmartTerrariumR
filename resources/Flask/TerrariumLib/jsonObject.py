@@ -78,3 +78,9 @@ class jsonObject():
 
         self.writeData()
         #We still need to review this method, maybe we need to add more things to make them work.
+    
+    # @Description: Update the hour ranges for automatic mode light managing
+    def write_data_hour_range(self, hora, diaNoche):
+        self.jsonData["configuracion"]["horarios"][diaNoche] = hora
+
+        self.writeData()

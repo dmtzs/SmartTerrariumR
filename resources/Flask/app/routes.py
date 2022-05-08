@@ -68,7 +68,7 @@ def firstTimeLoad():
     timeZone = jsonMain.jsonData["configuracion"]["time-zone"]
     timeDia = jsonMain.jsonData["configuracion"]["horarios"]["dia"]
     timeNoche = jsonMain.jsonData["configuracion"]["horarios"]["noche"]
-    now = dt.datetime.now(pytz.timezone(timeZone)).time()
+    now = dt.datetime.now(pytz.timezone(timeZone)).time()# Tal vez no sea necesario porque lo llama debajo de nuevo
 
     number = 1 if modo == "true" or modo == 1 else 0
     text = f"auto{str(number)}"
@@ -112,9 +112,8 @@ def index():
         return render_template('manual.html')
 
 
-# @Description: Validates if actual time is inside the bounds of day or night to
-#   change the bulbs in automatic mode
-def isNowInTimePeriod(startTime, endTime, nowTime): 
+# @Description: Validates if actual time is inside the bounds of day or night to change the bulbs in automatic mode
+def isNowInTimePeriod(startTime, endTime, nowTime):#Tla vez sea buena idea pasarla a terrarium lib aunque no entraría ni en json ni en arduino, evaluar eso
     if startTime < endTime: 
         return nowTime >= startTime and nowTime <= endTime 
     else: 

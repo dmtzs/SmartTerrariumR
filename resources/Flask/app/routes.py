@@ -68,7 +68,7 @@ def firstTimeLoad():
     timeZone = jsonMain.jsonData["configuracion"]["time-zone"]
     timeDia = jsonMain.jsonData["configuracion"]["horarios"]["dia"]
     timeNoche = jsonMain.jsonData["configuracion"]["horarios"]["noche"]
-    now = dt.datetime.now(pytz.timezone(timeZone)).time()# Tal vez no sea necesario porque lo llama debajo de nuevo
+    # now = dt.datetime.now(pytz.timezone(timeZone)).time()# Checar si no afecta que se quede de esta manera
 
     number = 1 if modo == "true" or modo == 1 else 0
     text = f"auto{str(number)}"
@@ -129,13 +129,6 @@ def listen():
         global streamData, now 
         while True:
             if modo == 'true' or modo == 1:
-                # TODO: Only day and night bulbs all day
-                # I need to implement the part here in which we can turn on or off the day and night ligh-
-                # all day only in the automatic mode. Ask Memo if here is going to be a good idea to implement-
-                # that specific part in this endpoint or should be in another way
-                # Also we need to use ranges of day and night so we can know when to turn on the noght or day light.
-                # modo-dia-noche in automatic mode should be use for know if take in consideration the temperature-
-                # ranges or only the day and night ranges for maintain turned on all lights
                 now = dt.datetime.now(pytz.timezone(timeZone)).time()
                 
                 horaDia = timeDia.split(":")

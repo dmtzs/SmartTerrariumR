@@ -1,6 +1,6 @@
 #!/usr/bin/bash
-cd /home/dmtzs/Documentos
-/usr/bin/python3 "telegram1.py" "--rebootRasp"
+cd /home/dmtzs/Documentos/SmartTerrariumR/TelegramScripts
+/usr/bin/python3 "telegram_alerts.py" "--rebootRasp"
 /usr/bin/python3 commandsTelegram.py &
 
 cd /home/dmtzs/Documentos/SmartTerrariumR

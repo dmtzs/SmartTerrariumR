@@ -12,7 +12,7 @@ def telegram_message(message, modo):
     now = dt.now(pytz.timezone("America/Mexico_City"))#TODO: Usar después API de timezone
     date_time = now.strftime('%d/%B/%Y %I:%M:%S')
 
-    token = "your_telegram_token"
+    token = "5397598254:AAGQtp5cBytl8J8uSEYRXTDI7-UEjRQyQik"
     bot = telebot.TeleBot(token)
     #bot.config["api_key"] = token
 

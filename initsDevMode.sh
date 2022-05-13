@@ -6,4 +6,4 @@ cd /home/dmtzs/Documentos/SmartTerrariumR/TelegramScripts
 cd /home/dmtzs/Documentos/SmartTerrariumR
 DISPLAY=:0 npm start
 
-# pkill -xf "python3 commandsTelegram.py"
+# pkill -xf "/usr/bin/python3 commandsTelegram.py"

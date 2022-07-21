@@ -8,3 +8,5 @@ app = Flask(__name__)
 app.secret_key = "clave_secreta_flask"
 
 from app import routes, admin_routes, errorHandlers
+
+__version__ = "1.0.0"

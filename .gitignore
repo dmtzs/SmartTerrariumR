@@ -16,6 +16,7 @@ ArduinoOutput
 .vscode
 secrets.txt
 tests
+TelegramScripts/
 
 # Flask stuff:
 instance/

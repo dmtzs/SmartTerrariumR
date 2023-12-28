@@ -4,7 +4,7 @@
 try:
     import os
     from crontab import CronTab
-    from updateLib import updates
+    from update_lib import updates
 except ImportError as eImp:
     print(f"En el archivo {__file__} ocurrió el siguiente error de importación: {eImp}")
 

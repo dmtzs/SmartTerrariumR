@@ -3,7 +3,7 @@
 #@Description: This file will call the necessary methods from updateLib library for update the assets used in this project.
 try:
     import requests
-    from updateLib import updates
+    from update_lib import updates
 except ImportError as eImp:
     print(f"En el archivo {__file__} ocurrió el siguiente error de importación: {eImp}")
 

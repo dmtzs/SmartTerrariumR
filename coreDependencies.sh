@@ -73,6 +73,12 @@ python_installation() {
     fi
 }
 
+print_pip_version() {
+    pipVersion=$(pip -V)
+    echo -n $'\n'"Pip version installed: "
+    echo $'\e[1;32m'"$pipVersion"$'\e[0m'
+}
+
 # ---------------Updating and upgrading the system---------------
 echo "------------------------------------------------------------------------------------"
 echo "Updating and upgrading the system"
@@ -113,10 +119,17 @@ fi
 if ! command -v pip &> /dev/null ;then
     echo $'\n'"Installing pip"
     sudo apt install python3-pip -y
-    pipVersion=$(pip -V)
-    echo -n $'\n'"Pip version installed: "
-    echo $'\e[1;32m'"$pipVersion"$'\e[0m'
+    print_pip_version
 else
     echo $'\n'"Pip is already installed"
+    print_pip_version
 fi
+
+# ---------------Installing python libraries---------------
+echo $'\n'"Installing python libraries"
+pip install -r requirements.txt
+
+# ---------------Inits chmod for initsDevMode.sh---------------
+echo $'\n'"Giving permissions to initsDevMode.sh"
+chmod +x initsDevMode.sh
 echo "------------------------------------------------------------------------------------"

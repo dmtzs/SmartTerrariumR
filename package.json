@@ -11,12 +11,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/dmtzs/ProyectoRaspArduino.git"
+    "url": "git+https://github.com/dmtzs/SmartTerrariumR.git"
   },
   "author": "Diego and Guillermo <gd-code@outlook.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/dmtzs/ProyectoRaspArduino/issues"
+    "url": "https://github.com/dmtzs/SmartTerrariumR/issues"
   },
   "build": {
     "appId": "com.rasp.terrarium",

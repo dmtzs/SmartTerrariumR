@@ -105,6 +105,11 @@ sudo apt-get install libgtk-3-0 -y
 sudo apt-get install libgbm1 -y
 sudo apt-get install libasound2 -y
 
+# ---------------Installing npm libraries---------------
+echo $'\n'"Installing npm libraries"
+npm install wait-port@1.1.0 --save-prod
+npm install electron@8.1.0 electron-builder@24.9.1 --save-dev
+
 # ---------------Installing python3---------------
 echo $'\n'"Verifying if python is installed"
 # If python3 is not installed, then install it

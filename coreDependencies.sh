@@ -12,6 +12,9 @@ install_nvm_nodejs_npm() {
         curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
         source ~/.bashrc
         # validates if nvm was installed correctly and if not finish the script
+        export NVM_DIR="$HOME/.nvm"
+        [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+        [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
         if ! command -v nvm &> /dev/null
         then
             echo $'\n'"nvm could not be installed, finishing the script"
@@ -59,12 +62,18 @@ python_installation() {
             pythonVersions=$(ls -1 /usr/bin/python3.* | grep -Eo 'python3\.[0-9]+' | grep -vE '(\-config$|python3\.11$)' | sort -u)
             echo -n $'\n'"The python versions to remove are: "
             echo $'\e[1;32m'"$pythonVersions"$'\e[0m'
-            pythonVersions=($pythonVersions)  # python versions from string to array
-            for pythonVersion in "${pythonVersions[@]}"; do
-                echo "Removing python version $pythonVersion"
-                sudo rm -r /usr/lib/$pythonVersion/
-                sudo rm -r /usr/bin/$pythonVersion/
-            done
+            read -p "Are you sure you want to remove them? (y/n): " pythonAnswer
+            if [ "$pythonAnswer" != "${pythonAnswer#[Yy]}" ] ;then
+                echo "Removing old python versions"
+                pythonVersions=($pythonVersions)  # python versions from string to array
+                for pythonVersion in "${pythonVersions[@]}"; do
+                    echo "Removing python version $pythonVersion"
+                    sudo rm -r /usr/lib/$pythonVersion/
+                    sudo rm -r /usr/bin/$pythonVersion/
+                done
+            else
+                echo "Delete old python versions canceled"
+            fi
         else
             echo "Python update canceled"
         fi
@@ -80,11 +89,13 @@ print_pip_version() {
 }
 
 # ---------------Updating and upgrading the system---------------
+clear
 echo "------------------------------------------------------------------------------------"
 echo "Updating and upgrading the system"
 sudo apt update -y && sudo apt upgrade -y
 
 # ---------------Install nodejs and npm using nvm---------------
+echo $'\n'$'\e[1;32m'"---------------Install nodejs and npm using nvm---------------"$'\e[0m'
 if ! command -v node &> /dev/null ;then
     echo $'\n'"Installing nvm, nodejs and npm"
     install_nvm_nodejs_npm
@@ -93,8 +104,9 @@ else
     sudo apt remove nodejs npm -y
     sudo apt purge nodejs npm -y
     install_nvm_nodejs_npm
+fi
 
-echo $'\n'"Installing dependencies for npm and nodejs"
+echo $'\n'$'\e[1;32m'"Installing dependencies for npm and nodejs"$'\e[0m'
 # Using step 3 of the next tutorial https://www.digitalocean.com/community/tutorials/how-to-install-node-js-on-ubuntu-22-04#option-3-installing-node-using-the-node-version-manager
 sudo apt-get install libnss3 -y
 sudo apt-get install libatk1.0-0 -y
@@ -106,11 +118,13 @@ sudo apt-get install libgbm1 -y
 sudo apt-get install libasound2 -y
 
 # ---------------Installing npm libraries---------------
+echo $'\n'$'\e[1;32m'"---------------Installing npm libraries---------------"$'\e[0m'
 echo $'\n'"Installing npm libraries"
 npm install wait-port@1.1.0 --save-prod
 npm install electron@8.1.0 electron-builder@24.9.1 --save-dev
 
 # ---------------Installing python3---------------
+echo $'\n'$'\e[1;32m'"---------------Installing python3---------------"$'\e[0m'
 echo $'\n'"Verifying if python is installed"
 # If python3 is not installed, then install it
 if ! command -v python3 &> /dev/null ;then
@@ -121,6 +135,7 @@ else
 fi
 
 # ---------------Installing pip---------------
+echo $'\n'$'\e[1;32m'"---------------Installing pip---------------"$'\e[0m'
 if ! command -v pip &> /dev/null ;then
     echo $'\n'"Installing pip"
     sudo apt install python3-pip -y
@@ -131,6 +146,7 @@ else
 fi
 
 # ---------------Installing python libraries---------------
+echo $'\n'$'\e[1;32m'"---------------Installing python libraries---------------"$'\e[0m'
 echo $'\n'"Installing python libraries"
 pip install -r requirements.txt
 

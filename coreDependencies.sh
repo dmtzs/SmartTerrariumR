@@ -139,6 +139,7 @@ fi
 # ---------------Installing python libraries---------------
 echo $'\n'$'\e[1;32m'"---------------Installing python libraries---------------"$'\e[0m'
 echo $'\n'"Installing python libraries"
+pip install --upgrade setuptools
 pip install -r requirements.txt
 
 # ---------------Inits chmod for initsDevMode.sh---------------

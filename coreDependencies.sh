@@ -40,10 +40,10 @@ install_nvm_nodejs_npm() {
 
 python_installation() {
     echo $'\n'"Verifying python version"
-    pythonVersion=$(python3 -V)
-    pythonVersion=${pythonVersion//Python /}
+    oldPythonVersion=$(python3 -V)
+    oldPythonVersion=${oldPythonVersion//Python /}
     echo -n $'\n'"Actual python version is: "
-    echo -n $'\e[1;32m'"$pythonVersion"$'\e[0m'
+    echo -n $'\e[1;32m'"$oldPythonVersion"$'\e[0m'
     read -p ", do you want to update it? (y/n): " pythonAnswer
 
     if [ "$pythonAnswer" != "${pythonAnswer#[Yy]}" ] ;then
@@ -52,28 +52,18 @@ python_installation() {
         echo -n $'\e[1;32m'"$pythonVersion"$'\e[0m'
         read -p "? (y/n): " pythonAnswer
         if [ "$pythonAnswer" != "${pythonAnswer#[Yy]}" ] ;then
+            echo -n $'\n'"The python version to remove is: "$'\e[1;32m'"$oldPythonVersion"$'\e[0m'
+            sudo rm -r /usr/lib/python3/dist-packages/*
+            sudo apt remove python$oldPythonVersion -y
+            sudo apt autoremove -y
+
             echo "Installing python version "$'\e[1;32m'"$pythonVersion"$'\e[0m'
             sudo apt install python$pythonVersion -y
             sudo update-alternatives --install /usr/bin/python3 python3 /usr/bin/python$pythonVersion 1
 
             echo $'\n'"Showing old python versions"
             ls /usr/bin/python* | grep -v '\-config$'
-
-            pythonVersions=$(ls -1 /usr/bin/python3.* | grep -Eo 'python3\.[0-9]+' | grep -vE '(\-config$|python3\.11$)' | sort -u)
-            echo -n $'\n'"The python versions to remove are: "
-            echo $'\e[1;32m'"$pythonVersions"$'\e[0m'
-            read -p "Are you sure you want to remove them? (y/n): " pythonAnswer
-            if [ "$pythonAnswer" != "${pythonAnswer#[Yy]}" ] ;then
-                echo "Removing old python versions"
-                pythonVersions=($pythonVersions)  # python versions from string to array
-                for pythonVersion in "${pythonVersions[@]}"; do
-                    echo "Removing python version $pythonVersion"
-                    sudo rm -r /usr/lib/$pythonVersion/
-                    sudo rm -r /usr/bin/$pythonVersion/
-                done
-            else
-                echo "Delete old python versions canceled"
-            fi
+            ls /usr/lib/python* | grep -v '\-config$'
         else
             echo "Python update canceled"
         fi
@@ -93,6 +83,7 @@ clear
 echo "------------------------------------------------------------------------------------"
 echo "Updating and upgrading the system"
 sudo apt update -y && sudo apt upgrade -y
+sudo apt autoremove -y
 
 # ---------------Install nodejs and npm using nvm---------------
 echo $'\n'$'\e[1;32m'"---------------Install nodejs and npm using nvm---------------"$'\e[0m'

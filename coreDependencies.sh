@@ -153,4 +153,9 @@ pip install -r requirements.txt
 # ---------------Inits chmod for initsDevMode.sh---------------
 echo $'\n'"Giving permissions to initsDevMode.sh"
 chmod +x initsDevMode.sh
+
+# ---------------Installing C libraries---------------
+echo $'\n'$'\e[1;32m'"---------------Installing C libraries---------------"$'\e[0m'
+sudo apt-get install libcurl4-openssl-dev libminizip-dev -y
+
 echo "------------------------------------------------------------------------------------"

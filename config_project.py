@@ -1,5 +1,5 @@
 """
-config_project.py
+config_project
 =================
 This module contains the methods that are used to configure the project.
 :copyrigth: (c) 2023, Diego Martinez Sanchez

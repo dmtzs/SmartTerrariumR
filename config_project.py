@@ -3,42 +3,51 @@ import zipfile
 import wget
 
 
-def localLibs():
-    libsDirectory= "./resources/Flask/app/static/libraries/"
-    localLibsUrl= "https://github.com/dmtzs/SmartTerrariumR/releases/download/Local_libraries/localLibraries.zip"
-    fileToUnzip= f"{libsDirectory}localLibraries.zip"
+def local_libs():
+    libs_directory = "./resources/Flask/app/static/libraries/"
+    local_libs_url = "https://github.com/dmtzs/SmartTerrariumR/releases/download/Local_libraries/localLibraries.zip"
+    file_to_unzip = f"{libs_directory}localLibraries.zip"
 
-    if os.path.isdir(libsDirectory):
-        folders= ["bootstrap", "fontawesome", "jquery", "popper", "sweetalert"]
-        aux= []
+    if os.path.isdir(libs_directory):
+        folders = [
+            "bootstrap",
+            "fontawesome",
+            "jquery",
+            "popper",
+            "sweetalert"
+        ]
+        aux = []
         
         for folder in folders:
-            if os.path.isdir(f"{libsDirectory}{folder}/"):
+            if os.path.isdir(f"{libs_directory}{folder}/"):
                 pass
 
             else:
                 aux.append(folder)
 
-        folders= aux
+        folders = aux
         del aux
 
         if len(folders) > 0:
-            wget.download(localLibsUrl, out= libsDirectory)
+            wget.download(local_libs_url, out=libs_directory)
         
-            with zipfile.ZipFile(fileToUnzip, 'r') as uzip:
+            with zipfile.ZipFile(file_to_unzip, "r") as uzip:
                 for file in uzip.namelist():
                     for fold in folders:
                         if file.startswith(f"{fold}/"):
-                            uzip.extract(file, libsDirectory)
+                            uzip.extract(file, libs_directory)
             
-            os.remove(fileToUnzip)
+            os.remove(file_to_unzip)
         else:
             pass
     else:
-        os.mkdir(libsDirectory)
-        wget.download(localLibsUrl, out= libsDirectory)
+        os.mkdir(libs_directory)
+        wget.download(local_libs_url, out=libs_directory)
 
-        with zipfile.ZipFile(fileToUnzip, 'r') as uzip:
-            uzip.extractall(libsDirectory)
+        with zipfile.ZipFile(file_to_unzip, "r") as uzip:
+            uzip.extractall(libs_directory)
 
-        os.remove(fileToUnzip)
+        os.remove(file_to_unzip)
+
+if __name__ == "__main__":
+    local_libs()

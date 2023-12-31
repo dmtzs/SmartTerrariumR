@@ -1,6 +1,8 @@
 """
-This file has all the endpoints that are defined in order to perform-
-all the functionality of the project to make the terrarrium smart like-
+routes
+=====================
+This file has all the endpoints that are defined in order to perform
+all the functionality of the project to make the terrarrium smart like
 is the main purpose of this project, more description per endpoint below.
 
 Diego Martínez Sánchez and Guillermo Ortega Romo.
@@ -15,14 +17,14 @@ try:
     from gevent import monkey
     from flask import render_template, Response, request
     from terrarium_lib import json_object, arduino_connection
-except ImportError as eImp:
-    print(f"En el archivo {__file__} currió el error de importación: {eImp}")
+except ImportError as err_imp:
+    print(f"In file: {__file__} the following import error ocurred: {err_imp}")
 
 #---------------------------------Variables and objects------------------------------------#
 # Inits arduino connection
 monkey.patch_all()
 conn = arduino_connection.ArduinoConnection()
-conn.startCommunication()
+conn.start_communication()
 
 # Variables for reading operation mode
 sem = threading.Semaphore()
@@ -337,5 +339,5 @@ def help():
 def closeAll():
     msg = request.form.get("closeMsg")
     if msg == "closeAll":
-        conn.closeConnection()
+        conn.close_connection()
     return "closed"

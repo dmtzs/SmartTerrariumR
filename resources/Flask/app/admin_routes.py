@@ -1,3 +1,10 @@
+"""
+admin_routes
+====================
+Routes for admin users, this file contains the routes for the admin users.
+
+Diego Martinez Sanchez
+"""
 try:
     import pytz
     from http import HTTPStatus
@@ -5,7 +12,7 @@ try:
     from app import app
     from flask import make_response, jsonify, abort, request
 except ImportError as err_imp:
-    print(f"Ocurrió el error de importación: {err_imp}")
+    print(f"In file: {__file__} the following import error ocurred: {err_imp}")
 
 # ------------------Admin routes------------------
 @app.route("/status", methods=["GET"])

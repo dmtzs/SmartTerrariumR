@@ -1,25 +1,27 @@
-#@File: routes.py
-#@Author: Diego Martínez Sánchez and Guillermo Ortega Romo.
-#@Description: This file has all the endpoints that are defined in order to perfrom all the functionality of the project to make the terrarrium-
-#              smart like is the main purpose of this project, more description per endpoint below.
+"""
+This file has all the endpoints that are defined in order to perform-
+all the functionality of the project to make the terrarrium smart like-
+is the main purpose of this project, more description per endpoint below.
+
+Diego Martínez Sánchez and Guillermo Ortega Romo.
+"""
 try:
     import csv
     import time
-    import threading
-    from TerrariumLib import *#All these modules imported: ArduinoConnection, jsonObject
-    from datetime import datetime
-    from app import app
-    from flask import render_template, Response, request
-    from gevent import monkey
-    import datetime as dt 
     import pytz
-    monkey.patch_all()
+    import threading
+    from datetime import datetime as dt
+    from app import app
+    from gevent import monkey
+    from flask import render_template, Response, request
+    from terrarium_lib import json_object, arduino_connection
 except ImportError as eImp:
     print(f"En el archivo {__file__} currió el error de importación: {eImp}")
 
 #---------------------------------Variables and objects------------------------------------#
 # Inits arduino connection
-conn = ArduinoConnection.ArduinoConnection()
+monkey.patch_all()
+conn = arduino_connection.ArduinoConnection()
 conn.startCommunication()
 
 # Variables for reading operation mode
@@ -33,25 +35,14 @@ lightMode = ""
 streamData = []
 
 # JSON read
-jsonMain = jsonObject.jsonObject()
-
-
-
-#---------------------------------Context processor for the date------------------------------------#
-# @Description: Context proccessor used to get the actual calendar date.
-@app.context_processor
-def date_now():
-    return {
-        'now': datetime.now()
-    }
-
+jsonMain = json_object.jsonObject()
 #---------------------------------Endpoints------------------------------------#
 
 # @Description: This function loads the data of the appData json file in which are defined all the automatic parameters, user information, etc in order to be used-
 #               in the aplication for its correct functionality. The functions creates global variables in order to manage the parameters of the json file so it can-
 #               be used in all the program for the endpoints that requires this information.
 def firstTimeLoad():
-    global jsonMain, modo, lightMode, onOff, rangoResAgua, rangoTerrario, rangoHum, correoGDCode, nomL, nomApp, versionApp, descripcionApp, timeZone, now, timeDia, timeNoche
+    global jsonMain, modo, lightMode, onOff, rangoResAgua, rangoTerrario, rangoHum, correoGDCode, nomL, nomApp, versionApp, descripcionApp, time_zone, now, timeDia, timeNoche
 
     jsonMain.readData()
     modo = jsonMain.jsonData["configuracion"]["modo"]
@@ -65,10 +56,10 @@ def firstTimeLoad():
     nomApp = jsonMain.jsonData["nombre-app"]
     versionApp = jsonMain.jsonData["version"]
     descripcionApp = jsonMain.jsonData["descripcion-app"]
-    timeZone = jsonMain.jsonData["configuracion"]["time-zone"]
+    time_zone = jsonMain.jsonData["configuracion"]["time-zone"]
     timeDia = jsonMain.jsonData["configuracion"]["horarios"]["dia"]
     timeNoche = jsonMain.jsonData["configuracion"]["horarios"]["noche"]
-    # now = dt.datetime.now(pytz.timezone(timeZone)).time()# Checar si no afecta que se quede de esta manera
+    # now = dt.datetime.now(pytz.timezone(time_zone)).time()# Checar si no afecta que se quede de esta manera
 
     number = 1 if modo == "true" or modo == 1 else 0
     text = f"auto{str(number)}"
@@ -93,6 +84,14 @@ def firstTimeLoad():
     sem.acquire()
     _ = conn.communication(text)
     sem.release()
+
+#---------------------------------Context processor for the date------------------------------------#
+# @Description: Context proccessor used to get the actual calendar date.
+@app.context_processor
+def date_now():
+    return {
+        "now": dt.now(pytz.timezone(time_zone))
+    }
 
 
 # @Description: This endpoint will be used for the welcome html template at the first time the application is executed. After this page is changed this endpoint will-
@@ -129,7 +128,7 @@ def listen():
         global streamData, now 
         while True:
             if modo == 'true' or modo == 1:
-                now = dt.datetime.now(pytz.timezone(timeZone)).time()
+                now = dt.now(pytz.timezone(time_zone)).time()
                 
                 horaDia = timeDia.split(":")
                 horaNoche = timeNoche.split(":")

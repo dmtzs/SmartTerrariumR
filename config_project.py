@@ -71,7 +71,7 @@ def local_libs() -> None:
 
 def content_init_app_and_sh_files(arch_content: list[str], name_arch: str, turn) -> None:
     """
-    Method that creates a file neccessary for init in an automatic mode the application-
+    Method that creates a file neccessary for init in an automatic mode the application
     of the smart terrarium and also the content of the sh file.
 
     Args:

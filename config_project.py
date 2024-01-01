@@ -7,6 +7,7 @@ This module contains the methods that are used to configure the project.
 """
 
 import os
+import sys
 import shutil
 import zipfile
 import platform
@@ -90,7 +91,7 @@ def content_init_app_and_sh_files(arch_content: list[str], name_arch: str, turn)
     else:
         pass
 
-def strings_exe_flask(local_flag: str) -> tuple(str, str):
+def strings_exe_flask(local_flag: str) -> tuple[str, ...]:
     """
     Method that returns strings with ; or : according to its operating system in which the script is running.
 
@@ -227,8 +228,20 @@ def exe_flask(system: str) -> None:
 
 if __name__ == "__main__":
     try:
-        exe_flask(platform.system())
-        local_libs()
+        args_received = sys.argv[1:]
+        if len(args_received) == 0:
+            print("No se puede ejecutar el programa sin argumentos")
+        elif len(args_received) == 1:
+            if args_received[0] == "all":
+                exe_flask(platform.system())
+                local_libs()
+            elif args_received[0] == "libs":
+                local_libs()
+            else:
+                print("No se puede ejecutar el programa con los argumentos recibidos")
+        # if args[0] == "all"
     except Exception:
         print("Ocurrió un error al ejecutar el programa:")
         traceback.print_exc()
+    finally:
+        print("Finalizando la ejecución del programa")

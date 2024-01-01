@@ -1,0 +1,9 @@
+[MESSAGES CONTROL]
+disable=
+    W0703,  # Catching too general exception Exception
+    C0413,  # Import "from module import *" should be placed at the top of the module
+    R0401,  # Cyclic import
+    R1710,  # Either all return statements in a function should return an expression, or none of them should.
+
+[FORMAT]
+max-line-length=180

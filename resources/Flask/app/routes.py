@@ -37,7 +37,7 @@ lightMode = ""
 streamData = []
 
 # JSON read
-jsonMain = json_object.jsonObject()
+jsonMain = json_object.JsonObject()
 #---------------------------------Endpoints------------------------------------#
 
 # @Description: This function loads the data of the appData json file in which are defined all the automatic parameters, user information, etc in order to be used-
@@ -46,21 +46,21 @@ jsonMain = json_object.jsonObject()
 def firstTimeLoad():
     global jsonMain, modo, lightMode, onOff, rangoResAgua, rangoTerrario, rangoHum, correoGDCode, nomL, nomApp, versionApp, descripcionApp, time_zone, now, timeDia, timeNoche
 
-    jsonMain.readData()
-    modo = jsonMain.jsonData["configuracion"]["modo"]
-    lightMode = jsonMain.jsonData["configuracion"]["dia-noche"]
+    jsonMain.read_data()
+    modo = jsonMain.json_data["configuracion"]["modo"]
+    lightMode = jsonMain.json_data["configuracion"]["dia-noche"]
     onOff = 0
-    rangoResAgua = jsonMain.jsonData["configuracion"]["temperaturas-rangos"]["rangoResAgua"]
-    rangoTerrario = jsonMain.jsonData["configuracion"]["temperaturas-rangos"]["rangoTempDHT"]
-    rangoHum = jsonMain.jsonData["configuracion"]["humedad-rango"]["rangoHumedad"]
-    correoGDCode = jsonMain.jsonData["correo"]
-    nomL = jsonMain.jsonData["usuario"]["usuario-nl"]
-    nomApp = jsonMain.jsonData["nombre-app"]
-    versionApp = jsonMain.jsonData["version"]
-    descripcionApp = jsonMain.jsonData["descripcion-app"]
-    time_zone = jsonMain.jsonData["configuracion"]["time-zone"]
-    timeDia = jsonMain.jsonData["configuracion"]["horarios"]["dia"]
-    timeNoche = jsonMain.jsonData["configuracion"]["horarios"]["noche"]
+    rangoResAgua = jsonMain.json_data["configuracion"]["temperaturas-rangos"]["rangoResAgua"]
+    rangoTerrario = jsonMain.json_data["configuracion"]["temperaturas-rangos"]["rangoTempDHT"]
+    rangoHum = jsonMain.json_data["configuracion"]["humedad-rango"]["rangoHumedad"]
+    correoGDCode = jsonMain.json_data["correo"]
+    nomL = jsonMain.json_data["usuario"]["usuario-nl"]
+    nomApp = jsonMain.json_data["nombre-app"]
+    versionApp = jsonMain.json_data["version"]
+    descripcionApp = jsonMain.json_data["descripcion-app"]
+    time_zone = jsonMain.json_data["configuracion"]["time-zone"]
+    timeDia = jsonMain.json_data["configuracion"]["horarios"]["dia"]
+    timeNoche = jsonMain.json_data["configuracion"]["horarios"]["noche"]
     # now = dt.datetime.now(pytz.timezone(time_zone)).time()# Checar si no afecta que se quede de esta manera
 
     number = 1 if modo == "true" or modo == 1 else 0
@@ -149,14 +149,14 @@ def listen():
             sem.acquire()
             succes = conn.communication("strm")
             sem.release()
-            # print(conn.receivedData)
+            # print(conn.received_data)
             if not succes:
                 pass
-            reader = csv.reader(conn.receivedData.splitlines())
+            reader = csv.reader(conn.received_data.splitlines())
             streamData = list(reader)
             # print(streamData)
             # Read here the flag of the appData json file that is: modo-dia-noche. In order to send what automatic function do.
-            yield f"id: 1\ndata: {conn.receivedData}\nevent: online\n\n"
+            yield f"id: 1\ndata: {conn.received_data}\nevent: online\n\n"
             # DO NOT QUIT: This time sleep is for initialize the electron.
             time.sleep(5)
     return Response(respond_to_client(), mimetype= "text/event-stream")
@@ -171,8 +171,8 @@ def indexEvents():
         receivedMode = request.form.get("modoOperacion")
         if receivedMode != modo:
             modo = receivedMode
-            jsonMain.readData()
-            jsonMain.writeData_changeMode(modo)
+            jsonMain.read_data()
+            jsonMain.write_data_change_mode(modo)
             number = 1 if modo == "true" or modo == 1 else 0
             # text = "auto{}".format(str(number))
             # Try and if not uncomment the above line.
@@ -206,8 +206,8 @@ def indexEvents():
         receivedMode = request.form.get("lighMode")
         if receivedMode != lightMode:
             lightMode = receivedMode
-            jsonMain.readData()
-            jsonMain.writeData_changeLightMode(lightMode)
+            jsonMain.read_data()
+            jsonMain.write_data_change_light_mode(lightMode)
             number = 1 if lightMode == "true" or lightMode == 1 else 0
             # text = "lght{}".format(str(number))
             # Try and if not uncomment the above line.
@@ -277,36 +277,36 @@ def configuracion():
             pass
         elif timeDia != horaDia:
             timeDia = horaDia
-            jsonMain.readData()
+            jsonMain.read_data()
             jsonMain.write_data_hour_range(timeDia, "dia")
             
         if horaNoche == "" or horaNoche == timeNoche:
             pass
         elif timeNoche != horaNoche:
             timeNoche = horaNoche
-            jsonMain.readData()
+            jsonMain.read_data()
             jsonMain.write_data_hour_range(timeNoche, "noche")
 
         if TempAgua == "" or TempAgua == rangoResAgua:
             pass
         elif rangoResAgua != TempAgua:
             rangoResAgua = TempAgua
-            jsonMain.readData()
-            jsonMain.writeData_changeRanges(TempAgua, "temperaturas-rangos", "rangoResAgua")
+            jsonMain.read_data()
+            jsonMain.write_data_change_ranges(TempAgua, "temperaturas-rangos", "rangoResAgua")
 
         if TempTerra == "" or TempTerra == rangoTerrario:
             pass
         elif rangoTerrario != TempTerra:
             rangoTerrario = TempTerra
-            jsonMain.readData()
-            jsonMain.writeData_changeRanges(TempTerra, "temperaturas-rangos", "rangoTempDHT")
+            jsonMain.read_data()
+            jsonMain.write_data_change_ranges(TempTerra, "temperaturas-rangos", "rangoTempDHT")
 
         if Hum == "" or Hum == rangoHum:
             pass
         elif rangoHum != Hum:
             rangoHum = Hum
-            jsonMain.readData()
-            jsonMain.writeData_changeRanges(Hum, "humedad-rango", "rangoHumedad")
+            jsonMain.read_data()
+            jsonMain.write_data_change_ranges(Hum, "humedad-rango", "rangoHumedad")
 
         # Preguntar a memo si así es como ya quedaría la comunicación con el arduino para actualizar los rangos.
         text = f"conf{rangoResAgua},{rangoTerrario},{rangoHum}"

@@ -68,6 +68,14 @@ python_installation() {
             echo "New python version is:"
             echo $'\e[1;32m'"$(python3 -V)"$'\e[0m'
 
+            echo $'\n'"Fixing python3-apt"
+            # Las tres líneas comentadas debajo podrían llegar a ser necesarias
+            # newPythonVersion=$(python3 -V)
+            # newPythonVersion=${newPythonVersion//Python /}
+            # sudo ln -s /usr/lib/python3/dist-packages/apt_pkg.cpython-$newPythonVersion-x86_64-linux-gnu.so /usr/lib/python3/dist-packages/apt_pkg.so
+            sudo apt remove python3-apt -y
+            sudo apt install python3-apt -y
+
             # echo $'\n'"Showing old python versions"
             # ls /usr/bin/python* | grep -v '\-config$'
             # ls /usr/lib/python* | grep -v '\-config$'

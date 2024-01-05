@@ -52,18 +52,25 @@ python_installation() {
         echo -n $'\e[1;32m'"$pythonVersion"$'\e[0m'
         read -p "? (y/n): " pythonAnswer
         if [ "$pythonAnswer" != "${pythonAnswer#[Yy]}" ] ;then
-            echo -n $'\n'"The python version to remove is: "$'\e[1;32m'"$oldPythonVersion"$'\e[0m'
-            sudo rm -r /usr/lib/python3/dist-packages/*
-            sudo apt remove python$oldPythonVersion -y
-            sudo apt autoremove -y
+            # echo -n $'\n'"The python version to remove is: "$'\e[1;32m'"$oldPythonVersion"$'\e[0m'
+            # sudo rm -r /usr/lib/python3/dist-packages/*
+            # sudo apt remove python$oldPythonVersion -y
+            # sudo apt autoremove -y
 
             echo "Installing python version "$'\e[1;32m'"$pythonVersion"$'\e[0m'
             sudo apt install python$pythonVersion -y
             sudo update-alternatives --install /usr/bin/python3 python3 /usr/bin/python$pythonVersion 1
+            sudo update-alternatives --config python3
+            sudo apt autoremove -y
 
-            echo $'\n'"Showing old python versions"
-            ls /usr/bin/python* | grep -v '\-config$'
-            ls /usr/lib/python* | grep -v '\-config$'
+            echo $'\n'"Old python version was:"
+            echo $'\e[1;32m'"Python ""$oldPythonVersion"$'\e[0m'
+            echo "New python version is:"
+            echo $'\e[1;32m'"$(python3 -V)"$'\e[0m'
+
+            # echo $'\n'"Showing old python versions"
+            # ls /usr/bin/python* | grep -v '\-config$'
+            # ls /usr/lib/python* | grep -v '\-config$'
         else
             echo "Python update canceled"
         fi
@@ -82,7 +89,7 @@ print_pip_version() {
 clear
 echo "------------------------------------------------------------------------------------"
 echo "Updating and upgrading the system"
-sudo apt update -y && sudo apt upgrade -y
+sudo apt update -y && sudo apt upgrade -y && sudo apt install xclip -y
 sudo apt autoremove -y
 
 # ---------------Install nodejs and npm using nvm---------------

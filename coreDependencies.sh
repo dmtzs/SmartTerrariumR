@@ -149,6 +149,17 @@ echo $'\n'"Installing python libraries"
 pip install --upgrade setuptools
 pip install -r requirements.txt
 
+read -p "Do you want to add the installed python libraries to the path if it where installed in local? (y/n): " answerPath
+if [ "$answerPath" != "${answerPath#[Yy]}" ] ;then
+    echo $'\n'"Adding python libraries to the path"
+    # It can be added at the end of the .bashrc file, also verify that the path was exxported correctly
+    export PATH=$PATH:$HOME/.local/bin
+    # echo $'\n'"export PATH=$PATH:$HOME/.local/bin" >> ~/.bashrc
+    # source ~/.bashrc
+else
+    echo $'\n'"Python libraries were not added to the path"
+fi
+
 # ---------------Inits chmod for initsDevMode.sh---------------
 echo $'\n'"Giving permissions to initsDevMode.sh"
 chmod +x initsDevMode.sh

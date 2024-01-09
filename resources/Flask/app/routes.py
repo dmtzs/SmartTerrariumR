@@ -15,11 +15,13 @@ try:
     from datetime import datetime as dt
     from app import app
     from gevent import monkey
-    from flask import render_template, Response, request
+    from flask import Response, render_template, request
     from terrarium_lib import json_object, arduino_connection
 except ImportError as err_imp:
     print(f"In file: {__file__} the following import error ocurred: {err_imp}")
 
+
+# TODO: Verificar camel case para las variables y en general el color azul que sale en este archivo
 #---------------------------------Variables and objects------------------------------------#
 # Inits arduino connection
 monkey.patch_all()
@@ -29,9 +31,8 @@ conn.start_communication()
 # Variables for reading operation mode
 sem = threading.Semaphore()
 first_time = True
-modo = ""
+mode = ""
 light_mode = ""
-
 
 # Keeps the data received from the arduino's stream
 stream_data = []
@@ -44,45 +45,45 @@ json_main = json_object.JsonObject()
 #               in the aplication for its correct functionality. The functions creates global variables in order to manage the parameters of the json file so it can-
 #               be used in all the program for the endpoints that requires this information.
 def first_time_load():
-    global json_main, modo, light_mode, on_off, rangoResAgua, rangoTerrario, rangoHum, correoGDCode, nomL, nomApp, versionApp, descripcionApp, time_zone, now, timeDia, timeNoche
+    global json_main, mode, light_mode, on_off, water_range_res, terrarium_range, humidity_range, gdcode_email, large_name, app_name, app_version, app_description, time_zone, now, time_day, time_night
 
     json_main.read_data()
-    modo = json_main.json_data["configuracion"]["modo"]
+    mode = json_main.json_data["configuracion"]["modo"]
     light_mode = json_main.json_data["configuracion"]["dia-noche"]
     on_off = 0
-    rangoResAgua = json_main.json_data["configuracion"]["temperaturas-rangos"]["rangoResAgua"]
-    rangoTerrario = json_main.json_data["configuracion"]["temperaturas-rangos"]["rangoTempDHT"]
-    rangoHum = json_main.json_data["configuracion"]["humedad-rango"]["rangoHumedad"]
-    correoGDCode = json_main.json_data["correo"]
-    nomL = json_main.json_data["usuario"]["usuario-nl"]
-    nomApp = json_main.json_data["nombre-app"]
-    versionApp = json_main.json_data["version"]
-    descripcionApp = json_main.json_data["descripcion-app"]
+    water_range_res = json_main.json_data["configuracion"]["temperaturas-rangos"]["rangoResAgua"]
+    terrarium_range = json_main.json_data["configuracion"]["temperaturas-rangos"]["rangoTempDHT"]
+    humidity_range = json_main.json_data["configuracion"]["humedad-rango"]["rangoHumedad"]
+    gdcode_email = json_main.json_data["correo"]
+    large_name = json_main.json_data["usuario"]["usuario-nl"]
+    app_name = json_main.json_data["nombre-app"]
+    app_version = json_main.json_data["version"]
+    app_description = json_main.json_data["descripcion-app"]
     time_zone = json_main.json_data["configuracion"]["time-zone"]
-    timeDia = json_main.json_data["configuracion"]["horarios"]["dia"]
-    timeNoche = json_main.json_data["configuracion"]["horarios"]["noche"]
+    time_day = json_main.json_data["configuracion"]["horarios"]["dia"]
+    time_night = json_main.json_data["configuracion"]["horarios"]["noche"]
     # now = dt.datetime.now(pytz.timezone(time_zone)).time()# Checar si no afecta que se quede de esta manera
 
-    number = 1 if modo == "true" or modo == 1 else 0
+    number = 1 if mode == "true" or mode == 1 else 0
     text = f"auto{str(number)}"
     sem.acquire()
     _ = conn.communication(text)
     sem.release()
 
-    if modo == "true" or modo == 1:
+    if mode == "true" or mode == 1:
         text = f"bulb1"
         sem.acquire()
         _ = conn.communication(text)
         sem.release()
 
-    if modo == "false" or modo == 0:
+    if mode == "false" or mode == 0:
         number = 1 if light_mode == "true" or light_mode == 1 else 0
         text = f"lght{str(number)}"
         sem.acquire()
         _ = conn.communication(text)
         sem.release()
 
-    text = f"conf{rangoResAgua},{rangoTerrario},{rangoHum}"
+    text = f"conf{water_range_res},{terrarium_range},{humidity_range}"
     sem.acquire()
     _ = conn.communication(text)
     sem.release()
@@ -100,21 +101,21 @@ def date_now():
 #               be used to serve the other templates of the automatic and manual mode. This is also the initial endpoint of the project.
 @app.route("/")  # Initial route of the project.
 def index():
-    global first_time, nomL, nomApp
+    global first_time, large_name, app_name
 
     if first_time:
         first_time_load()
         first_time = False
-        return render_template('bienvenida.html', pushed=modo, lightmode=light_mode, offButton=1, dis="hidden", nl=nomL, nomRealApp=nomApp)
+        return render_template('bienvenida.html', pushed=mode, lightmode=light_mode, offButton=1, dis="hidden", nl=large_name, nomRealApp=app_name)
 
-    if modo == 'true' or modo == 1:
+    if mode == 'true' or mode == 1:
         return render_template('automatico.html', autolightMode="disabled", autoLight="disabled")
-    if modo == 'false' or modo == 0:
+    if mode == 'false' or mode == 0:
         return render_template('manual.html')
 
 
 # @Description: Validates if actual time is inside the bounds of day or night to change the bulbs in automatic mode
-def isNowInTimePeriod(startTime, endTime, nowTime):#Tla vez sea buena idea pasarla a terrarium lib aunque no entraría ni en json ni en arduino, evaluar eso
+def isnow_intime_period(startTime, endTime, nowTime):#Tla vez sea buena idea pasarla a terrarium lib aunque no entraría ni en json ni en arduino, evaluar eso
     if startTime < endTime: 
         return nowTime >= startTime and nowTime <= endTime 
     else: 
@@ -129,13 +130,13 @@ def listen():
     def respond_to_client():
         global stream_data, now 
         while True:
-            if modo == 'true' or modo == 1:
+            if mode == 'true' or mode == 1:
                 now = dt.now(pytz.timezone(time_zone)).time()
                 
-                horaDia = timeDia.split(":")
-                horaNoche = timeNoche.split(":")
+                horaDia = time_day.split(":")
+                horaNoche = time_night.split(":")
 
-                if(isNowInTimePeriod(dt.time(int(horaDia[0]),int(horaDia[1])), dt.time(int(horaNoche[0]),int(horaNoche[1])), now)):
+                if(isnow_intime_period(dt.time(int(horaDia[0]),int(horaDia[1])), dt.time(int(horaNoche[0]),int(horaNoche[1])), now)):
                     number = 1
                 else:
                     number = 0
@@ -164,16 +165,16 @@ def listen():
 # @Description: In this endpoint are managed all the buttons of the manual mode, in order to activate all the components that the arduino will be managing. So with this-
 #               the users can be in complete control of all the functionality that will have this app.
 @app.route("/indexevents", methods=["POST"])
-def indexEvents():
-    global modo, light_mode, on_off
+def index_events():
+    global mode, light_mode, on_off
 
     if request.method == "POST" and "modoOperacion" in request.form:
         receivedMode = request.form.get("modoOperacion")
-        if receivedMode != modo:
-            modo = receivedMode
+        if receivedMode != mode:
+            mode = receivedMode
             json_main.read_data()
-            json_main.write_data_change_mode(modo)
-            number = 1 if modo == "true" or modo == 1 else 0
+            json_main.write_data_change_mode(mode)
+            number = 1 if mode == "true" or mode == 1 else 0
             # text = "auto{}".format(str(number))
             # Try and if not uncomment the above line.
             text = f"auto{str(number)}"
@@ -263,8 +264,8 @@ def indexEvents():
 # @Description: For managing all the ranges for the automatic mode so the arduino will know when to do somethign like turn on or off the biulbs, to know if-
 #               the night or day bulb should be on or off, turn on the water bomb to humidify the terrarrium, to refill the drinker when its almost empty, etc.
 @app.route("/configuracion", methods=["POST", "GET"])
-def configuracion():
-    global rangoResAgua, rangoTerrario, rangoHum, timeDia, timeNoche
+def configuration():
+    global water_range_res, terrarium_range, humidity_range, time_day, time_night
 
     if request.method == "POST":
         TempAgua = request.form['TempAguaReserva']
@@ -273,59 +274,59 @@ def configuracion():
         horaDia = request.form['timeDia']
         horaNoche = request.form['timeNoche']
         
-        if horaDia == "" or horaDia == timeDia:
+        if horaDia == "" or horaDia == time_day:
             pass
-        elif timeDia != horaDia:
-            timeDia = horaDia
+        elif time_day != horaDia:
+            time_day = horaDia
             json_main.read_data()
-            json_main.write_data_hour_range(timeDia, "dia")
+            json_main.write_data_hour_range(time_day, "dia")
             
-        if horaNoche == "" or horaNoche == timeNoche:
+        if horaNoche == "" or horaNoche == time_night:
             pass
-        elif timeNoche != horaNoche:
-            timeNoche = horaNoche
+        elif time_night != horaNoche:
+            time_night = horaNoche
             json_main.read_data()
-            json_main.write_data_hour_range(timeNoche, "noche")
+            json_main.write_data_hour_range(time_night, "noche")
 
-        if TempAgua == "" or TempAgua == rangoResAgua:
+        if TempAgua == "" or TempAgua == water_range_res:
             pass
-        elif rangoResAgua != TempAgua:
-            rangoResAgua = TempAgua
+        elif water_range_res != TempAgua:
+            water_range_res = TempAgua
             json_main.read_data()
             json_main.write_data_change_ranges(TempAgua, "temperaturas-rangos", "rangoResAgua")
 
-        if TempTerra == "" or TempTerra == rangoTerrario:
+        if TempTerra == "" or TempTerra == terrarium_range:
             pass
-        elif rangoTerrario != TempTerra:
-            rangoTerrario = TempTerra
+        elif terrarium_range != TempTerra:
+            terrarium_range = TempTerra
             json_main.read_data()
             json_main.write_data_change_ranges(TempTerra, "temperaturas-rangos", "rangoTempDHT")
 
-        if Hum == "" or Hum == rangoHum:
+        if Hum == "" or Hum == humidity_range:
             pass
-        elif rangoHum != Hum:
-            rangoHum = Hum
+        elif humidity_range != Hum:
+            humidity_range = Hum
             json_main.read_data()
             json_main.write_data_change_ranges(Hum, "humedad-rango", "rangoHumedad")
 
         # Preguntar a memo si así es como ya quedaría la comunicación con el arduino para actualizar los rangos.
-        text = f"conf{rangoResAgua},{rangoTerrario},{rangoHum}"
+        text = f"conf{water_range_res},{terrarium_range},{humidity_range}"
         sem.acquire()
         succes = conn.communication(text)
         sem.release()
         if not succes:
             return "error"
 
-        return render_template('configuracion.html', rango1=f"{rangoResAgua}", rango2=f"{rangoTerrario}", rango3=f"{rangoHum}", rango4=f"{timeDia}", rango5=f"{timeNoche}", bandeSuccess=True)
-    return render_template('configuracion.html', rango1=f"{rangoResAgua}", rango2=f"{rangoTerrario}", rango3=f"{rangoHum}", rango4=f"{timeDia}", rango5=f"{timeNoche}")
+        return render_template('configuracion.html', rango1=f"{water_range_res}", rango2=f"{terrarium_range}", rango3=f"{humidity_range}", rango4=f"{time_day}", rango5=f"{time_night}", bandeSuccess=True)
+    return render_template('configuracion.html', rango1=f"{water_range_res}", rango2=f"{terrarium_range}", rango3=f"{humidity_range}", rango4=f"{time_day}", rango5=f"{time_night}")
 
 
 # @Description: Endpoint that is used for show contact information with us.
 @app.route("/contacto")
-def contacto():
-    global correoGDCode, nomApp, versionApp, descripcionApp
+def contact():
+    global gdcode_email, app_name, app_version, app_description
 
-    return render_template('contacto.html', correo=correoGDCode, nombreApp=nomApp, versionDeApp=versionApp, decApp=descripcionApp)
+    return render_template('contacto.html', correo=gdcode_email, nombreApp=app_name, versionDeApp=app_version, decApp=app_description)
 
 
 # @Description: Endpoint that is used for show QRCodes that shows you english and spanish manuals.
@@ -336,7 +337,7 @@ def help():
 
 # @Description: Endpoint that is used for closing the app according to the operative system.
 @app.route("/closeApp", methods=['POST'])
-def closeAll():
+def close_all():
     msg = request.form.get("closeMsg")
     if msg == "closeAll":
         conn.close_connection()

@@ -12,7 +12,7 @@ try:
     import time
     import pytz
     import threading
-    from datetime import datetime as dt
+    from datetime import datetime as dt, time as dt_time
     from app import app
     from gevent import monkey
     from flask import Response, render_template, request
@@ -21,7 +21,7 @@ except ImportError as err_imp:
     print(f"In file: {__file__} the following import error ocurred: {err_imp}")
 
 
-# TODO: Verificar camel case para las variables y en general el color azul que sale en este archivo
+# TODO: Agregar docstrings a las funciones.
 #---------------------------------Variables and objects------------------------------------#
 # Inits arduino connection
 monkey.patch_all()
@@ -40,11 +40,15 @@ stream_data = []
 # JSON read
 json_main = json_object.JsonObject()
 #---------------------------------Endpoints------------------------------------#
+def first_time_load() -> None:
+    """
+    This function loads the data of the appData json file in which are defined all the automatic parameters, user information, etc in order to be used in the aplication for its correct functionality.
+    
+    The functions creates global variables in order to manage the parameters of the json file so it can be used in all the program for the endpoints that requires this information.
 
-# @Description: This function loads the data of the appData json file in which are defined all the automatic parameters, user information, etc in order to be used-
-#               in the aplication for its correct functionality. The functions creates global variables in order to manage the parameters of the json file so it can-
-#               be used in all the program for the endpoints that requires this information.
-def first_time_load():
+    Returns:
+    - None: This function does not return anything.
+    """
     global json_main, mode, light_mode, on_off, water_range_res, terrarium_range, humidity_range, gdcode_email, large_name, app_name, app_version, app_description, time_zone, now, time_day, time_night
 
     json_main.read_data()
@@ -88,19 +92,27 @@ def first_time_load():
     _ = conn.communication(text)
     sem.release()
 
-#---------------------------------Context processor for the date------------------------------------#
-# @Description: Context proccessor used to get the actual calendar date.
+#---------------------------------Context processor for the date------------------------------------
 @app.context_processor
-def date_now():
+def date_now() -> dict[str, dt]:
+    """
+    This function is used to get the actual calendar date for now in the context processor.
+
+    Returns:
+    - dict[str, dt]: A dictionary with the actual calendar date.
+    """
     return {
         "now": dt.now(pytz.timezone(time_zone))
     }
 
-
-# @Description: This endpoint will be used for the welcome html template at the first time the application is executed. After this page is changed this endpoint will-
-#               be used to serve the other templates of the automatic and manual mode. This is also the initial endpoint of the project.
 @app.route("/")  # Initial route of the project.
-def index():
+def index() -> str:
+    """
+    This function is used to render the index.html template.
+
+    Returns:
+    - str: The index.html template.
+    """
     global first_time, large_name, app_name
 
     if first_time:
@@ -113,30 +125,49 @@ def index():
     if mode == 'false' or mode == 0:
         return render_template('manual.html')
 
+def isnow_intime_period(start_time: dt_time, end_time: dt_time, now_time: dt_time) -> bool:
+    """
+    This function validates if actual time is inside the bounds of day or night to change the bulbs in automatic mode.
 
-# @Description: Validates if actual time is inside the bounds of day or night to change the bulbs in automatic mode
-def isnow_intime_period(startTime, endTime, nowTime):#Tla vez sea buena idea pasarla a terrarium lib aunque no entraría ni en json ni en arduino, evaluar eso
-    if startTime < endTime: 
-        return nowTime >= startTime and nowTime <= endTime 
-    else: 
-        #Over midnight: 
-        return nowTime >= startTime or nowTime <= endTime
+    Args:
+    - start_time: Start time of the day or night.
+    - end_time: End time of the day or night.
+    - now_time: Actual time.
 
+    Returns:
+    - bool: True if actual time is inside the bounds of day or night, otherwise False.
+    """
+    if start_time < end_time:
+        return now_time >= start_time and now_time <= end_time
+    else:
+        #Over midnight:
+        return now_time >= start_time or now_time <= end_time
 
-# @Description: This endpoint is just for the stream of the temperatures and humidity measured in the arduino and sended from the arduino to the raspberry in order to be-
-#               showed in the app in the raspberry.
 @app.route("/listen")
-def listen():
-    def respond_to_client():
+def listen() -> Response:
+    """
+    This function is used to listen the data sended from the arduino.
+
+    Returns:
+    - Response: The data sended from the arduino.
+    """
+    def respond_to_client() -> str:
+        """
+        This function is used to receive the data from the arduino and its sent to the client.
+
+        Returns:
+        - str: The data received from the arduino.
+        """
         global stream_data, now 
         while True:
             if mode == 'true' or mode == 1:
                 now = dt.now(pytz.timezone(time_zone)).time()
-                
-                horaDia = time_day.split(":")
-                horaNoche = time_night.split(":")
+                day_hour = time_day.split(":")
+                night_hour = time_night.split(":")
+                start_time = dt_time(int(day_hour[0]),int(day_hour[1]))
+                end_time = dt_time(int(night_hour[0]),int(night_hour[1]))
 
-                if(isnow_intime_period(dt.time(int(horaDia[0]),int(horaDia[1])), dt.time(int(horaNoche[0]),int(horaNoche[1])), now)):
+                if isnow_intime_period(start_time, end_time, now):
                     number = 1
                 else:
                     number = 0
@@ -162,16 +193,14 @@ def listen():
             time.sleep(5)
     return Response(respond_to_client(), mimetype= "text/event-stream")
 
-# @Description: In this endpoint are managed all the buttons of the manual mode, in order to activate all the components that the arduino will be managing. So with this-
-#               the users can be in complete control of all the functionality that will have this app.
 @app.route("/indexevents", methods=["POST"])
 def index_events():
     global mode, light_mode, on_off
 
     if request.method == "POST" and "modoOperacion" in request.form:
-        receivedMode = request.form.get("modoOperacion")
-        if receivedMode != mode:
-            mode = receivedMode
+        received_mode = request.form.get("modoOperacion")
+        if received_mode != mode:
+            mode = received_mode
             json_main.read_data()
             json_main.write_data_change_mode(mode)
             number = 1 if mode == "true" or mode == 1 else 0
@@ -204,9 +233,9 @@ def index_events():
         return "mode changed"
 
     if request.method == "POST" and "lighMode" in request.form:
-        receivedMode = request.form.get("lighMode")
-        if receivedMode != light_mode:
-            light_mode = receivedMode
+        received_mode = request.form.get("lighMode")
+        if received_mode != light_mode:
+            light_mode = received_mode
             json_main.read_data()
             json_main.write_data_change_light_mode(light_mode)
             number = 1 if light_mode == "true" or light_mode == 1 else 0
@@ -221,9 +250,9 @@ def index_events():
         return "light mode changed"
 
     if request.method == "POST" and "lightStatus" in request.form:
-        onoffLight = request.form.get("lightStatus")
-        if onoffLight:
-            number = 1 if onoffLight == "true" or onoffLight == 1 else 0
+        onoff_light = request.form.get("lightStatus")
+        if onoff_light:
+            number = 1 if onoff_light == "true" or onoff_light == 1 else 0
             on_off = number
             text = f"bulb{str(number)}"
             # text = "bulb"
@@ -235,11 +264,11 @@ def index_events():
             return "changeLight"
 
     if request.method == "POST" and "rellenar" in request.form:
-        rellenar = request.form.get("rellenar")
-        if rellenar:
+        refill = request.form.get("rellenar")
+        if refill:
             # text = "bwtr{}".format(str(rellenar))
             # Try and if not uncomment the above line.
-            text = f"bwtr{str(rellenar)}"
+            text = f"bwtr{str(refill)}"
             sem.acquire()
             succes = conn.communication(text)
             sem.release()
@@ -268,46 +297,46 @@ def configuration():
     global water_range_res, terrarium_range, humidity_range, time_day, time_night
 
     if request.method == "POST":
-        TempAgua = request.form['TempAguaReserva']
-        TempTerra = request.form['TempTerrario']
-        Hum = request.form['Humedad']
-        horaDia = request.form['timeDia']
-        horaNoche = request.form['timeNoche']
+        water_temperature = request.form['TempAguaReserva']
+        terrarium_temperature = request.form['TempTerrario']
+        only_humidity = request.form['Humedad']
+        day_hour = request.form['timeDia']
+        night_hour = request.form['timeNoche']
         
-        if horaDia == "" or horaDia == time_day:
+        if day_hour == "" or day_hour == time_day:
             pass
-        elif time_day != horaDia:
-            time_day = horaDia
+        elif time_day != day_hour:
+            time_day = day_hour
             json_main.read_data()
             json_main.write_data_hour_range(time_day, "dia")
             
-        if horaNoche == "" or horaNoche == time_night:
+        if night_hour == "" or night_hour == time_night:
             pass
-        elif time_night != horaNoche:
-            time_night = horaNoche
+        elif time_night != night_hour:
+            time_night = night_hour
             json_main.read_data()
             json_main.write_data_hour_range(time_night, "noche")
 
-        if TempAgua == "" or TempAgua == water_range_res:
+        if water_temperature == "" or water_temperature == water_range_res:
             pass
-        elif water_range_res != TempAgua:
-            water_range_res = TempAgua
+        elif water_range_res != water_temperature:
+            water_range_res = water_temperature
             json_main.read_data()
-            json_main.write_data_change_ranges(TempAgua, "temperaturas-rangos", "rangoResAgua")
+            json_main.write_data_change_ranges(water_temperature, "temperaturas-rangos", "rangoResAgua")
 
-        if TempTerra == "" or TempTerra == terrarium_range:
+        if terrarium_temperature == "" or terrarium_temperature == terrarium_range:
             pass
-        elif terrarium_range != TempTerra:
-            terrarium_range = TempTerra
+        elif terrarium_range != terrarium_temperature:
+            terrarium_range = terrarium_temperature
             json_main.read_data()
-            json_main.write_data_change_ranges(TempTerra, "temperaturas-rangos", "rangoTempDHT")
+            json_main.write_data_change_ranges(terrarium_temperature, "temperaturas-rangos", "rangoTempDHT")
 
-        if Hum == "" or Hum == humidity_range:
+        if only_humidity == "" or only_humidity == humidity_range:
             pass
-        elif humidity_range != Hum:
-            humidity_range = Hum
+        elif humidity_range != only_humidity:
+            humidity_range = only_humidity
             json_main.read_data()
-            json_main.write_data_change_ranges(Hum, "humedad-rango", "rangoHumedad")
+            json_main.write_data_change_ranges(only_humidity, "humedad-rango", "rangoHumedad")
 
         # Preguntar a memo si así es como ya quedaría la comunicación con el arduino para actualizar los rangos.
         text = f"conf{water_range_res},{terrarium_range},{humidity_range}"
@@ -317,8 +346,23 @@ def configuration():
         if not succes:
             return "error"
 
-        return render_template('configuracion.html', rango1=f"{water_range_res}", rango2=f"{terrarium_range}", rango3=f"{humidity_range}", rango4=f"{time_day}", rango5=f"{time_night}", bandeSuccess=True)
-    return render_template('configuracion.html', rango1=f"{water_range_res}", rango2=f"{terrarium_range}", rango3=f"{humidity_range}", rango4=f"{time_day}", rango5=f"{time_night}")
+        return render_template(
+            'configuracion.html',
+            rango1=f"{water_range_res}",
+            rango2=f"{terrarium_range}",
+            rango3=f"{humidity_range}",
+            rango4=f"{time_day}",
+            rango5=f"{time_night}",
+            bandeSuccess=True
+        )
+    return render_template(
+        'configuracion.html',
+        rango1=f"{water_range_res}",
+        rango2=f"{terrarium_range}",
+        rango3=f"{humidity_range}",
+        rango4=f"{time_day}",
+        rango5=f"{time_night}"
+    )
 
 
 # @Description: Endpoint that is used for show contact information with us.
@@ -326,7 +370,13 @@ def configuration():
 def contact():
     global gdcode_email, app_name, app_version, app_description
 
-    return render_template('contacto.html', correo=gdcode_email, nombreApp=app_name, versionDeApp=app_version, decApp=app_description)
+    return render_template(
+        'contacto.html',
+        correo=gdcode_email,
+        nombreApp=app_name,
+        versionDeApp=app_version,
+        decApp=app_description
+    )
 
 
 # @Description: Endpoint that is used for show QRCodes that shows you english and spanish manuals.

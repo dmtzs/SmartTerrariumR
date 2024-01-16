@@ -21,7 +21,6 @@ except ImportError as err_imp:
     print(f"In file: {__file__} the following import error ocurred: {err_imp}")
 
 
-# TODO: Agregar docstrings a las funciones.
 #---------------------------------Variables and objects------------------------------------#
 # Inits arduino connection
 monkey.patch_all()
@@ -194,7 +193,13 @@ def listen() -> Response:
     return Response(respond_to_client(), mimetype= "text/event-stream")
 
 @app.route("/indexevents", methods=["POST"])
-def index_events():
+def index_events() -> str:
+    """
+    This function is used to manage the events that are sended from the index.html template.
+
+    Returns:
+    - str: A string that indicates if the event was successful or not.
+    """
     global mode, light_mode, on_off
 
     if request.method == "POST" and "modoOperacion" in request.form:
@@ -289,11 +294,16 @@ def index_events():
 
     return "error"
 
-
-# @Description: For managing all the ranges for the automatic mode so the arduino will know when to do somethign like turn on or off the biulbs, to know if-
-#               the night or day bulb should be on or off, turn on the water bomb to humidify the terrarrium, to refill the drinker when its almost empty, etc.
 @app.route("/configuracion", methods=["POST", "GET"])
-def configuration():
+def configuration() -> str:
+    """
+    For managing all the ranges for the automatic mode so the arduino will know when
+    to do somethign like turn on or off the biulbs, to know if the night or day bulb should be on or off,
+    turn on the water bomb to humidify the terrarrium, to refill the drinker when its almost empty, etc.
+
+    Returns:
+    - str: A string which is ussed to render the html template.
+    """
     global water_range_res, terrarium_range, humidity_range, time_day, time_night
 
     if request.method == "POST":
@@ -367,7 +377,13 @@ def configuration():
 
 # @Description: Endpoint that is used for show contact information with us.
 @app.route("/contacto")
-def contact():
+def contact() -> str:
+    """
+    This function is used to render the contacto.html template.
+
+    Returns:
+    - str: The contacto.html template.
+    """
     global gdcode_email, app_name, app_version, app_description
 
     return render_template(
@@ -379,15 +395,27 @@ def contact():
     )
 
 
-# @Description: Endpoint that is used for show QRCodes that shows you english and spanish manuals.
 @app.route("/help")
-def help():
+def help() -> str:
+    """
+    This function is used to render the ayuda.html template.
+
+    It shows QRCodes that shows you english and spanish manuals.
+
+    Returns:
+    - str: The ayuda.html template.
+    """
     return render_template('ManUsu.html', status="hidden")
 
 
-# @Description: Endpoint that is used for closing the app according to the operative system.
 @app.route("/closeApp", methods=['POST'])
-def close_all():
+def close_all() -> str:
+    """
+    This function is used to close the app according to the operative system.
+
+    Returns:
+    - str: A string that indicates if the app was closed or not.
+    """
     msg = request.form.get("closeMsg")
     if msg == "closeAll":
         conn.close_connection()

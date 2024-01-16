@@ -10,8 +10,7 @@ try:
 except ImportError as err_imp:
     print(f"In file: {__file__} the following import error ocurred: {err_imp}")
 
-# @Description: Class for manage the json appData in order to be used in the app or to update the same json file.
-#               In this class are all the methods to read, write and update the data of the json file
+
 class JsonObject():
     """
     This class is used to manage the data stored in the appData json file that is used to configure the app at the moment we init the raspberry
@@ -91,8 +90,7 @@ class JsonObject():
         except Exception:
             print("No se encontró el archivo appData.json en ninguna de las rutas")
 
-    # @Description: Method to update in the json file the parameter of the state of the operation mode of the app.
-    def write_data_change_mode(self, new_mode) -> None:
+    def write_data_change_mode(self, new_mode: str) -> None:
         """
         Method to update in the json file the parameter of the state of the operation mode of the app.
 
@@ -107,7 +105,7 @@ class JsonObject():
 
         self.write_data()
 
-    def write_data_change_light_mode(self, new_mode) -> None:
+    def write_data_change_light_mode(self, new_mode: str) -> None:
         """
         Method to update in the json file the parameter of the state of the lightmode of the app.
 
@@ -124,7 +122,7 @@ class JsonObject():
 
         self.write_data()
 
-    def write_data_change_ranges(self, received_range, temp_hum, range_temp_hum) -> None:
+    def write_data_change_ranges(self, received_range: str, temp_hum: str, range_temp_hum: str) -> None:
         """
         Method to update the ranges for the humidity and temperatures that the automatic mode will be managing.
 
@@ -156,7 +154,7 @@ class JsonObject():
         self.write_data()
         # We still need to review this method, maybe we need to add more things to make it work.
 
-    def write_data_hour_range(self, hour, day_night) -> None:
+    def write_data_hour_range(self, hour: str, day_night: str) -> None:
         """
         Update the hour ranges for automatic mode light managing.
 

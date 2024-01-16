@@ -15,7 +15,7 @@ try:
     from app import app
     from gevent.pywsgi import WSGIServer
 except ImportError as err_imp:
-    print(f"Ocurrió el error de importación en el archivo {__file__}: {err_imp}")
+    print(f"In file: {__file__} the following import error ocurred: {err_imp}")
 
 #-------------------------------Execute----------------------------------------#
 if __name__ == "__main__":
@@ -27,10 +27,9 @@ if __name__ == "__main__":
         app_server =  WSGIServer(("127.0.0.1", 5000), app)
         app_server.serve_forever()
     except KeyboardInterrupt:
-        print("Se presionó Ctrl + C")
-        print("Apagando servidor...")
-    except Exception as err:
-        print(f"Ocurrió el siguiente error: {err}")
-        print(f"Error completo: \n{traceback.format_exc()}")
+        print("Ctrl + C was pressed.")
+        print("Turning off server...")
+    except Exception:
+        print(f"Complete error: \n{traceback.format_exc()}")
     else:
-        print("\nReiniciando servidor")
+        print("\nRebooting server...")

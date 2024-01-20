@@ -11,12 +11,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/dmtzs/ProyectoRaspArduino.git"
+    "url": "git+https://github.com/dmtzs/SmartTerrariumR.git"
   },
   "author": "Diego and Guillermo <gd-code@outlook.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/dmtzs/ProyectoRaspArduino/issues"
+    "url": "https://github.com/dmtzs/SmartTerrariumR/issues"
   },
   "build": {
     "appId": "com.rasp.terrarium",
@@ -39,10 +39,10 @@
     }
   },
   "dependencies": {
-    "wait-port": "^0.2.9"
+    "wait-port": "^1.1.0"
   },
   "devDependencies": {
-    "electron": "^18.2.0",
-    "electron-builder": "^23.0.3"
+    "electron": "^8.1.0",
+    "electron-builder": "^24.9.1"
   }
 }

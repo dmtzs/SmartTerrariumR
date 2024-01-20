@@ -243,7 +243,7 @@ if __name__ == "__main__":
         import zipfile
 
         # My own libraries
-        from updateLib import updates
+        from update_lib import updates
 
         # Not native python libraries
         import wget

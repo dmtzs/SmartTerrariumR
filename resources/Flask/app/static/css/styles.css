@@ -241,18 +241,16 @@ a:focus {
 	transition: all 0.3s;
 }
 
-.separateQR
-{
-	margin: 0;
-	margin-left: 4%;
-	margin-right: 4%;
+.paragraphQR {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8%; /* Espacio entre las imágenes */
 }
 
-.paragraphQR
-{
-	margin: 0;
-	margin-top: 3%;
-	text-align: center;
+.paragraphQR span {
+    flex: 1;
+    text-align: center; /* Alinea las imágenes al centro de su contenedor */
 }
 
 small {

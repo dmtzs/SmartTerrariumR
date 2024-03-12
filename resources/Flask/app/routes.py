@@ -10,6 +10,7 @@ Diego Martínez Sánchez and Guillermo Ortega Romo.
 try:
     import csv
     import time
+    from typing import Generator
     import pytz
     import threading
     from datetime import datetime as dt, time as dt_time
@@ -150,7 +151,7 @@ def listen() -> Response:
     Returns:
     - Response: The data sended from the arduino.
     """
-    def respond_to_client() -> str:
+    def respond_to_client() -> Generator[str, None, None]:
         """
         This function is used to receive the data from the arduino and its sent to the client.
 

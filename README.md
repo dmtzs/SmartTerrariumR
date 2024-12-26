@@ -98,12 +98,12 @@ Here is the diagram connection about how you need to connect all components, to 
 ![](resources/Imgs/Diagrama.png)
 
 # Donations
-### We know this is a payment project but consider a donation for do more opensource code!!
-This project is not an opensource project. That doesn't mean we don't need any money.
-<br><br>
-Please consider a donation to help us and if we receive enough donations then we can do support for the opensource part of this application.
-You can download this app and its over your responsability to maintain this by yourself if you are not our client but if we receive enough donations we can make support for an opensource type.
+<div align="center">
+<a href="https://www.paypal.com/donate/?hosted_button_id=RKU4KRLQ239HL"><img src="docs/images/paypal_donate_button.png" width=170 alt="Paypal donation button"></a>
 
-To donate, please follow this [link](https://ceneka.net/dmtzs).
+<a></a>
 
-Also options in cryptocurrencies for donations will be added in this part.
+| Massive Thanks to all the People who Donated to help this Project 😇 |
+|----------------------------------------------|
+
+</div>
